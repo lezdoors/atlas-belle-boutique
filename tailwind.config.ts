@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,44 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Moroccan luxury color palette
+				sand: {
+					50: '#fefcf7',
+					100: '#fdf8ee',
+					200: '#faf0d5',
+					300: '#f5e2b3',
+					400: '#efcf85',
+					500: '#e8b861',
+					600: '#dfa142',
+					700: '#c18935',
+					800: '#9e6d2e',
+					900: '#7f5629',
+				},
+				amber: {
+					50: '#fffbeb',
+					100: '#fef3c7',
+					200: '#fde68a',
+					300: '#fcd34d',
+					400: '#fbbf24',
+					500: '#f59e0b',
+					600: '#d97706',
+					700: '#b45309',
+					800: '#92400e',
+					900: '#78350f',
+				},
+				gold: {
+					50: '#fffdf7',
+					100: '#fffaeb',
+					200: '#fef4cd',
+					300: '#fde9a7',
+					400: '#fcd775',
+					500: '#f9c23c',
+					600: '#f3a614',
+					700: '#e58e09',
+					800: '#c8700a',
+					900: '#a35d0f',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +122,25 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' },
+				},
+				'scale-in': {
+					'0%': { opacity: '0', transform: 'scale(0.95)' },
+					'100%': { opacity: '1', transform: 'scale(1)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.6s ease-out',
+				'scale-in': 'scale-in 0.3s ease-out',
+			},
+			fontFamily: {
+				'serif': ['Playfair Display', 'serif'],
+				'sans': ['Inter', 'system-ui', 'sans-serif'],
 			}
 		}
 	},
