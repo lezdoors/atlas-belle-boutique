@@ -106,9 +106,10 @@
 @layer components {
   .moroccan-pattern {
     background-image: 
-      radial-gradient(circle at 25% 25%, rgba(245, 158, 11, 0.1) 2px, transparent 2px),
-      radial-gradient(circle at 75% 75%, rgba(245, 158, 11, 0.1) 2px, transparent 2px);
-    background-size: 40px 40px;
+      radial-gradient(circle at 25% 25%, rgba(212, 163, 115, 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 75% 75%, rgba(212, 163, 115, 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 50% 50%, rgba(186, 122, 99, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px, 40px 40px, 20px 20px;
   }
 
   .gold-border {
@@ -118,4 +119,36 @@
   .luxury-shadow {
     box-shadow: 0 10px 40px rgba(245, 158, 11, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
   }
+}
+
+/* Custom animations for hero section */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 1s ease-out 0.3s forwards;
+  opacity: 0;
 }
