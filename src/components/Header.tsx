@@ -3,25 +3,39 @@ import { useState } from 'react';
 import { Search, User, ShoppingCart, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useLanguage } from '@/contexts/LanguageContext';
+import LanguageToggle from '@/components/LanguageToggle';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const { language } = useLanguage();
 
-  const categories = [
-    { name: 'Parfums', href: '/parfums' },
-    { name: 'Huiles', href: '/huiles' },
-    { name: 'Crèmes', href: '/cremes' },
-    { name: 'Masques', href: '/masques' },
-    { name: 'Nouveautés', href: '/nouveautes' },
-  ];
+  const categories = language === 'fr' 
+    ? [
+        { name: 'Parfums', href: '/parfums' },
+        { name: 'Huiles', href: '/huiles' },
+        { name: 'Crèmes', href: '/cremes' },
+        { name: 'Masques', href: '/masques' },
+        { name: 'Nouveautés', href: '/nouveautes' },
+      ]
+    : [
+        { name: 'Perfumes', href: '/perfumes' },
+        { name: 'Oils', href: '/oils' },
+        { name: 'Creams', href: '/creams' },
+        { name: 'Masks', href: '/masks' },
+        { name: 'New Arrivals', href: '/new-arrivals' },
+      ];
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-sand-200 luxury-shadow">
       {/* Top Bar */}
       <div className="bg-sand-50 text-sand-800 text-sm py-2">
         <div className="container mx-auto px-4 text-center">
-          Livraison gratuite à partir de 150€ • Échantillons offerts
+          {language === 'fr' 
+            ? 'Livraison gratuite à partir de 150€ • Échantillons offerts'
+            : 'Free shipping from $150 • Free samples included'
+          }
         </div>
       </div>
 
@@ -34,7 +48,10 @@ const Header = () => {
               Perle d'Atlas
             </h1>
             <div className="hidden sm:block ml-2 text-xs text-sand-600 font-light">
-              La beauté ancestrale du Maroc
+              {language === 'fr' 
+                ? 'La beauté ancestrale du Maroc'
+                : 'Ancestral beauty of Morocco'
+              }
             </div>
           </div>
 
@@ -53,20 +70,23 @@ const Header = () => {
               href="/rituels"
               className="text-sand-700 hover:text-amber-600 transition-colors duration-200 font-medium"
             >
-              Rituels de beauté
+              {language === 'fr' ? 'Rituels de beauté' : 'Beauty rituals'}
             </a>
           </nav>
 
-          {/* Search Bar */}
-          <div className="hidden md:flex items-center bg-sand-50 rounded-full px-4 py-2 w-80">
-            <Search className="h-4 w-4 text-sand-500 mr-2" />
-            <Input
-              type="text"
-              placeholder="Rechercher un produit..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="border-0 bg-transparent focus:ring-0 text-sm"
-            />
+          {/* Search Bar & Language Toggle */}
+          <div className="hidden md:flex items-center space-x-4">
+            <div className="flex items-center bg-sand-50 rounded-full px-4 py-2 w-64">
+              <Search className="h-4 w-4 text-sand-500 mr-2" />
+              <Input
+                type="text"
+                placeholder={language === 'fr' ? 'Rechercher un produit...' : 'Search product...'}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="border-0 bg-transparent focus:ring-0 text-sm"
+              />
+            </div>
+            <LanguageToggle />
           </div>
 
           {/* Action Icons */}
@@ -97,17 +117,20 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Search */}
-        <div className="md:hidden mt-4">
+        {/* Mobile Search & Language Toggle */}
+        <div className="md:hidden mt-4 space-y-4">
           <div className="flex items-center bg-sand-50 rounded-full px-4 py-2">
             <Search className="h-4 w-4 text-sand-500 mr-2" />
             <Input
               type="text"
-              placeholder="Rechercher..."
+              placeholder={language === 'fr' ? 'Rechercher...' : 'Search...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="border-0 bg-transparent focus:ring-0 text-sm"
             />
+          </div>
+          <div className="flex justify-center">
+            <LanguageToggle />
           </div>
         </div>
       </div>
@@ -132,7 +155,7 @@ const Header = () => {
                 className="block text-sand-700 hover:text-amber-600 transition-colors duration-200 font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Rituels de beauté
+                {language === 'fr' ? 'Rituels de beauté' : 'Beauty rituals'}
               </a>
               <div className="pt-4 border-t border-sand-200">
                 <a
@@ -140,7 +163,7 @@ const Header = () => {
                   className="block text-sand-700 hover:text-amber-600 transition-colors duration-200 font-medium py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Mon compte
+                  {language === 'fr' ? 'Mon compte' : 'My account'}
                 </a>
               </div>
             </nav>
