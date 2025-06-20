@@ -1,10 +1,12 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Star, Heart, ShoppingCart, Eye } from 'lucide-react';
+import { Star, ShoppingCart, Eye } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { convertAndFormat } from '@/utils/currencyConverter';
 import ProductBadge from '@/components/ProductBadge';
+import WishlistButton from '@/components/WishlistButton';
+import QuickViewModal from '@/components/QuickViewModal';
 
 interface Product {
   id: number;
@@ -16,6 +18,10 @@ interface Product {
   reviews: number;
   badge: { type: 'new' | 'bestseller' | 'limited' | 'discount'; discount?: number };
   description: string;
+  longDescription?: string;
+  ingredients?: string[];
+  skinType?: string[];
+  region?: string;
 }
 
 interface ProductCardProps {
@@ -24,6 +30,20 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { language, currency } = useLanguage();
+
+  const enhancedProduct = {
+    ...product,
+    longDescription: product.longDescription || (language === 'fr' 
+      ? 'Un produit authentique du Maroc, créé avec des ingrédients naturels et des méthodes traditionnelles pour révéler votre beauté naturelle.'
+      : 'An authentic product from Morocco, created with natural ingredients and traditional methods to reveal your natural beauty.'),
+    ingredients: product.ingredients || (language === 'fr' 
+      ? ['Huile d\'argan', 'Beurre de karité', 'Huile de rose'] 
+      : ['Argan oil', 'Shea butter', 'Rose oil']),
+    skinType: product.skinType || (language === 'fr' 
+      ? ['Tous types de peau'] 
+      : ['All skin types']),
+    region: product.region || 'Marrakech'
+  };
 
   return (
     <Card className="group hover-scale bg-white/90 backdrop-blur-sm border-0 luxury-shadow h-full flex flex-col overflow-hidden rounded-2xl">
@@ -47,20 +67,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           {/* Enhanced Action Buttons */}
           <div className="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="bg-white/90 hover:bg-white hover:text-red-500 transition-colors rounded-full luxury-shadow"
-            >
-              <Heart className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="bg-white/90 hover:bg-white hover:text-copper-600 transition-colors rounded-full luxury-shadow"
-            >
-              <Eye className="h-4 w-4" />
-            </Button>
+            <WishlistButton 
+              productId={product.id} 
+              productName={product.name}
+              variant="icon"
+            />
+            <QuickViewModal product={enhancedProduct}>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="bg-white/90 hover:bg-white hover:text-copper-600 transition-colors rounded-full luxury-shadow"
+              >
+                <Eye className="h-4 w-4" />
+              </Button>
+            </QuickViewModal>
           </div>
 
           {/* Enhanced Quick Actions Overlay */}
@@ -75,7 +95,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         </div>
 
-        {/* Enhanced Product Info */}
+        {/* Product Info */}
         <div className="p-6 flex flex-col flex-grow bg-white">
           {/* Rating with Enhanced Styling */}
           <div className="flex items-center mb-3">

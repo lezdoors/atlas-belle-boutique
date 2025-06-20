@@ -1,12 +1,15 @@
 
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import FeaturedProductsHeader from '@/components/FeaturedProductsHeader';
 import FeaturedProductsInfoBar from '@/components/FeaturedProductsInfoBar';
 import ProductCard from '@/components/ProductCard';
+import ProductFilters from '@/components/ProductFilters';
 
 const FeaturedProducts = () => {
   const { language } = useLanguage();
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const products = [
     {
@@ -20,7 +23,10 @@ const FeaturedProducts = () => {
       badge: { type: 'bestseller' as const },
       description: language === 'fr' 
         ? 'Huile pure d\'argan pressée à froid'
-        : 'Pure cold-pressed argan oil'
+        : 'Pure cold-pressed argan oil',
+      region: 'Essaouira',
+      skinType: language === 'fr' ? ['Peau sèche', 'Peau mature'] : ['Dry skin', 'Mature skin'],
+      ingredients: language === 'fr' ? ['Huile d\'argan', 'Vitamine E'] : ['Argan oil', 'Vitamin E']
     },
     {
       id: 2,
@@ -33,7 +39,10 @@ const FeaturedProducts = () => {
       badge: { type: 'new' as const },
       description: language === 'fr'
         ? 'Fragrance envoûtante aux notes orientales'
-        : 'Enchanting fragrance with oriental notes'
+        : 'Enchanting fragrance with oriental notes',
+      region: 'Fès',
+      skinType: language === 'fr' ? ['Tous types de peau'] : ['All skin types'],
+      ingredients: language === 'fr' ? ['Oud', 'Rose de Damas', 'Ambre'] : ['Oud', 'Damask rose', 'Amber']
     },
     {
       id: 3,
@@ -46,7 +55,10 @@ const FeaturedProducts = () => {
       badge: { type: 'limited' as const },
       description: language === 'fr'
         ? 'Masque purifiant à l\'argile du Maroc'
-        : 'Purifying mask with Moroccan clay'
+        : 'Purifying mask with Moroccan clay',
+      region: 'Atlas',
+      skinType: language === 'fr' ? ['Peau grasse', 'Peau mixte'] : ['Oily skin', 'Combination skin'],
+      ingredients: language === 'fr' ? ['Argile rouge', 'Huile d\'olive', 'Miel'] : ['Red clay', 'Olive oil', 'Honey']
     },
     {
       id: 4,
@@ -59,9 +71,17 @@ const FeaturedProducts = () => {
       badge: { type: 'discount' as const, discount: 25 },
       description: language === 'fr'
         ? 'Soin anti-âge aux extraits de cactus'
-        : 'Anti-aging care with cactus extracts'
+        : 'Anti-aging care with cactus extracts',
+      region: 'Marrakech',
+      skinType: language === 'fr' ? ['Peau mature', 'Peau sèche'] : ['Mature skin', 'Dry skin'],
+      ingredients: language === 'fr' ? ['Extrait de cactus', 'Acide hyaluronique', 'Peptides'] : ['Cactus extract', 'Hyaluronic acid', 'Peptides']
     }
   ];
+
+  const handleFiltersChange = (filters: any) => {
+    // Here you would implement the actual filtering logic
+    console.log('Filters changed:', filters);
+  };
 
   return (
     <section id="featured-products" className="py-20 bg-gradient-to-br from-pearl-50 to-beige-50">
@@ -71,6 +91,13 @@ const FeaturedProducts = () => {
 
         {/* Info Bar */}
         <FeaturedProductsInfoBar />
+
+        {/* Filters */}
+        <ProductFilters 
+          onFiltersChange={handleFiltersChange}
+          isOpen={filtersOpen}
+          onToggle={() => setFiltersOpen(!filtersOpen)}
+        />
 
         {/* Products Grid with Enhanced Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
