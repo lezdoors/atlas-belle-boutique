@@ -7,6 +7,7 @@ import LanguageDropdown from '@/components/LanguageDropdown';
 import SearchBar from '@/components/SearchBar';
 import NewsletterModal from '@/components/NewsletterModal';
 import MobileSearch from '@/components/MobileSearch';
+import CulturalNavigation from '@/components/CulturalNavigation';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -75,6 +76,7 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+              <CulturalNavigation />
               {categories.map((category) => (
                 <a
                   key={category.name}
@@ -148,6 +150,11 @@ const Header = () => {
           <div className="lg:hidden bg-white border-t border-sand-200 animate-fade-in">
             <div className="container mx-auto px-4 py-6">
               <nav className="space-y-6">
+                {/* Cultural Navigation for Mobile */}
+                <div className="pb-4 border-b border-sand-100">
+                  <CulturalNavigation />
+                </div>
+
                 {/* Main Categories */}
                 <div className="space-y-4">
                   {categories.map((category) => (

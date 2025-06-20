@@ -2,7 +2,10 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import ShopByRegion from '@/components/ShopByRegion';
+import RegionalCollections from '@/components/RegionalCollections';
 import FeaturedProducts from '@/components/FeaturedProducts';
+import ProductStorySection from '@/components/ProductStorySection';
+import IngredientSpotlight from '@/components/IngredientSpotlight';
 import Testimonials from '@/components/Testimonials';
 import Categories from '@/components/Categories';
 import BrandStory from '@/components/BrandStory';
@@ -30,7 +33,10 @@ const Index = () => {
           <main>
             <Hero />
             <ShopByRegion />
+            <RegionalCollections />
             <FeaturedProducts />
+            <ProductStorySection productId={1} productName="Huile d'Argan Premium" />
+            <IngredientSpotlight />
             <OurArtisans />
             <IngredientOriginMap />
             <Testimonials />
