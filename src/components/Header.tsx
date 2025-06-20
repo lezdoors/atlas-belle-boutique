@@ -4,7 +4,7 @@ import { Search, User, ShoppingCart, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useLanguage } from '@/contexts/LanguageContext';
-import LanguageToggle from '@/components/LanguageToggle';
+import LanguageDropdown from '@/components/LanguageDropdown';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -74,7 +74,7 @@ const Header = () => {
             </a>
           </nav>
 
-          {/* Search Bar & Language Toggle */}
+          {/* Search Bar & Language Dropdown */}
           <div className="hidden md:flex items-center space-x-4">
             <div className="flex items-center bg-sand-50 rounded-full px-4 py-2 w-64">
               <Search className="h-4 w-4 text-sand-500 mr-2" />
@@ -86,7 +86,7 @@ const Header = () => {
                 className="border-0 bg-transparent focus:ring-0 text-sm"
               />
             </div>
-            <LanguageToggle />
+            <LanguageDropdown />
           </div>
 
           {/* Action Icons */}
@@ -117,7 +117,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Search & Language Toggle */}
+        {/* Mobile Search & Language Dropdown */}
         <div className="md:hidden mt-4 space-y-4">
           <div className="flex items-center bg-sand-50 rounded-full px-4 py-2">
             <Search className="h-4 w-4 text-sand-500 mr-2" />
@@ -130,7 +130,7 @@ const Header = () => {
             />
           </div>
           <div className="flex justify-center">
-            <LanguageToggle />
+            <LanguageDropdown />
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 export type Language = 'fr' | 'en';
 export type Currency = 'EUR' | 'USD';
@@ -26,17 +26,26 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>('fr');
+  const [language, setLanguageState] = useState<Language>(() => {
+    const saved = localStorage.getItem('perle-atlas-language');
+    return (saved as Language) || 'fr';
+  });
 
   const currency: Currency = language === 'fr' ? 'EUR' : 'USD';
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
+    localStorage.setItem('perle-atlas-language', lang);
   };
 
   const toggleLanguage = () => {
-    setLanguageState(prev => prev === 'fr' ? 'en' : 'fr');
+    const newLang = language === 'fr' ? 'en' : 'fr';
+    setLanguage(newLang);
   };
+
+  useEffect(() => {
+    localStorage.setItem('perle-atlas-currency', currency);
+  }, [currency]);
 
   return (
     <LanguageContext.Provider value={{

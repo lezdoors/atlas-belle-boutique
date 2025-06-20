@@ -5,7 +5,6 @@ import { Star, Heart, ShoppingCart } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { convertAndFormat } from '@/utils/currencyConverter';
 import ProductBadge from '@/components/ProductBadge';
-import LanguageToggle from '@/components/LanguageToggle';
 
 const FeaturedProducts = () => {
   const { language, currency } = useLanguage();
@@ -81,10 +80,9 @@ const FeaturedProducts = () => {
             }
           </p>
 
-          {/* Toggle Bar */}
-          <div className="flex flex-col sm:flex-row items-center justify-between bg-white/80 backdrop-blur-sm rounded-xl p-4 mb-8 shadow-sm max-w-4xl mx-auto">
-            <LanguageToggle />
-            <div className="flex items-center text-sm text-sand-600 mt-2 sm:mt-0">
+          {/* Info Bar */}
+          <div className="flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-xl p-4 mb-8 shadow-sm max-w-4xl mx-auto">
+            <div className="flex items-center text-sm text-sand-600">
               <span className="flex items-center">
                 {language === 'fr' 
                   ? `✨ Livraison gratuite dès 150€ • Échantillons offerts`
