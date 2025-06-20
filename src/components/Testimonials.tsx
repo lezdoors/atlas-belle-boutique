@@ -1,4 +1,3 @@
-
 import { Star, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -11,7 +10,7 @@ const Testimonials = () => {
       id: 1,
       name: language === 'fr' ? 'Amira Bennani' : 'Amira Bennani',
       location: language === 'fr' ? 'Casablanca, Maroc' : 'Casablanca, Morocco',
-      image: '/placeholder.svg',
+      image: '/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png',
       rating: 5,
       text: language === 'fr' 
         ? 'L\'huile d\'argan de Perle d\'Atlas a transformé ma peau. Une qualité exceptionnelle qui reflète vraiment l\'authenticité marocaine.'
@@ -22,7 +21,7 @@ const Testimonials = () => {
       id: 2,
       name: language === 'fr' ? 'Sarah Mitchell' : 'Sarah Mitchell',
       location: language === 'fr' ? 'Paris, France' : 'Paris, France',
-      image: '/placeholder.svg',
+      image: '/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png',
       rating: 5,
       text: language === 'fr'
         ? 'Le parfum Oud & Rose est absolument envoûtant. Il me transporte directement dans les souks de Marrakech.'
@@ -33,7 +32,7 @@ const Testimonials = () => {
       id: 3,
       name: language === 'fr' ? 'Fatima El Amrani' : 'Fatima El Amrani',
       location: language === 'fr' ? 'Rabat, Maroc' : 'Rabat, Morocco',
-      image: '/placeholder.svg',
+      image: '/lovable-uploads/d4ad8eb5-ea3d-4931-ae8c-008b30d0e998.png',
       rating: 5,
       text: language === 'fr'
         ? 'Enfin une marque qui honore nos traditions tout en offrant une qualité premium. Je recommande vivement !'

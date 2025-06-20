@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, Heart } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -13,7 +12,7 @@ const OurArtisans = () => {
       region: 'Essaouira',
       specialty: language === 'fr' ? 'Extraction d\'huile d\'argan' : 'Argan oil extraction',
       experience: 25,
-      image: '/placeholder.svg',
+      image: '/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png',
       story: language === 'fr' 
         ? 'Fatima perpétue la tradition familiale de l\'extraction d\'huile d\'argan depuis 25 ans. Son savoir-faire ancestral garantit la pureté exceptionnelle de nos huiles.'
         : 'Fatima continues the family tradition of argan oil extraction for 25 years. Her ancestral expertise guarantees the exceptional purity of our oils.',
@@ -25,7 +24,7 @@ const OurArtisans = () => {
       region: 'Fès',
       specialty: language === 'fr' ? 'Maître parfumeur' : 'Master perfumer',
       experience: 30,
-      image: '/placeholder.svg',
+      image: '/lovable-uploads/616bba28-fbf7-4dfb-bae7-e036ccd1e78b.png',
       story: language === 'fr'
         ? 'Ahmed crée nos parfums uniques en mélangeant les essences traditionnelles avec des techniques modernes. Chaque fragrance raconte une histoire du Maroc.'
         : 'Ahmed creates our unique perfumes by blending traditional essences with modern techniques. Each fragrance tells a story of Morocco.',
@@ -35,12 +34,12 @@ const OurArtisans = () => {
       id: 3,
       name: 'Aicha Tazi',
       region: 'Atlas',
-      specialty: language === 'fr' ? 'Récolte d\'argile rouge' : 'Red clay harvesting',
+      specialty: language === 'fr' ? 'Poterie traditionnelle' : 'Traditional pottery',
       experience: 18,
-      image: '/placeholder.svg',
+      image: '/lovable-uploads/d4ad8eb5-ea3d-4931-ae8c-008b30d0e998.png',
       story: language === 'fr'
-        ? 'Aicha sélectionne minutieusement l\'argile rouge de l\'Atlas, connue pour ses propriétés purifiantes exceptionnelles transmises de génération en génération.'
-        : 'Aicha carefully selects red clay from the Atlas, known for its exceptional purifying properties passed down through generations.',
+        ? 'Aicha façonne l\'argile rouge de l\'Atlas avec un savoir-faire transmis de mère en fille, créant des contenants uniques pour nos produits de beauté.'
+        : 'Aicha shapes red clay from the Atlas with know-how passed from mother to daughter, creating unique containers for our beauty products.',
       cooperative: 'Coopérative de l\'Argile Précieuse'
     }
   ];
