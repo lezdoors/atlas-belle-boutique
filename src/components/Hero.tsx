@@ -1,8 +1,11 @@
 
 import { Button } from '@/components/ui/button';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Sparkles } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Hero = () => {
+  const { language } = useLanguage();
+
   const scrollToProducts = () => {
     const productsSection = document.querySelector('#featured-products');
     if (productsSection) {
@@ -11,108 +14,120 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#F5F0E7' }}>
-      {/* Moroccan Pattern Background */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="moroccan-pattern h-full w-full"></div>
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-pearl-100">
+      {/* Enhanced Moroccan Pattern Background */}
+      <div className="absolute inset-0 moroccan-pattern opacity-30"></div>
+      
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 hero-gradient"></div>
+
+      {/* Floating Decorative Elements */}
+      <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-copper-200 opacity-20 animate-float blur-xl"></div>
+      <div className="absolute bottom-32 right-16 w-24 h-24 rounded-full bg-clay-200 opacity-25 animate-float blur-lg" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute top-1/3 right-1/4 w-16 h-16 rounded-full bg-copper-300 opacity-15 animate-float blur-md" style={{ animationDelay: '2s' }}></div>
 
       {/* Main Content Container */}
       <div className="relative z-10 container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
           
-          {/* Left Section - Text Content */}
-          <div className="text-center lg:text-left order-2 lg:order-1 animate-fade-in">
-            {/* Decorative Element */}
-            <div className="mb-8 flex justify-center lg:justify-start">
-              <div className="w-16 h-1 rounded-full" style={{ backgroundColor: '#D4A373' }}></div>
+          {/* Left Section - Enhanced Text Content */}
+          <div className="text-center lg:text-left order-2 lg:order-1 animate-fade-in-up">
+            {/* Decorative Badge */}
+            <div className="inline-flex items-center bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 mb-8 luxury-shadow">
+              <Sparkles className="h-4 w-4 text-copper-600 mr-2" />
+              <span className="text-sm font-medium text-clay-700 tracking-wide">
+                {language === 'fr' ? 'Luxe Authentique Marocain' : 'Authentic Moroccan Luxury'}
+              </span>
             </div>
 
-            {/* Main Title */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight" style={{ color: '#2E2E2E' }}>
-              Découvrez l'Essence du Maroc
+            {/* Main Title with Enhanced Typography */}
+            <h1 className="hero-title text-clay-800 mb-6">
+              {language === 'fr' 
+                ? 'Découvrez l\'Essence du Maroc'
+                : 'Discover the Essence of Morocco'
+              }
             </h1>
             
-            {/* Subtitle */}
-            <p className="text-lg md:text-xl mb-8 leading-relaxed font-sans max-w-xl mx-auto lg:mx-0" style={{ color: '#2E2E2E' }}>
-              Parfums, huiles et soins haut de gamme inspirés des rituels ancestraux
+            {/* Elegant Subtitle */}
+            <p className="hero-subtitle text-clay-600 max-w-xl mx-auto lg:mx-0 mb-8">
+              {language === 'fr' 
+                ? 'Parfums, huiles et soins haut de gamme inspirés des rituels ancestraux des terres magiques du Maroc'
+                : 'Premium perfumes, oils and treatments inspired by ancestral rituals from the magical lands of Morocco'
+              }
             </p>
 
-            {/* CTA Button */}
-            <Button 
-              size="lg" 
-              onClick={scrollToProducts}
-              className="font-medium px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-sans"
-              style={{ 
-                backgroundColor: '#BA7A63',
-                color: 'white',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#A86B56';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#BA7A63';
-              }}
-            >
-              Explorer la collection
-            </Button>
+            {/* Enhanced CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+              <Button 
+                size="lg" 
+                onClick={scrollToProducts}
+                className="copper-gradient text-white px-8 py-4 text-lg font-medium rounded-full hover-scale luxury-shadow border-0 font-sans tracking-wide"
+              >
+                {language === 'fr' ? 'Explorer la Collection' : 'Explore Collection'}
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="bg-white/80 backdrop-blur-sm text-clay-700 border-2 border-copper-200 px-8 py-4 text-lg font-medium rounded-full hover:bg-copper-50 hover:border-copper-300 transition-all duration-300 font-sans tracking-wide"
+              >
+                {language === 'fr' ? 'Notre Histoire' : 'Our Story'}
+              </Button>
+            </div>
 
             {/* Scroll Indicator */}
-            <div className="mt-16 animate-bounce flex justify-center lg:justify-start">
-              <ArrowDown className="h-6 w-6" style={{ color: '#D4A373' }} />
+            <div className="animate-bounce flex justify-center lg:justify-start">
+              <ArrowDown className="h-6 w-6 text-copper-500" />
             </div>
           </div>
 
-          {/* Right Section - Product Image */}
+          {/* Right Section - Enhanced Product Showcase */}
           <div className="relative order-1 lg:order-2 flex justify-center items-center">
-            <div className="relative animate-scale-in">
-              {/* Decorative Moroccan Frame */}
-              <div className="absolute inset-0 transform rotate-6 rounded-3xl opacity-20" style={{ backgroundColor: '#D4A373', filter: 'blur(20px)' }}></div>
+            <div className="relative animate-scale-in-bounce">
+              {/* Enhanced Decorative Frame */}
+              <div className="absolute -inset-8 copper-gradient rounded-3xl opacity-10 blur-2xl animate-pulse"></div>
               
-              {/* Product Mockup Container */}
-              <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 lg:p-12 shadow-2xl">
-                {/* Geometric Pattern Background */}
-                <div className="absolute inset-0 opacity-10">
-                  <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <pattern id="moroccan" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                        <circle cx="10" cy="10" r="2" fill="#D4A373"/>
-                        <circle cx="0" cy="0" r="1" fill="#D4A373"/>
-                        <circle cx="20" cy="20" r="1" fill="#D4A373"/>
-                      </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#moroccan)"/>
-                  </svg>
+              {/* Main Product Container */}
+              <div className="relative bg-white/90 backdrop-blur-md rounded-3xl p-12 luxury-shadow border border-copper-100">
+                {/* Elegant Pattern Overlay */}
+                <div className="absolute inset-0 opacity-5 rounded-3xl overflow-hidden">
+                  <div className="moroccan-pattern w-full h-full"></div>
                 </div>
                 
-                {/* Product Image Placeholder */}
-                <div className="relative z-10 w-64 h-80 md:w-80 md:h-96 mx-auto bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl flex items-center justify-center shadow-lg">
-                  <div className="text-center">
-                    {/* Bottle/Jar Mockup */}
-                    <div className="w-32 h-40 md:w-40 md:h-48 mx-auto mb-4 rounded-2xl shadow-xl relative" style={{ backgroundColor: '#F5F0E7' }}>
-                      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-8 h-6 rounded-t-lg" style={{ backgroundColor: '#D4A373' }}></div>
-                      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-xs font-serif" style={{ color: '#2E2E2E' }}>
-                        Perle d'Atlas
+                {/* Product Showcase */}
+                <div className="relative z-10 w-80 h-96 mx-auto">
+                  {/* Main Product Mockup */}
+                  <div className="relative w-48 h-64 mx-auto mb-6 rounded-2xl luxury-shadow bg-gradient-to-br from-pearl-50 to-beige-100 flex items-center justify-center">
+                    <div className="text-center">
+                      {/* Bottle Design */}
+                      <div className="w-20 h-32 mx-auto mb-4 relative">
+                        <div className="absolute inset-0 copper-gradient rounded-2xl opacity-90"></div>
+                        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-6 h-4 bg-clay-600 rounded-t-lg"></div>
+                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-xs font-serif text-white">
+                          Perle d'Atlas
+                        </div>
                       </div>
                     </div>
-                    <p className="text-sm font-serif" style={{ color: '#2E2E2E' }}>
-                      Huile d'Argan Précieuse
+                  </div>
+                  
+                  {/* Product Details */}
+                  <div className="text-center">
+                    <h3 className="font-serif text-xl font-semibold text-clay-800 mb-2">
+                      {language === 'fr' ? 'Huile d\'Argan Précieuse' : 'Precious Argan Oil'}
+                    </h3>
+                    <p className="text-clay-600 text-sm elegant-text">
+                      {language === 'fr' ? 'Élixir de beauté ancestrale' : 'Ancestral beauty elixir'}
                     </p>
                   </div>
                 </div>
               </div>
               
-              {/* Floating Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-12 h-12 rounded-full opacity-60 animate-pulse" style={{ backgroundColor: '#D4A373' }}></div>
-              <div className="absolute -bottom-6 -left-6 w-8 h-8 rounded-full opacity-40 animate-pulse" style={{ backgroundColor: '#BA7A63' }}></div>
+              {/* Floating Product Elements */}
+              <div className="absolute -top-6 -right-6 w-16 h-16 bg-copper-200 rounded-full opacity-60 animate-float blur-sm"></div>
+              <div className="absolute -bottom-8 -left-8 w-12 h-12 bg-clay-200 rounded-full opacity-50 animate-float blur-sm" style={{ animationDelay: '1.5s' }}></div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Additional Decorative Elements */}
-      <div className="absolute top-20 left-10 w-24 h-24 rounded-full blur-xl opacity-30" style={{ backgroundColor: '#D4A373' }}></div>
-      <div className="absolute bottom-20 right-10 w-32 h-32 rounded-full blur-xl opacity-30" style={{ backgroundColor: '#BA7A63' }}></div>
     </section>
   );
 };

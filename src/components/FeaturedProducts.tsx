@@ -64,7 +64,7 @@ const FeaturedProducts = () => {
   ];
 
   return (
-    <section id="featured-products" className="py-20 bg-gradient-to-br from-sand-50 to-amber-50">
+    <section id="featured-products" className="py-20 bg-gradient-to-br from-pearl-50 to-beige-50">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <FeaturedProductsHeader />
@@ -72,18 +72,33 @@ const FeaturedProducts = () => {
         {/* Info Bar */}
         <FeaturedProductsInfoBar />
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+        {/* Products Grid with Enhanced Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          {products.map((product, index) => (
+            <div 
+              key={product.id}
+              className="animate-fade-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center">
+        {/* Enhanced CTA Section */}
+        <div className="text-center bg-white/80 backdrop-blur-sm rounded-3xl p-12 luxury-shadow">
+          <h3 className="font-display font-bold text-2xl text-clay-800 mb-4">
+            {language === 'fr' ? 'Découvrez Toute Notre Collection' : 'Discover Our Complete Collection'}
+          </h3>
+          <p className="elegant-text text-clay-600 mb-8 max-w-2xl mx-auto">
+            {language === 'fr' 
+              ? 'Plus de 150 produits authentiques vous attendent, chacun racontant une histoire unique du Maroc'
+              : 'Over 150 authentic products await you, each telling a unique story of Morocco'
+            }
+          </p>
           <Button 
             size="lg"
-            className="bg-gradient-to-r from-amber-500 to-gold-500 hover:from-amber-600 hover:to-gold-600 text-white px-8 py-4 text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            className="copper-gradient text-white px-12 py-4 text-lg font-medium rounded-full hover-scale luxury-shadow border-0 tracking-wide"
           >
             {language === 'fr' ? 'Voir toute la collection' : 'View entire collection'}
           </Button>
