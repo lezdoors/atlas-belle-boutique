@@ -1,5 +1,6 @@
 
 import { Star, Quote } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Testimonials = () => {
