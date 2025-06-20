@@ -21,97 +21,97 @@ const Hero = () => {
       {/* Gradient Overlay */}
       <div className="absolute inset-0 hero-gradient"></div>
 
-      {/* Floating Decorative Elements */}
-      <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-copper-200 opacity-20 animate-float blur-xl"></div>
-      <div className="absolute bottom-32 right-16 w-24 h-24 rounded-full bg-clay-200 opacity-25 animate-float blur-lg" style={{ animationDelay: '1s' }}></div>
-      <div className="absolute top-1/3 right-1/4 w-16 h-16 rounded-full bg-copper-300 opacity-15 animate-float blur-md" style={{ animationDelay: '2s' }}></div>
+      {/* Floating Decorative Elements - Responsive */}
+      <div className="absolute top-20 left-4 sm:left-10 w-24 sm:w-32 h-24 sm:h-32 rounded-full bg-copper-200 opacity-20 animate-float blur-xl"></div>
+      <div className="absolute bottom-32 right-8 sm:right-16 w-16 sm:w-24 h-16 sm:h-24 rounded-full bg-clay-200 opacity-25 animate-float blur-lg" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute top-1/3 right-1/4 w-12 sm:w-16 h-12 sm:h-16 rounded-full bg-copper-300 opacity-15 animate-float blur-md" style={{ animationDelay: '2s' }}></div>
 
       {/* Main Content Container */}
-      <div className="relative z-10 container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
+      <div className="relative z-10 container mx-auto px-4 py-8 sm:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh]">
           
-          {/* Left Section - Enhanced Text Content */}
+          {/* Left Section - Enhanced Mobile-First Text Content */}
           <div className="text-center lg:text-left order-2 lg:order-1 animate-fade-in-up">
-            {/* Decorative Badge */}
-            <div className="inline-flex items-center bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 mb-8 luxury-shadow">
-              <Sparkles className="h-4 w-4 text-copper-600 mr-2" />
-              <span className="text-sm font-medium text-clay-700 tracking-wide">
+            {/* Decorative Badge - Mobile Responsive */}
+            <div className="inline-flex items-center bg-white/80 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 luxury-shadow">
+              <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-copper-600 mr-2" />
+              <span className="text-xs sm:text-sm font-medium text-clay-700 tracking-wide">
                 {language === 'fr' ? 'Luxe Authentique Marocain' : 'Authentic Moroccan Luxury'}
               </span>
             </div>
 
-            {/* Main Title with Enhanced Typography */}
-            <h1 className="hero-title text-clay-800 mb-6">
+            {/* Main Title with Enhanced Mobile Typography */}
+            <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight sm:leading-none text-clay-800 mb-4 sm:mb-6">
               {language === 'fr' 
                 ? 'Découvrez l\'Essence du Maroc'
                 : 'Discover the Essence of Morocco'
               }
             </h1>
             
-            {/* Elegant Subtitle */}
-            <p className="hero-subtitle text-clay-600 max-w-xl mx-auto lg:mx-0 mb-8">
+            {/* Elegant Subtitle - Mobile Optimized */}
+            <p className="font-serif text-lg sm:text-xl md:text-2xl leading-relaxed text-clay-600 max-w-xl mx-auto lg:mx-0 mb-6 sm:mb-8 px-4 sm:px-0">
               {language === 'fr' 
                 ? 'Parfums, huiles et soins haut de gamme inspirés des rituels ancestraux des terres magiques du Maroc'
                 : 'Premium perfumes, oils and treatments inspired by ancestral rituals from the magical lands of Morocco'
               }
             </p>
 
-            {/* Enhanced CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+            {/* Enhanced Mobile-First CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8 sm:mb-12 px-4 sm:px-0">
               <Button 
                 size="lg" 
                 onClick={scrollToProducts}
-                className="copper-gradient text-white px-8 py-4 text-lg font-medium rounded-full hover-scale luxury-shadow border-0 font-sans tracking-wide"
+                className="copper-gradient text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium rounded-full hover-scale luxury-shadow border-0 font-sans tracking-wide min-h-[50px] sm:min-h-[56px]"
               >
                 {language === 'fr' ? 'Explorer la Collection' : 'Explore Collection'}
               </Button>
               <Button 
                 variant="outline" 
                 size="lg"
-                className="bg-white/80 backdrop-blur-sm text-clay-700 border-2 border-copper-200 px-8 py-4 text-lg font-medium rounded-full hover:bg-copper-50 hover:border-copper-300 transition-all duration-300 font-sans tracking-wide"
+                className="bg-white/80 backdrop-blur-sm text-clay-700 border-2 border-copper-200 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium rounded-full hover:bg-copper-50 hover:border-copper-300 transition-all duration-300 font-sans tracking-wide min-h-[50px] sm:min-h-[56px]"
               >
                 {language === 'fr' ? 'Notre Histoire' : 'Our Story'}
               </Button>
             </div>
 
-            {/* Scroll Indicator */}
-            <div className="animate-bounce flex justify-center lg:justify-start">
+            {/* Scroll Indicator - Hidden on small screens */}
+            <div className="animate-bounce justify-center lg:justify-start hidden sm:flex">
               <ArrowDown className="h-6 w-6 text-copper-500" />
             </div>
           </div>
 
-          {/* Right Section - Enhanced Product Showcase */}
-          <div className="relative order-1 lg:order-2 flex justify-center items-center">
+          {/* Right Section - Mobile Optimized Product Showcase */}
+          <div className="relative order-1 lg:order-2 flex justify-center items-center mb-8 lg:mb-0">
             <div className="relative animate-scale-in-bounce">
-              {/* Enhanced Decorative Frame */}
-              <div className="absolute -inset-8 copper-gradient rounded-3xl opacity-10 blur-2xl animate-pulse"></div>
+              {/* Enhanced Decorative Frame - Mobile Responsive */}
+              <div className="absolute -inset-4 sm:-inset-8 copper-gradient rounded-3xl opacity-10 blur-2xl animate-pulse"></div>
               
-              {/* Main Product Container */}
-              <div className="relative bg-white/90 backdrop-blur-md rounded-3xl p-12 luxury-shadow border border-copper-100">
+              {/* Main Product Container - Mobile Optimized */}
+              <div className="relative bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-12 luxury-shadow border border-copper-100">
                 {/* Elegant Pattern Overlay */}
                 <div className="absolute inset-0 opacity-5 rounded-3xl overflow-hidden">
                   <div className="moroccan-pattern w-full h-full"></div>
                 </div>
                 
-                {/* Product Showcase */}
-                <div className="relative z-10 w-80 h-96 mx-auto">
-                  {/* Main Product Mockup */}
-                  <div className="relative w-48 h-64 mx-auto mb-6 rounded-2xl luxury-shadow bg-gradient-to-br from-pearl-50 to-beige-100 flex items-center justify-center">
+                {/* Product Showcase - Responsive Sizing */}
+                <div className="relative z-10 w-64 sm:w-80 h-80 sm:h-96 mx-auto">
+                  {/* Main Product Mockup - Mobile Responsive */}
+                  <div className="relative w-36 sm:w-48 h-48 sm:h-64 mx-auto mb-4 sm:mb-6 rounded-2xl luxury-shadow bg-gradient-to-br from-pearl-50 to-beige-100 flex items-center justify-center">
                     <div className="text-center">
-                      {/* Bottle Design */}
-                      <div className="w-20 h-32 mx-auto mb-4 relative">
+                      {/* Bottle Design - Scaled for Mobile */}
+                      <div className="w-16 sm:w-20 h-24 sm:h-32 mx-auto mb-3 sm:mb-4 relative">
                         <div className="absolute inset-0 copper-gradient rounded-2xl opacity-90"></div>
-                        <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-6 h-4 bg-clay-600 rounded-t-lg"></div>
-                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-xs font-serif text-white">
+                        <div className="absolute top-1 sm:top-2 left-1/2 transform -translate-x-1/2 w-4 sm:w-6 h-3 sm:h-4 bg-clay-600 rounded-t-lg"></div>
+                        <div className="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 text-xs font-serif text-white">
                           Perle d'Atlas
                         </div>
                       </div>
                     </div>
                   </div>
                   
-                  {/* Product Details */}
+                  {/* Product Details - Mobile Optimized */}
                   <div className="text-center">
-                    <h3 className="font-serif text-xl font-semibold text-clay-800 mb-2">
+                    <h3 className="font-serif text-lg sm:text-xl font-semibold text-clay-800 mb-2">
                       {language === 'fr' ? 'Huile d\'Argan Précieuse' : 'Precious Argan Oil'}
                     </h3>
                     <p className="text-clay-600 text-sm elegant-text">
@@ -121,9 +121,9 @@ const Hero = () => {
                 </div>
               </div>
               
-              {/* Floating Product Elements */}
-              <div className="absolute -top-6 -right-6 w-16 h-16 bg-copper-200 rounded-full opacity-60 animate-float blur-sm"></div>
-              <div className="absolute -bottom-8 -left-8 w-12 h-12 bg-clay-200 rounded-full opacity-50 animate-float blur-sm" style={{ animationDelay: '1.5s' }}></div>
+              {/* Floating Product Elements - Responsive */}
+              <div className="absolute -top-3 sm:-top-6 -right-3 sm:-right-6 w-12 sm:w-16 h-12 sm:h-16 bg-copper-200 rounded-full opacity-60 animate-float blur-sm"></div>
+              <div className="absolute -bottom-4 sm:-bottom-8 -left-4 sm:-left-8 w-8 sm:w-12 h-8 sm:h-12 bg-clay-200 rounded-full opacity-50 animate-float blur-sm" style={{ animationDelay: '1.5s' }}></div>
             </div>
           </div>
         </div>
