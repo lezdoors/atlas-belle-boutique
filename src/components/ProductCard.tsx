@@ -66,6 +66,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     });
   };
 
+  // Convert product to item format for SaveForLaterButton
+  const saveForLaterItem = {
+    id: product.id,
+    name: product.name,
+    price: product.priceMAD,
+    image: product.image
+  };
+
   return (
     <Card className="group hover-scale bg-white/90 backdrop-blur-sm border-0 luxury-shadow h-full flex flex-col overflow-hidden rounded-2xl">
       <CardContent className="p-0 flex flex-col h-full">
@@ -98,9 +106,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           {/* Enhanced Action Buttons - More Touch-Friendly */}
           <div className="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
             <SaveForLaterButton 
-              product={product}
-              variant="icon"
-              size="icon"
+              item={saveForLaterItem}
             />
             <WishlistButton 
               productId={product.id} 
