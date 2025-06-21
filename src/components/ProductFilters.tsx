@@ -5,7 +5,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Filter, X } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Filter, X, ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface FilterOptions {
@@ -74,115 +75,165 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({ onFiltersChange, isOpen
     onFiltersChange(clearedFilters);
   };
 
+  const hasActiveFilters = filters.skinTypes.length > 0 || 
+                          filters.regions.length > 0 || 
+                          filters.rituals.length > 0 || 
+                          filters.priceRange[0] > 0 || 
+                          filters.priceRange[1] < 2000;
+
   if (!isOpen) {
     return (
-      <Button
-        onClick={onToggle}
-        variant="outline"
-        className="mb-6"
-      >
-        <Filter className="h-4 w-4 mr-2" />
-        {language === 'fr' ? 'Filtres' : 'Filters'}
-      </Button>
+      <div className="mb-4">
+        <Button
+          onClick={onToggle}
+          variant="outline"
+          size="sm"
+          className="flex items-center gap-2"
+        >
+          <Filter className="h-4 w-4" />
+          {language === 'fr' ? 'Filtres' : 'Filters'}
+          {hasActiveFilters && (
+            <span className="bg-copper-600 text-white text-xs px-1.5 py-0.5 rounded-full">
+              {filters.skinTypes.length + filters.regions.length + filters.rituals.length}
+            </span>
+          )}
+        </Button>
+      </div>
     );
   }
 
   return (
-    <Card className="mb-6">
-      <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="text-lg">
+    <Card className="mb-4">
+      <CardHeader className="flex flex-row items-center justify-between py-3">
+        <CardTitle className="text-base font-medium">
           {language === 'fr' ? 'Filtres' : 'Filters'}
         </CardTitle>
-        <Button variant="ghost" size="icon" onClick={onToggle}>
-          <X className="h-4 w-4" />
-        </Button>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        {/* Price Range */}
-        <div>
-          <Label className="text-sm font-medium mb-3 block">
-            {language === 'fr' ? 'Prix' : 'Price'}: {filters.priceRange[0]} - {filters.priceRange[1]} MAD
-          </Label>
-          <Slider
-            value={filters.priceRange}
-            onValueChange={handlePriceChange}
-            max={2000}
-            min={0}
-            step={50}
-            className="w-full"
-          />
+        <div className="flex items-center gap-2">
+          {hasActiveFilters && (
+            <Button variant="ghost" size="sm" onClick={clearFilters} className="text-xs">
+              {language === 'fr' ? 'Effacer' : 'Clear'}
+            </Button>
+          )}
+          <Button variant="ghost" size="icon" onClick={onToggle} className="h-6 w-6">
+            <X className="h-4 w-4" />
+          </Button>
         </div>
+      </CardHeader>
+      <CardContent className="space-y-4 py-0 pb-4">
+        {/* Price Range */}
+        <Collapsible defaultOpen>
+          <CollapsibleTrigger asChild>
+            <Button variant="ghost" className="w-full justify-between p-0 h-auto font-normal">
+              <Label className="text-sm font-medium">
+                {language === 'fr' ? 'Prix' : 'Price'}: {filters.priceRange[0]} - {filters.priceRange[1]} MAD
+              </Label>
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </CollapsibleTrigger>
+          <CollapsibleContent className="pt-2">
+            <Slider
+              value={filters.priceRange}
+              onValueChange={handlePriceChange}
+              max={2000}
+              min={0}
+              step={50}
+              className="w-full"
+            />
+          </CollapsibleContent>
+        </Collapsible>
 
         {/* Skin Type */}
-        <div>
-          <Label className="text-sm font-medium mb-3 block">
-            {language === 'fr' ? 'Type de peau' : 'Skin Type'}
-          </Label>
-          <div className="space-y-2">
-            {skinTypeOptions.map((option) => (
-              <div key={option} className="flex items-center space-x-2">
-                <Checkbox
-                  id={`skin-${option}`}
-                  checked={filters.skinTypes.includes(option)}
-                  onCheckedChange={() => handleCheckboxChange('skinTypes', option)}
-                />
-                <Label htmlFor={`skin-${option}`} className="text-sm">
-                  {option}
-                </Label>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Collapsible>
+          <CollapsibleTrigger asChild>
+            <Button variant="ghost" className="w-full justify-between p-0 h-auto font-normal">
+              <Label className="text-sm font-medium">
+                {language === 'fr' ? 'Type de peau' : 'Skin Type'}
+                {filters.skinTypes.length > 0 && (
+                  <span className="ml-1 text-xs text-copper-600">({filters.skinTypes.length})</span>
+                )}
+              </Label>
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </CollapsibleTrigger>
+          <CollapsibleContent className="pt-2">
+            <div className="grid grid-cols-1 gap-1">
+              {skinTypeOptions.map((option) => (
+                <div key={option} className="flex items-center space-x-2">
+                  <Checkbox
+                    id={`skin-${option}`}
+                    checked={filters.skinTypes.includes(option)}
+                    onCheckedChange={() => handleCheckboxChange('skinTypes', option)}
+                  />
+                  <Label htmlFor={`skin-${option}`} className="text-xs leading-4">
+                    {option}
+                  </Label>
+                </div>
+              ))}
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
 
         {/* Region */}
-        <div>
-          <Label className="text-sm font-medium mb-3 block">
-            {language === 'fr' ? 'Région' : 'Region'}
-          </Label>
-          <div className="space-y-2">
-            {regionOptions.map((option) => (
-              <div key={option} className="flex items-center space-x-2">
-                <Checkbox
-                  id={`region-${option}`}
-                  checked={filters.regions.includes(option)}
-                  onCheckedChange={() => handleCheckboxChange('regions', option)}
-                />
-                <Label htmlFor={`region-${option}`} className="text-sm">
-                  {option}
-                </Label>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Collapsible>
+          <CollapsibleTrigger asChild>
+            <Button variant="ghost" className="w-full justify-between p-0 h-auto font-normal">
+              <Label className="text-sm font-medium">
+                {language === 'fr' ? 'Région' : 'Region'}
+                {filters.regions.length > 0 && (
+                  <span className="ml-1 text-xs text-copper-600">({filters.regions.length})</span>
+                )}
+              </Label>
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </CollapsibleTrigger>
+          <CollapsibleContent className="pt-2">
+            <div className="grid grid-cols-1 gap-1">
+              {regionOptions.map((option) => (
+                <div key={option} className="flex items-center space-x-2">
+                  <Checkbox
+                    id={`region-${option}`}
+                    checked={filters.regions.includes(option)}
+                    onCheckedChange={() => handleCheckboxChange('regions', option)}
+                  />
+                  <Label htmlFor={`region-${option}`} className="text-xs leading-4">
+                    {option}
+                  </Label>
+                </div>
+              ))}
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
 
         {/* Ritual */}
-        <div>
-          <Label className="text-sm font-medium mb-3 block">
-            {language === 'fr' ? 'Rituel' : 'Ritual'}
-          </Label>
-          <div className="space-y-2">
-            {ritualOptions.map((option) => (
-              <div key={option} className="flex items-center space-x-2">
-                <Checkbox
-                  id={`ritual-${option}`}
-                  checked={filters.rituals.includes(option)}
-                  onCheckedChange={() => handleCheckboxChange('rituals', option)}
-                />
-                <Label htmlFor={`ritual-${option}`} className="text-sm">
-                  {option}
-                </Label>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <Button 
-          variant="outline" 
-          onClick={clearFilters}
-          className="w-full"
-        >
-          {language === 'fr' ? 'Effacer les filtres' : 'Clear filters'}
-        </Button>
+        <Collapsible>
+          <CollapsibleTrigger asChild>
+            <Button variant="ghost" className="w-full justify-between p-0 h-auto font-normal">
+              <Label className="text-sm font-medium">
+                {language === 'fr' ? 'Rituel' : 'Ritual'}
+                {filters.rituals.length > 0 && (
+                  <span className="ml-1 text-xs text-copper-600">({filters.rituals.length})</span>
+                )}
+              </Label>
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </CollapsibleTrigger>
+          <CollapsibleContent className="pt-2">
+            <div className="grid grid-cols-1 gap-1">
+              {ritualOptions.map((option) => (
+                <div key={option} className="flex items-center space-x-2">
+                  <Checkbox
+                    id={`ritual-${option}`}
+                    checked={filters.rituals.includes(option)}
+                    onCheckedChange={() => handleCheckboxChange('rituals', option)}
+                  />
+                  <Label htmlFor={`ritual-${option}`} className="text-xs leading-4">
+                    {option}
+                  </Label>
+                </div>
+              ))}
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
       </CardContent>
     </Card>
   );
