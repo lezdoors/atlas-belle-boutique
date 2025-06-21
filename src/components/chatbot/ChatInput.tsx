@@ -16,16 +16,16 @@ const ChatInput = ({ message, setMessage, onSendMessage, language }: ChatInputPr
       <Input
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        placeholder={language === 'fr' ? 'Tapez votre message...' : 'Type your message...'}
+        placeholder={language === 'fr' ? 'Votre message...' : 'Your message...'}
         onKeyPress={(e) => e.key === 'Enter' && onSendMessage()}
-        className="rounded-full border-clay-200 focus:border-copper-400"
+        className="rounded-full border-clay-200 focus:border-copper-400 text-sm"
       />
       <Button
         onClick={onSendMessage}
         size="icon"
-        className="rounded-full copper-gradient hover-scale"
+        className="rounded-full copper-gradient hover-scale h-9 w-9 md:h-10 md:w-10"
       >
-        <Send className="h-4 w-4" />
+        <Send className="h-3 w-3 md:h-4 md:w-4" />
       </Button>
     </div>
   );

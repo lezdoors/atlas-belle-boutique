@@ -1,6 +1,12 @@
 
 import { Button } from '@/components/ui/button';
-import { ShoppingBag, Heart, HelpCircle, Phone, Crown } from 'lucide-react';
+import { Crown, Heart, HelpCircle, Phone } from 'lucide-react';
+
+interface QuickAction {
+  icon: typeof Crown;
+  label: string;
+  action: () => void;
+}
 
 interface ChatQuickActionsProps {
   language: 'fr' | 'en';
@@ -9,12 +15,12 @@ interface ChatQuickActionsProps {
 }
 
 const ChatQuickActions = ({ language, onActionClick, onWhatsAppRedirect }: ChatQuickActionsProps) => {
-  const quickActions = [
+  const quickActions: QuickAction[] = [
     {
-      icon: ShoppingBag,
-      label: language === 'fr' ? 'Produits' : 'Products',
+      icon: Crown,
+      label: language === 'fr' ? 'Collections' : 'Collections',
       action: () => {
-        const msg = language === 'fr' ? 'Quels produits recommandez-vous ?' : 'What products do you recommend?';
+        const msg = language === 'fr' ? 'Quelles sont vos collections saisonnières ?' : 'What are your seasonal collections?';
         onActionClick(msg);
       }
     },
@@ -22,23 +28,15 @@ const ChatQuickActions = ({ language, onActionClick, onWhatsAppRedirect }: ChatQ
       icon: Heart,
       label: language === 'fr' ? 'Rituels' : 'Rituals',
       action: () => {
-        const msg = language === 'fr' ? 'Parlez-moi des rituels de beauté' : 'Tell me about beauty rituals';
-        onActionClick(msg);
-      }
-    },
-    {
-      icon: Crown,
-      label: language === 'fr' ? 'Fidélité' : 'Loyalty',
-      action: () => {
-        const msg = language === 'fr' ? 'Comment fonctionne le programme fidélité ?' : 'How does the loyalty program work?';
+        const msg = language === 'fr' ? 'Parlez-moi des rituels de beauté ancestraux' : 'Tell me about ancestral beauty rituals';
         onActionClick(msg);
       }
     },
     {
       icon: HelpCircle,
-      label: language === 'fr' ? 'Aide' : 'Help',
+      label: language === 'fr' ? 'Conseils' : 'Advice',
       action: () => {
-        const msg = language === 'fr' ? 'J\'ai besoin d\'aide avec ma commande' : 'I need help with my order';
+        const msg = language === 'fr' ? 'J\'ai besoin de conseils personnalisés' : 'I need personalized advice';
         onActionClick(msg);
       }
     },
@@ -50,17 +48,17 @@ const ChatQuickActions = ({ language, onActionClick, onWhatsAppRedirect }: ChatQ
   ];
 
   return (
-    <div className="grid grid-cols-5 gap-2 mb-3">
+    <div className="grid grid-cols-4 gap-1 md:gap-2 mb-2 md:mb-3">
       {quickActions.map((action, index) => (
         <Button
           key={index}
           variant="outline"
           size="sm"
           onClick={action.action}
-          className="flex flex-col items-center gap-1 h-auto py-2 px-1 border-clay-200 hover:border-copper-400 hover:bg-copper-50"
+          className="flex flex-col items-center gap-1 h-auto py-1.5 md:py-2 px-1 border-clay-200 hover:border-copper-400 hover:bg-copper-50 text-xs"
         >
-          <action.icon className="h-4 w-4" />
-          <span className="text-xs">{action.label}</span>
+          <action.icon className="h-3 w-3 md:h-4 md:w-4" />
+          <span className="text-[10px] md:text-xs leading-tight">{action.label}</span>
         </Button>
       ))}
     </div>
