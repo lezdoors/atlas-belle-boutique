@@ -13,6 +13,18 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showNewsletterModal, setShowNewsletterModal] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Enhanced scroll detection for header styling
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Show newsletter modal only once per session
   useEffect(() => {
@@ -21,7 +33,7 @@ const Header = () => {
     if (!hasShownModal) {
       const timer = setTimeout(() => {
         setShowNewsletterModal(true);
-      }, 5000);
+      }, 8000); // Increased delay for better UX
 
       return () => clearTimeout(timer);
     }
@@ -34,20 +46,28 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-sand-200 luxury-shadow">
-        {/* Top Bar */}
-        <HeaderTopBar />
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white/95 backdrop-blur-xl border-b border-sand-200 luxury-shadow' 
+          : 'bg-white/90 backdrop-blur-md border-b border-transparent'
+      }`}>
+        {/* Top Bar - Hide on scroll for cleaner look */}
+        <div className={`transition-all duration-300 ${isScrolled ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
+          <HeaderTopBar />
+        </div>
 
-        {/* Main Header - Enhanced mobile padding */}
-        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo - More responsive */}
+        {/* Main Header - Enhanced alignment and spacing */}
+        <div className="container mx-auto px-4 py-3 sm:py-4">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo - Enhanced spacing */}
             <HeaderLogo />
 
-            {/* Desktop Navigation */}
-            <HeaderNavigation />
+            {/* Desktop Navigation - Better vertical alignment */}
+            <div className="hidden lg:flex items-center h-full">
+              <HeaderNavigation />
+            </div>
 
-            {/* Action Icons */}
+            {/* Action Icons - Improved alignment */}
             <HeaderActions 
               isMenuOpen={isMenuOpen}
               setIsMenuOpen={setIsMenuOpen}
@@ -57,7 +77,9 @@ const Header = () => {
           </div>
 
           {/* Mobile Language Dropdown - Only visible when menu is closed */}
-          <div className="md:hidden mt-3 flex justify-center">
+          <div className={`md:hidden mt-3 flex justify-center transition-all duration-200 ${
+            isMenuOpen ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'
+          }`}>
             <LanguageDropdown />
           </div>
         </div>

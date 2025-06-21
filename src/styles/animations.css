@@ -1,5 +1,6 @@
 
-/* Enhanced animations */
+/* Enhanced luxury animations for Perle d'Atlas */
+
 @keyframes fade-in-up {
   0% {
     opacity: 0;
@@ -40,7 +41,7 @@
 @keyframes scale-in {
   0% {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.9);
   }
   100% {
     opacity: 1;
@@ -62,12 +63,34 @@
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 }
 
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(184, 134, 11, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(184, 134, 11, 0.8);
+  }
+}
+
+/* Animation classes */
 .animate-fade-in-up {
   animation: fade-in-up 1s ease-out forwards;
+  opacity: 0;
 }
 
 .animate-scale-in-bounce {
@@ -77,10 +100,12 @@
 
 .animate-fade-in {
   animation: fade-in 0.8s ease-out forwards;
+  opacity: 0;
 }
 
 .animate-scale-in {
   animation: scale-in 0.6s ease-out forwards;
+  opacity: 0;
 }
 
 .animate-gradient {
@@ -91,3 +116,29 @@
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Enhanced hover effects */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Staggered animation delays for lists */
+.stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-animation > *:nth-child(6) { animation-delay: 0.6s; }

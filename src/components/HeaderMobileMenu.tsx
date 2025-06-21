@@ -27,46 +27,51 @@ const HeaderMobileMenu = ({ isMenuOpen, setIsMenuOpen }: HeaderMobileMenuProps) 
   if (!isMenuOpen) return null;
 
   return (
-    <div className="lg:hidden">
-      {/* Backdrop */}
+    <div className="lg:hidden fixed inset-0 z-50">
+      {/* Enhanced backdrop with blur */}
       <div 
-        className="fixed inset-0 bg-black/50 z-40"
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-all duration-300"
         onClick={() => setIsMenuOpen(false)}
       />
       
-      {/* Menu Panel */}
-      <div className="fixed top-0 right-0 h-full w-80 bg-white z-50 luxury-shadow animate-slide-in-right">
-        <div className="p-6">
-          {/* Close Button */}
-          <div className="flex justify-between items-center mb-8">
+      {/* Enhanced menu panel */}
+      <div className="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-white luxury-shadow animate-slide-in-right">
+        <div className="p-6 h-full flex flex-col">
+          {/* Header with close button */}
+          <div className="flex justify-between items-center mb-8 pb-4 border-b border-pearl-200">
             <h2 className="font-display font-bold text-xl text-clay-800">Menu</h2>
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsMenuOpen(false)}
-              className="hover:bg-pearl-100"
+              className="hover:bg-pearl-100 h-10 w-10"
             >
               <X className="h-5 w-5" />
             </Button>
           </div>
 
-          {/* Navigation Links */}
-          <nav className="space-y-4 mb-8">
-            {navItems.map((item) => (
+          {/* Navigation Links with enhanced styling */}
+          <nav className="flex-1 space-y-2 mb-8">
+            {navItems.map((item, index) => (
               <Link
                 key={item.href}
                 to={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="block py-3 px-4 text-clay-700 hover:text-copper-600 hover:bg-pearl-50 rounded-lg transition-colors font-medium"
+                className="block py-4 px-4 text-clay-700 hover:text-copper-600 hover:bg-copper-50 rounded-xl transition-all duration-200 font-serif font-medium text-lg"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {item.label}
               </Link>
             ))}
           </nav>
 
-          {/* Language Dropdown */}
-          <div className="pt-6 border-t border-pearl-200">
+          {/* Language Dropdown and Contact Info */}
+          <div className="pt-6 border-t border-pearl-200 space-y-4">
             <LanguageDropdown />
+            <div className="text-center text-sm text-clay-600 font-serif">
+              <p>Contact: +212 524 123 456</p>
+              <p>contact@perledatlas.ma</p>
+            </div>
           </div>
         </div>
       </div>

@@ -4,18 +4,20 @@ import { Button } from '@/components/ui/button';
 
 const FloatingWhatsApp = () => {
   const handleWhatsAppClick = () => {
-    const phoneNumber = '+212600000000'; // Replace with actual number
-    const message = encodeURIComponent('Bonjour, j\'aimerais avoir des informations sur vos produits Perle d\'Atlas.');
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    const phoneNumber = '+212524123456'; // Replace with actual WhatsApp number
+    const message = encodeURIComponent('Bonjour! Je suis intéressé(e) par vos produits Perle d\'Atlas.');
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
     <Button
       onClick={handleWhatsAppClick}
-      className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-green-500 hover:bg-green-600 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110"
       size="icon"
+      className="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full bg-green-500 hover:bg-green-600 text-white luxury-shadow hover:shadow-2xl transition-all duration-300 hover-scale animate-float"
+      aria-label="Contact us on WhatsApp"
     >
-      <MessageCircle className="h-6 w-6 text-white" />
+      <MessageCircle className="h-6 w-6" />
     </Button>
   );
 };
