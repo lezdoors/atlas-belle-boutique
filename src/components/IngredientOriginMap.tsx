@@ -1,9 +1,10 @@
 
 import { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { MapPin, Info } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import MapContainer from './MapContainer';
+import RegionDetails from './RegionDetails';
+import RegionStats from './RegionStats';
 
 const IngredientOriginMap = () => {
   const { language } = useLanguage();
@@ -92,157 +93,22 @@ const IngredientOriginMap = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Interactive Map */}
           <div className="relative">
-            <Card className="bg-white/90 backdrop-blur-sm border-0 luxury-shadow rounded-2xl overflow-hidden">
-              <CardContent className="p-8">
-                <h3 className="font-display font-bold text-xl text-clay-800 mb-6 text-center">
-                  {language === 'fr' ? 'Carte Interactive du Maroc' : 'Interactive Map of Morocco'}
-                </h3>
-                
-                {/* Simplified Morocco Map */}
-                <div className="relative w-full h-96 bg-gradient-to-br from-beige-100 to-pearl-200 rounded-xl overflow-hidden">
-                  {/* Decorative Morocco silhouette background */}
-                  <div className="absolute inset-0 opacity-10 bg-copper-600 rounded-xl"></div>
-                  
-                  {/* Region Markers */}
-                  {regions.map((region) => (
-                    <button
-                      key={region.id}
-                      className={`absolute transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-white transition-all duration-300 ${
-                        selectedRegion === region.id
-                          ? 'bg-copper-600 scale-150 shadow-lg'
-                          : 'bg-copper-400 hover:bg-copper-500 hover:scale-125'
-                      }`}
-                      style={{
-                        top: region.position.top,
-                        left: region.position.left,
-                      }}
-                      onClick={() => setSelectedRegion(selectedRegion === region.id ? null : region.id)}
-                    >
-                      <span className="sr-only">{region.name}</span>
-                    </button>
-                  ))}
-
-                  {/* Region Labels */}
-                  {regions.map((region) => (
-                    <div
-                      key={`label-${region.id}`}
-                      className="absolute transform -translate-x-1/2 pointer-events-none"
-                      style={{
-                        top: `calc(${region.position.top} + 20px)`,
-                        left: region.position.left,
-                      }}
-                    >
-                      <span className="text-xs font-medium text-clay-700 bg-white/80 px-2 py-1 rounded-full">
-                        {region.name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="text-center mt-6 text-sm text-clay-600">
-                  {language === 'fr' 
-                    ? 'Cliquez sur les points pour découvrir chaque région'
-                    : 'Click on the points to discover each region'
-                  }
-                </div>
-              </CardContent>
-            </Card>
+            <MapContainer
+              regions={regions}
+              selectedRegion={selectedRegion}
+              onRegionSelect={setSelectedRegion}
+            />
           </div>
 
           {/* Region Details */}
           <div className="space-y-6">
-            {selectedRegion ? (
-              regions
-                .filter(region => region.id === selectedRegion)
-                .map((region) => (
-                  <Card key={region.id} className="bg-white/90 backdrop-blur-sm border-0 luxury-shadow rounded-2xl animate-fade-in">
-                    <CardContent className="p-8">
-                      <div className="flex items-center mb-4">
-                        <MapPin className="h-5 w-5 text-copper-600 mr-2" />
-                        <h3 className="font-display font-bold text-xl text-clay-800">
-                          {region.name}
-                        </h3>
-                      </div>
-
-                      <p className="elegant-text text-clay-600 mb-6 leading-relaxed">
-                        {region.description}
-                      </p>
-
-                      {/* Climate & Harvest Info */}
-                      <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div>
-                          <div className="text-xs text-clay-500 uppercase tracking-wide mb-1">
-                            {language === 'fr' ? 'Climat' : 'Climate'}
-                          </div>
-                          <div className="text-sm font-medium text-clay-700">
-                            {region.climate}
-                          </div>
-                        </div>
-                        <div>
-                          <div className="text-xs text-clay-500 uppercase tracking-wide mb-1">
-                            {language === 'fr' ? 'Récolte' : 'Harvest'}
-                          </div>
-                          <div className="text-sm font-medium text-clay-700">
-                            {region.harvest}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Ingredients */}
-                      <div>
-                        <div className="text-sm font-medium text-clay-700 mb-3">
-                          {language === 'fr' ? 'Ingrédients principaux :' : 'Main ingredients:'}
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {region.ingredients.map((ingredient, index) => (
-                            <span
-                              key={index}
-                              className="bg-copper-100 text-copper-700 px-3 py-1 rounded-full text-sm font-medium"
-                            >
-                              {ingredient}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))
-            ) : (
-              <Card className="bg-white/90 backdrop-blur-sm border-0 luxury-shadow rounded-2xl">
-                <CardContent className="p-8 text-center">
-                  <Info className="h-12 w-12 text-copper-400 mx-auto mb-4" />
-                  <h3 className="font-display font-semibold text-lg text-clay-800 mb-2">
-                    {language === 'fr' ? 'Explorez nos Régions' : 'Explore Our Regions'}
-                  </h3>
-                  <p className="elegant-text text-clay-600">
-                    {language === 'fr' 
-                      ? 'Sélectionnez une région sur la carte pour découvrir ses trésors naturels'
-                      : 'Select a region on the map to discover its natural treasures'
-                    }
-                  </p>
-                </CardContent>
-              </Card>
-            )}
+            <RegionDetails
+              selectedRegion={selectedRegion}
+              regions={regions}
+            />
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-2 gap-4">
-              <Card className="bg-copper-50 border-0 rounded-2xl">
-                <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-bold text-copper-600 mb-2">12+</div>
-                  <div className="text-sm text-clay-600">
-                    {language === 'fr' ? 'Régions sources' : 'Source regions'}
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="bg-copper-50 border-0 rounded-2xl">
-                <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-bold text-copper-600 mb-2">50+</div>
-                  <div className="text-sm text-clay-600">
-                    {language === 'fr' ? 'Ingrédients naturels' : 'Natural ingredients'}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+            <RegionStats />
           </div>
         </div>
       </div>
