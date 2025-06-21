@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
@@ -143,7 +142,6 @@ const Index = () => {
           </main>
           <Footer />
           <SamraRefactoredChatbot videoEnded={videoEnded} />
-          <FloatingWhatsApp />
           <FloatingCart />
           <BackToTop />
         </div>
