@@ -123,7 +123,26 @@ const About = () => {
               <h2 className="section-title text-clay-800 mb-12 text-center">
                 {language === 'fr' ? 'Nous Trouver' : 'Find Us'}
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Morocco Address */}
+                <div className="bg-white p-8 rounded-lg luxury-shadow">
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0">
+                      <MapPin className="h-6 w-6 text-copper-600 mt-1" />
+                    </div>
+                    <div>
+                      <h3 className="font-serif font-semibold text-xl text-clay-800 mb-2">
+                        {language === 'fr' ? 'Maroc' : 'Morocco'}
+                      </h3>
+                      <p className="elegant-text text-clay-600">
+                        {language === 'fr' ? 'Région de l\'Atlas' : 'Atlas Region'}<br />
+                        {language === 'fr' ? 'Coopératives locales' : 'Local cooperatives'}<br />
+                        {language === 'fr' ? 'Maroc' : 'Morocco'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
                 {/* USA Address */}
                 <div className="bg-white p-8 rounded-lg luxury-shadow">
                   <div className="flex items-start space-x-4">
