@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
@@ -324,7 +323,7 @@ const ProgrammeFidelite = () => {
                 {language === 'fr' ? 'Rejoindre maintenant' : 'Join now'}
               </Button>
             </div>
-          </CardContent>
+          </Card>
         </div>
       </section>
 
