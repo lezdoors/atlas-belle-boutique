@@ -8,14 +8,6 @@ const HeroProductShowcase = () => {
         
         {/* Main Product Container - Mobile Optimized */}
         <div className="relative bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-12 luxury-shadow border border-white/30">
-          {/* Elegant Pattern Overlay */}
-          <div className="absolute inset-0 opacity-5 rounded-3xl overflow-hidden">
-            <div className="w-full h-full" style={{
-              backgroundImage: `radial-gradient(circle at 30% 30%, rgba(184, 134, 11, 0.4) 1px, transparent 1px),
-                               radial-gradient(circle at 70% 70%, rgba(160, 82, 45, 0.3) 1px, transparent 1px)`,
-              backgroundSize: '40px 40px, 60px 60px'
-            }}></div>
-          </div>
           
           {/* Product Showcase - Responsive Sizing */}
           <div className="relative z-10 w-64 sm:w-80 h-80 sm:h-96 mx-auto">
