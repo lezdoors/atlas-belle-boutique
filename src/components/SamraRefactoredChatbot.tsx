@@ -1,14 +1,22 @@
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { MessageCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import ChatWindow from './chatbot/ChatWindow';
+import ChatFloatingButton from '@/components/chatbot/ChatFloatingButton';
+import ChatWindow from '@/components/chatbot/ChatWindow';
+import ChatHeader from '@/components/chatbot/ChatHeader';
+import ChatMessages from '@/components/chatbot/ChatMessages';
+import ChatInputContainer from '@/components/chatbot/ChatInputContainer';
+
+interface Message {
+  text: string;
+  isUser: boolean;
+  language: 'fr' | 'en';
+}
 
 const SamraRefactoredChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState<Array<{ text: string; isUser: boolean; language: 'fr' | 'en' }>>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const { language } = useLanguage();
 
   // Detect if user is writing in French or English
@@ -66,43 +74,51 @@ const SamraRefactoredChatbot = () => {
   };
 
   const handleWhatsAppRedirect = () => {
-    const phoneNumber = '+212600000000'; // Replace with actual number
+    const phoneNumber = '+33663068980';
     const whatsappMessage = language === 'fr' 
       ? 'Bonjour, j\'aimerais avoir des informations sur vos produits Perle d\'Atlas.'
       : 'Hello, I would like information about your Perle d\'Atlas products.';
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
   };
 
-  const handleActionClick = (actionMessage: string) => {
+  const handleQuickActionClick = (actionMessage: string) => {
     setMessage(actionMessage);
-    handleSendMessage();
+    const detectedLang = detectLanguage(actionMessage);
+    const newUserMessage = { text: actionMessage, isUser: true, language: detectedLang };
+    const response = generateResponse(actionMessage, detectedLang);
+    const botResponse = { text: response, isUser: false, language: detectedLang };
+    
+    setMessages(prev => [...prev, newUserMessage, botResponse]);
+    setMessage('');
   };
 
   return (
     <>
-      {/* Floating Chat Bubble */}
-      <Button
-        onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-40 h-16 w-16 rounded-full copper-gradient hover-scale luxury-shadow border-0 transition-all duration-300 ${isOpen ? 'scale-0' : 'scale-100'}`}
-        size="icon"
-      >
-        <MessageCircle className="h-7 w-7 text-white" />
-        <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
-      </Button>
+      <ChatFloatingButton 
+        onClick={() => setIsOpen(true)} 
+        isOpen={isOpen} 
+      />
 
-      {/* Chat Window */}
-      {isOpen && (
-        <ChatWindow
-          messages={messages}
+      <ChatWindow isOpen={isOpen}>
+        <ChatHeader 
+          language={language} 
+          onClose={() => setIsOpen(false)} 
+        />
+        
+        <ChatMessages 
+          messages={messages} 
+          language={language} 
+        />
+        
+        <ChatInputContainer
           message={message}
           setMessage={setMessage}
           onSendMessage={handleSendMessage}
-          onClose={() => setIsOpen(false)}
-          onActionClick={handleActionClick}
-          onWhatsAppRedirect={handleWhatsAppRedirect}
           language={language}
+          onQuickActionClick={handleQuickActionClick}
+          onWhatsAppRedirect={handleWhatsAppRedirect}
         />
-      )}
+      </ChatWindow>
     </>
   );
 };
