@@ -2,9 +2,27 @@
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useState, useRef, useEffect } from 'react';
 
 const Hero = () => {
   const { language } = useLanguage();
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    console.log('Hero component mounted, checking video load');
+    if (videoRef.current) {
+      videoRef.current.addEventListener('loadeddata', () => {
+        console.log('Video loaded successfully');
+        setVideoLoaded(true);
+      });
+      videoRef.current.addEventListener('error', (e) => {
+        console.error('Video failed to load:', e);
+        setVideoError(true);
+      });
+    }
+  }, []);
 
   const scrollToProducts = () => {
     const productsSection = document.querySelector('#featured-products');
@@ -17,16 +35,30 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0"
+        onLoadedData={() => {
+          console.log('Video onLoadedData event fired');
+          setVideoLoaded(true);
+        }}
+        onError={(e) => {
+          console.error('Video onError event fired:', e);
+          setVideoError(true);
+        }}
       >
         <source src="https://atlas-belle-boutique.lovable.app/perle-datlas-hero.mp4" type="video/mp4" />
         {/* Fallback background for browsers that don't support video */}
         <div className="absolute inset-0 bg-pearl-100"></div>
       </video>
+
+      {/* Fallback Background Image if video fails */}
+      {(videoError || !videoLoaded) && (
+        <div className="absolute inset-0 w-full h-full z-0 bg-gradient-to-br from-pearl-200 via-beige-200 to-clay-200"></div>
+      )}
 
       {/* Dark Overlay for Readability */}
       <div className="absolute inset-0 bg-black/40 z-10"></div>
@@ -86,6 +118,13 @@ const Hero = () => {
                 {language === 'fr' ? 'Notre Histoire' : 'Our Story'}
               </Button>
             </div>
+
+            {/* Debug info - only show in development */}
+            {process.env.NODE_ENV === 'development' && (
+              <div className="text-white text-xs mt-4 bg-black/50 p-2 rounded">
+                Video Status: {videoLoaded ? 'Loaded' : 'Loading'} | Error: {videoError ? 'Yes' : 'No'}
+              </div>
+            )}
 
             {/* Scroll Indicator - Hidden on small screens */}
             <div className="animate-bounce justify-center lg:justify-start hidden sm:flex">
