@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 
 interface HeroVideoBackgroundProps {
@@ -118,7 +117,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
       >
         <source src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/73847-549547533.mp4" type="video/mp4" />
         Your browser does not support the video tag.
-      </source>
+      </video>
 
       {/* Static image that appears after video ends or on error */}
       <div 
