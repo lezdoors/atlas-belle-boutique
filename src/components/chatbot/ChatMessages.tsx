@@ -6,6 +6,7 @@ interface Message {
   text: string;
   isUser: boolean;
   language: 'fr' | 'en';
+  image?: string;
 }
 
 interface ChatMessagesProps {
@@ -37,6 +38,7 @@ const ChatMessages = ({ messages, language }: ChatMessagesProps) => {
           text={msg.text}
           isUser={msg.isUser}
           language={msg.language}
+          image={msg.image}
         />
       ))}
     </div>

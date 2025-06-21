@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { Crown, Heart, HelpCircle, Phone } from 'lucide-react';
+import { Crown, Heart, HelpCircle, Phone, Sparkles, MapPin } from 'lucide-react';
 
 interface QuickAction {
   icon: typeof Crown;
@@ -17,10 +17,10 @@ interface ChatQuickActionsProps {
 const ChatQuickActions = ({ language, onActionClick, onWhatsAppRedirect }: ChatQuickActionsProps) => {
   const quickActions: QuickAction[] = [
     {
-      icon: Crown,
-      label: language === 'fr' ? 'Collections' : 'Collections',
+      icon: Sparkles,
+      label: language === 'fr' ? 'Huile Argan' : 'Argan Oil',
       action: () => {
-        const msg = language === 'fr' ? 'Quelles sont vos collections saisonnières ?' : 'What are your seasonal collections?';
+        const msg = language === 'fr' ? 'Parlez-moi de vos huiles d\'argan premium' : 'Tell me about your premium argan oils';
         onActionClick(msg);
       }
     },
@@ -28,15 +28,15 @@ const ChatQuickActions = ({ language, onActionClick, onWhatsAppRedirect }: ChatQ
       icon: Heart,
       label: language === 'fr' ? 'Rituels' : 'Rituals',
       action: () => {
-        const msg = language === 'fr' ? 'Parlez-moi des rituels de beauté ancestraux' : 'Tell me about ancestral beauty rituals';
+        const msg = language === 'fr' ? 'Quels sont vos rituels de beauté traditionnels ?' : 'What are your traditional beauty rituals?';
         onActionClick(msg);
       }
     },
     {
-      icon: HelpCircle,
-      label: language === 'fr' ? 'Conseils' : 'Advice',
+      icon: MapPin,
+      label: language === 'fr' ? 'Artisans' : 'Artisans',
       action: () => {
-        const msg = language === 'fr' ? 'J\'ai besoin de conseils personnalisés' : 'I need personalized advice';
+        const msg = language === 'fr' ? 'Parlez-moi de vos artisans berbères' : 'Tell me about your Berber artisans';
         onActionClick(msg);
       }
     },
