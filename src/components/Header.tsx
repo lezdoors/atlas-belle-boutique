@@ -33,7 +33,7 @@ const Header = () => {
     if (!hasShownModal) {
       const timer = setTimeout(() => {
         setShowNewsletterModal(true);
-      }, 8000);
+      }, 8000); // Increased delay for better UX
 
       return () => clearTimeout(timer);
     }
@@ -46,7 +46,7 @@ const Header = () => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-white/95 backdrop-blur-xl border-b border-sand-200 luxury-shadow' 
           : 'bg-white/90 backdrop-blur-md border-b border-transparent'
@@ -56,28 +56,24 @@ const Header = () => {
           <HeaderTopBar />
         </div>
 
-        {/* Main Header - Full width with proper spacing */}
-        <div className="w-full px-4 py-3 sm:py-4">
-          <div className="flex items-center justify-between h-16 max-w-7xl mx-auto">
-            {/* Logo - Centered on mobile */}
-            <div className="flex-1 lg:flex-none flex justify-center lg:justify-start">
-              <HeaderLogo />
-            </div>
+        {/* Main Header - Enhanced alignment and spacing */}
+        <div className="container mx-auto px-4 py-3 sm:py-4">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo - Enhanced spacing */}
+            <HeaderLogo />
 
-            {/* Desktop Navigation - Centered */}
-            <div className="hidden lg:flex items-center h-full flex-1 justify-center">
+            {/* Desktop Navigation - Better vertical alignment */}
+            <div className="hidden lg:flex items-center h-full">
               <HeaderNavigation />
             </div>
 
-            {/* Action Icons - Right aligned */}
-            <div className="flex-1 lg:flex-none flex justify-end">
-              <HeaderActions 
-                isMenuOpen={isMenuOpen}
-                setIsMenuOpen={setIsMenuOpen}
-                setShowMobileSearch={setShowMobileSearch}
-                handleSearch={handleSearch}
-              />
-            </div>
+            {/* Action Icons - Improved alignment */}
+            <HeaderActions 
+              isMenuOpen={isMenuOpen}
+              setIsMenuOpen={setIsMenuOpen}
+              setShowMobileSearch={setShowMobileSearch}
+              handleSearch={handleSearch}
+            />
           </div>
 
           {/* Mobile Language Dropdown - Only visible when menu is closed */}
