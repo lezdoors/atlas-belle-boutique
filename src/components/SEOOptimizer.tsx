@@ -1,6 +1,5 @@
 
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
 interface SEOOptimizerProps {
   title?: string;
@@ -16,8 +15,7 @@ const SEOOptimizer = ({
   image = "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/397b8d88-7594-4433-8004-050f047a13b6.png",
   type = "website"
 }: SEOOptimizerProps) => {
-  const location = useLocation();
-  const currentUrl = `${window.location.origin}${location.pathname}`;
+  const currentUrl = url || `${window.location.origin}${window.location.pathname}`;
 
   useEffect(() => {
     // Update page title

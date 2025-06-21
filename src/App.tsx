@@ -46,14 +46,15 @@ function App() {
         <LanguageProvider>
           <CartProvider>
             <SelectionProvider>
-              {/* SEO and Performance Optimizers */}
-              <SEOOptimizer />
+              {/* Global optimizers that don't need router context */}
               <MobileOptimizer />
               <PerformanceOptimizer />
               <SecurityConfig />
               
               <Toaster />
               <BrowserRouter>
+                {/* SEO Optimizer now inside Router context */}
+                <SEOOptimizer />
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/a-propos" element={<About />} />
