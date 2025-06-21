@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Star, ShoppingCart, Heart, Share2, ArrowLeft } from 'lucide-react';
@@ -18,6 +17,7 @@ const ProductDetail = () => {
   const { language, currency } = useLanguage();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [showCheckout, setShowCheckout] = useState(false);
 
   // Mock product data - in real app, fetch based on id
   const product = {
@@ -204,9 +204,13 @@ const ProductDetail = () => {
                 </div>
 
                 <div className="flex space-x-4">
-                  <Button size="lg" className="flex-1 copper-gradient text-white rounded-full min-h-[48px]">
+                  <Button 
+                    size="lg" 
+                    className="flex-1 copper-gradient text-white rounded-full min-h-[48px]"
+                    onClick={() => setShowCheckout(true)}
+                  >
                     <ShoppingCart className="h-5 w-5 mr-2" />
-                    {language === 'fr' ? 'Ajouter au panier' : 'Add to cart'}
+                    {language === 'fr' ? 'Commander maintenant' : 'Order Now'}
                   </Button>
                   <Button variant="outline" size="lg" className="rounded-full min-h-[48px]">
                     <Heart className="h-5 w-5" />
@@ -303,6 +307,25 @@ const ProductDetail = () => {
           </div>
         </div>
       </section>
+
+      {/* Checkout Modal */}
+      {showCheckout && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <CheckoutForm
+                product={{
+                  id: product.id,
+                  name: product.name,
+                  priceMAD: product.priceMAD
+                }}
+                quantity={quantity}
+                onClose={() => setShowCheckout(false)}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
       <FloatingWhatsApp />
