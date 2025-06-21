@@ -11,7 +11,7 @@ interface HeaderActionsProps {
   handleSearch: (query: string) => void;
 }
 
-const HeaderActionsProps: React.FC<HeaderActionsProps> = ({
+const HeaderActions: React.FC<HeaderActionsProps> = ({
   isMenuOpen,
   setIsMenuOpen,
   setShowMobileSearch,
@@ -75,4 +75,4 @@ const HeaderActionsProps: React.FC<HeaderActionsProps> = ({
   );
 };
 
-export default HeaderActionsProps;
+export default HeaderActions;

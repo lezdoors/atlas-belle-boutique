@@ -1,5 +1,5 @@
 
-import { Mail, Map, User } from 'lucide-react';
+import { Mail, Map, User, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -14,9 +14,9 @@ const Footer = () => {
       <div className="relative z-10">
         {/* Main Footer */}
         <div className="container mx-auto px-4 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
             {/* Brand */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-2">
               <h3 className="text-2xl font-serif font-bold text-amber-400 mb-4">
                 Perle d'Atlas
               </h3>
@@ -83,31 +83,78 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Contact & Legal */}
+            {/* Contact Information */}
             <div>
               <h4 className="text-lg font-serif font-semibold text-amber-400 mb-6">
-                {language === 'fr' ? 'Contact & Informations' : 'Contact & Information'}
+                {language === 'fr' ? 'Contact' : 'Contact'}
               </h4>
-              <ul className="space-y-3">
-                <li>
-                  <Link to="/contact" className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
-                    {language === 'fr' ? 'Nous contacter' : 'Contact us'}
-                  </Link>
-                </li>
-                {[
-                  'FAQ',
-                  language === 'fr' ? 'Livraison & Retours' : 'Shipping & Returns',
-                  'CGV',
-                  language === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy',
-                  language === 'fr' ? 'Mentions légales' : 'Legal Notice'
-                ].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
-                      {item}
+              <div className="space-y-4">
+                {/* WhatsApp */}
+                <div className="flex items-start space-x-3">
+                  <Phone className="h-4 w-4 text-green-400 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="text-sand-300 text-sm font-medium">WhatsApp :</p>
+                    <a 
+                      href="https://wa.me/+212663068980" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-green-400 hover:text-green-300 transition-colors text-sm"
+                    >
+                      06 63 06 89 80
                     </a>
-                  </li>
-                ))}
-              </ul>
+                  </div>
+                </div>
+
+                {/* USA Address */}
+                <div className="flex items-start space-x-3">
+                  <MapPin className="h-4 w-4 text-amber-400 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="text-sand-300 text-sm font-medium">
+                      {language === 'fr' ? 'Adresse USA :' : 'USA Address:'}
+                    </p>
+                    <p className="text-sand-400 text-sm leading-relaxed">
+                      822 C Street #11<br />
+                      Hayward, CA 94541
+                    </p>
+                  </div>
+                </div>
+
+                {/* France Address */}
+                <div className="flex items-start space-x-3">
+                  <MapPin className="h-4 w-4 text-amber-400 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="text-sand-300 text-sm font-medium">
+                      {language === 'fr' ? 'Adresse France :' : 'France Address:'}
+                    </p>
+                    <p className="text-sand-400 text-sm italic">
+                      {language === 'fr' ? 'à venir' : 'coming soon'}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Legal Links */}
+                <div className="pt-4 border-t border-sand-700">
+                  <ul className="space-y-2">
+                    <li>
+                      <Link to="/contact" className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
+                        {language === 'fr' ? 'Nous contacter' : 'Contact us'}
+                      </Link>
+                    </li>
+                    {[
+                      'FAQ',
+                      language === 'fr' ? 'Livraison & Retours' : 'Shipping & Returns',
+                      'CGV',
+                      language === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy'
+                    ].map((item) => (
+                      <li key={item}>
+                        <a href="#" className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
+                          {item}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
