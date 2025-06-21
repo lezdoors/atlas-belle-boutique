@@ -16,7 +16,7 @@ const FooterBottom = () => {
               className="mr-3 opacity-60"
             />
             <span>
-              © 2024 Perle d'Atlas. {language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}
+              © 2024 Perle de l'Atlas. {language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}
             </span>
           </div>
           <div className="flex space-x-6">

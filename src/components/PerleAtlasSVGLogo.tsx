@@ -65,7 +65,7 @@ const PerleAtlasSVGLogo = ({ className = '', size = 'md' }: PerleAtlasSVGLogoPro
         fontWeight="bold"
         fill="url(#textGradient)"
       >
-        Perle d'Atlas
+        Perle de l'Atlas
       </text>
       
       {/* Decorative elements - small gems/pearls */}

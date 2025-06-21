@@ -16,7 +16,7 @@ const FooterBrand = () => {
         />
         <div>
           <h3 className="text-xl font-serif font-bold text-amber-400">
-            Perle d'Atlas
+            Perle de l'Atlas
           </h3>
           <div className="text-sm text-sand-400 font-serif italic">
             Authenticité & Élégance

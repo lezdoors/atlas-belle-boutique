@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import MissionSection from '@/components/MissionSection';
 import ShopByRegion from '@/components/ShopByRegion';
 import RegionalCollections from '@/components/RegionalCollections';
 import FeaturedProducts from '@/components/FeaturedProducts';
@@ -36,26 +37,26 @@ const Index = () => {
   // Enhanced SEO meta tags
   useEffect(() => {
     // Update page title
-    document.title = 'Perle d\'Atlas - Cosmétiques de Luxe Marocains | Tradition & Élégance';
+    document.title = 'Perle de l\'Atlas - Cosmétiques de Luxe Marocains | Tradition & Élégance';
     
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Découvrez Perle d\'Atlas, la marque de cosmétiques de luxe marocains. Produits artisanaux authentiques alliant traditions ancestrales et élégance moderne. Huiles d\'argan, soins naturels du Maroc.');
+      metaDescription.setAttribute('content', 'Découvrez Perle de l\'Atlas, la marque de cosmétiques de luxe marocains. Produits artisanaux authentiques alliant traditions ancestrales et élégance moderne. Huiles d\'argan, soins naturels du Maroc.');
     } else {
       const meta = document.createElement('meta');
       meta.name = 'description';
-      meta.content = 'Découvrez Perle d\'Atlas, la marque de cosmétiques de luxe marocains. Produits artisanaux authentiques alliant traditions ancestrales et élégance moderne. Huiles d\'argan, soins naturels du Maroc.';
+      meta.content = 'Découvrez Perle de l\'Atlas, la marque de cosmétiques de luxe marocains. Produits artisanaux authentiques alliant traditions ancestrales et élégance moderne. Huiles d\'argan, soins naturels du Maroc.';
       document.head.appendChild(meta);
     }
 
     const ogTags = [
-      { property: 'og:title', content: 'Perle d\'Atlas - Cosmétiques de Luxe Marocains' },
+      { property: 'og:title', content: 'Perle de l\'Atlas - Cosmétiques de Luxe Marocains' },
       { property: 'og:description', content: 'Découvrez nos produits de beauté artisanaux du Maroc, alliant traditions ancestrales et élégance contemporaine.' },
       { property: 'og:image', content: 'https://images.unsplash.com/photo-1466442929976-97f336a657be?auto=format&fit=crop&w=1200&q=80' },
       { property: 'og:type', content: 'website' },
       { property: 'og:url', content: window.location.href },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'Perle d\'Atlas - Cosmétiques de Luxe Marocains' },
+      { name: 'twitter:title', content: 'Perle de l\'Atlas - Cosmétiques de Luxe Marocains' },
       { name: 'twitter:description', content: 'Découvrez nos produits de beauté artisanaux du Maroc, alliant traditions ancestrales et élégance contemporaine.' },
       { name: 'twitter:image', content: 'https://images.unsplash.com/photo-1466442929976-97f336a657be?auto=format&fit=crop&w=1200&q=80' }
     ];
@@ -76,7 +77,7 @@ const Index = () => {
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "Perle d'Atlas",
+      "name": "Perle de l'Atlas",
       "description": "Marque de cosmétiques de luxe marocains",
       "url": window.location.origin,
       "logo": `${window.location.origin}/favicon.svg`,
@@ -105,6 +106,7 @@ const Index = () => {
           <Header />
           <main>
             <Hero onVideoEnded={handleVideoEnded} />
+            <MissionSection />
             <ShopByRegion />
             <RegionalCollections />
             <FeaturedProducts />

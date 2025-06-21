@@ -10,8 +10,8 @@ interface SEOOptimizerProps {
 }
 
 const SEOOptimizer = ({ 
-  title = "Perle d'Atlas - Cosmétiques de Luxe Marocains | Tradition & Élégance",
-  description = "Découvrez Perle d'Atlas, la marque de cosmétiques de luxe marocains. Produits artisanaux authentiques alliant traditions ancestrales et élégance moderne.",
+  title = "Perle de l'Atlas - Cosmétiques de Luxe Marocains | Tradition & Élégance",
+  description = "Découvrez Perle de l'Atlas, la marque de cosmétiques de luxe marocains. Produits artisanaux authentiques alliant traditions ancestrales et élégance moderne.",
   image = "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/397b8d88-7594-4433-8004-050f047a13b6.png",
   url,
   type = "website"
@@ -35,7 +35,7 @@ const SEOOptimizer = ({
       { property: 'og:image', content: image },
       { property: 'og:url', content: currentUrl },
       { property: 'og:type', content: type },
-      { property: 'og:site_name', content: "Perle d'Atlas" },
+      { property: 'og:site_name', content: "Perle de l'Atlas" },
       { property: 'og:locale', content: 'fr_FR' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: title },
@@ -73,7 +73,7 @@ const SEOOptimizer = ({
         {
           "@type": "Organization",
           "@id": `${window.location.origin}/#organization`,
-          "name": "Perle d'Atlas",
+          "name": "Perle de l'Atlas",
           "description": "Marque de cosmétiques de luxe marocains authentiques",
           "url": window.location.origin,
           "logo": {
@@ -105,7 +105,7 @@ const SEOOptimizer = ({
           "@type": "WebSite",
           "@id": `${window.location.origin}/#website`,
           "url": window.location.origin,
-          "name": "Perle d'Atlas",
+          "name": "Perle de l'Atlas",
           "description": description,
           "publisher": {
             "@id": `${window.location.origin}/#organization`
