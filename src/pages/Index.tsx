@@ -11,7 +11,6 @@ import Categories from '@/components/Categories';
 import BrandStory from '@/components/BrandStory';
 import Footer from '@/components/Footer';
 import SamraEnhancedChatbot from '@/components/SamraEnhancedChatbot';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import BackToTop from '@/components/BackToTop';
 import FloatingCart from '@/components/FloatingCart';
 import OurArtisans from '@/components/OurArtisans';
@@ -116,7 +115,6 @@ const Index = () => {
           <Footer />
           <SamraEnhancedChatbot />
           <FloatingCart />
-          <FloatingWhatsApp />
           <BackToTop />
         </div>
       </PullToRefresh>

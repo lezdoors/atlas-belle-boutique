@@ -16,8 +16,12 @@ const HeaderNavigation = () => {
       label: language === 'fr' ? 'Rituels' : 'Rituals' 
     },
     { 
-      href: '/programme-fidelite', 
-      label: language === 'fr' ? 'Programme Fidélité' : 'Loyalty Program' 
+      href: '/blog', 
+      label: 'Blog' 
+    },
+    { 
+      href: '/quiz-peau', 
+      label: language === 'fr' ? 'Quiz Peau' : 'Skin Quiz' 
     },
     { 
       href: '/regions', 

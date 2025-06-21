@@ -1,251 +1,333 @@
 
+import { useLanguage } from '@/contexts/LanguageContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import SamraEnhancedChatbot from '@/components/SamraEnhancedChatbot';
+import FloatingCart from '@/components/FloatingCart';
 import BackToTop from '@/components/BackToTop';
 import { Card, CardContent } from '@/components/ui/card';
-import { Heart, Leaf, Users, Award } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Badge } from '@/components/ui/badge';
+import { Heart, Leaf, Award, Users, MapPin, Calendar } from 'lucide-react';
 
 const About = () => {
   const { language } = useLanguage();
 
+  const teamMembers = [
+    {
+      name: 'Aicha Benali',
+      role: language === 'fr' ? 'Fondatrice & Maître Artisan' : 'Founder & Master Artisan',
+      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b77c?auto=format&fit=crop&w=400&q=80',
+      bio: language === 'fr' 
+        ? 'Héritière de 4 générations d\'artisans berbères, Aicha perpétue les traditions ancestrales.'
+        : 'Heir to 4 generations of Berber artisans, Aicha perpetuates ancestral traditions.'
+    },
+    {
+      name: 'Youssef Tazi',
+      role: language === 'fr' ? 'Expert en Ingrédients' : 'Ingredient Expert',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80',
+      bio: language === 'fr'
+        ? 'Botaniste spécialisé dans la flore marocaine et les propriétés des plantes médicinales.'
+        : 'Botanist specialized in Moroccan flora and medicinal plant properties.'
+    },
+    {
+      name: 'Fatima Amrani',
+      role: language === 'fr' ? 'Responsable Qualité' : 'Quality Manager',
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80',
+      bio: language === 'fr'
+        ? 'Chimiste cosmétique certifiée, elle garantit la pureté et l\'efficacité de nos produits.'
+        : 'Certified cosmetic chemist, she ensures the purity and effectiveness of our products.'
+    }
+  ];
+
   const values = [
     {
       icon: Heart,
-      title: language === 'fr' ? 'Passion' : 'Passion',
-      description: language === 'fr' 
-        ? 'Notre amour pour la beauté naturelle du Maroc guide chacune de nos créations'
-        : 'Our love for Morocco\'s natural beauty guides each of our creations'
+      title: language === 'fr' ? 'Authenticité' : 'Authenticity',
+      description: language === 'fr'
+        ? 'Nous préservons les recettes ancestrales transmises de génération en génération.'
+        : 'We preserve ancestral recipes passed down through generations.'
     },
     {
       icon: Leaf,
-      title: language === 'fr' ? 'Naturel' : 'Natural',
+      title: language === 'fr' ? 'Durabilité' : 'Sustainability',
       description: language === 'fr'
-        ? 'Nous privilégions les ingrédients purs et respectueux de l\'environnement'
-        : 'We favor pure ingredients that respect the environment'
-    },
-    {
-      icon: Users,
-      title: language === 'fr' ? 'Communauté' : 'Community',
-      description: language === 'fr'
-        ? 'Nous soutenons les artisans locaux et préservons les savoir-faire traditionnels'
-        : 'We support local artisans and preserve traditional know-how'
+        ? 'Commerce équitable et protection de l\'environnement au cœur de nos actions.'
+        : 'Fair trade and environmental protection at the heart of our actions.'
     },
     {
       icon: Award,
       title: language === 'fr' ? 'Excellence' : 'Excellence',
       description: language === 'fr'
-        ? 'Nous nous engageons à offrir la plus haute qualité dans chaque produit'
-        : 'We are committed to offering the highest quality in every product'
+        ? 'Qualité premium garantie par nos certifications biologiques et notre savoir-faire.'
+        : 'Premium quality guaranteed by our organic certifications and expertise.'
+    },
+    {
+      icon: Users,
+      title: language === 'fr' ? 'Communauté' : 'Community',
+      description: language === 'fr'
+        ? 'Soutien aux coopératives féminines et développement local durable.'
+        : 'Support for women\'s cooperatives and sustainable local development.'
     }
   ];
 
-  const founders = [
+  const milestones = [
     {
-      name: 'Aicha Benali',
-      role: language === 'fr' ? 'Co-fondatrice & Directrice Créative' : 'Co-founder & Creative Director',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b35c?w=300',
-      story: language === 'fr'
-        ? 'Née à Marrakech, Aicha a grandi entourée des traditions cosmétiques berbères transmises par sa grand-mère.'
-        : 'Born in Marrakech, Aicha grew up surrounded by Berber cosmetic traditions passed down by her grandmother.'
+      year: '1987',
+      title: language === 'fr' ? 'Fondation' : 'Foundation',
+      description: language === 'fr'
+        ? 'Création de la première coopérative d\'argan dans les montagnes de l\'Atlas.'
+        : 'Creation of the first argan cooperative in the Atlas Mountains.'
     },
     {
-      name: 'Youssef Alami',
-      role: language === 'fr' ? 'Co-fondateur & Directeur Innovation' : 'Co-founder & Innovation Director',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300',
-      story: language === 'fr'
-        ? 'Ingénieur cosmétique passionné, Youssef modernise les recettes ancestrales avec une approche scientifique.'
-        : 'Passionate cosmetic engineer, Youssef modernizes ancestral recipes with a scientific approach.'
+      year: '2010',
+      title: language === 'fr' ? 'Certification Bio' : 'Organic Certification',
+      description: language === 'fr'
+        ? 'Obtention des certifications biologiques européennes et américaines.'
+        : 'Obtaining European and American organic certifications.'
+    },
+    {
+      year: '2018',
+      title: language === 'fr' ? 'Prix International' : 'International Award',
+      description: language === 'fr'
+        ? 'Reconnaissance mondiale pour nos pratiques durables et notre qualité.'
+        : 'Global recognition for our sustainable practices and quality.'
+    },
+    {
+      year: '2023',
+      title: language === 'fr' ? 'Expansion' : 'Expansion',
+      description: language === 'fr'
+        ? 'Lancement de Perle d\'Atlas et ouverture à l\'international.'
+        : 'Launch of Perle d\'Atlas and international expansion.'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-pearl-100">
+    <div className="min-h-screen bg-pearl-50">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-beige-100 to-pearl-200 py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="hero-title text-clay-800 mb-6">
+      <main className="pt-20">
+        {/* Hero Section */}
+        <section className="relative py-16 md:py-24 overflow-hidden">
+          <div 
+            className="absolute inset-0 z-0"
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1466442929976-97f336a657be?auto=format&fit=crop&w=1920&q=80')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-clay-900/80 to-copper-900/60"></div>
+          </div>
+          
+          <div className="relative z-10 max-w-7xl mx-auto px-4 text-center text-white">
+            <h1 className="font-display text-4xl md:text-6xl font-bold mb-6">
               {language === 'fr' ? 'Notre Histoire' : 'Our Story'}
             </h1>
-            <p className="hero-subtitle text-clay-600 mb-8">
-              {language === 'fr' 
-                ? 'Découvrez l\'histoire de Perle d\'Atlas, née de la rencontre entre tradition millénaire et innovation moderne'
-                : 'Discover the story of Perle d\'Atlas, born from the meeting between millennial tradition and modern innovation'
-              }
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Brand Story */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-            <div>
-              <h2 className="section-title text-clay-800 mb-6">
-                {language === 'fr' ? 'L\'Essence de notre Marque' : 'The Essence of our Brand'}
-              </h2>
-              <p className="elegant-text text-clay-700 leading-relaxed mb-6">
-                {language === 'fr'
-                  ? 'Perle d\'Atlas est née d\'une vision : révéler au monde la richesse inestimable des traditions cosmétiques marocaines. Depuis des siècles, les femmes berbères ont développé des rituels de beauté utilisant les trésors botaniques de cette terre généreuse.'
-                  : 'Perle d\'Atlas was born from a vision: to reveal to the world the invaluable richness of Moroccan cosmetic traditions. For centuries, Berber women have developed beauty rituals using the botanical treasures of this generous land.'
-                }
-              </p>
-              <p className="elegant-text text-clay-700 leading-relaxed">
-                {language === 'fr'
-                  ? 'Aujourd\'hui, nous perpétuons cet héritage en créant des produits authentiques qui allient savoir-faire ancestral et techniques modernes, pour révéler la beauté naturelle de chaque femme.'
-                  : 'Today, we perpetuate this heritage by creating authentic products that combine ancestral know-how and modern techniques, to reveal the natural beauty of every woman.'
-                }
-              </p>
-            </div>
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden luxury-shadow">
-              <img 
-                src="https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=600" 
-                alt="Brand story"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Values */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <Card key={index} className="text-center hover-scale">
-                <CardContent className="p-8">
-                  <div className="w-16 h-16 copper-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-                    <value.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="font-display font-semibold text-xl text-clay-800 mb-3">
-                    {value.title}
-                  </h3>
-                  <p className="elegant-text text-clay-600 leading-relaxed">
-                    {value.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Founders */}
-      <section className="py-16 bg-beige-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="section-title text-clay-800 mb-6">
-              {language === 'fr' ? 'Nos Fondateurs' : 'Our Founders'}
-            </h2>
-            <p className="elegant-text text-clay-600 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl font-serif leading-relaxed max-w-3xl mx-auto">
               {language === 'fr'
-                ? 'Rencontrez les visionnaires qui ont donné naissance à Perle d\'Atlas'
-                : 'Meet the visionaries who gave birth to Perle d\'Atlas'
+                ? 'Une aventure familiale née dans les montagnes de l\'Atlas, où tradition et innovation se rencontrent pour créer des produits de beauté d\'exception.'
+                : 'A family adventure born in the Atlas Mountains, where tradition and innovation meet to create exceptional beauty products.'
               }
             </p>
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-            {founders.map((founder, index) => (
-              <Card key={index} className="hover-scale">
-                <CardContent className="p-8 text-center">
-                  <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6">
-                    <img 
-                      src={founder.image} 
-                      alt={founder.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="font-display font-semibold text-xl text-clay-800 mb-2">
-                    {founder.name}
-                  </h3>
-                  <p className="text-copper-600 font-medium mb-4">
-                    {founder.role}
+        {/* Brand Story */}
+        <section className="py-16 md:py-24">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="font-display text-3xl md:text-4xl font-bold text-clay-800 mb-6">
+                  {language === 'fr' ? 'L\'Héritage de Nos Ancêtres' : 'The Legacy of Our Ancestors'}
+                </h2>
+                <div className="space-y-4 text-clay-700 font-serif text-lg">
+                  <p>
+                    {language === 'fr'
+                      ? 'Depuis quatre générations, notre famille perpétue les secrets de beauté berbères dans les villages reculés de l\'Atlas marocain. Chaque recette, chaque geste, chaque ingrédient raconte une histoire millénaire.'
+                      : 'For four generations, our family has perpetuated Berber beauty secrets in the remote villages of the Moroccan Atlas. Every recipe, every gesture, every ingredient tells a thousand-year-old story.'
+                    }
                   </p>
-                  <p className="elegant-text text-clay-600 leading-relaxed">
-                    {founder.story}
+                  <p>
+                    {language === 'fr'
+                      ? 'Perle d\'Atlas est née de cette passion pour l\'authenticité, alliant le savoir-faire ancestral aux standards de qualité les plus exigeants pour vous offrir le meilleur du Maroc.'
+                      : 'Perle d\'Atlas was born from this passion for authenticity, combining ancestral know-how with the most demanding quality standards to offer you the best of Morocco.'
+                    }
                   </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Sourcing Ethics */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden luxury-shadow">
-              <img 
-                src="https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=600" 
-                alt="Sourcing ethics"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div>
-              <h2 className="section-title text-clay-800 mb-6">
-                {language === 'fr' ? 'Éthique et Sourcing' : 'Ethics and Sourcing'}
-              </h2>
-              <p className="elegant-text text-clay-700 leading-relaxed mb-6">
-                {language === 'fr'
-                  ? 'Nous travaillons directement avec les coopératives locales pour garantir un commerce équitable et soutenir les communautés rurales. Chaque ingrédient est soigneusement sélectionné pour sa pureté et sa traçabilité.'
-                  : 'We work directly with local cooperatives to guarantee fair trade and support rural communities. Each ingredient is carefully selected for its purity and traceability.'
-                }
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="w-3 h-3 bg-copper-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <div>
-                    <h4 className="font-semibold text-clay-800 mb-1">
-                      {language === 'fr' ? 'Commerce équitable' : 'Fair trade'}
-                    </h4>
-                    <p className="text-clay-600 text-sm">
-                      {language === 'fr'
-                        ? 'Rémunération juste des producteurs locaux'
-                        : 'Fair compensation for local producers'
-                      }
-                    </p>
-                  </div>
                 </div>
-                <div className="flex items-start">
-                  <div className="w-3 h-3 bg-copper-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <div>
-                    <h4 className="font-semibold text-clay-800 mb-1">
-                      {language === 'fr' ? 'Développement durable' : 'Sustainable development'}
-                    </h4>
-                    <p className="text-clay-600 text-sm">
-                      {language === 'fr'
-                        ? 'Pratiques respectueuses de l\'environnement'
-                        : 'Environmentally friendly practices'
-                      }
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-3 h-3 bg-copper-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                  <div>
-                    <h4 className="font-semibold text-clay-800 mb-1">
-                      {language === 'fr' ? 'Traçabilité complète' : 'Complete traceability'}
-                    </h4>
-                    <p className="text-clay-600 text-sm">
-                      {language === 'fr'
-                        ? 'Origine connue de chaque ingrédient'
-                        : 'Known origin of each ingredient'
-                      }
-                    </p>
+              </div>
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1465379944081-7f47de8d74ac?auto=format&fit=crop&w=600&q=80"
+                  alt="Artisan at work"
+                  className="rounded-2xl luxury-shadow w-full"
+                />
+                <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl luxury-shadow">
+                  <div className="flex items-center space-x-3">
+                    <Calendar className="h-8 w-8 text-copper-600" />
+                    <div>
+                      <p className="font-bold text-clay-800">35+</p>
+                      <p className="text-sm text-clay-600">
+                        {language === 'fr' ? 'Années d\'expertise' : 'Years of expertise'}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
+        {/* Values */}
+        <section className="py-16 md:py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-clay-800 mb-4">
+                {language === 'fr' ? 'Nos Valeurs' : 'Our Values'}
+              </h2>
+              <p className="text-xl text-clay-600 font-serif max-w-2xl mx-auto">
+                {language === 'fr'
+                  ? 'Les principes qui guident chacune de nos actions et décisions.'
+                  : 'The principles that guide each of our actions and decisions.'
+                }
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {values.map((value, index) => (
+                <Card key={index} className="text-center border-0 luxury-shadow hover-scale">
+                  <CardContent className="p-8">
+                    <div className="w-16 h-16 bg-copper-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <value.icon className="h-8 w-8 text-copper-600" />
+                    </div>
+                    <h3 className="font-bold text-xl text-clay-800 mb-4">{value.title}</h3>
+                    <p className="text-clay-600 font-serif">{value.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Team */}
+        <section className="py-16 md:py-24">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-clay-800 mb-4">
+                {language === 'fr' ? 'Notre Équipe' : 'Our Team'}
+              </h2>
+              <p className="text-xl text-clay-600 font-serif max-w-2xl mx-auto">
+                {language === 'fr'
+                  ? 'Les artisans passionnés qui donnent vie à nos produits d\'exception.'
+                  : 'The passionate artisans who bring our exceptional products to life.'
+                }
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {teamMembers.map((member, index) => (
+                <Card key={index} className="border-0 luxury-shadow hover-scale overflow-hidden">
+                  <div className="aspect-square overflow-hidden">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="font-bold text-xl text-clay-800 mb-2">{member.name}</h3>
+                    <Badge className="mb-4 bg-copper-100 text-copper-700 hover:bg-copper-200">
+                      {member.role}
+                    </Badge>
+                    <p className="text-clay-600 font-serif">{member.bio}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Timeline */}
+        <section className="py-16 md:py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-clay-800 mb-4">
+                {language === 'fr' ? 'Notre Parcours' : 'Our Journey'}
+              </h2>
+              <p className="text-xl text-clay-600 font-serif max-w-2xl mx-auto">
+                {language === 'fr'
+                  ? 'Les moments clés qui ont façonné notre histoire.'
+                  : 'The key moments that shaped our story.'
+                }
+              </p>
+            </div>
+            
+            <div className="space-y-8">
+              {milestones.map((milestone, index) => (
+                <div key={index} className="flex items-center space-x-8">
+                  <div className="flex-shrink-0">
+                    <div className="w-20 h-20 bg-copper-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                      {milestone.year}
+                    </div>
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="font-bold text-xl text-clay-800 mb-2">{milestone.title}</h3>
+                    <p className="text-clay-600 font-serif">{milestone.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Artisan Partnerships */}
+        <section className="py-16 md:py-24">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=600&q=80"
+                  alt="Artisan partnership"
+                  className="rounded-2xl luxury-shadow w-full"
+                />
+                <div className="absolute -top-6 -right-6 bg-white p-6 rounded-xl luxury-shadow">
+                  <div className="flex items-center space-x-3">
+                    <MapPin className="h-8 w-8 text-copper-600" />
+                    <div>
+                      <p className="font-bold text-clay-800">12</p>
+                      <p className="text-sm text-clay-600">
+                        {language === 'fr' ? 'Coopératives' : 'Cooperatives'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2 className="font-display text-3xl md:text-4xl font-bold text-clay-800 mb-6">
+                  {language === 'fr' ? 'Nos Partenaires Artisans' : 'Our Artisan Partners'}
+                </h2>
+                <div className="space-y-4 text-clay-700 font-serif text-lg">
+                  <p>
+                    {language === 'fr'
+                      ? 'Nous travaillons en partenariat direct avec 12 coopératives féminines réparties dans tout le Maroc, de l\'Atlas à l\'Anti-Atlas, en passant par les oasis du Sud.'
+                      : 'We work in direct partnership with 12 women\'s cooperatives spread throughout Morocco, from the Atlas to the Anti-Atlas, including the southern oases.'
+                    }
+                  </p>
+                  <p>
+                    {language === 'fr'
+                      ? 'Chaque partenariat garantit un commerce équitable, des salaires justes et le respect des traditions ancestrales. Ensemble, nous préservons un savoir-faire unique tout en créant des opportunités économiques durables.'
+                      : 'Each partnership guarantees fair trade, fair wages and respect for ancestral traditions. Together, we preserve unique know-how while creating sustainable economic opportunities.'
+                    }
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      
       <Footer />
-      <FloatingWhatsApp />
+      <SamraEnhancedChatbot />
+      <FloatingCart />
       <BackToTop />
     </div>
   );

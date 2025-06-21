@@ -18,6 +18,9 @@ import ProgrammeFidelite from "./pages/ProgrammeFidelite";
 import ProductDetail from "./pages/ProductDetail";
 import Regions from "./pages/Regions";
 import Ingredients from "./pages/Ingredients";
+import IngredientDetail from "./pages/IngredientDetail";
+import Blog from "./pages/Blog";
+import SkinQuiz from "./pages/SkinQuiz";
 import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
 import OrderSuccess from "./pages/OrderSuccess";
@@ -57,6 +60,9 @@ const App = () => (
                 <Route path="/produit/:id" element={<ProductDetail />} />
                 <Route path="/regions" element={<Regions />} />
                 <Route path="/ingredients" element={<Ingredients />} />
+                <Route path="/ingredient/:id" element={<IngredientDetail />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/quiz-peau" element={<SkinQuiz />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/order-success" element={<OrderSuccess />} />
                 <Route path="*" element={<NotFound />} />
