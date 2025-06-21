@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
@@ -11,10 +10,9 @@ import Testimonials from '@/components/Testimonials';
 import Categories from '@/components/Categories';
 import BrandStory from '@/components/BrandStory';
 import Footer from '@/components/Footer';
-import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
+import SamraEnhancedChatbot from '@/components/SamraEnhancedChatbot';
 import BackToTop from '@/components/BackToTop';
 import FloatingCart from '@/components/FloatingCart';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import OurArtisans from '@/components/OurArtisans';
 import IngredientOriginMap from '@/components/IngredientOriginMap';
 import PullToRefresh from '@/components/PullToRefresh';
@@ -115,9 +113,8 @@ const Index = () => {
             <BrandStory />
           </main>
           <Footer />
-          <SamraRefactoredChatbot />
+          <SamraEnhancedChatbot />
           <FloatingCart />
-          <FloatingWhatsApp />
           <BackToTop />
         </div>
       </PullToRefresh>
