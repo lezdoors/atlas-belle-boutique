@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ChatFloatingButton from '@/components/chatbot/ChatFloatingButton';
 import ChatWindow from '@/components/chatbot/ChatWindow';
@@ -13,11 +13,39 @@ interface Message {
   language: 'fr' | 'en';
 }
 
-const SamraRefactoredChatbot = () => {
+interface SamraRefactoredChatbotProps {
+  videoEnded?: boolean;
+}
+
+const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
+  const [showChatbot, setShowChatbot] = useState(false);
   const { language } = useLanguage();
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    // Show chatbot after video ends or after 9 seconds timeout
+    if (videoEnded) {
+      // If video ended, show chatbot immediately with a small delay for smooth transition
+      timeoutId = setTimeout(() => {
+        setShowChatbot(true);
+      }, 500);
+    } else {
+      // Fallback: show chatbot after 9 seconds regardless of video status
+      timeoutId = setTimeout(() => {
+        setShowChatbot(true);
+      }, 9000);
+    }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [videoEnded]);
 
   // Detect if user is writing in French or English
   const detectLanguage = (text: string): 'fr' | 'en' => {
@@ -91,6 +119,9 @@ const SamraRefactoredChatbot = () => {
     setMessages(prev => [...prev, newUserMessage, botResponse]);
     setMessage('');
   };
+
+  // Only render if chatbot should be visible
+  if (!showChatbot) return null;
 
   return (
     <>

@@ -18,11 +18,13 @@ import OurArtisans from '@/components/OurArtisans';
 import IngredientOriginMap from '@/components/IngredientOriginMap';
 import PullToRefresh from '@/components/PullToRefresh';
 import LogoLoadingAnimation from '@/components/LogoLoadingAnimation';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
 const Index = () => {
   const [showLoading, setShowLoading] = useState(true);
   const [hasShownLoading, setHasShownLoading] = useState(false);
+  const [videoEnded, setVideoEnded] = useState(false);
 
   useEffect(() => {
     // Show loading animation only once per session
@@ -45,6 +47,11 @@ const Index = () => {
     // Simulate refresh action
     await new Promise(resolve => setTimeout(resolve, 1000));
     window.location.reload();
+  };
+
+  const handleVideoEnded = (ended: boolean) => {
+    console.log('Video ended in Index:', ended);
+    setVideoEnded(ended);
   };
 
   // Enhanced SEO meta tags
@@ -122,7 +129,7 @@ const Index = () => {
         <div className="min-h-screen bg-pearl-50">
           <Header />
           <main>
-            <Hero />
+            <Hero onVideoEnded={handleVideoEnded} />
             <ShopByRegion />
             <RegionalCollections />
             <FeaturedProducts />
@@ -135,7 +142,8 @@ const Index = () => {
             <BrandStory />
           </main>
           <Footer />
-          <SamraRefactoredChatbot />
+          <SamraRefactoredChatbot videoEnded={videoEnded} />
+          <FloatingWhatsApp />
           <FloatingCart />
           <BackToTop />
         </div>

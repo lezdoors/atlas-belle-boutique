@@ -6,7 +6,11 @@ import HeroDecorativeElements from '@/components/HeroDecorativeElements';
 import HeroContent from '@/components/HeroContent';
 import HeroProductShowcase from '@/components/HeroProductShowcase';
 
-const Hero = () => {
+interface HeroProps {
+  onVideoEnded?: (ended: boolean) => void;
+}
+
+const Hero = ({ onVideoEnded }: HeroProps) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
 
@@ -17,6 +21,11 @@ const Hero = () => {
     }
   };
 
+  const handleVideoEnded = (ended: boolean) => {
+    console.log('Hero video ended:', ended);
+    onVideoEnded?.(ended);
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background */}
@@ -24,6 +33,7 @@ const Hero = () => {
         <HeroVideoBackground 
           onVideoLoaded={setVideoLoaded}
           onVideoError={setVideoError}
+          onVideoEnded={handleVideoEnded}
         />
       )}
 

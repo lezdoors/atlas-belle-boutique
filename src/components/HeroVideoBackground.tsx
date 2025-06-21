@@ -4,13 +4,17 @@ import { useState, useRef, useEffect } from 'react';
 interface HeroVideoBackgroundProps {
   onVideoLoaded: (loaded: boolean) => void;
   onVideoError: (error: boolean) => void;
+  onVideoEnded?: (ended: boolean) => void;
 }
 
-const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroundProps) => {
+const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: HeroVideoBackgroundProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [videoEnded, setVideoEnded] = useState(false);
   const [showStaticImage, setShowStaticImage] = useState(false);
+
+  // Using elegant Moroccan luxury image from Supabase media bucket
+  const fallbackImage = "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/397b8d88-7594-4433-8004-050f047a13b6.png";
 
   useEffect(() => {
     console.log('Hero video component mounted, checking video load');
@@ -41,6 +45,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroun
       const handleVideoEnded = () => {
         console.log('Video ended, transitioning to static image');
         setVideoEnded(true);
+        onVideoEnded?.(true);
         setTimeout(() => {
           setShowStaticImage(true);
         }, 500); // Small delay for smooth transition
@@ -61,7 +66,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroun
         video.removeEventListener('ended', handleVideoEnded);
       };
     }
-  }, [onVideoLoaded, onVideoError]);
+  }, [onVideoLoaded, onVideoError, onVideoEnded]);
 
   return (
     <div className="absolute inset-0 w-full h-full z-0">
@@ -77,7 +82,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroun
         muted
         playsInline
         preload="auto"
-        poster="https://images.unsplash.com/photo-1466442929976-97f336a657be?auto=format&fit=crop&w=1920&q=80"
+        poster={fallbackImage}
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
           videoEnded ? 'opacity-0' : 'opacity-100'
         }`}
@@ -105,6 +110,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroun
         onEnded={() => {
           console.log('Video ended, transitioning to static image');
           setVideoEnded(true);
+          onVideoEnded?.(true);
           setTimeout(() => {
             setShowStaticImage(true);
           }, 500);
@@ -112,7 +118,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroun
       >
         <source src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/73847-549547533.mp4" type="video/mp4" />
         Your browser does not support the video tag.
-      </video>
+      </source>
 
       {/* Static image that appears after video ends or on error */}
       <div 
@@ -120,7 +126,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroun
           showStaticImage ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1466442929976-97f336a657be?auto=format&fit=crop&w=1920&q=80')`
+          backgroundImage: `url('${fallbackImage}')`
         }}
       />
     </div>

@@ -18,11 +18,11 @@ const HeroFallbackBackground = () => {
       {/* Luxury texture overlay for depth */}
       <div className="absolute inset-0 opacity-10 bg-gradient-to-tr from-transparent via-clay-500 to-transparent"></div>
       
-      {/* Mobile-optimized poster image overlay */}
+      {/* Mobile-optimized poster image overlay using Supabase image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90 md:opacity-60"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1466442929976-97f336a657be?auto=format&fit=crop&w=1920&q=80')`
+          backgroundImage: `url('https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/397b8d88-7594-4433-8004-050f047a13b6.png')`
         }}
       ></div>
       
