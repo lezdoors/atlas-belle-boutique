@@ -14,26 +14,39 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-pearl-100">
-      {/* Enhanced Moroccan Pattern Background */}
-      <div className="absolute inset-0 moroccan-pattern opacity-30"></div>
-      
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 hero-gradient"></div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Video Background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="/lovable-uploads/73847-549547533.mp4" type="video/mp4" />
+        {/* Fallback background for browsers that don't support video */}
+        <div className="absolute inset-0 bg-pearl-100"></div>
+      </video>
+
+      {/* Dark Overlay for Readability */}
+      <div className="absolute inset-0 bg-black/40 z-10"></div>
+
+      {/* Enhanced Moroccan Pattern Background (subtle overlay) */}
+      <div className="absolute inset-0 moroccan-pattern opacity-10 z-20"></div>
 
       {/* Floating Decorative Elements - Responsive */}
-      <div className="absolute top-20 left-4 sm:left-10 w-24 sm:w-32 h-24 sm:h-32 rounded-full bg-copper-200 opacity-20 animate-float blur-xl"></div>
-      <div className="absolute bottom-32 right-8 sm:right-16 w-16 sm:w-24 h-16 sm:h-24 rounded-full bg-clay-200 opacity-25 animate-float blur-lg" style={{ animationDelay: '1s' }}></div>
-      <div className="absolute top-1/3 right-1/4 w-12 sm:w-16 h-12 sm:h-16 rounded-full bg-copper-300 opacity-15 animate-float blur-md" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute top-20 left-4 sm:left-10 w-24 sm:w-32 h-24 sm:h-32 rounded-full bg-copper-200 opacity-20 animate-float blur-xl z-30"></div>
+      <div className="absolute bottom-32 right-8 sm:right-16 w-16 sm:w-24 h-16 sm:h-24 rounded-full bg-clay-200 opacity-25 animate-float blur-lg z-30" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute top-1/3 right-1/4 w-12 sm:w-16 h-12 sm:h-16 rounded-full bg-copper-300 opacity-15 animate-float blur-md z-30" style={{ animationDelay: '2s' }}></div>
 
       {/* Main Content Container */}
-      <div className="relative z-10 container mx-auto px-4 py-8 sm:py-16">
+      <div className="relative z-40 container mx-auto px-4 py-8 sm:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh]">
           
           {/* Left Section - Enhanced Mobile-First Text Content */}
           <div className="text-center lg:text-left order-2 lg:order-1 animate-fade-in-up">
             {/* Decorative Badge - Mobile Responsive */}
-            <div className="inline-flex items-center bg-white/80 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 luxury-shadow">
+            <div className="inline-flex items-center bg-white/90 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 luxury-shadow">
               <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-copper-600 mr-2" />
               <span className="text-xs sm:text-sm font-medium text-clay-700 tracking-wide">
                 {language === 'fr' ? 'Luxe Authentique Marocain' : 'Authentic Moroccan Luxury'}
@@ -41,7 +54,7 @@ const Hero = () => {
             </div>
 
             {/* Main Title with Enhanced Mobile Typography */}
-            <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight sm:leading-none text-clay-800 mb-4 sm:mb-6">
+            <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight sm:leading-none text-white mb-4 sm:mb-6 drop-shadow-lg">
               {language === 'fr' 
                 ? 'Découvrez l\'Essence du Maroc'
                 : 'Discover the Essence of Morocco'
@@ -49,7 +62,7 @@ const Hero = () => {
             </h1>
             
             {/* Elegant Subtitle - Mobile Optimized */}
-            <p className="font-serif text-lg sm:text-xl md:text-2xl leading-relaxed text-clay-600 max-w-xl mx-auto lg:mx-0 mb-6 sm:mb-8 px-4 sm:px-0">
+            <p className="font-serif text-lg sm:text-xl md:text-2xl leading-relaxed text-pearl-100 max-w-xl mx-auto lg:mx-0 mb-6 sm:mb-8 px-4 sm:px-0 drop-shadow-md">
               {language === 'fr' 
                 ? 'Parfums, huiles et soins haut de gamme inspirés des rituels ancestraux des terres magiques du Maroc'
                 : 'Premium perfumes, oils and treatments inspired by ancestral rituals from the magical lands of Morocco'
@@ -68,7 +81,7 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="bg-white/80 backdrop-blur-sm text-clay-700 border-2 border-copper-200 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium rounded-full hover:bg-copper-50 hover:border-copper-300 transition-all duration-300 font-sans tracking-wide min-h-[50px] sm:min-h-[56px]"
+                className="bg-white/90 backdrop-blur-sm text-clay-700 border-2 border-white/50 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium rounded-full hover:bg-white hover:border-white transition-all duration-300 font-sans tracking-wide min-h-[50px] sm:min-h-[56px]"
               >
                 {language === 'fr' ? 'Notre Histoire' : 'Our Story'}
               </Button>
@@ -76,7 +89,7 @@ const Hero = () => {
 
             {/* Scroll Indicator - Hidden on small screens */}
             <div className="animate-bounce justify-center lg:justify-start hidden sm:flex">
-              <ArrowDown className="h-6 w-6 text-copper-500" />
+              <ArrowDown className="h-6 w-6 text-white drop-shadow-lg" />
             </div>
           </div>
 
@@ -84,10 +97,10 @@ const Hero = () => {
           <div className="relative order-1 lg:order-2 flex justify-center items-center mb-8 lg:mb-0">
             <div className="relative animate-scale-in-bounce">
               {/* Enhanced Decorative Frame - Mobile Responsive */}
-              <div className="absolute -inset-4 sm:-inset-8 copper-gradient rounded-3xl opacity-10 blur-2xl animate-pulse"></div>
+              <div className="absolute -inset-4 sm:-inset-8 copper-gradient rounded-3xl opacity-20 blur-2xl animate-pulse"></div>
               
               {/* Main Product Container - Mobile Optimized */}
-              <div className="relative bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-12 luxury-shadow border border-copper-100">
+              <div className="relative bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-12 luxury-shadow border border-white/30">
                 {/* Elegant Pattern Overlay */}
                 <div className="absolute inset-0 opacity-5 rounded-3xl overflow-hidden">
                   <div className="moroccan-pattern w-full h-full"></div>
