@@ -12,7 +12,7 @@ const OurArtisans = () => {
       region: 'Essaouira',
       specialty: language === 'fr' ? 'Extraction d\'huile d\'argan' : 'Argan oil extraction',
       experience: 25,
-      image: '/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png',
+      image: '/lovable-uploads/6fde7854-c65c-40e6-8df6-8d9ca69c3fc8.png',
       story: language === 'fr' 
         ? 'Fatima perpétue la tradition familiale de l\'extraction d\'huile d\'argan depuis 25 ans. Son savoir-faire ancestral garantit la pureté exceptionnelle de nos huiles.'
         : 'Fatima continues the family tradition of argan oil extraction for 25 years. Her ancestral expertise guarantees the exceptional purity of our oils.',
@@ -24,7 +24,7 @@ const OurArtisans = () => {
       region: 'Fès',
       specialty: language === 'fr' ? 'Maître parfumeur' : 'Master perfumer',
       experience: 30,
-      image: '/lovable-uploads/616bba28-fbf7-4dfb-bae7-e036ccd1e78b.png',
+      image: '/lovable-uploads/6d0913b6-03ca-40b5-9002-ea188762b64f.png',
       story: language === 'fr'
         ? 'Ahmed crée nos parfums uniques en mélangeant les essences traditionnelles avec des techniques modernes. Chaque fragrance raconte une histoire du Maroc.'
         : 'Ahmed creates our unique perfumes by blending traditional essences with modern techniques. Each fragrance tells a story of Morocco.',
@@ -36,7 +36,7 @@ const OurArtisans = () => {
       region: 'Atlas',
       specialty: language === 'fr' ? 'Poterie traditionnelle' : 'Traditional pottery',
       experience: 18,
-      image: '/lovable-uploads/d4ad8eb5-ea3d-4931-ae8c-008b30d0e998.png',
+      image: '/lovable-uploads/a1db6544-e27b-4b96-85f8-da0108248095.png',
       story: language === 'fr'
         ? 'Aicha façonne l\'argile rouge de l\'Atlas avec un savoir-faire transmis de mère en fille, créant des contenants uniques pour nos produits de beauté.'
         : 'Aicha shapes red clay from the Atlas with know-how passed from mother to daughter, creating unique containers for our beauty products.',

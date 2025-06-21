@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, MapPin } from 'lucide-react';
@@ -18,7 +17,7 @@ const RegionalCollections = () => {
       ingredients: language === 'fr' 
         ? ['Rose de Damas', 'Herbes de montagne', 'Eaux alpines', 'Miel de montagne']
         : ['Damask Rose', 'Mountain herbs', 'Alpine waters', 'Mountain honey'],
-      image: '/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png',
+      image: '/lovable-uploads/4d22e63c-9766-4547-889d-0462b7de47e6.png',
       gradient: 'from-rose-400 to-pink-600',
       products: 4
     },
@@ -32,21 +31,21 @@ const RegionalCollections = () => {
       ingredients: language === 'fr'
         ? ['Huile de figue de Barbarie', 'Minéraux du désert', 'Baumes protecteurs', 'Essences nomades']
         : ['Prickly pear oil', 'Desert minerals', 'Protective balms', 'Nomadic essences'],
-      image: '/lovable-uploads/616bba28-fbf7-4dfb-bae7-e036ccd1e78b.png',
+      image: '/lovable-uploads/4d22e63c-9766-4547-889d-0462b7de47e6.png',
       gradient: 'from-amber-400 to-orange-600',
       products: 6
     },
     {
-      id: 'atlantic',
-      name: language === 'fr' ? 'Collection Atlantique' : 'Atlantic Collection',
-      region: language === 'fr' ? 'Côte Atlantique' : 'Atlantic Coast',
+      id: 'artisan',
+      name: language === 'fr' ? 'Collection Artisanale' : 'Artisan Collection',
+      region: language === 'fr' ? 'Ateliers Traditionnels' : 'Traditional Workshops',
       description: language === 'fr'
-        ? 'Plongez dans les bienfaits marins de la côte atlantique, où les algues et sels marins purifient et revitalisent.'
-        : 'Dive into the marine benefits of the Atlantic coast, where seaweed and marine salts purify and revitalize.',
+        ? 'Découvrez l\'art traditionnel marocain à travers nos produits façonnés par des maîtres artisans selon des méthodes ancestrales.'
+        : 'Discover traditional Moroccan art through our products crafted by master artisans using ancestral methods.',
       ingredients: language === 'fr'
-        ? ['Extraits d\'algues', 'Sels marins', 'Parfums de brise', 'Minéraux océaniques']
-        : ['Seaweed extracts', 'Marine salts', 'Breeze scents', 'Ocean minerals'],
-      image: '/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png',
+        ? ['Céramiques artisanales', 'Parfums traditionnels', 'Huiles précieuses', 'Savoir-faire ancestral']
+        : ['Artisanal ceramics', 'Traditional perfumes', 'Precious oils', 'Ancestral know-how'],
+      image: '/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png',
       gradient: 'from-teal-400 to-blue-600',
       products: 5
     }

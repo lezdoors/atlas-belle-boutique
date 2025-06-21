@@ -8,28 +8,28 @@ const ShopByRegion = () => {
       id: 'atlas',
       name: language === 'fr' ? 'Atlas' : 'Atlas',
       description: language === 'fr' ? 'Huiles précieuses des montagnes' : 'Precious mountain oils',
-      image: '/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png',
+      image: '/lovable-uploads/4d22e63c-9766-4547-889d-0462b7de47e6.png',
       color: 'from-copper-400 to-copper-600'
     },
     {
       id: 'sahara',
       name: language === 'fr' ? 'Sahara' : 'Sahara',
       description: language === 'fr' ? 'Parfums envoûtants du désert' : 'Enchanting desert fragrances',
-      image: '/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png',
+      image: '/lovable-uploads/4d22e63c-9766-4547-889d-0462b7de47e6.png',
       color: 'from-clay-400 to-clay-600'
     },
     {
-      id: 'cote',
-      name: language === 'fr' ? 'Côte' : 'Coast',
-      description: language === 'fr' ? 'Soins rafraîchissants marins' : 'Refreshing marine treatments',
-      image: '/lovable-uploads/616bba28-fbf7-4dfb-bae7-e036ccd1e78b.png',
+      id: 'artisan',
+      name: language === 'fr' ? 'Artisanat' : 'Craftsmanship',
+      description: language === 'fr' ? 'Créations artisanales authentiques' : 'Authentic artisan creations',
+      image: '/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png',
       color: 'from-beige-400 to-beige-600'
     },
     {
-      id: 'vallees',
-      name: language === 'fr' ? 'Vallées' : 'Valleys',
-      description: language === 'fr' ? 'Essences florales délicates' : 'Delicate floral essences',
-      image: '/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png',
+      id: 'beaute',
+      name: language === 'fr' ? 'Beauté' : 'Beauty',
+      description: language === 'fr' ? 'Soins naturels traditionnels' : 'Traditional natural skincare',
+      image: '/lovable-uploads/78b2a27c-3352-460a-b4bb-78efaec79db3.png',
       color: 'from-pearl-400 to-pearl-600'
     }
   ];

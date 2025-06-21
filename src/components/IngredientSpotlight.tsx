@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, MapPin, Sparkles, ArrowRight } from 'lucide-react';
@@ -21,8 +20,8 @@ const IngredientSpotlight = () => {
     benefits: language === 'fr'
       ? ['Hydratation profonde', 'Anti-âge naturel', 'Réparation cellulaire', 'Protection antioxydante']
       : ['Deep hydration', 'Natural anti-aging', 'Cellular repair', 'Antioxidant protection'],
-    image: '/lovable-uploads/616bba28-fbf7-4dfb-bae7-e036ccd1e78b.png',
-    processImage: '/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png'
+    image: '/lovable-uploads/7a850627-5f60-438f-b6e5-5db742e324e8.png',
+    processImage: '/lovable-uploads/6fde7854-c65c-40e6-8df6-8d9ca69c3fc8.png'
   };
 
   return (
