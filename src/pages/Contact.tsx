@@ -4,53 +4,14 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import BackToTop from '@/components/BackToTop';
+import SecureForm from '@/components/security/SecureForm';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
 import { MapPin, Phone, Mail, Clock, Instagram, Facebook, Youtube } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
   const { language } = useLanguage();
-  const { toast } = useToast();
-  
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
-    
-    toast({
-      title: language === 'fr' ? 'Message envoyé!' : 'Message sent!',
-      description: language === 'fr' 
-        ? 'Nous vous répondrons dans les plus brefs délais.'
-        : 'We will respond to you as soon as possible.',
-    });
-
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
-  };
 
   const contactInfo = [
     {
@@ -125,88 +86,8 @@ const Contact = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <Card className="luxury-shadow">
-              <CardContent className="p-8">
-                <h2 className="section-title text-clay-800 mb-6">
-                  {language === 'fr' ? 'Envoyez-nous un message' : 'Send us a message'}
-                </h2>
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="name">
-                        {language === 'fr' ? 'Nom complet *' : 'Full name *'}
-                      </Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
-                        className="mt-2"
-                        placeholder={language === 'fr' ? 'Votre nom' : 'Your name'}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="email">
-                        {language === 'fr' ? 'Adresse email *' : 'Email address *'}
-                      </Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                        className="mt-2"
-                        placeholder={language === 'fr' ? 'votre@email.com' : 'your@email.com'}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="subject">
-                      {language === 'fr' ? 'Sujet' : 'Subject'}
-                    </Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className="mt-2"
-                      placeholder={language === 'fr' ? 'Sujet de votre message' : 'Subject of your message'}
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="message">
-                      {language === 'fr' ? 'Message *' : 'Message *'}
-                    </Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                      rows={6}
-                      className="mt-2 resize-none"
-                      placeholder={language === 'fr' 
-                        ? 'Décrivez votre demande en détail...'
-                        : 'Describe your request in detail...'
-                      }
-                    />
-                  </div>
-
-                  <Button 
-                    type="submit" 
-                    className="w-full copper-gradient text-white rounded-full min-h-[48px]"
-                  >
-                    {language === 'fr' ? 'Envoyer le message' : 'Send message'}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+            {/* Secure Contact Form */}
+            <SecureForm />
 
             {/* Contact Information */}
             <div className="space-y-8">

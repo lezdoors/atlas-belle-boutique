@@ -9,6 +9,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import { validateEmail, sanitizeInput } from '@/utils/inputValidation';
 import { formRateLimiter, getUserIdentifier } from '@/utils/rateLimiter';
+import { csrfProtection } from '@/utils/csrfProtection';
 
 interface NewsletterModalProps {
   isOpen: boolean;
@@ -62,8 +63,13 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) =>
     setIsRateLimited(false);
 
     try {
-      // Simulate API call with sanitized email
+      // Sanitize email and add CSRF protection
       const sanitizedEmail = sanitizeInput(email);
+      const formData = new FormData();
+      formData.append('email', sanitizedEmail);
+      csrfProtection.addToFormData(formData);
+
+      // Simulate API call with security measures
       await new Promise(resolve => setTimeout(resolve, 1000));
 
       // Mark as shown in session storage so it doesn't appear again
@@ -144,6 +150,7 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) =>
                   }`}
                   maxLength={100}
                   disabled={isSubmitting || isRateLimited}
+                  autoComplete="email"
                 />
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-clay-400" />
               </div>
