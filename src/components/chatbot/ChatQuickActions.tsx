@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { Crown, Heart, HelpCircle, Phone, Sparkles, MapPin } from 'lucide-react';
+import { Crown, Heart, HelpCircle, MessageCircle, Sparkles, MapPin } from 'lucide-react';
 
 interface QuickAction {
   icon: typeof Crown;
@@ -41,14 +41,14 @@ const ChatQuickActions = ({ language, onActionClick, onWhatsAppRedirect }: ChatQ
       }
     },
     {
-      icon: Phone,
-      label: language === 'fr' ? 'WhatsApp' : 'WhatsApp',
+      icon: MessageCircle,
+      label: language === 'fr' ? '📞 Contacter via WhatsApp' : '📞 Contact WhatsApp',
       action: onWhatsAppRedirect
     }
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-1 md:gap-2 mb-2 md:mb-3">
+    <div className="grid grid-cols-2 gap-1 md:gap-2 mb-2 md:mb-3">
       {quickActions.map((action, index) => (
         <Button
           key={index}
@@ -58,7 +58,7 @@ const ChatQuickActions = ({ language, onActionClick, onWhatsAppRedirect }: ChatQ
           className="flex flex-col items-center gap-1 h-auto py-1.5 md:py-2 px-1 border-clay-200 hover:border-copper-400 hover:bg-copper-50 text-xs"
         >
           <action.icon className="h-3 w-3 md:h-4 md:w-4" />
-          <span className="text-[10px] md:text-xs leading-tight">{action.label}</span>
+          <span className="text-[10px] md:text-xs leading-tight text-center">{action.label}</span>
         </Button>
       ))}
     </div>

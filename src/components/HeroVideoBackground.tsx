@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from 'react';
 
 interface HeroVideoBackgroundProps {
@@ -12,8 +13,8 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
   const [videoEnded, setVideoEnded] = useState(false);
   const [showStaticImage, setShowStaticImage] = useState(false);
 
-  // Using elegant Moroccan luxury image from Supabase media bucket
-  const fallbackImage = "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/397b8d88-7594-4433-8004-050f047a13b6.png";
+  // Using high-quality artisan desert image from Supabase media bucket
+  const fallbackImage = "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/754f1a74-0a9c-4277-8cff-2105a643bcf8.png";
 
   useEffect(() => {
     console.log('Hero video component mounted, checking video load');
@@ -71,7 +72,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
     <div className="absolute inset-0 w-full h-full z-0">
       {/* Loading shimmer effect */}
       {isLoading && (
-        <div className="absolute inset-0 bg-gradient-to-r from-pearl-200 via-pearl-100 to-pearl-200 animate-pulse"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-pearl-200 via-pearl-100 to-pearl-200"></div>
       )}
       
       {/* Video element */}
@@ -119,7 +120,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
         Your browser does not support the video tag.
       </video>
 
-      {/* Static image that appears after video ends or on error */}
+      {/* Static HD image that appears after video ends or on error */}
       <div 
         className={`absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
           showStaticImage ? 'opacity-100' : 'opacity-0'

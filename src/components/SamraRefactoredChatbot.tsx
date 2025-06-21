@@ -236,7 +236,7 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
   };
 
   const handleWhatsAppRedirect = () => {
-    const phoneNumber = '+33663068980';
+    const phoneNumber = '+212663068980';
     const whatsappMessage = language === 'fr' 
       ? 'Bonjour Perle d\'Atlas ! J\'aimerais avoir des informations personnalisées sur vos produits de beauté marocains.' 
       : 'Hello Perle d\'Atlas! I would like personalized information about your Moroccan beauty products.';

@@ -51,14 +51,14 @@ const Header = () => {
           ? 'bg-white/95 backdrop-blur-xl border-b border-sand-200 luxury-shadow' 
           : 'bg-white/90 backdrop-blur-md border-b border-transparent'
       }`}>
-        {/* Top Bar - Hide on scroll for cleaner look */}
-        <div className={`transition-all duration-300 ${isScrolled ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
+        {/* Top Bar - Hide on scroll for cleaner mobile look */}
+        <div className={`hidden md:block transition-all duration-300 ${isScrolled ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
           <HeaderTopBar />
         </div>
 
-        {/* Main Header - Enhanced mobile layout */}
-        <div className="w-full px-4 py-3 sm:py-4">
-          <div className="w-full max-w-7xl mx-auto flex items-center justify-between h-16">
+        {/* Main Header - Enhanced mobile layout with sticky behavior */}
+        <div className="w-full px-4 py-2 md:py-3">
+          <div className="w-full max-w-7xl mx-auto flex items-center justify-between h-12 md:h-16">
             {/* Logo - Enhanced spacing */}
             <HeaderLogo />
 
@@ -72,7 +72,7 @@ const Header = () => {
           </div>
 
           {/* Mobile Language Dropdown - Only visible when menu is closed */}
-          <div className={`md:hidden mt-3 flex justify-center transition-all duration-200 ${
+          <div className={`md:hidden mt-2 flex justify-center transition-all duration-200 ${
             isMenuOpen ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'
           }`}>
             <LanguageDropdown />

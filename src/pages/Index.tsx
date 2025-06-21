@@ -17,31 +17,10 @@ import FloatingCart from '@/components/FloatingCart';
 import OurArtisans from '@/components/OurArtisans';
 import IngredientOriginMap from '@/components/IngredientOriginMap';
 import PullToRefresh from '@/components/PullToRefresh';
-import LogoLoadingAnimation from '@/components/LogoLoadingAnimation';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
 const Index = () => {
-  const [showLoading, setShowLoading] = useState(true);
-  const [hasShownLoading, setHasShownLoading] = useState(false);
   const [videoEnded, setVideoEnded] = useState(false);
-
-  useEffect(() => {
-    // Show loading animation only once per session
-    const hasSeenLoading = sessionStorage.getItem('perle-loading-shown');
-    if (hasSeenLoading) {
-      setShowLoading(false);
-    } else {
-      setHasShownLoading(true);
-    }
-  }, []);
-
-  const handleLoadingComplete = () => {
-    setShowLoading(false);
-    if (hasShownLoading) {
-      sessionStorage.setItem('perle-loading-shown', 'true');
-    }
-  };
 
   const handleRefresh = async () => {
     // Simulate refresh action
@@ -121,10 +100,6 @@ const Index = () => {
 
   return (
     <LanguageProvider>
-      {showLoading && (
-        <LogoLoadingAnimation onComplete={handleLoadingComplete} />
-      )}
-      
       <PullToRefresh onRefresh={handleRefresh}>
         <div className="min-h-screen bg-pearl-50">
           <Header />
@@ -143,7 +118,6 @@ const Index = () => {
           </main>
           <Footer />
           <SamraRefactoredChatbot videoEnded={videoEnded} />
-          <FloatingWhatsApp />
           <FloatingCart />
           <BackToTop />
         </div>
