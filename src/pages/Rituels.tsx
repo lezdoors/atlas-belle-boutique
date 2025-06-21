@@ -3,95 +3,69 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import BackToTop from '@/components/BackToTop';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Sunrise, Moon, Droplets, Sparkles, ShoppingCart } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { convertAndFormat } from '@/utils/currencyConverter';
+import { Sparkles, Droplets, Heart, Sun } from 'lucide-react';
 
 const Rituels = () => {
-  const { language, currency } = useLanguage();
+  const { language } = useLanguage();
 
   const rituals = [
     {
-      id: 1,
-      icon: Sunrise,
-      name: language === 'fr' ? 'Rituel du Matin' : 'Morning Ritual',
-      subtitle: language === 'fr' ? 'Éveil et Éclat' : 'Awakening and Radiance',
+      icon: <Droplets className="h-8 w-8" />,
+      title: language === 'fr' ? 'Rituel du Hammam' : 'Hammam Ritual',
       description: language === 'fr'
-        ? 'Commencez votre journée avec notre rituel énergisant qui réveille votre peau et révèle son éclat naturel.'
-        : 'Start your day with our energizing ritual that awakens your skin and reveals its natural radiance.',
-      image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=600',
-      priceMAD: 459,
-      originalPriceMAD: 599,
-      products: language === 'fr'
-        ? ['Huile d\'Argan Premium', 'Eau de Rose Pure', 'Crème Hydratante Jour']
-        : ['Premium Argan Oil', 'Pure Rose Water', 'Day Moisturizing Cream'],
-      benefits: language === 'fr'
-        ? ['Hydratation intense', 'Protection UV naturelle', 'Éclat immédiat']
-        : ['Intense hydration', 'Natural UV protection', 'Immediate radiance'],
-      duration: language === 'fr' ? '10 minutes' : '10 minutes',
-      color: 'from-amber-100 to-orange-100'
+        ? 'La purification traditionnelle qui prépare la peau à recevoir les bienfaits de nos huiles précieuses.'
+        : 'Traditional purification that prepares the skin to receive the benefits of our precious oils.',
+      products: language === 'fr' ? 'Savon noir, gant de gommage, huile d\'argan' : 'Black soap, exfoliating glove, argan oil',
+      image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=600&q=80'
     },
     {
-      id: 2,
-      icon: Droplets,
-      name: language === 'fr' ? 'Rituel Hammam' : 'Hammam Ritual',
-      subtitle: language === 'fr' ? 'Purification et Détente' : 'Purification and Relaxation',
+      icon: <Sparkles className="h-8 w-8" />,
+      title: language === 'fr' ? 'Rituel de Beauté' : 'Beauty Ritual',
       description: language === 'fr'
-        ? 'Recréez l\'expérience authentique du hammam marocain chez vous pour une purification profonde.'
-        : 'Recreate the authentic Moroccan hammam experience at home for deep purification.',
-      image: 'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?w=600',
-      priceMAD: 389,
-      originalPriceMAD: 489,
-      products: language === 'fr'
-        ? ['Savon Noir Traditionnel', 'Masque Ghassoul', 'Huile Nourrissante Corps']
-        : ['Traditional Black Soap', 'Ghassoul Mask', 'Nourishing Body Oil'],
-      benefits: language === 'fr'
-        ? ['Exfoliation douce', 'Purification profonde', 'Relaxation totale']
-        : ['Gentle exfoliation', 'Deep purification', 'Total relaxation'],
-      duration: language === 'fr' ? '45 minutes' : '45 minutes',
-      color: 'from-blue-100 to-teal-100'
+        ? 'Les secrets ancestraux de beauté marocains pour une peau éclatante et des cheveux soyeux.'
+        : 'Ancient Moroccan beauty secrets for radiant skin and silky hair.',
+      products: language === 'fr' ? 'Huile de rose, ghassoul, eau de fleur d\'oranger' : 'Rose oil, rhassoul clay, orange blossom water',
+      image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=600&q=80'
     },
     {
-      id: 3,
-      icon: Moon,
-      name: language === 'fr' ? 'Rituel du Soir' : 'Evening Ritual',
-      subtitle: language === 'fr' ? 'Régénération Nocturne' : 'Night Regeneration',
+      icon: <Heart className="h-8 w-8" />,
+      title: language === 'fr' ? 'Rituel de Relaxation' : 'Relaxation Ritual',
       description: language === 'fr'
-        ? 'Préparez votre peau à la régénération nocturne avec notre rituel apaisant et nourrissant.'
-        : 'Prepare your skin for nighttime regeneration with our soothing and nourishing ritual.',
-      image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=600',
-      priceMAD: 419,
-      originalPriceMAD: 529,
-      products: language === 'fr'
-        ? ['Sérum Anti-âge', 'Crème Nuit Régénérante', 'Huile Précieuse Visage']
-        : ['Anti-aging Serum', 'Regenerating Night Cream', 'Precious Face Oil'],
-      benefits: language === 'fr'
-        ? ['Régénération cellulaire', 'Anti-âge naturel', 'Apaisement profond']
-        : ['Cellular regeneration', 'Natural anti-aging', 'Deep soothing'],
-      duration: language === 'fr' ? '15 minutes' : '15 minutes',
-      color: 'from-purple-100 to-indigo-100'
+        ? 'Un moment de paix inspiré des traditions de bien-être du désert marocain.'
+        : 'A moment of peace inspired by Moroccan desert wellness traditions.',
+      products: language === 'fr' ? 'Huile de massage, encens naturel, thé à la menthe' : 'Massage oil, natural incense, mint tea',
+      image: 'https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?auto=format&fit=crop&w=600&q=80'
     },
     {
-      id: 4,
-      icon: Sparkles,
-      name: language === 'fr' ? 'Rituel Éclat' : 'Radiance Ritual',
-      subtitle: language === 'fr' ? 'Luminosité Instantanée' : 'Instant Luminosity',
+      icon: <Sun className="h-8 w-8" />,
+      title: language === 'fr' ? 'Rituel Saisonnier' : 'Seasonal Ritual',
       description: language === 'fr'
-        ? 'Révélez l\'éclat naturel de votre peau avec ce rituel spécialement conçu pour les occasions spéciales.'
-        : 'Reveal your skin\'s natural radiance with this ritual specially designed for special occasions.',
-      image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=600',
-      priceMAD: 359,
-      originalPriceMAD: 449,
-      products: language === 'fr'
-        ? ['Masque Éclat Express', 'Sérum Vitamine C', 'Baume Lèvres Rose']
-        : ['Express Radiance Mask', 'Vitamin C Serum', 'Rose Lip Balm'],
-      benefits: language === 'fr'
-        ? ['Éclat immédiat', 'Teint unifié', 'Effet bonne mine']
-        : ['Immediate radiance', 'Even complexion', 'Healthy glow effect'],
-      duration: language === 'fr' ? '20 minutes' : '20 minutes',
-      color: 'from-pink-100 to-rose-100'
+        ? 'Adapté aux changements saisonniers selon la sagesse berbère ancestrale.'
+        : 'Adapted to seasonal changes according to ancient Berber wisdom.',
+      products: language === 'fr' ? 'Mélanges saisonniers, huiles adaptées' : 'Seasonal blends, adapted oils',
+      image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80'
+    }
+  ];
+
+  const secrets = [
+    {
+      title: language === 'fr' ? 'L\'Art du Gommage' : 'The Art of Exfoliation',
+      description: language === 'fr'
+        ? 'Utilisez notre gant de crin avec des mouvements circulaires, toujours de bas en haut, pour activer la circulation.'
+        : 'Use our horsehair glove with circular movements, always from bottom to top, to activate circulation.'
+    },
+    {
+      title: language === 'fr' ? 'Le Secret de l\'Huile d\'Argan' : 'The Secret of Argan Oil',
+      description: language === 'fr'
+        ? 'Chauffez quelques gouttes entre vos paumes avant application pour optimiser l\'absorption.'
+        : 'Warm a few drops between your palms before application to optimize absorption.'
+    },
+    {
+      title: language === 'fr' ? 'La Magie du Ghassoul' : 'The Magic of Rhassoul',
+      description: language === 'fr'
+        ? 'Mélangez avec de l\'eau de rose pour un masque purifiant doux et nourrissant.'
+        : 'Mix with rose water for a gentle and nourishing purifying mask.'
     }
   ];
 
@@ -99,193 +73,157 @@ const Rituels = () => {
     <div className="min-h-screen bg-pearl-100">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-beige-100 to-pearl-200 py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="hero-title text-clay-800 mb-6">
-              {language === 'fr' ? 'Nos Rituels' : 'Our Rituals'}
-            </h1>
-            <p className="hero-subtitle text-clay-600 mb-8">
-              {language === 'fr' 
-                ? 'Découvrez nos collections thématiques inspirées des traditions ancestrales marocaines'
-                : 'Discover our thematic collections inspired by ancestral Moroccan traditions'
-              }
-            </p>
+      <main className="pt-24 pb-16">
+        {/* Hero Section */}
+        <section className="relative py-20 bg-pearl-50">
+          <div className="absolute inset-0 moroccan-pattern opacity-10"></div>
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="hero-title text-clay-800 mb-6">
+                {language === 'fr' ? 'Nos Rituels Ancestraux' : 'Our Ancestral Rituals'}
+              </h1>
+              <p className="hero-subtitle text-clay-600 mb-8">
+                {language === 'fr'
+                  ? 'Découvrez les traditions millénaires de beauté et de bien-être du Maroc'
+                  : 'Discover the thousand-year-old traditions of beauty and wellness from Morocco'
+                }
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Rituals Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {rituals.map((ritual, index) => (
-              <Card key={ritual.id} className="overflow-hidden hover-scale luxury-shadow">
-                <div className={`bg-gradient-to-br ${ritual.color} p-8`}>
-                  <div className="flex items-center mb-4">
-                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                      <ritual.icon className="h-8 w-8 text-copper-600" />
+        {/* Rituals Section */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                {rituals.map((ritual, index) => (
+                  <div key={index} className="bg-white rounded-lg luxury-shadow overflow-hidden hover-scale">
+                    <div className="h-48 overflow-hidden">
+                      <img 
+                        src={ritual.image}
+                        alt={ritual.title}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                    <div>
-                      <h3 className="font-display font-bold text-2xl text-clay-800 mb-1">
-                        {ritual.name}
-                      </h3>
-                      <p className="text-copper-600 font-medium">
-                        {ritual.subtitle}
+                    <div className="p-6">
+                      <div className="flex items-center mb-4">
+                        <div className="flex-shrink-0 w-12 h-12 bg-copper-100 rounded-full flex items-center justify-center text-copper-600 mr-4">
+                          {ritual.icon}
+                        </div>
+                        <h3 className="font-serif font-semibold text-xl text-clay-800">
+                          {ritual.title}
+                        </h3>
+                      </div>
+                      <p className="elegant-text text-clay-600 mb-4">
+                        {ritual.description}
+                      </p>
+                      <div className="border-t border-pearl-200 pt-4">
+                        <p className="text-sm font-medium text-copper-600 mb-1">
+                          {language === 'fr' ? 'Produits utilisés :' : 'Products used:'}
+                        </p>
+                        <p className="text-sm elegant-text text-clay-500">
+                          {ritual.products}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* How to Use Section */}
+        <section className="py-16 bg-pearl-200">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="section-title text-clay-800 mb-12 text-center">
+                {language === 'fr' ? 'Comment Utiliser Nos Produits' : 'How to Use Our Products'}
+              </h2>
+              <div className="bg-white rounded-lg luxury-shadow p-8">
+                <div className="space-y-8">
+                  <div className="text-center mb-8">
+                    <p className="elegant-text text-clay-600 text-lg">
+                      {language === 'fr'
+                        ? 'Suivez ces étapes simples pour profiter pleinement de vos rituels de beauté marocains'
+                        : 'Follow these simple steps to fully enjoy your Moroccan beauty rituals'
+                      }
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-copper-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-serif font-bold">
+                        1
+                      </div>
+                      <h4 className="font-serif font-semibold text-clay-800 mb-2">
+                        {language === 'fr' ? 'Préparez' : 'Prepare'}
+                      </h4>
+                      <p className="elegant-text text-clay-600 text-sm">
+                        {language === 'fr'
+                          ? 'Créez un environnement calme et chauffez légèrement vos produits'
+                          : 'Create a calm environment and gently warm your products'
+                        }
+                      </p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-copper-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-serif font-bold">
+                        2
+                      </div>
+                      <h4 className="font-serif font-semibold text-clay-800 mb-2">
+                        {language === 'fr' ? 'Appliquez' : 'Apply'}
+                      </h4>
+                      <p className="elegant-text text-clay-600 text-sm">
+                        {language === 'fr'
+                          ? 'Utilisez des gestes lents et circulaires en respirant profondément'
+                          : 'Use slow, circular gestures while breathing deeply'
+                        }
+                      </p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-copper-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 font-serif font-bold">
+                        3
+                      </div>
+                      <h4 className="font-serif font-semibold text-clay-800 mb-2">
+                        {language === 'fr' ? 'Savourez' : 'Savor'}
+                      </h4>
+                      <p className="elegant-text text-clay-600 text-sm">
+                        {language === 'fr'
+                          ? 'Prenez le temps de ressentir les bienfaits et de vous détendre'
+                          : 'Take time to feel the benefits and relax'
+                        }
                       </p>
                     </div>
                   </div>
-                  <p className="elegant-text text-clay-700 leading-relaxed">
-                    {ritual.description}
-                  </p>
                 </div>
-
-                <CardContent className="p-8">
-                  {/* Ritual Image */}
-                  <div className="aspect-[4/3] rounded-xl overflow-hidden mb-6">
-                    <img 
-                      src={ritual.image} 
-                      alt={ritual.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* Price */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center space-x-3">
-                      <span className="text-2xl font-bold text-copper-600">
-                        {convertAndFormat(ritual.priceMAD, currency)}
-                      </span>
-                      <span className="text-lg text-clay-400 line-through">
-                        {convertAndFormat(ritual.originalPriceMAD, currency)}
-                      </span>
-                    </div>
-                    <div className="bg-copper-100 text-copper-700 px-3 py-1 rounded-full text-sm font-medium">
-                      -{Math.round(((ritual.originalPriceMAD - ritual.priceMAD) / ritual.originalPriceMAD) * 100)}%
-                    </div>
-                  </div>
-
-                  {/* Products Included */}
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-clay-800 mb-3">
-                      {language === 'fr' ? 'Produits inclus:' : 'Products included:'}
-                    </h4>
-                    <ul className="space-y-2">
-                      {ritual.products.map((product, idx) => (
-                        <li key={idx} className="flex items-center text-clay-700">
-                          <span className="w-2 h-2 bg-copper-500 rounded-full mr-3"></span>
-                          {product}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Benefits */}
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-clay-800 mb-3">
-                      {language === 'fr' ? 'Bienfaits:' : 'Benefits:'}
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {ritual.benefits.map((benefit, idx) => (
-                        <span
-                          key={idx}
-                          className="bg-beige-100 text-clay-700 px-3 py-1 rounded-full text-sm"
-                        >
-                          {benefit}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Duration */}
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-clay-600">
-                      {language === 'fr' ? 'Durée:' : 'Duration:'} <strong>{ritual.duration}</strong>
-                    </span>
-                  </div>
-
-                  {/* Add to Cart Button */}
-                  <Button className="w-full copper-gradient text-white rounded-full min-h-[48px]">
-                    <ShoppingCart className="h-5 w-5 mr-2" />
-                    {language === 'fr' ? 'Ajouter au panier' : 'Add to cart'}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* How to Use Section */}
-      <section className="py-16 bg-beige-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="section-title text-clay-800 mb-6">
-              {language === 'fr' ? 'Comment utiliser nos rituels' : 'How to use our rituals'}
-            </h2>
-            <p className="elegant-text text-clay-600 max-w-2xl mx-auto">
-              {language === 'fr'
-                ? 'Suivez nos guides détaillés pour profiter pleinement de chaque rituel'
-                : 'Follow our detailed guides to fully enjoy each ritual'
-              }
-            </p>
+        {/* Secrets Section */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="section-title text-clay-800 mb-12 text-center">
+                {language === 'fr' ? 'Secrets de Nos Ancêtres' : 'Secrets of Our Ancestors'}
+              </h2>
+              <div className="space-y-6">
+                {secrets.map((secret, index) => (
+                  <div key={index} className="bg-white rounded-lg luxury-shadow p-6">
+                    <h3 className="font-serif font-semibold text-lg text-clay-800 mb-3">
+                      {secret.title}
+                    </h3>
+                    <p className="elegant-text text-clay-600">
+                      {secret.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 copper-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-white">1</span>
-                </div>
-                <h3 className="font-display font-semibold text-xl text-clay-800 mb-3">
-                  {language === 'fr' ? 'Préparation' : 'Preparation'}
-                </h3>
-                <p className="elegant-text text-clay-600">
-                  {language === 'fr'
-                    ? 'Préparez votre espace et nettoyez votre peau'
-                    : 'Prepare your space and cleanse your skin'
-                  }
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 copper-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-white">2</span>
-                </div>
-                <h3 className="font-display font-semibold text-xl text-clay-800 mb-3">
-                  {language === 'fr' ? 'Application' : 'Application'}
-                </h3>
-                <p className="elegant-text text-clay-600">
-                  {language === 'fr'
-                    ? 'Suivez l\'ordre d\'application recommandé'
-                    : 'Follow the recommended application order'
-                  }
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 copper-gradient rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-white">3</span>
-                </div>
-                <h3 className="font-display font-semibold text-xl text-clay-800 mb-3">
-                  {language === 'fr' ? 'Relaxation' : 'Relaxation'}
-                </h3>
-                <p className="elegant-text text-clay-600">
-                  {language === 'fr'
-                    ? 'Profitez du moment de détente et de bien-être'
-                    : 'Enjoy the moment of relaxation and well-being'
-                  }
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       <Footer />
       <FloatingWhatsApp />

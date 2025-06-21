@@ -1,63 +1,66 @@
 
-import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import BackToTop from '@/components/BackToTop';
-import SecureForm from '@/components/security/SecureForm';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook, Youtube } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { MessageCircle, Mail, MapPin, Clock, Phone } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const Contact = () => {
   const { language } = useLanguage();
 
-  const contactInfo = [
+  const handleWhatsAppClick = () => {
+    const phoneNumber = '+33663068980';
+    const message = encodeURIComponent('Bonjour! Je souhaite obtenir plus d\'informations sur vos produits Perle d\'Atlas.');
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const contactMethods = [
     {
-      icon: MapPin,
-      title: language === 'fr' ? 'Adresse' : 'Address',
-      content: language === 'fr' 
-        ? '123 Avenue Mohammed V\nQuartier Gueliz, Marrakech\nMaroc'
-        : '123 Mohammed V Avenue\nGueliz District, Marrakech\nMorocco'
+      icon: <MessageCircle className="h-6 w-6" />,
+      title: 'WhatsApp',
+      description: language === 'fr' ? 'Réponse rapide' : 'Quick response',
+      contact: '+33 6 63 06 89 80',
+      action: handleWhatsAppClick,
+      primary: true
     },
     {
-      icon: Phone,
-      title: language === 'fr' ? 'Téléphone' : 'Phone',
-      content: '+212 524 123 456'
-    },
-    {
-      icon: Mail,
+      icon: <Mail className="h-6 w-6" />,
       title: 'Email',
-      content: 'contact@perledatlas.ma'
+      description: language === 'fr' ? 'Support détaillé' : 'Detailed support',
+      contact: 'contact@perle-atlas.com',
+      action: () => window.location.href = 'mailto:contact@perle-atlas.com'
     },
     {
-      icon: Clock,
-      title: language === 'fr' ? 'Horaires' : 'Hours',
-      content: language === 'fr' 
-        ? 'Lun - Ven: 9h - 18h\nSam: 9h - 17h\nDim: Fermé'
-        : 'Mon - Fri: 9am - 6pm\nSat: 9am - 5pm\nSun: Closed'
+      icon: <Phone className="h-6 w-6" />,
+      title: language === 'fr' ? 'Téléphone' : 'Phone',
+      description: language === 'fr' ? 'Consultation personnalisée' : 'Personal consultation',
+      contact: '+33 6 63 06 89 80',
+      action: () => window.location.href = 'tel:+33663068980'
     }
   ];
 
-  const socialLinks = [
+  const faqItems = [
     {
-      icon: Instagram,
-      name: 'Instagram',
-      url: 'https://instagram.com/perledatlas',
-      handle: '@perledatlas'
+      question: language === 'fr' ? 'Quelle est l\'origine de vos produits ?' : 'What is the origin of your products?',
+      answer: language === 'fr' 
+        ? 'Tous nos produits sont sourcés directement au Maroc, principalement dans les régions de l\'Atlas et de l\'Anti-Atlas, auprès de coopératives locales.'
+        : 'All our products are sourced directly from Morocco, mainly in the Atlas and Anti-Atlas regions, from local cooperatives.'
     },
     {
-      icon: Facebook,
-      name: 'Facebook',
-      url: 'https://facebook.com/perledatlas',
-      handle: 'Perle d\'Atlas'
+      question: language === 'fr' ? 'Vos produits sont-ils certifiés bio ?' : 'Are your products certified organic?',
+      answer: language === 'fr'
+        ? 'Nos produits suivent des méthodes de production traditionnelles et naturelles. Les certifications officielles sont en cours.'
+        : 'Our products follow traditional and natural production methods. Official certifications are in progress.'
     },
     {
-      icon: Youtube,
-      name: 'YouTube',
-      url: 'https://youtube.com/perledatlas',
-      handle: 'Perle d\'Atlas'
+      question: language === 'fr' ? 'Quels sont vos délais de livraison ?' : 'What are your delivery times?',
+      answer: language === 'fr'
+        ? 'Livraison en 3-5 jours ouvrés en France, 7-10 jours ouvrés pour l\'international.'
+        : 'Delivery in 3-5 business days in France, 7-10 business days internationally.'
     }
   ];
 
@@ -65,134 +68,176 @@ const Contact = () => {
     <div className="min-h-screen bg-pearl-100">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-beige-100 to-pearl-200 py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="hero-title text-clay-800 mb-6">
-              {language === 'fr' ? 'Contactez-nous' : 'Contact Us'}
-            </h1>
-            <p className="hero-subtitle text-clay-600 mb-8">
-              {language === 'fr' 
-                ? 'Nous sommes là pour répondre à toutes vos questions et vous accompagner dans votre voyage beauté'
-                : 'We are here to answer all your questions and accompany you on your beauty journey'
-              }
-            </p>
+      <main className="pt-24 pb-16">
+        {/* Hero Section */}
+        <section className="relative py-20 bg-pearl-50">
+          <div className="absolute inset-0 moroccan-pattern opacity-10"></div>
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="hero-title text-clay-800 mb-6">
+                {language === 'fr' ? 'Contactez-Nous' : 'Contact Us'}
+              </h1>
+              <p className="hero-subtitle text-clay-600 mb-8">
+                {language === 'fr'
+                  ? 'Nous sommes là pour vous accompagner dans votre découverte des trésors du Maroc'
+                  : 'We are here to accompany you in your discovery of Morocco\'s treasures'
+                }
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Contact Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Secure Contact Form */}
-            <SecureForm />
-
-            {/* Contact Information */}
-            <div className="space-y-8">
-              {/* Contact Details */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {contactInfo.map((info, index) => (
-                  <Card key={index} className="hover-scale">
-                    <CardContent className="p-6">
-                      <div className="flex items-start">
-                        <div className="w-12 h-12 copper-gradient rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                          <info.icon className="h-6 w-6 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-clay-800 mb-2">{info.title}</h3>
-                          <p className="text-clay-600 text-sm leading-relaxed whitespace-pre-line">
-                            {info.content}
-                          </p>
-                        </div>
+        {/* Contact Methods */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="section-title text-clay-800 mb-12 text-center">
+                {language === 'fr' ? 'Comment Nous Joindre' : 'How to Reach Us'}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {contactMethods.map((method, index) => (
+                  <Card key={index} className={`hover-scale cursor-pointer transition-all duration-300 ${method.primary ? 'ring-2 ring-copper-600 bg-copper-50' : 'hover:shadow-lg'}`} onClick={method.action}>
+                    <CardHeader className="text-center">
+                      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full mx-auto mb-4 ${method.primary ? 'bg-copper-600 text-white' : 'bg-clay-100 text-clay-600'}`}>
+                        {method.icon}
                       </div>
+                      <CardTitle className={`font-serif ${method.primary ? 'text-copper-800' : 'text-clay-800'}`}>
+                        {method.title}
+                      </CardTitle>
+                      <CardDescription className={method.primary ? 'text-copper-600' : ''}>
+                        {method.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="text-center">
+                      <p className={`font-medium ${method.primary ? 'text-copper-700' : 'text-clay-700'}`}>
+                        {method.contact}
+                      </p>
+                      {method.primary && (
+                        <div className="mt-4">
+                          <span className="inline-flex items-center text-sm text-copper-600 font-medium">
+                            <Clock className="h-4 w-4 mr-1" />
+                            {language === 'fr' ? 'Réponse immédiate' : 'Immediate response'}
+                          </span>
+                        </div>
+                      )}
                     </CardContent>
                   </Card>
                 ))}
               </div>
-
-              {/* Social Media */}
-              <Card className="luxury-shadow">
-                <CardContent className="p-8">
-                  <h3 className="font-display font-semibold text-xl text-clay-800 mb-6">
-                    {language === 'fr' ? 'Suivez-nous' : 'Follow us'}
-                  </h3>
-                  <div className="space-y-4">
-                    {socialLinks.map((social, index) => (
-                      <a
-                        key={index}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center p-4 rounded-lg border border-sand-200 hover:border-copper-300 hover:bg-copper-50 transition-all duration-200 group"
-                      >
-                        <div className="w-10 h-10 bg-copper-100 group-hover:bg-copper-200 rounded-full flex items-center justify-center mr-4">
-                          <social.icon className="h-5 w-5 text-copper-600" />
-                        </div>
-                        <div>
-                          <div className="font-medium text-clay-800">{social.name}</div>
-                          <div className="text-sm text-clay-600">{social.handle}</div>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* FAQ Link */}
-              <Card className="copper-gradient text-white">
-                <CardContent className="p-8 text-center">
-                  <h3 className="font-display font-semibold text-xl mb-4">
-                    {language === 'fr' ? 'Questions fréquentes' : 'Frequently asked questions'}
-                  </h3>
-                  <p className="mb-6 opacity-90">
-                    {language === 'fr'
-                      ? 'Consultez notre FAQ pour des réponses rapides à vos questions'
-                      : 'Check our FAQ for quick answers to your questions'
-                    }
-                  </p>
-                  <Button variant="secondary" className="bg-white text-copper-600 hover:bg-white/90">
-                    {language === 'fr' ? 'Voir la FAQ' : 'View FAQ'}
-                  </Button>
-                </CardContent>
-              </Card>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Map Section (Placeholder) */}
-      <section className="py-16 bg-beige-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="section-title text-clay-800 mb-6">
-              {language === 'fr' ? 'Trouvez-nous' : 'Find us'}
-            </h2>
-            <p className="elegant-text text-clay-600">
-              {language === 'fr'
-                ? 'Visitez notre boutique au cœur de Marrakech'
-                : 'Visit our shop in the heart of Marrakech'
-              }
-            </p>
-          </div>
-          
-          {/* Map Placeholder */}
-          <div className="aspect-[16/9] max-w-4xl mx-auto rounded-2xl overflow-hidden luxury-shadow bg-gradient-to-br from-beige-200 to-sand-300">
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="h-16 w-16 text-copper-600 mx-auto mb-4" />
-                <p className="text-clay-700 font-medium">
-                  {language === 'fr' 
-                    ? 'Carte interactive disponible prochainement'
-                    : 'Interactive map coming soon'
-                  }
-                </p>
+        {/* Office Locations */}
+        <section className="py-16 bg-pearl-200">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="section-title text-clay-800 mb-12 text-center">
+                {language === 'fr' ? 'Nos Bureaux' : 'Our Offices'}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* USA Office */}
+                <Card className="hover-scale">
+                  <CardHeader>
+                    <div className="flex items-center space-x-3">
+                      <MapPin className="h-6 w-6 text-copper-600" />
+                      <CardTitle className="font-serif text-clay-800">
+                        {language === 'fr' ? 'Bureau États-Unis' : 'USA Office'}
+                      </CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2 text-clay-600">
+                      <p className="font-medium">822 C Street #11</p>
+                      <p>Hayward, CA 94541</p>
+                      <p>{language === 'fr' ? 'États-Unis' : 'United States'}</p>
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-pearl-200">
+                      <p className="text-sm text-clay-500">
+                        {language === 'fr' ? 'Bureau principal' : 'Main office'}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* France Office - Coming Soon */}
+                <Card className="bg-pearl-100 border-2 border-dashed border-copper-300">
+                  <CardHeader>
+                    <div className="flex items-center space-x-3">
+                      <MapPin className="h-6 w-6 text-copper-400" />
+                      <CardTitle className="font-serif text-clay-600">
+                        Bureau France
+                      </CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2 text-clay-500">
+                      <p className="italic">{language === 'fr' ? 'Bientôt disponible' : 'Coming soon'}</p>
+                      <p className="text-sm">
+                        {language === 'fr'
+                          ? 'Nous préparons l\'ouverture de notre bureau français pour vous offrir un service de proximité.'
+                          : 'We are preparing the opening of our French office to offer you local service.'
+                        }
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="section-title text-clay-800 mb-12 text-center">
+                {language === 'fr' ? 'Questions Fréquentes' : 'Frequently Asked Questions'}
+              </h2>
+              <div className="space-y-6">
+                {faqItems.map((item, index) => (
+                  <Card key={index} className="hover-scale">
+                    <CardHeader>
+                      <CardTitle className="font-serif text-lg text-clay-800">
+                        {item.question}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="elegant-text text-clay-600">
+                        {item.answer}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-16 bg-copper-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-2xl mx-auto text-center">
+              <h2 className="section-title text-clay-800 mb-6">
+                {language === 'fr' ? 'Prêt à Découvrir ?' : 'Ready to Discover?'}
+              </h2>
+              <p className="elegant-text text-clay-600 mb-8">
+                {language === 'fr'
+                  ? 'Contactez-nous dès maintenant pour commencer votre voyage vers la beauté authentique du Maroc.'
+                  : 'Contact us now to start your journey towards the authentic beauty of Morocco.'
+                }
+              </p>
+              <Button 
+                onClick={handleWhatsAppClick}
+                className="copper-gradient text-white px-8 py-3 text-lg hover:scale-105 transition-transform duration-300"
+              >
+                <MessageCircle className="h-5 w-5 mr-2" />
+                {language === 'fr' ? 'Discuter sur WhatsApp' : 'Chat on WhatsApp'}
+              </Button>
+            </div>
+          </div>
+        </section>
+      </main>
 
       <Footer />
       <FloatingWhatsApp />
