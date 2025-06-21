@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { ArrowDown, Sparkles } from 'lucide-react';
+import { ArrowDown, Sparkles, Phone } from 'lucide-react';
 
 interface HeroContentProps {
   onScrollToProducts: () => void;
@@ -28,7 +28,7 @@ const HeroContent = ({ onScrollToProducts }: HeroContentProps) => {
       </p>
 
       {/* Enhanced CTA buttons with luxury styling */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8 sm:mb-12 px-4 sm:px-0 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+      <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-6 sm:mb-8 px-4 sm:px-0 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
         <Button 
           size="lg" 
           onClick={onScrollToProducts}
@@ -43,6 +43,12 @@ const HeroContent = ({ onScrollToProducts }: HeroContentProps) => {
         >
           Notre Héritage
         </Button>
+      </div>
+
+      {/* Contact line - Desktop/tablet only */}
+      <div className="hidden md:flex items-center justify-center lg:justify-start space-x-2 text-pearl-200/80 text-sm font-serif animate-fade-in-up" style={{ animationDelay: '0.7s' }}>
+        <Phone className="h-4 w-4" />
+        <span>06 63 06 89 80 – Disponible aussi sur WhatsApp</span>
       </div>
 
       {/* Elegant scroll indicator with bounce animation */}

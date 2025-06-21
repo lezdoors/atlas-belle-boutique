@@ -66,7 +66,7 @@ const SamraEnhancedChatbot = () => {
   };
 
   const handleWhatsAppRedirect = () => {
-    const phoneNumber = '+212600000000'; // Replace with actual number
+    const phoneNumber = '+33663068980'; // Updated to match the provided number
     const whatsappMessage = language === 'fr' 
       ? 'Bonjour Samra ! J\'aimerais des conseils personnalisés sur vos produits Perle d\'Atlas saisonniers.'
       : 'Hello Samra! I would like personalized advice about your seasonal Perle d\'Atlas products.';
@@ -110,11 +110,12 @@ const SamraEnhancedChatbot = () => {
 
   return (
     <>
-      {/* Enhanced floating chat bubble with better mobile positioning */}
+      {/* Enhanced floating chat bubble with better mobile positioning and fixed z-index */}
       <Button
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-4 right-4 md:bottom-6 md:right-6 z-40 h-14 w-14 md:h-16 md:w-16 rounded-full copper-gradient hover-scale luxury-shadow border-0 transition-all duration-300 ${isOpen ? 'scale-0' : 'scale-100'}`}
+        className={`fixed bottom-20 right-4 md:bottom-24 md:right-6 z-[9998] h-14 w-14 md:h-16 md:w-16 rounded-full copper-gradient hover-scale luxury-shadow border-0 transition-all duration-300 ${isOpen ? 'scale-0' : 'scale-100'}`}
         size="icon"
+        style={{ position: 'fixed' }}
       >
         <div className="relative">
           <MessageCircle className="h-6 w-6 md:h-7 md:w-7 text-white" />
@@ -124,9 +125,10 @@ const SamraEnhancedChatbot = () => {
         </div>
       </Button>
 
-      {/* Enhanced chat window with better mobile optimization */}
+      {/* Enhanced chat window with better mobile optimization and fixed z-index */}
       {isOpen && (
-        <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-[calc(100vw-2rem)] max-w-sm md:w-96 h-[70vh] md:h-[500px] bg-white rounded-2xl md:rounded-3xl luxury-shadow border border-pearl-200 animate-scale-in flex flex-col overflow-hidden">
+        <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[9999] w-[calc(100vw-2rem)] max-w-sm md:w-96 h-[70vh] md:h-[500px] bg-white rounded-2xl md:rounded-3xl luxury-shadow border border-pearl-200 animate-scale-in flex flex-col overflow-hidden"
+             style={{ position: 'fixed' }}>
           {/* Enhanced header with Samra branding */}
           <div className="copper-gradient p-3 md:p-4 text-white rounded-t-2xl md:rounded-t-3xl">
             <div className="flex items-center justify-between">
