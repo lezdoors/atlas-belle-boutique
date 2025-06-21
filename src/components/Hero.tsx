@@ -13,14 +13,32 @@ const Hero = () => {
   useEffect(() => {
     console.log('Hero component mounted, checking video load');
     if (videoRef.current) {
-      videoRef.current.addEventListener('loadeddata', () => {
+      const video = videoRef.current;
+      
+      const handleLoadedData = () => {
         console.log('Video loaded successfully');
         setVideoLoaded(true);
-      });
-      videoRef.current.addEventListener('error', (e) => {
+        setVideoError(false);
+      };
+      
+      const handleError = (e: Event) => {
         console.error('Video failed to load:', e);
         setVideoError(true);
-      });
+        setVideoLoaded(false);
+      };
+      
+      video.addEventListener('loadeddata', handleLoadedData);
+      video.addEventListener('error', handleError);
+      video.addEventListener('canplay', handleLoadedData);
+      
+      // Force load attempt
+      video.load();
+      
+      return () => {
+        video.removeEventListener('loadeddata', handleLoadedData);
+        video.removeEventListener('error', handleError);
+        video.removeEventListener('canplay', handleLoadedData);
+      };
     }
   }, []);
 
@@ -34,37 +52,45 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
-        onLoadedData={() => {
-          console.log('Video onLoadedData event fired');
-          setVideoLoaded(true);
-        }}
-        onError={(e) => {
-          console.error('Video onError event fired:', e);
-          setVideoError(true);
-        }}
-      >
-        <source src="https://atlas-belle-boutique.lovable.app/perle-datlas-hero.mp4" type="video/mp4" />
-        {/* Fallback background for browsers that don't support video */}
-        <div className="absolute inset-0 bg-pearl-100"></div>
-      </video>
+      {!videoError && (
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          onLoadedData={() => {
+            console.log('Video onLoadedData event fired');
+            setVideoLoaded(true);
+            setVideoError(false);
+          }}
+          onError={(e) => {
+            console.error('Video onError event fired:', e);
+            setVideoError(true);
+          }}
+          onCanPlay={() => {
+            console.log('Video can play');
+            setVideoLoaded(true);
+          }}
+        >
+          <source src="https://atlas-belle-boutique.lovable.app/perle-datlas-hero.mp4" type="video/mp4" />
+        </video>
+      )}
 
-      {/* Fallback Background Image if video fails */}
+      {/* Fallback Background Image if video fails or is loading */}
       {(videoError || !videoLoaded) && (
-        <div className="absolute inset-0 w-full h-full z-0 bg-gradient-to-br from-pearl-200 via-beige-200 to-clay-200"></div>
+        <div className="absolute inset-0 w-full h-full z-0 bg-gradient-to-br from-pearl-200 via-beige-200 to-clay-200 animate-gradient bg-[length:400%_400%]">
+          <div className="absolute inset-0 moroccan-pattern opacity-10"></div>
+        </div>
       )}
 
       {/* Dark Overlay for Readability */}
-      <div className="absolute inset-0 bg-black/40 z-10"></div>
+      <div className="absolute inset-0 bg-black/30 z-10"></div>
 
       {/* Enhanced Moroccan Pattern Background (subtle overlay) */}
-      <div className="absolute inset-0 moroccan-pattern opacity-10 z-20"></div>
+      <div className="absolute inset-0 moroccan-pattern opacity-5 z-20"></div>
 
       {/* Floating Decorative Elements - Responsive */}
       <div className="absolute top-20 left-4 sm:left-10 w-24 sm:w-32 h-24 sm:h-32 rounded-full bg-copper-200 opacity-20 animate-float blur-xl z-30"></div>
@@ -118,13 +144,6 @@ const Hero = () => {
                 {language === 'fr' ? 'Notre Histoire' : 'Our Story'}
               </Button>
             </div>
-
-            {/* Debug info - only show in development */}
-            {process.env.NODE_ENV === 'development' && (
-              <div className="text-white text-xs mt-4 bg-black/50 p-2 rounded">
-                Video Status: {videoLoaded ? 'Loaded' : 'Loading'} | Error: {videoError ? 'Yes' : 'No'}
-              </div>
-            )}
 
             {/* Scroll Indicator - Hidden on small screens */}
             <div className="animate-bounce justify-center lg:justify-start hidden sm:flex">

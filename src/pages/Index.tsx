@@ -10,7 +10,7 @@ import Testimonials from '@/components/Testimonials';
 import Categories from '@/components/Categories';
 import BrandStory from '@/components/BrandStory';
 import Footer from '@/components/Footer';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import SamraChatbot from '@/components/SamraChatbot';
 import BackToTop from '@/components/BackToTop';
 import FloatingCart from '@/components/FloatingCart';
 import OurArtisans from '@/components/OurArtisans';
@@ -44,7 +44,7 @@ const Index = () => {
             <BrandStory />
           </main>
           <Footer />
-          <FloatingWhatsApp />
+          <SamraChatbot />
           <FloatingCart />
           <BackToTop />
         </div>

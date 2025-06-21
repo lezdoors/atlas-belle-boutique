@@ -14,13 +14,17 @@ const Header = () => {
   const [showNewsletterModal, setShowNewsletterModal] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
 
-  // Show newsletter modal after 5 seconds (for demo purposes)
+  // Show newsletter modal only once per session
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowNewsletterModal(true);
-    }, 5000);
+    const hasShownModal = sessionStorage.getItem('newsletter-modal-shown');
+    
+    if (!hasShownModal) {
+      const timer = setTimeout(() => {
+        setShowNewsletterModal(true);
+      }, 5000);
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   const handleSearch = (query: string) => {
@@ -71,7 +75,7 @@ const Header = () => {
         onClose={() => setShowMobileSearch(false)} 
       />
 
-      {/* Newsletter Modal */}
+      {/* Newsletter Modal - Only shows once per session */}
       <NewsletterModal 
         isOpen={showNewsletterModal} 
         onClose={() => setShowNewsletterModal(false)} 
