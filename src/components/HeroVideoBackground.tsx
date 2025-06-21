@@ -9,6 +9,8 @@ interface HeroVideoBackgroundProps {
 const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroundProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [videoEnded, setVideoEnded] = useState(false);
+  const [showStaticImage, setShowStaticImage] = useState(false);
 
   useEffect(() => {
     console.log('Hero video component mounted, checking video load');
@@ -27,6 +29,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroun
         setIsLoading(false);
         onVideoError(true);
         onVideoLoaded(false);
+        setShowStaticImage(true);
       };
 
       const handleCanPlay = () => {
@@ -34,13 +37,19 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroun
         setIsLoading(false);
         onVideoLoaded(true);
       };
+
+      const handleVideoEnded = () => {
+        console.log('Video ended, transitioning to static image');
+        setVideoEnded(true);
+        setTimeout(() => {
+          setShowStaticImage(true);
+        }, 500); // Small delay for smooth transition
+      };
       
       video.addEventListener('loadeddata', handleLoadedData);
       video.addEventListener('error', handleError);
       video.addEventListener('canplay', handleCanPlay);
-      
-      // Set poster image for fallback
-      video.poster = 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/hero-poster.jpg';
+      video.addEventListener('ended', handleVideoEnded);
       
       // Force load attempt
       video.load();
@@ -49,6 +58,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroun
         video.removeEventListener('loadeddata', handleLoadedData);
         video.removeEventListener('error', handleError);
         video.removeEventListener('canplay', handleCanPlay);
+        video.removeEventListener('ended', handleVideoEnded);
       };
     }
   }, [onVideoLoaded, onVideoError]);
@@ -60,15 +70,17 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroun
         <div className="absolute inset-0 bg-gradient-to-r from-pearl-200 via-pearl-100 to-pearl-200 animate-pulse"></div>
       )}
       
+      {/* Video element */}
       <video
         ref={videoRef}
         autoPlay
         muted
-        loop
         playsInline
-        preload="metadata"
+        preload="auto"
         poster="https://images.unsplash.com/photo-1466442929976-97f336a657be?auto=format&fit=crop&w=1920&q=80"
-        className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-1000"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+          videoEnded ? 'opacity-0' : 'opacity-100'
+        }`}
         style={{
           objectFit: 'cover',
           objectPosition: 'center center'
@@ -83,16 +95,34 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroun
           console.error('Video onError event fired:', e);
           setIsLoading(false);
           onVideoError(true);
+          setShowStaticImage(true);
         }}
         onCanPlay={() => {
           console.log('Video can play');
           setIsLoading(false);
           onVideoLoaded(true);
         }}
+        onEnded={() => {
+          console.log('Video ended, transitioning to static image');
+          setVideoEnded(true);
+          setTimeout(() => {
+            setShowStaticImage(true);
+          }, 500);
+        }}
       >
         <source src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/73847-549547533.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+
+      {/* Static image that appears after video ends or on error */}
+      <div 
+        className={`absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
+          showStaticImage ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1466442929976-97f336a657be?auto=format&fit=crop&w=1920&q=80')`
+        }}
+      />
     </div>
   );
 };

@@ -56,9 +56,9 @@ const Header = () => {
           <HeaderTopBar />
         </div>
 
-        {/* Main Header - Full width with proper container */}
+        {/* Main Header - Enhanced mobile layout */}
         <div className="w-full px-4 py-3 sm:py-4">
-          <div className="max-w-7xl mx-auto flex items-center justify-between h-16">
+          <div className="w-full max-w-7xl mx-auto flex items-center justify-between h-16">
             {/* Logo - Enhanced spacing */}
             <HeaderLogo />
 

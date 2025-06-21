@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { ArrowDown, Sparkles, Phone } from 'lucide-react';
+import { ArrowDown, Sparkles, Phone, ChevronDown } from 'lucide-react';
 
 interface HeroContentProps {
   onScrollToProducts: () => void;
@@ -51,11 +51,17 @@ const HeroContent = ({ onScrollToProducts }: HeroContentProps) => {
         <span>06 63 06 89 80 – Disponible aussi sur WhatsApp</span>
       </div>
 
-      {/* Elegant scroll indicator with bounce animation */}
-      <div className="animate-bounce justify-center lg:justify-start hidden sm:flex animate-fade-in" style={{ animationDelay: '0.8s' }}>
-        <div className="flex flex-col items-center space-y-2">
-          <span className="text-white/80 text-sm font-serif tracking-wide">Découvrez plus</span>
-          <ArrowDown className="h-6 w-6 text-white drop-shadow-lg" />
+      {/* Enhanced scroll cue with ritual discovery message */}
+      <div className="flex flex-col items-center lg:items-start space-y-4 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+        <Button
+          onClick={onScrollToProducts}
+          variant="ghost"
+          className="text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 rounded-full px-6 py-3 font-serif text-sm tracking-wide"
+        >
+          📜 Découvrir nos Rituels
+        </Button>
+        <div className="animate-bounce">
+          <ChevronDown className="h-8 w-8 text-white/80 drop-shadow-lg animate-pulse" />
         </div>
       </div>
     </div>
