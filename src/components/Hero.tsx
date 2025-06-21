@@ -5,6 +5,7 @@ import HeroFallbackBackground from '@/components/HeroFallbackBackground';
 import HeroDecorativeElements from '@/components/HeroDecorativeElements';
 import HeroContent from '@/components/HeroContent';
 import HeroProductShowcase from '@/components/HeroProductShowcase';
+import SeasonalCarousel from '@/components/SeasonalCarousel';
 
 interface HeroProps {
   onVideoEnded?: (ended: boolean) => void;
@@ -13,6 +14,7 @@ interface HeroProps {
 const Hero = ({ onVideoEnded }: HeroProps) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [showCarousel, setShowCarousel] = useState(false);
 
   const scrollToProducts = () => {
     const productsSection = document.querySelector('#featured-products');
@@ -24,7 +26,23 @@ const Hero = ({ onVideoEnded }: HeroProps) => {
   const handleVideoEnded = (ended: boolean) => {
     console.log('Hero video ended:', ended);
     onVideoEnded?.(ended);
+    
+    if (ended) {
+      // Show carousel after video ends
+      setTimeout(() => {
+        setShowCarousel(true);
+      }, 1000); // 1 second delay for smooth transition
+    }
   };
+
+  // If carousel should be shown, render it instead of the normal hero
+  if (showCarousel) {
+    return (
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <SeasonalCarousel onScrollToProducts={scrollToProducts} />
+      </section>
+    );
+  }
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">

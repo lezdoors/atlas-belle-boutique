@@ -11,7 +11,6 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [videoEnded, setVideoEnded] = useState(false);
-  const [showStaticImage, setShowStaticImage] = useState(false);
 
   // Using high-quality artisan desert image from Supabase media bucket
   const fallbackImage = "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/754f1a74-0a9c-4277-8cff-2105a643bcf8.png";
@@ -33,7 +32,6 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
         setIsLoading(false);
         onVideoError(true);
         onVideoLoaded(false);
-        setShowStaticImage(true);
       };
 
       const handleCanPlay = () => {
@@ -43,12 +41,9 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
       };
 
       const handleVideoEnded = () => {
-        console.log('Video ended, transitioning to static image');
+        console.log('Video ended - no longer looping');
         setVideoEnded(true);
         onVideoEnded?.(true);
-        setTimeout(() => {
-          setShowStaticImage(true);
-        }, 500); // Small delay for smooth transition
       };
       
       video.addEventListener('loadeddata', handleLoadedData);
@@ -75,7 +70,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
         <div className="absolute inset-0 bg-gradient-to-r from-pearl-200 via-pearl-100 to-pearl-200"></div>
       )}
       
-      {/* Video element */}
+      {/* Video element - NO LOOP attribute */}
       <video
         ref={videoRef}
         autoPlay
@@ -100,7 +95,6 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
           console.error('Video onError event fired:', e);
           setIsLoading(false);
           onVideoError(true);
-          setShowStaticImage(true);
         }}
         onCanPlay={() => {
           console.log('Video can play');
@@ -108,22 +102,19 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
           onVideoLoaded(true);
         }}
         onEnded={() => {
-          console.log('Video ended, transitioning to static image');
+          console.log('Video ended - transitioning to carousel');
           setVideoEnded(true);
           onVideoEnded?.(true);
-          setTimeout(() => {
-            setShowStaticImage(true);
-          }, 500);
         }}
       >
         <source src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/73847-549547533.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
-      {/* Static HD image that appears after video ends or on error */}
+      {/* Static HD image that appears after video ends */}
       <div 
         className={`absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
-          showStaticImage ? 'opacity-100' : 'opacity-0'
+          videoEnded ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
           backgroundImage: `url('${fallbackImage}')`
