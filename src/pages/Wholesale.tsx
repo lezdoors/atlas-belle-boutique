@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -54,9 +53,22 @@ const Wholesale = () => {
   const onSubmit = async (data: WholesaleFormData) => {
     setIsSubmitting(true);
     try {
+      // Transform the data to match Supabase expected format
+      const supabaseData = {
+        company_name: data.company_name,
+        contact_name: data.contact_name,
+        email: data.email,
+        phone: data.phone,
+        website: data.website || null, // Convert empty string to null for optional field
+        address: data.address,
+        business_type: data.business_type,
+        products_interest: data.products_interest,
+        message: data.message || null, // Convert empty string to null for optional field
+      };
+
       const { error } = await supabase
         .from('wholesale_leads')
-        .insert([data]);
+        .insert([supabaseData]);
 
       if (error) throw error;
 
