@@ -13,6 +13,7 @@ const FooterNavigation = () => {
       <ul className="space-y-3">
         {[
           { name: language === 'fr' ? 'Boutique' : 'Shop', href: '/boutique' },
+          { name: language === 'fr' ? 'Ma Sélection' : 'My Selection', href: '/ma-selection' },
           { name: language === 'fr' ? 'Régions' : 'Regions', href: '/regions' },
           { name: language === 'fr' ? 'Rituels' : 'Rituals', href: '/rituels' },
           { name: language === 'fr' ? 'Ingrédients' : 'Ingredients', href: '/ingredients' },

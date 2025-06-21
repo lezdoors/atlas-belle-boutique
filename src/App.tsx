@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { CartProvider } from "@/contexts/CartContext";
+import { SelectionProvider } from "@/contexts/SelectionContext";
 import ErrorBoundary from "@/components/security/ErrorBoundary";
 import SecurityConfig from "@/components/security/SecurityConfig";
 import CartDrawer from "@/components/CartDrawer";
@@ -13,6 +14,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Boutique from "./pages/Boutique";
+import MaSelection from "./pages/MaSelection";
 import Rituels from "./pages/Rituels";
 import ProgrammeFidelite from "./pages/ProgrammeFidelite";
 import ProductDetail from "./pages/ProductDetail";
@@ -46,30 +48,33 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
         <CartProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/boutique" element={<Boutique />} />
-                <Route path="/rituels" element={<Rituels />} />
-                <Route path="/programme-fidelite" element={<ProgrammeFidelite />} />
-                <Route path="/produit/:id" element={<ProductDetail />} />
-                <Route path="/regions" element={<Regions />} />
-                <Route path="/ingredients" element={<Ingredients />} />
-                <Route path="/ingredient/:id" element={<IngredientDetail />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/quiz-peau" element={<SkinQuiz />} />
-                <Route path="/checkout" element={<Checkout />} />
-                <Route path="/order-success" element={<OrderSuccess />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-              <CartDrawer />
-            </BrowserRouter>
-          </TooltipProvider>
+          <SelectionProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/boutique" element={<Boutique />} />
+                  <Route path="/ma-selection" element={<MaSelection />} />
+                  <Route path="/rituels" element={<Rituels />} />
+                  <Route path="/programme-fidelite" element={<ProgrammeFidelite />} />
+                  <Route path="/produit/:id" element={<ProductDetail />} />
+                  <Route path="/regions" element={<Regions />} />
+                  <Route path="/ingredients" element={<Ingredients />} />
+                  <Route path="/ingredient/:id" element={<IngredientDetail />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/quiz-peau" element={<SkinQuiz />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/order-success" element={<OrderSuccess />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+                <CartDrawer />
+              </BrowserRouter>
+            </TooltipProvider>
+          </SelectionProvider>
         </CartProvider>
       </LanguageProvider>
     </QueryClientProvider>

@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Star, ShoppingCart, Eye, Plus } from 'lucide-react';
@@ -6,6 +7,7 @@ import { useCart } from '@/contexts/CartContext';
 import { convertAndFormat } from '@/utils/currencyConverter';
 import ProductBadge from '@/components/ProductBadge';
 import WishlistButton from '@/components/WishlistButton';
+import SaveForLaterButton from '@/components/SaveForLaterButton';
 import QuickViewModal from '@/components/QuickViewModal';
 import SwipeableGallery from '@/components/SwipeableGallery';
 import PerleAtlasLogo from './PerleAtlasLogo';
@@ -95,6 +97,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           {/* Enhanced Action Buttons - More Touch-Friendly */}
           <div className="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
+            <SaveForLaterButton 
+              product={product}
+              variant="icon"
+              size="icon"
+            />
             <WishlistButton 
               productId={product.id} 
               productName={product.name}

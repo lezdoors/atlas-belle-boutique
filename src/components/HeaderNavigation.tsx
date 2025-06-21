@@ -12,6 +12,10 @@ const HeaderNavigation = () => {
       label: language === 'fr' ? 'Boutique' : 'Shop' 
     },
     { 
+      href: '/ma-selection', 
+      label: language === 'fr' ? 'Ma Sélection' : 'My Selection' 
+    },
+    { 
       href: '/rituels', 
       label: language === 'fr' ? 'Rituels' : 'Rituals' 
     },
