@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import LanguageDropdown from '@/components/LanguageDropdown';
-import NewsletterModal from '@/components/NewsletterModal';
+import EnhancedNewsletterModal from '@/components/EnhancedNewsletterModal';
 import MobileSearch from '@/components/MobileSearch';
 import HeaderTopBar from '@/components/HeaderTopBar';
 import HeaderLogo from '@/components/HeaderLogo';
@@ -38,8 +38,8 @@ const Header = () => {
         {/* Top Bar */}
         <HeaderTopBar />
 
-        {/* Main Header */}
-        <div className="container mx-auto px-4 py-4">
+        {/* Main Header - Enhanced mobile padding */}
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             {/* Logo - More responsive */}
             <HeaderLogo />
@@ -57,7 +57,7 @@ const Header = () => {
           </div>
 
           {/* Mobile Language Dropdown - Only visible when menu is closed */}
-          <div className="md:hidden mt-4 flex justify-center">
+          <div className="md:hidden mt-3 flex justify-center">
             <LanguageDropdown />
           </div>
         </div>
@@ -75,8 +75,8 @@ const Header = () => {
         onClose={() => setShowMobileSearch(false)} 
       />
 
-      {/* Newsletter Modal - Only shows once per session */}
-      <NewsletterModal 
+      {/* Enhanced Newsletter Modal */}
+      <EnhancedNewsletterModal 
         isOpen={showNewsletterModal} 
         onClose={() => setShowNewsletterModal(false)} 
       />

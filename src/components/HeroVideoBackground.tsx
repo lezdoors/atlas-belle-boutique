@@ -10,7 +10,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroun
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    console.log('Hero component mounted, checking video load');
+    console.log('Hero video component mounted, checking video load');
     if (videoRef.current) {
       const video = videoRef.current;
       
@@ -64,7 +64,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError }: HeroVideoBackgroun
         onVideoLoaded(true);
       }}
     >
-      <source src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/videos/perle-datlas-hero.mp4" type="video/mp4" />
+      <source src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/73847-549547533.mp4" type="video/mp4" />
     </video>
   );
 };
