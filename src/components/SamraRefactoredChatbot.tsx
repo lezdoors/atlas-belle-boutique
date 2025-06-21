@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ChatFloatingButton from '@/components/chatbot/ChatFloatingButton';
@@ -52,10 +51,11 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
+    // Show chatbot 1 second after video ends or 9 seconds on page load
     if (videoEnded) {
       timeoutId = setTimeout(() => {
         setShowChatbot(true);
-      }, 500);
+      }, 1000); // 1 second after video ends
     } else {
       timeoutId = setTimeout(() => {
         setShowChatbot(true);
@@ -95,13 +95,23 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
 
   const generateResponse = (userMessage: string, detectedLang: 'fr' | 'en'): Message => {
     const lowerMessage = userMessage.toLowerCase();
-    setShowFallbackActions(false); // Reset fallback state
+    setShowFallbackActions(false);
     
     if (detectedLang === 'fr') {
+      // Newsletter and email inquiries
+      if (lowerMessage.includes('newsletter') || lowerMessage.includes('email') || lowerMessage.includes('inscription')) {
+        return {
+          text: "Magnifique ! Rejoignez notre communauté exclusive pour découvrir nos secrets de beauté saisonniers 💎 Vous recevrez nos guides de rituels ancestraux, nos dernières découvertes d'ingrédients et nos offres privilégiées. Un voyage olfactif directement dans votre boîte email !",
+          isUser: false,
+          language: detectedLang,
+          image: mediaAssets.lifestyle[0]
+        };
+      }
+
       // Argan oil inquiries with warm Moroccan tone
       if (lowerMessage.includes('argan') || lowerMessage.includes('huile')) {
         return {
-          text: "Ah, l'huile d'argan ! C'est notre trésor du Sud marocain 🌟 Nos artisanes berbères l'extraient avec patience selon des méthodes ancestrales. Riche en vitamine E et acides gras, elle nourrit votre peau comme une caresse du désert. Chaque goutte raconte l'histoire de nos arganiers centenaires !",
+          text: "Ah, l'huile d'argan ! Notre trésor du Sud marocain 🌟 Nos artisanes berbères l'extraient avec patience selon des méthodes ancestrales. Riche en vitamine E et acides gras, elle nourrit votre peau comme une caresse du désert. Chaque goutte raconte l'histoire de nos arganiers centenaires !",
           isUser: false,
           language: detectedLang,
           image: mediaAssets.products[0]
@@ -182,6 +192,16 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
         language: detectedLang
       };
     } else {
+      // English responses with newsletter support
+      if (lowerMessage.includes('newsletter') || lowerMessage.includes('email') || lowerMessage.includes('subscription')) {
+        return {
+          text: "Wonderful! Join our exclusive community to discover our seasonal beauty secrets 💎 You'll receive our ancestral ritual guides, latest ingredient discoveries, and privileged offers. An olfactory journey delivered straight to your inbox!",
+          isUser: false,
+          language: detectedLang,
+          image: mediaAssets.lifestyle[1]
+        };
+      }
+
       // English responses with warm tone
       if (lowerMessage.includes('argan') || lowerMessage.includes('oil')) {
         return {
@@ -276,7 +296,7 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
   };
 
   const handleWhatsAppRedirect = () => {
-    const phoneNumber = '+212663068980';
+    const phoneNumber = '+33663068980'; // Updated to the correct French number
     const whatsappMessage = language === 'fr' 
       ? 'Bonjour Perle d\'Atlas ! J\'aimerais avoir des informations personnalisées sur vos produits de beauté marocains.' 
       : 'Hello Perle d\'Atlas! I would like personalized information about your Moroccan beauty products.';

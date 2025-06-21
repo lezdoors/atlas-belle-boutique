@@ -11,7 +11,7 @@ export interface CarouselSlide {
 export const carouselData: CarouselSlide[] = [
   {
     id: 1,
-    image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
+    image: "/lovable-uploads/067468dd-a766-407e-b2dc-50ccb8510454.png",
     title: "Printemps",
     subtitle: "Rituel de Renouveau",
     poetic: "Au printemps, la rose ouvre la peau au renouveau.",
@@ -19,7 +19,7 @@ export const carouselData: CarouselSlide[] = [
   },
   {
     id: 2,
-    image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png",
+    image: "/lovable-uploads/b7aaf2ae-0eb0-43e2-b2a8-ea0f9b7feef5.png",
     title: "Été",
     subtitle: "Rituel d'Éclat",
     poetic: "L'été dorée révèle la lumière cachée de votre beauté.",
@@ -27,15 +27,15 @@ export const carouselData: CarouselSlide[] = [
   },
   {
     id: 3,
-    image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png",
+    image: "/lovable-uploads/989a3976-efad-4a90-975e-144f506360bc.png",
     title: "Automne",
     subtitle: "Rituel de Sagesse",
-    poetic: "L'automne murmure les secrets ancestraux de l'argan.",
+    poetic: "L'automne murmure les secrets ancestraux berbères.",
     season: "autumn"
   },
   {
     id: 4,
-    image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/397b8d88-7594-4433-8004-050f047a13b6.png",
+    image: "/lovable-uploads/015407c1-3e6c-4c44-ab5a-f07b64ef2e28.png",
     title: "Hiver",
     subtitle: "Rituel de Protection",
     poetic: "L'hiver enveloppe la peau d'une douceur millénaire.",

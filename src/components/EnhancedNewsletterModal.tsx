@@ -1,11 +1,9 @@
 
-import { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { useState, useEffect } from 'react';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { X, Mail, Gift, Crown } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { X, Crown, Mail, Check } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface EnhancedNewsletterModalProps {
@@ -13,105 +11,154 @@ interface EnhancedNewsletterModalProps {
   onClose: () => void;
 }
 
-const EnhancedNewsletterModal: React.FC<EnhancedNewsletterModalProps> = ({ isOpen, onClose }) => {
+const EnhancedNewsletterModal = ({ isOpen, onClose }: EnhancedNewsletterModalProps) => {
   const [email, setEmail] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { language } = useLanguage();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+
+  useEffect(() => {
+    if (isOpen) {
+      setEmail('');
+      setIsSubmitted(false);
+      setIsLoading(false);
+    }
+  }, [isOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    
+    if (!email || !email.includes('@')) {
+      toast({
+        title: "Email invalide",
+        description: "Veuillez entrer une adresse email valide.",
+        variant: "destructive",
+      });
+      return;
+    }
 
+    setIsLoading(true);
+    
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsSubmitted(true);
+      
+      toast({
+        title: "Inscription réussie !",
+        description: "Bienvenue dans la famille Perle d'Atlas. Vous recevrez bientôt nos secrets de beauté.",
+      });
 
-    // Mark as shown in session storage so it doesn't appear again
-    sessionStorage.setItem('newsletter-modal-shown', 'true');
-
-    toast({
-      title: language === 'fr' ? 'Bienvenue dans la famille Perle d\'Atlas !' : 'Welcome to the Perle d\'Atlas family!',
-      description: language === 'fr' 
-        ? 'Votre code de réduction 15% arrive dans votre boîte mail. Découvrez nos collections saisonnières !'
-        : 'Your 15% discount code is coming to your inbox. Discover our seasonal collections!',
-    });
-
-    setIsSubmitting(false);
-    setEmail('');
-    onClose();
+      // Mark modal as shown for this session
+      sessionStorage.setItem('newsletter-modal-shown', 'true');
+      
+      // Auto-close after success
+      setTimeout(() => {
+        onClose();
+      }, 2000);
+    }, 1500);
   };
 
   const handleClose = () => {
-    // Mark as shown when user closes manually
     sessionStorage.setItem('newsletter-modal-shown', 'true');
     onClose();
   };
 
+  if (!isOpen) return null;
+
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-sm md:max-w-md mx-4 rounded-2xl md:rounded-3xl border-0 luxury-shadow bg-gradient-to-br from-pearl-50 to-beige-50 animate-fade-in p-4 md:p-6">
-        <DialogHeader>
-          <DialogTitle className="sr-only">Newsletter Subscription</DialogTitle>
-        </DialogHeader>
-        
-        <div className="text-center space-y-4 md:space-y-6">
-          {/* Enhanced icon with Moroccan touch */}
-          <div className="mx-auto w-12 h-12 md:w-16 md:h-16 copper-gradient rounded-full flex items-center justify-center animate-scale-in luxury-shadow">
-            <Crown className="h-6 w-6 md:h-8 md:w-8 text-white" />
-          </div>
+      <DialogContent className="max-w-md mx-auto bg-white rounded-3xl overflow-hidden border-0 p-0 luxury-shadow">
+        <div className="relative">
+          {/* Close Button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleClose}
+            className="absolute top-4 right-4 z-10 text-white hover:bg-white/20 rounded-full"
+          >
+            <X className="h-5 w-5" />
+          </Button>
 
-          {/* Enhanced title */}
-          <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            <h2 className="font-display font-bold text-xl md:text-2xl text-clay-800 mb-2">
-              {language === 'fr' ? 'Secrets Ancestraux' : 'Ancestral Secrets'}
-            </h2>
-            <p className="elegant-text text-sm md:text-base text-clay-600 px-2">
-              {language === 'fr' 
-                ? 'Rejoignez notre cercle privilégié et recevez 15% de réduction sur votre première commande + l\'accès en avant-première à nos collections saisonnières'
-                : 'Join our privileged circle and receive 15% off your first order + early access to our seasonal collections'
-              }
-            </p>
-          </div>
-
-          {/* Enhanced form */}
-          <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-            <div className="text-left">
-              <Label htmlFor="newsletter-email" className="text-xs md:text-sm font-medium text-clay-700">
-                {language === 'fr' ? 'Adresse e-mail' : 'Email address'}
-              </Label>
-              <div className="relative mt-1">
-                <Input
-                  id="newsletter-email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={language === 'fr' ? 'votre@email.com' : 'your@email.com'}
-                  required
-                  className="pl-9 md:pl-10 rounded-full border-clay-200 focus:border-copper-400 focus:ring-copper-400/20 text-sm md:text-base h-10 md:h-12"
-                />
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-3 w-3 md:h-4 md:w-4 text-clay-400" />
+          {/* Header Section with Moroccan-inspired gradient */}
+          <div className="copper-gradient p-8 text-center text-white relative overflow-hidden">
+            {/* Decorative Pattern */}
+            <div className="absolute inset-0 moroccan-pattern opacity-20"></div>
+            
+            <div className="relative z-10">
+              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Crown className="h-8 w-8" />
               </div>
+              
+              <h2 className="font-display text-2xl font-light mb-2">
+                Secrets d'Atlas
+              </h2>
+              <p className="text-pearl-100 text-sm opacity-90">
+                Découvrez nos rituels de beauté ancestraux et nos nouveautés exclusives
+              </p>
             </div>
+          </div>
 
-            <Button 
-              type="submit" 
-              className="w-full copper-gradient text-white rounded-full hover-scale luxury-shadow py-2 md:py-3 h-10 md:h-auto text-sm md:text-base"
-              disabled={isSubmitting}
-            >
-              {isSubmitting 
-                ? (language === 'fr' ? 'Inscription...' : 'Joining...')
-                : (language === 'fr' ? 'Rejoindre le cercle' : 'Join the circle')
-              }
-            </Button>
-          </form>
+          {/* Form Section */}
+          <div className="p-8">
+            {!isSubmitted ? (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-4">
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-clay-400" />
+                    <Input
+                      type="email"
+                      placeholder="votre.email@domaine.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="pl-12 h-12 rounded-full border-clay-200 focus:border-copper-400 font-medium"
+                      required
+                    />
+                  </div>
+                  
+                  <p className="text-xs text-clay-600 text-center leading-relaxed">
+                    Rejoignez plus de 10,000 passionnés de beauté naturelle. 
+                    Recevez nos conseils exclusifs, découvertes saisonnières et offres privilégiées.
+                  </p>
+                </div>
 
-          {/* Enhanced footer */}
-          <p className="text-xs text-clay-500 animate-fade-in-up px-2" style={{ animationDelay: '0.6s' }}>
-            {language === 'fr' 
-              ? 'Désabonnement possible à tout moment. Nous respectons votre intimité et partageons votre amour pour l\'authenticité.'
-              : 'Unsubscribe anytime. We respect your privacy and share your love for authenticity.'
-            }
-          </p>
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full copper-gradient text-white h-12 rounded-full font-medium hover-scale luxury-shadow border-0 transition-all duration-300"
+                >
+                  {isLoading ? (
+                    <div className="flex items-center space-x-2">
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Inscription...</span>
+                    </div>
+                  ) : (
+                    'Rejoindre la Communauté'
+                  )}
+                </Button>
+
+                <p className="text-xs text-clay-500 text-center">
+                  En vous inscrivant, vous acceptez de recevoir nos communications. 
+                  Vous pouvez vous désinscrire à tout moment.
+                </p>
+              </form>
+            ) : (
+              <div className="text-center space-y-4">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                  <Check className="h-8 w-8 text-green-600" />
+                </div>
+                
+                <div>
+                  <h3 className="font-semibold text-lg text-clay-800 mb-2">
+                    Bienvenue dans la famille !
+                  </h3>
+                  <p className="text-clay-600">
+                    Vous recevrez bientôt votre premier guide des rituels de beauté marocains.
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </DialogContent>
     </Dialog>
