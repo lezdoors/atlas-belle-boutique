@@ -79,20 +79,31 @@ const Hero = () => {
         </video>
       )}
 
-      {/* Fallback Background Image if video fails or is loading */}
+      {/* Enhanced Luxury Fallback Background */}
       {(videoError || !videoLoaded) && (
-        <div className="absolute inset-0 w-full h-full z-0 bg-gradient-to-br from-pearl-200 via-beige-200 to-clay-200 animate-gradient bg-[length:400%_400%]">
-          <div className="absolute inset-0 moroccan-pattern opacity-10"></div>
+        <div className="absolute inset-0 w-full h-full z-0">
+          {/* Luxury gradient background inspired by Moroccan golden hour */}
+          <div className="absolute inset-0 bg-gradient-to-br from-pearl-100 via-copper-100 to-clay-200 animate-gradient bg-[length:400%_400%]"></div>
+          
+          {/* Moroccan geometric pattern overlay */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="w-full h-full" style={{
+              backgroundImage: `radial-gradient(circle at 25% 25%, rgba(184, 134, 11, 0.3) 2px, transparent 2px),
+                               radial-gradient(circle at 75% 75%, rgba(160, 82, 45, 0.2) 2px, transparent 2px),
+                               linear-gradient(45deg, transparent 40%, rgba(184, 134, 11, 0.1) 50%, transparent 60%)`,
+              backgroundSize: '80px 80px, 120px 120px, 200px 200px'
+            }}></div>
+          </div>
+          
+          {/* Subtle texture overlay */}
+          <div className="absolute inset-0 opacity-5 bg-gradient-to-tr from-transparent via-clay-500 to-transparent"></div>
         </div>
       )}
 
       {/* Dark Overlay for Readability */}
       <div className="absolute inset-0 bg-black/30 z-10"></div>
 
-      {/* Enhanced Moroccan Pattern Background (subtle overlay) */}
-      <div className="absolute inset-0 moroccan-pattern opacity-5 z-20"></div>
-
-      {/* Floating Decorative Elements - Responsive */}
+      {/* Floating Decorative Elements - Moroccan inspired */}
       <div className="absolute top-20 left-4 sm:left-10 w-24 sm:w-32 h-24 sm:h-32 rounded-full bg-copper-200 opacity-20 animate-float blur-xl z-30"></div>
       <div className="absolute bottom-32 right-8 sm:right-16 w-16 sm:w-24 h-16 sm:h-24 rounded-full bg-clay-200 opacity-25 animate-float blur-lg z-30" style={{ animationDelay: '1s' }}></div>
       <div className="absolute top-1/3 right-1/4 w-12 sm:w-16 h-12 sm:h-16 rounded-full bg-copper-300 opacity-15 animate-float blur-md z-30" style={{ animationDelay: '2s' }}></div>
@@ -107,23 +118,23 @@ const Hero = () => {
             <div className="inline-flex items-center bg-white/90 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 luxury-shadow">
               <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-copper-600 mr-2" />
               <span className="text-xs sm:text-sm font-medium text-clay-700 tracking-wide">
-                {language === 'fr' ? 'Luxe Authentique Marocain' : 'Authentic Moroccan Luxury'}
+                {language === 'fr' ? 'L\'Ancien rencontre le Moderne' : 'Ancient meets Modern'}
               </span>
             </div>
 
             {/* Main Title with Enhanced Mobile Typography */}
             <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight sm:leading-none text-white mb-4 sm:mb-6 drop-shadow-lg">
               {language === 'fr' 
-                ? 'Découvrez l\'Essence du Maroc'
-                : 'Discover the Essence of Morocco'
+                ? 'Perle d\'Atlas'
+                : 'Perle d\'Atlas'
               }
             </h1>
             
             {/* Elegant Subtitle - Mobile Optimized */}
             <p className="font-serif text-lg sm:text-xl md:text-2xl leading-relaxed text-pearl-100 max-w-xl mx-auto lg:mx-0 mb-6 sm:mb-8 px-4 sm:px-0 drop-shadow-md">
               {language === 'fr' 
-                ? 'Parfums, huiles et soins haut de gamme inspirés des rituels ancestraux des terres magiques du Maroc'
-                : 'Premium perfumes, oils and treatments inspired by ancestral rituals from the magical lands of Morocco'
+                ? 'Rituels ancestraux marocains rencontrent le luxe moderne. Chaque soin raconte l\'histoire de nos artisans.'
+                : 'Ancestral Moroccan rituals meet modern luxury. Each treatment tells the story of our artisans.'
               }
             </p>
 
@@ -134,7 +145,7 @@ const Hero = () => {
                 onClick={scrollToProducts}
                 className="copper-gradient text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium rounded-full hover-scale luxury-shadow border-0 font-sans tracking-wide min-h-[50px] sm:min-h-[56px]"
               >
-                {language === 'fr' ? 'Explorer la Collection' : 'Explore Collection'}
+                {language === 'fr' ? 'Découvrir nos Rituels' : 'Discover our Rituals'}
               </Button>
               <Button 
                 variant="outline" 
@@ -161,17 +172,21 @@ const Hero = () => {
               <div className="relative bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-12 luxury-shadow border border-white/30">
                 {/* Elegant Pattern Overlay */}
                 <div className="absolute inset-0 opacity-5 rounded-3xl overflow-hidden">
-                  <div className="moroccan-pattern w-full h-full"></div>
+                  <div className="w-full h-full" style={{
+                    backgroundImage: `radial-gradient(circle at 30% 30%, rgba(184, 134, 11, 0.4) 1px, transparent 1px),
+                                     radial-gradient(circle at 70% 70%, rgba(160, 82, 45, 0.3) 1px, transparent 1px)`,
+                    backgroundSize: '40px 40px, 60px 60px'
+                  }}></div>
                 </div>
                 
                 {/* Product Showcase - Responsive Sizing */}
                 <div className="relative z-10 w-64 sm:w-80 h-80 sm:h-96 mx-auto">
                   {/* Main Product Mockup - Mobile Responsive */}
-                  <div className="relative w-36 sm:w-48 h-48 sm:h-64 mx-auto mb-4 sm:mb-6 rounded-2xl luxury-shadow bg-gradient-to-br from-pearl-50 to-beige-100 flex items-center justify-center">
+                  <div className="relative w-36 sm:w-48 h-48 sm:h-64 mx-auto mb-4 sm:mb-6 rounded-2xl luxury-shadow bg-gradient-to-br from-pearl-50 to-copper-100 flex items-center justify-center">
                     <div className="text-center">
                       {/* Bottle Design - Scaled for Mobile */}
                       <div className="w-16 sm:w-20 h-24 sm:h-32 mx-auto mb-3 sm:mb-4 relative">
-                        <div className="absolute inset-0 copper-gradient rounded-2xl opacity-90"></div>
+                        <div className="absolute inset-0 copper-gradient rounded-2xl opacity-90 luxury-shadow"></div>
                         <div className="absolute top-1 sm:top-2 left-1/2 transform -translate-x-1/2 w-4 sm:w-6 h-3 sm:h-4 bg-clay-600 rounded-t-lg"></div>
                         <div className="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 text-xs font-serif text-white">
                           Perle d'Atlas
@@ -185,9 +200,12 @@ const Hero = () => {
                     <h3 className="font-serif text-lg sm:text-xl font-semibold text-clay-800 mb-2">
                       {language === 'fr' ? 'Huile d\'Argan Précieuse' : 'Precious Argan Oil'}
                     </h3>
-                    <p className="text-clay-600 text-sm elegant-text">
+                    <p className="text-clay-600 text-sm elegant-text mb-2">
                       {language === 'fr' ? 'Élixir de beauté ancestrale' : 'Ancestral beauty elixir'}
                     </p>
+                    <div className="text-xs text-copper-600 font-medium">
+                      {language === 'fr' ? 'Récolte Saisonnière • Atlas' : 'Seasonal Harvest • Atlas'}
+                    </div>
                   </div>
                 </div>
               </div>
