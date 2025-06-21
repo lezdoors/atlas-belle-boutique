@@ -23,34 +23,35 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [showChatbot, setShowChatbot] = useState(false);
+  const [hasStartedConversation, setHasStartedConversation] = useState(false);
+  const [showFallbackActions, setShowFallbackActions] = useState(false);
   const { language } = useLanguage();
 
-  // Supabase media URLs for enhanced responses
+  // Fixed Supabase media URLs
   const mediaAssets = {
-    logo: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/397b8d88-7594-4433-8004-050f047a13b6.png",
+    logo: "/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png",
     products: [
-      "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
-      "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png",
-      "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png"
+      "/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
+      "/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png",
+      "/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png"
     ],
     ingredients: [
-      "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/4d22e63c-9766-4547-889d-0462b7de47e6.png",
-      "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/616bba28-fbf7-4dfb-bae7-e036ccd1e78b.png"
+      "/lovable-uploads/4d22e63c-9766-4547-889d-0462b7de47e6.png",
+      "/lovable-uploads/616bba28-fbf7-4dfb-bae7-e036ccd1e78b.png"
     ],
     artisans: [
-      "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/6d0913b6-03ca-40b5-9002-ea188762b64f.png",
-      "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/6fde7854-c65c-40e6-8df6-8d9ca69c3fc8.png"
+      "/lovable-uploads/6d0913b6-03ca-40b5-9002-ea188762b64f.png",
+      "/lovable-uploads/6fde7854-c65c-40e6-8df6-8d9ca69c3fc8.png"
     ],
     lifestyle: [
-      "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/754f1a74-0a9c-4277-8cff-2105a643bcf8.png",
-      "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/78b2a27c-3352-460a-b4bb-78efaec79db3.png"
+      "/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png",
+      "/lovable-uploads/78b2a27c-3352-460a-b4bb-78efaec79db3.png"
     ]
   };
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
-    // Show chatbot after video ends or after 9 seconds timeout
     if (videoEnded) {
       timeoutId = setTimeout(() => {
         setShowChatbot(true);
@@ -68,20 +69,21 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
     };
   }, [videoEnded]);
 
-  // Enhanced language detection with more keywords
   const detectLanguage = (text: string): 'fr' | 'en' => {
     const frenchWords = [
       'bonjour', 'salut', 'merci', 'comment', 'parler', 'français', 'produit', 'aide', 'conseil',
       'argan', 'huile', 'beauté', 'peau', 'visage', 'cheveux', 'naturel', 'bio', 'maroc',
       'tradition', 'ancestral', 'rituel', 'soin', 'cosmétique', 'luxe', 'artisan', 'berbère',
-      'commande', 'livraison', 'prix', 'collection', 'routine', 'recommandation'
+      'commande', 'livraison', 'prix', 'collection', 'routine', 'recommandation', 'échantillon',
+      'grossiste', 'professionnel', 'expédition'
     ];
     
     const englishWords = [
       'hello', 'hi', 'thank', 'how', 'help', 'product', 'advice', 'english',
       'argan', 'oil', 'beauty', 'skin', 'face', 'hair', 'natural', 'organic', 'morocco',
       'tradition', 'ancestral', 'ritual', 'care', 'cosmetic', 'luxury', 'artisan', 'berber',
-      'order', 'shipping', 'price', 'collection', 'routine', 'recommendation'
+      'order', 'shipping', 'price', 'collection', 'routine', 'recommendation', 'sample',
+      'wholesale', 'professional'
     ];
     
     const lowerText = text.toLowerCase();
@@ -91,15 +93,15 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
     return frenchMatches > englishMatches ? 'fr' : 'en';
   };
 
-  // Enhanced response generation with media integration
   const generateResponse = (userMessage: string, detectedLang: 'fr' | 'en'): Message => {
     const lowerMessage = userMessage.toLowerCase();
+    setShowFallbackActions(false); // Reset fallback state
     
     if (detectedLang === 'fr') {
-      // Product inquiries
-      if (lowerMessage.includes('produit') || lowerMessage.includes('huile') || lowerMessage.includes('argan')) {
+      // Argan oil inquiries with warm Moroccan tone
+      if (lowerMessage.includes('argan') || lowerMessage.includes('huile')) {
         return {
-          text: "Nos huiles d'argan sont extraites à la main par nos artisanes berbères. Voici notre collection premium :",
+          text: "Ah, l'huile d'argan ! C'est notre trésor du Sud marocain 🌟 Nos artisanes berbères l'extraient avec patience selon des méthodes ancestrales. Riche en vitamine E et acides gras, elle nourrit votre peau comme une caresse du désert. Chaque goutte raconte l'histoire de nos arganiers centenaires !",
           isUser: false,
           language: detectedLang,
           image: mediaAssets.products[0]
@@ -109,7 +111,7 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
       // Artisan and tradition inquiries
       if (lowerMessage.includes('artisan') || lowerMessage.includes('tradition') || lowerMessage.includes('berbère')) {
         return {
-          text: "Nos artisanes berbères perpétuent des traditions millénaires. Chaque produit raconte une histoire authentique du Maroc.",
+          text: "Nos artisanes berbères sont les gardiennes de secrets millénaires ✨ Dans les villages de l'Atlas, de mère en fille, elles transmettent l'art de sublimer les trésors de notre terre. Chaque geste est empreint de sagesse ancestrale, chaque produit porte leur âme généreuse.",
           isUser: false,
           language: detectedLang,
           image: mediaAssets.artisans[0]
@@ -119,27 +121,45 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
       // Ingredients inquiries
       if (lowerMessage.includes('ingrédient') || lowerMessage.includes('naturel') || lowerMessage.includes('bio')) {
         return {
-          text: "Nos ingrédients sont 100% naturels, récoltés dans les régions authentiques du Maroc. Découvrez notre carte des origines !",
+          text: "Nos ingrédients sont cueillis avec respect dans les jardins secrets du Maroc 🌿 Du ghassoul volcanique de l'Atlas aux roses de Dadès, chaque élément est choisi pour sa pureté et son authenticité. La nature marocaine nous offre ses plus beaux présents !",
           isUser: false,
           language: detectedLang,
           image: mediaAssets.ingredients[0]
         };
       }
       
-      // Ritual and routine inquiries
+      // Ritual inquiries with detailed guidance
       if (lowerMessage.includes('ritual') || lowerMessage.includes('routine') || lowerMessage.includes('soin')) {
         return {
-          text: "Voici notre rituel signature inspiré des traditions marocaines : nettoyage au ghassoul, tonification à l'eau de rose, hydratation à l'huile d'argan. Un voyage sensoriel unique !",
+          text: "Voici notre rituel signature 'Hammam Royal' 👑 : 1) Purification au ghassoul pour libérer votre peau, 2) Tonification à l'eau de rose de Dadès pour révéler votre éclat, 3) Nourrissement à l'huile d'argan pour une douceur incomparable. Un voyage sensoriel inspiré de nos traditions !",
           isUser: false,
           language: detectedLang,
           image: mediaAssets.lifestyle[0]
         };
       }
       
-      // Order and shipping
-      if (lowerMessage.includes('commande') || lowerMessage.includes('livraison') || lowerMessage.includes('acheter')) {
+      // Shipping and samples
+      if (lowerMessage.includes('livraison') || lowerMessage.includes('expédition') || lowerMessage.includes('échantillon')) {
         return {
-          text: "Je peux vous guider pour votre commande ! Pour un service personnalisé et un suivi direct, connectons-nous via WhatsApp. Notre équipe vous accompagnera avec plaisir.",
+          text: "Pour la livraison et les échantillons, je vous connecte directement avec notre équipe spécialisée ! Ils vous proposeront les meilleures options selon votre localisation et vos besoins. Un service personnalisé comme dans les souks de Marrakech ! 📦✨",
+          isUser: false,
+          language: detectedLang
+        };
+      }
+      
+      // Wholesale inquiries
+      if (lowerMessage.includes('grossiste') || lowerMessage.includes('professionnel') || lowerMessage.includes('revendeur')) {
+        return {
+          text: "Magnifique ! Vous souhaitez devenir partenaire de Perle d'Atlas ! 🤝 Nos équipes commerciales seront ravies de vous accompagner. Connectons-nous via WhatsApp pour discuter de nos conditions privilégiées et découvrir nos collections professionnelles.",
+          isUser: false,
+          language: detectedLang
+        };
+      }
+      
+      // Order and purchase
+      if (lowerMessage.includes('commande') || lowerMessage.includes('acheter') || lowerMessage.includes('prix')) {
+        return {
+          text: "Avec plaisir ! Pour vous offrir un accompagnement personnalisé et des conseils sur mesure, notre équipe vous attend sur WhatsApp 💎 Vous bénéficierez d'un service privilégié et de recommandations adaptées à vos besoins uniques.",
           isUser: false,
           language: detectedLang
         };
@@ -148,24 +168,24 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
       // WhatsApp redirect
       if (lowerMessage.includes('whatsapp') || lowerMessage.includes('contact') || lowerMessage.includes('parler')) {
         return {
-          text: "Parfait ! Je vous redirige vers WhatsApp pour un échange direct avec notre équipe spécialisée. Vous aurez des conseils personnalisés et un suivi privilégié.",
+          text: "Parfait ! Je vous redirige vers WhatsApp pour un échange chaleureux avec notre équipe 🌸 Vous aurez des conseils personnalisés et un accompagnement privilégié dans votre découverte de nos trésors marocains !",
           isUser: false,
           language: detectedLang
         };
       }
       
-      // Default welcome message
+      // Fallback response with escalation
+      setShowFallbackActions(true);
       return {
-        text: "Bienvenue chez Perle d'Atlas ! 🌟 Je suis Samra, votre guide beauté. Je peux vous aider avec : ✨ Découverte de nos produits, 💆‍♀️ Conseils rituels personnalisés, 🛒 Accompagnement commande, 📱 Contact WhatsApp direct. Que souhaitez-vous explorer ?",
+        text: "Je n'ai pas bien compris, mais vous pouvez me poser une autre question ou me contacter directement sur WhatsApp pour un accompagnement personnalisé ! 😊",
         isUser: false,
-        language: detectedLang,
-        image: mediaAssets.logo
+        language: detectedLang
       };
     } else {
-      // English responses
-      if (lowerMessage.includes('product') || lowerMessage.includes('argan') || lowerMessage.includes('oil')) {
+      // English responses with warm tone
+      if (lowerMessage.includes('argan') || lowerMessage.includes('oil')) {
         return {
-          text: "Our argan oils are hand-extracted by our Berber artisans. Here's our premium collection:",
+          text: "Ah, argan oil! Our liquid gold from the Moroccan South 🌟 Our Berber artisans extract it with patience using ancestral methods. Rich in vitamin E and fatty acids, it nourishes your skin like a desert caress. Each drop tells the story of our century-old argan trees!",
           isUser: false,
           language: detectedLang,
           image: mediaAssets.products[1]
@@ -174,7 +194,7 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
       
       if (lowerMessage.includes('artisan') || lowerMessage.includes('tradition') || lowerMessage.includes('berber')) {
         return {
-          text: "Our Berber artisans perpetuate thousand-year-old traditions. Each product tells an authentic story of Morocco.",
+          text: "Our Berber artisans are the guardians of thousand-year secrets ✨ In Atlas villages, from mother to daughter, they pass down the art of enhancing our land's treasures. Each gesture carries ancestral wisdom, each product bears their generous soul.",
           isUser: false,
           language: detectedLang,
           image: mediaAssets.artisans[1]
@@ -183,7 +203,7 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
       
       if (lowerMessage.includes('ingredient') || lowerMessage.includes('natural') || lowerMessage.includes('organic')) {
         return {
-          text: "Our ingredients are 100% natural, harvested from authentic Moroccan regions. Discover our origin map!",
+          text: "Our ingredients are respectfully harvested from Morocco's secret gardens 🌿 From volcanic Atlas ghassoul to Dadès roses, each element is chosen for its purity and authenticity. Moroccan nature offers us its most beautiful gifts!",
           isUser: false,
           language: detectedLang,
           image: mediaAssets.ingredients[1]
@@ -192,16 +212,32 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
       
       if (lowerMessage.includes('ritual') || lowerMessage.includes('routine') || lowerMessage.includes('care')) {
         return {
-          text: "Here's our signature ritual inspired by Moroccan traditions: ghassoul cleansing, rose water toning, argan oil moisturizing. A unique sensory journey!",
+          text: "Here's our signature 'Royal Hammam' ritual 👑: 1) Purification with ghassoul to free your skin, 2) Toning with Dadès rose water to reveal your radiance, 3) Nourishing with argan oil for incomparable softness. A sensory journey inspired by our traditions!",
           isUser: false,
           language: detectedLang,
           image: mediaAssets.lifestyle[1]
         };
       }
       
-      if (lowerMessage.includes('order') || lowerMessage.includes('shipping') || lowerMessage.includes('buy')) {
+      if (lowerMessage.includes('shipping') || lowerMessage.includes('sample')) {
         return {
-          text: "I can guide you with your order! For personalized service and direct follow-up, let's connect via WhatsApp. Our team will assist you with pleasure.",
+          text: "For shipping and samples, I'll connect you directly with our specialized team! They'll offer you the best options according to your location and needs. Personalized service like in Marrakech souks! 📦✨",
+          isUser: false,
+          language: detectedLang
+        };
+      }
+      
+      if (lowerMessage.includes('wholesale') || lowerMessage.includes('professional') || lowerMessage.includes('reseller')) {
+        return {
+          text: "Wonderful! You want to become a Perle d'Atlas partner! 🤝 Our commercial teams will be delighted to support you. Let's connect via WhatsApp to discuss our privileged conditions and discover our professional collections.",
+          isUser: false,
+          language: detectedLang
+        };
+      }
+      
+      if (lowerMessage.includes('order') || lowerMessage.includes('buy') || lowerMessage.includes('price')) {
+        return {
+          text: "With pleasure! To offer you personalized support and tailored advice, our team awaits you on WhatsApp 💎 You'll benefit from privileged service and recommendations adapted to your unique needs.",
           isUser: false,
           language: detectedLang
         };
@@ -209,23 +245,27 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
       
       if (lowerMessage.includes('whatsapp') || lowerMessage.includes('contact') || lowerMessage.includes('speak')) {
         return {
-          text: "Perfect! I'll redirect you to WhatsApp for direct exchange with our specialized team. You'll get personalized advice and privileged follow-up.",
+          text: "Perfect! I'll redirect you to WhatsApp for a warm exchange with our team 🌸 You'll get personalized advice and privileged support in discovering our Moroccan treasures!",
           isUser: false,
           language: detectedLang
         };
       }
       
+      // Fallback response
+      setShowFallbackActions(true);
       return {
-        text: "Welcome to Perle d'Atlas! 🌟 I'm Samra, your beauty guide. I can help with: ✨ Product discovery, 💆‍♀️ Personalized ritual advice, 🛒 Order assistance, 📱 Direct WhatsApp contact. What would you like to explore?",
+        text: "I didn't quite understand, but you can ask me another question or contact me directly on WhatsApp for personalized assistance! 😊",
         isUser: false,
-        language: detectedLang,
-        image: mediaAssets.logo
+        language: detectedLang
       };
     }
   };
 
   const handleSendMessage = () => {
     if (!message.trim()) return;
+    
+    // Mark that conversation has started
+    setHasStartedConversation(true);
     
     const detectedLang = detectLanguage(message);
     const newUserMessage: Message = { text: message, isUser: true, language: detectedLang };
@@ -245,6 +285,8 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
 
   const handleQuickActionClick = (actionMessage: string) => {
     setMessage(actionMessage);
+    setHasStartedConversation(true); // Hide quick actions
+    
     const detectedLang = detectLanguage(actionMessage);
     const newUserMessage: Message = { text: actionMessage, isUser: true, language: detectedLang };
     const response = generateResponse(actionMessage, detectedLang);
@@ -281,6 +323,8 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
           language={language}
           onQuickActionClick={handleQuickActionClick}
           onWhatsAppRedirect={handleWhatsAppRedirect}
+          showQuickActions={!hasStartedConversation}
+          showFallbackActions={showFallbackActions}
         />
       </ChatWindow>
     </>
