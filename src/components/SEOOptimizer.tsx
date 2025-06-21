@@ -13,6 +13,7 @@ const SEOOptimizer = ({
   title = "Perle d'Atlas - Cosmétiques de Luxe Marocains | Tradition & Élégance",
   description = "Découvrez Perle d'Atlas, la marque de cosmétiques de luxe marocains. Produits artisanaux authentiques alliant traditions ancestrales et élégance moderne.",
   image = "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/397b8d88-7594-4433-8004-050f047a13b6.png",
+  url,
   type = "website"
 }: SEOOptimizerProps) => {
   const currentUrl = url || `${window.location.origin}${window.location.pathname}`;
