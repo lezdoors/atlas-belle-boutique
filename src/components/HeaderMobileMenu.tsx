@@ -1,75 +1,74 @@
 
-import { User } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import LanguageDropdown from '@/components/LanguageDropdown';
 import { useLanguage } from '@/contexts/LanguageContext';
-import CulturalNavigation from '@/components/CulturalNavigation';
 
 interface HeaderMobileMenuProps {
   isMenuOpen: boolean;
   setIsMenuOpen: (open: boolean) => void;
 }
 
-const HeaderMobileMenu: React.FC<HeaderMobileMenuProps> = ({
-  isMenuOpen,
-  setIsMenuOpen
-}) => {
+const HeaderMobileMenu = ({ isMenuOpen, setIsMenuOpen }: HeaderMobileMenuProps) => {
   const { language } = useLanguage();
 
-  const categories = language === 'fr' 
-    ? [
-        { name: 'Boutique', href: '/boutique' },
-        { name: 'Régions', href: '/regions' },
-        { name: 'Rituels', href: '/rituels' },
-        { name: 'Ingrédients', href: '/ingredients' },
-        { name: 'À propos', href: '/a-propos' },
-        { name: 'Contact', href: '/contact' },
-      ]
-    : [
-        { name: 'Shop', href: '/boutique' },
-        { name: 'Regions', href: '/regions' },
-        { name: 'Rituals', href: '/rituels' },
-        { name: 'Ingredients', href: '/ingredients' },
-        { name: 'About', href: '/a-propos' },
-        { name: 'Contact', href: '/contact' },
-      ];
+  const navItems = [
+    { href: '/', label: language === 'fr' ? 'Accueil' : 'Home' },
+    { href: '/boutique', label: language === 'fr' ? 'Boutique' : 'Shop' },
+    { href: '/rituels', label: language === 'fr' ? 'Rituels' : 'Rituals' },
+    { href: '/programme-fidelite', label: language === 'fr' ? 'Programme Fidélité' : 'Loyalty Program' },
+    { href: '/regions', label: language === 'fr' ? 'Régions' : 'Regions' },
+    { href: '/ingredients', label: language === 'fr' ? 'Ingrédients' : 'Ingredients' },
+    { href: '/about', label: language === 'fr' ? 'À propos' : 'About' },
+    { href: '/contact', label: 'Contact' }
+  ];
 
   if (!isMenuOpen) return null;
 
   return (
-    <div className="lg:hidden bg-white border-t border-sand-200 animate-fade-in">
-      <div className="container mx-auto px-4 py-6">
-        <nav className="space-y-6">
-          {/* Cultural Navigation for Mobile */}
-          <div className="pb-4 border-b border-sand-100">
-            <CulturalNavigation />
+    <div className="lg:hidden">
+      {/* Backdrop */}
+      <div 
+        className="fixed inset-0 bg-black/50 z-40"
+        onClick={() => setIsMenuOpen(false)}
+      />
+      
+      {/* Menu Panel */}
+      <div className="fixed top-0 right-0 h-full w-80 bg-white z-50 luxury-shadow animate-slide-in-right">
+        <div className="p-6">
+          {/* Close Button */}
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="font-display font-bold text-xl text-clay-800">Menu</h2>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMenuOpen(false)}
+              className="hover:bg-pearl-100"
+            >
+              <X className="h-5 w-5" />
+            </Button>
           </div>
 
-          {/* Main Categories */}
-          <div className="space-y-4">
-            {categories.map((category) => (
+          {/* Navigation Links */}
+          <nav className="space-y-4 mb-8">
+            {navItems.map((item) => (
               <Link
-                key={category.name}
-                to={category.href}
-                className="block text-sand-700 hover:text-amber-600 transition-colors duration-200 font-medium py-3 text-lg border-b border-sand-100 last:border-0"
+                key={item.href}
+                to={item.href}
                 onClick={() => setIsMenuOpen(false)}
+                className="block py-3 px-4 text-clay-700 hover:text-copper-600 hover:bg-pearl-50 rounded-lg transition-colors font-medium"
               >
-                {category.name}
+                {item.label}
               </Link>
             ))}
-          </div>
+          </nav>
 
-          {/* Account Section */}
-          <div className="pt-6 border-t border-sand-200">
-            <Link
-              to="/compte"
-              className="flex items-center text-sand-700 hover:text-amber-600 transition-colors duration-200 font-medium py-3 text-lg"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <User className="h-5 w-5 mr-3" />
-              {language === 'fr' ? 'Mon compte' : 'My account'}
-            </Link>
+          {/* Language Dropdown */}
+          <div className="pt-6 border-t border-pearl-200">
+            <LanguageDropdown />
           </div>
-        </nav>
+        </div>
       </div>
     </div>
   );

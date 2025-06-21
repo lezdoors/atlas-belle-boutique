@@ -1,45 +1,56 @@
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
-import CulturalNavigation from '@/components/CulturalNavigation';
 
 const HeaderNavigation = () => {
   const { language } = useLanguage();
+  const location = useLocation();
 
-  const categories = language === 'fr' 
-    ? [
-        { name: 'Boutique', href: '/boutique' },
-        { name: 'Régions', href: '/regions' },
-        { name: 'Rituels', href: '/rituels' },
-        { name: 'Ingrédients', href: '/ingredients' },
-        { name: 'À propos', href: '/a-propos' },
-      ]
-    : [
-        { name: 'Shop', href: '/boutique' },
-        { name: 'Regions', href: '/regions' },
-        { name: 'Rituals', href: '/rituels' },
-        { name: 'Ingredients', href: '/ingredients' },
-        { name: 'About', href: '/a-propos' },
-      ];
+  const navItems = [
+    { 
+      href: '/boutique', 
+      label: language === 'fr' ? 'Boutique' : 'Shop' 
+    },
+    { 
+      href: '/rituels', 
+      label: language === 'fr' ? 'Rituels' : 'Rituals' 
+    },
+    { 
+      href: '/programme-fidelite', 
+      label: language === 'fr' ? 'Programme Fidélité' : 'Loyalty Program' 
+    },
+    { 
+      href: '/regions', 
+      label: language === 'fr' ? 'Régions' : 'Regions' 
+    },
+    { 
+      href: '/ingredients', 
+      label: language === 'fr' ? 'Ingrédients' : 'Ingredients' 
+    },
+    { 
+      href: '/about', 
+      label: language === 'fr' ? 'À propos' : 'About' 
+    },
+    { 
+      href: '/contact', 
+      label: 'Contact' 
+    }
+  ];
 
   return (
-    <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-      <CulturalNavigation />
-      {categories.map((category) => (
+    <nav className="hidden lg:flex items-center space-x-8">
+      {navItems.map((item) => (
         <Link
-          key={category.name}
-          to={category.href}
-          className="text-sand-700 hover:text-amber-600 transition-colors duration-200 font-medium text-sm xl:text-base"
+          key={item.href}
+          to={item.href}
+          className={`text-sm font-medium transition-colors hover:text-copper-600 relative group ${
+            location.pathname === item.href ? 'text-copper-600' : 'text-clay-700'
+          }`}
         >
-          {category.name}
+          {item.label}
+          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-copper-600 transition-all duration-300 group-hover:w-full"></span>
         </Link>
       ))}
-      <Link
-        to="/contact"
-        className="text-sand-700 hover:text-amber-600 transition-colors duration-200 font-medium text-sm xl:text-base"
-      >
-        {language === 'fr' ? 'Contact' : 'Contact'}
-      </Link>
     </nav>
   );
 };

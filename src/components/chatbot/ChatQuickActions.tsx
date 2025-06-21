@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { ShoppingBag, Heart, HelpCircle, Phone } from 'lucide-react';
+import { ShoppingBag, Heart, HelpCircle, Phone, Crown } from 'lucide-react';
 
 interface ChatQuickActionsProps {
   language: 'fr' | 'en';
@@ -27,6 +27,14 @@ const ChatQuickActions = ({ language, onActionClick, onWhatsAppRedirect }: ChatQ
       }
     },
     {
+      icon: Crown,
+      label: language === 'fr' ? 'Fidélité' : 'Loyalty',
+      action: () => {
+        const msg = language === 'fr' ? 'Comment fonctionne le programme fidélité ?' : 'How does the loyalty program work?';
+        onActionClick(msg);
+      }
+    },
+    {
       icon: HelpCircle,
       label: language === 'fr' ? 'Aide' : 'Help',
       action: () => {
@@ -42,7 +50,7 @@ const ChatQuickActions = ({ language, onActionClick, onWhatsAppRedirect }: ChatQ
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-2 mb-3">
+    <div className="grid grid-cols-5 gap-2 mb-3">
       {quickActions.map((action, index) => (
         <Button
           key={index}
