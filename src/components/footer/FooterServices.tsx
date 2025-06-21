@@ -1,4 +1,5 @@
 
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const FooterServices = () => {
@@ -11,16 +12,17 @@ const FooterServices = () => {
       </h4>
       <ul className="space-y-3">
         {[
-          language === 'fr' ? 'Rituels de beauté' : 'Beauty rituals',
-          language === 'fr' ? 'Conseils personnalisés' : 'Personalized advice',
-          language === 'fr' ? 'Livraison express' : 'Express delivery',
-          language === 'fr' ? 'Échantillons gratuits' : 'Free samples',
-          language === 'fr' ? 'Programme fidélité' : 'Loyalty program'
+          { name: language === 'fr' ? 'Quiz Peau' : 'Skin Quiz', href: '/quiz-peau' },
+          { name: language === 'fr' ? 'Programme Fidélité' : 'Loyalty Program', href: '/programme-fidelite' },
+          { name: language === 'fr' ? 'Professionnels' : 'Professionals', href: '/professionnels' },
+          { name: language === 'fr' ? 'Grossistes' : 'Wholesalers', href: '/grossistes' },
+          { name: language === 'fr' ? 'Blog' : 'Blog', href: '/blog' },
+          { name: language === 'fr' ? 'Contact' : 'Contact', href: '/contact' }
         ].map((item) => (
-          <li key={item}>
-            <a href="#" className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
-              {item}
-            </a>
+          <li key={item.name}>
+            <Link to={item.href} className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
+              {item.name}
+            </Link>
           </li>
         ))}
       </ul>

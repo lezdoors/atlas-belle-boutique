@@ -57,6 +57,48 @@ export type Database = {
         }
         Relationships: []
       }
+      wholesale_leads: {
+        Row: {
+          address: string
+          business_type: string
+          company_name: string
+          contact_name: string
+          created_at: string
+          email: string
+          id: string
+          message: string | null
+          phone: string
+          products_interest: string
+          website: string | null
+        }
+        Insert: {
+          address: string
+          business_type: string
+          company_name: string
+          contact_name: string
+          created_at?: string
+          email: string
+          id?: string
+          message?: string | null
+          phone: string
+          products_interest: string
+          website?: string | null
+        }
+        Update: {
+          address?: string
+          business_type?: string
+          company_name?: string
+          contact_name?: string
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string | null
+          phone?: string
+          products_interest?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
