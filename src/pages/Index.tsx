@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import ShopByRegion from '@/components/ShopByRegion';
@@ -16,9 +17,30 @@ import FloatingCart from '@/components/FloatingCart';
 import OurArtisans from '@/components/OurArtisans';
 import IngredientOriginMap from '@/components/IngredientOriginMap';
 import PullToRefresh from '@/components/PullToRefresh';
+import LogoLoadingAnimation from '@/components/LogoLoadingAnimation';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
 const Index = () => {
+  const [showLoading, setShowLoading] = useState(true);
+  const [hasShownLoading, setHasShownLoading] = useState(false);
+
+  useEffect(() => {
+    // Show loading animation only once per session
+    const hasSeenLoading = sessionStorage.getItem('perle-loading-shown');
+    if (hasSeenLoading) {
+      setShowLoading(false);
+    } else {
+      setHasShownLoading(true);
+    }
+  }, []);
+
+  const handleLoadingComplete = () => {
+    setShowLoading(false);
+    if (hasShownLoading) {
+      sessionStorage.setItem('perle-loading-shown', 'true');
+    }
+  };
+
   const handleRefresh = async () => {
     // Simulate refresh action
     await new Promise(resolve => setTimeout(resolve, 1000));
@@ -30,7 +52,6 @@ const Index = () => {
     // Update page title
     document.title = 'Perle d\'Atlas - Cosmétiques de Luxe Marocains | Tradition & Élégance';
     
-    // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', 'Découvrez Perle d\'Atlas, la marque de cosmétiques de luxe marocains. Produits artisanaux authentiques alliant traditions ancestrales et élégance moderne. Huiles d\'argan, soins naturels du Maroc.');
@@ -41,7 +62,6 @@ const Index = () => {
       document.head.appendChild(meta);
     }
 
-    // Add Open Graph tags
     const ogTags = [
       { property: 'og:title', content: 'Perle d\'Atlas - Cosmétiques de Luxe Marocains' },
       { property: 'og:description', content: 'Découvrez nos produits de beauté artisanaux du Maroc, alliant traditions ancestrales et élégance contemporaine.' },
@@ -67,14 +87,13 @@ const Index = () => {
       }
     });
 
-    // Add structured data for better SEO
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Perle d'Atlas",
       "description": "Marque de cosmétiques de luxe marocains",
       "url": window.location.origin,
-      "logo": `${window.location.origin}/lovable-uploads/logo.png`,
+      "logo": `${window.location.origin}/favicon.svg`,
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+212-524-123-456",
@@ -88,7 +107,6 @@ const Index = () => {
     document.head.appendChild(script);
 
     return () => {
-      // Cleanup function to remove added elements when component unmounts
       const addedElements = document.querySelectorAll('meta[data-added="true"], script[type="application/ld+json"]');
       addedElements.forEach(el => el.remove());
     };
@@ -96,6 +114,10 @@ const Index = () => {
 
   return (
     <LanguageProvider>
+      {showLoading && (
+        <LogoLoadingAnimation onComplete={handleLoadingComplete} />
+      )}
+      
       <PullToRefresh onRefresh={handleRefresh}>
         <div className="min-h-screen bg-pearl-50">
           <Header />

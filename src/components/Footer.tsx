@@ -1,7 +1,7 @@
-
 import { Mail, Map, User, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import PerleAtlasLogo from '@/components/PerleAtlasLogo';
 
 const Footer = () => {
   const { language } = useLanguage();
@@ -22,17 +22,32 @@ const Footer = () => {
         {/* Main Footer */}
         <div className="container mx-auto px-4 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-            {/* Brand */}
+            {/* Brand with Logo */}
             <div className="lg:col-span-2">
-              <h3 className="text-2xl font-serif font-bold text-amber-400 mb-4">
-                Perle d'Atlas
-              </h3>
+              <div className="flex items-center mb-6">
+                <PerleAtlasLogo 
+                  size="small" 
+                  variant="light"
+                  className="mr-4"
+                />
+                <div>
+                  <h3 className="text-xl font-serif font-bold text-amber-400">
+                    Perle d'Atlas
+                  </h3>
+                  <div className="text-sm text-sand-400 font-serif italic">
+                    Authenticité & Élégance
+                  </div>
+                </div>
+              </div>
+              
               <p className="text-sand-300 mb-6 leading-relaxed">
                 {language === 'fr'
                   ? 'La beauté ancestrale du Maroc, réinventée pour la femme moderne. Découvrez nos rituels authentiques inspirés des traditions séculaires.'
                   : 'The ancestral beauty of Morocco, reinvented for the modern woman. Discover our authentic rituals inspired by centuries-old traditions.'
                 }
               </p>
+              
+              {/* Social Media Icons */}
               <div className="flex space-x-4">
                 <div className="w-10 h-10 bg-amber-600 rounded-full flex items-center justify-center hover:bg-amber-500 transition-colors cursor-pointer">
                   <User className="h-5 w-5 text-white" />
@@ -159,8 +174,15 @@ const Footer = () => {
         <div className="border-t border-sand-700">
           <div className="container mx-auto px-4 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center text-sm text-sand-400">
-              <div className="mb-4 md:mb-0">
-                © 2024 Perle d'Atlas. {language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}
+              <div className="mb-4 md:mb-0 flex items-center">
+                <PerleAtlasLogo 
+                  size="favicon" 
+                  variant="watermark"
+                  className="mr-3 opacity-60"
+                />
+                <span>
+                  © 2024 Perle d'Atlas. {language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}
+                </span>
               </div>
               <div className="flex space-x-6">
                 <span>{language === 'fr' ? 'Paiement sécurisé' : 'Secure payment'}</span>

@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Star, ShoppingCart, Eye, Plus } from 'lucide-react';
@@ -9,6 +8,7 @@ import ProductBadge from '@/components/ProductBadge';
 import WishlistButton from '@/components/WishlistButton';
 import QuickViewModal from '@/components/QuickViewModal';
 import SwipeableGallery from '@/components/SwipeableGallery';
+import PerleAtlasLogo from './PerleAtlasLogo';
 
 interface Product {
   id: number;
@@ -83,6 +83,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             type={product.badge.type} 
             discount={product.badge.type === 'discount' ? 25 : undefined}
           />
+
+          {/* Authenticity Seal */}
+          <div className="absolute bottom-3 left-3 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+            <PerleAtlasLogo 
+              size="favicon" 
+              variant="watermark"
+              className="bg-white/90 rounded-full p-1"
+            />
+          </div>
 
           {/* Enhanced Action Buttons - More Touch-Friendly */}
           <div className="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">

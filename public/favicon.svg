@@ -1,0 +1,29 @@
+
+<svg width="32" height="32" viewBox="0 0 400 266" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark Background -->
+  <rect width="400" height="266" fill="#1a1a1a" rx="8" />
+  
+  <!-- Ornate Border -->
+  <rect x="10" y="10" width="380" height="246" fill="none" stroke="#B8860B" stroke-width="2" rx="4" />
+  
+  <!-- Atlas Mountains -->
+  <g fill="#B8860B">
+    <!-- Mountain Range Background -->
+    <path d="M100 120 L140 60 L180 90 L220 40 L260 75 L300 55 L340 95 L380 85 L380 140 L100 140 Z" opacity="0.6" />
+    
+    <!-- Main Mountain Peaks -->
+    <path d="M120 130 L160 70 L200 100 L240 50 L280 85 L320 65 L360 105 L360 130 Z" />
+  </g>
+  
+  <!-- Brand Text "Perle d'Atlas" -->
+  <text x="200" y="180" text-anchor="middle" font-size="24" font-family="serif" font-style="italic" font-weight="bold" fill="#B8860B">
+    Perle d'Atlas
+  </text>
+  
+  <!-- Decorative Underline -->
+  <line x1="140" y1="190" x2="260" y2="190" stroke="#B8860B" stroke-width="1" />
+  
+  <!-- Small Decorative Dots -->
+  <circle cx="135" cy="190" r="2" fill="#B8860B" />
+  <circle cx="265" cy="190" r="2" fill="#B8860B" />
+</svg>
