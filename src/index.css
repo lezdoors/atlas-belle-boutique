@@ -4,8 +4,43 @@
 @import './styles/components.css';
 @import './styles/animations.css';
 @import './styles/typography.css';
+@import './styles/mobile.css';
 
 /* Tailwind CSS imports */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Enhanced base styles for better performance and SEO */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+  }
+  
+  body {
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom utilities for better mobile experience */
+@layer utilities {
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+  
+  .contain-layout {
+    contain: layout;
+  }
+  
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+}

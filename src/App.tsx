@@ -6,6 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { SelectionProvider } from "@/contexts/SelectionContext";
+import SEOOptimizer from "@/components/SEOOptimizer";
+import MobileOptimizer from "@/components/MobileOptimizer";
+import PerformanceOptimizer from "@/components/PerformanceOptimizer";
+import SecurityConfig from "@/components/security/SecurityConfig";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -24,7 +28,16 @@ import SkinQuiz from "./pages/SkinQuiz";
 import NotFound from "./pages/NotFound";
 import Wholesale from "./pages/Wholesale";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      gcTime: 10 * 60 * 1000, // 10 minutes
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function App() {
   return (
@@ -33,6 +46,12 @@ function App() {
         <LanguageProvider>
           <CartProvider>
             <SelectionProvider>
+              {/* SEO and Performance Optimizers */}
+              <SEOOptimizer />
+              <MobileOptimizer />
+              <PerformanceOptimizer />
+              <SecurityConfig />
+              
               <Toaster />
               <BrowserRouter>
                 <Routes>
