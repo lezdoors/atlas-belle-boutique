@@ -75,7 +75,7 @@ const Hero = () => {
             setVideoLoaded(true);
           }}
         >
-          <source src="https://atlas-belle-boutique.lovable.app/perle-datlas-hero.mp4" type="video/mp4" />
+          <source src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/videos/perle-datlas-hero.mp4" type="video/mp4" />
         </video>
       )}
 
@@ -101,7 +101,7 @@ const Hero = () => {
       )}
 
       {/* Dark Overlay for Readability */}
-      <div className="absolute inset-0 bg-black/30 z-10"></div>
+      <div className="absolute inset-0 bg-black/40 z-10"></div>
 
       {/* Floating Decorative Elements - Moroccan inspired */}
       <div className="absolute top-20 left-4 sm:left-10 w-24 sm:w-32 h-24 sm:h-32 rounded-full bg-copper-200 opacity-20 animate-float blur-xl z-30"></div>
@@ -118,24 +118,18 @@ const Hero = () => {
             <div className="inline-flex items-center bg-white/90 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 luxury-shadow">
               <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-copper-600 mr-2" />
               <span className="text-xs sm:text-sm font-medium text-clay-700 tracking-wide">
-                {language === 'fr' ? 'L\'Ancien rencontre le Moderne' : 'Ancient meets Modern'}
+                Traditions Ancestrales • Luxe Moderne
               </span>
             </div>
 
             {/* Main Title with Enhanced Mobile Typography */}
             <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight sm:leading-none text-white mb-4 sm:mb-6 drop-shadow-lg">
-              {language === 'fr' 
-                ? 'Perle d\'Atlas'
-                : 'Perle d\'Atlas'
-              }
+              Perle d'Atlas
             </h1>
             
             {/* Elegant Subtitle - Mobile Optimized */}
             <p className="font-serif text-lg sm:text-xl md:text-2xl leading-relaxed text-pearl-100 max-w-xl mx-auto lg:mx-0 mb-6 sm:mb-8 px-4 sm:px-0 drop-shadow-md">
-              {language === 'fr' 
-                ? 'Rituels ancestraux marocains rencontrent le luxe moderne. Chaque soin raconte l\'histoire de nos artisans.'
-                : 'Ancestral Moroccan rituals meet modern luxury. Each treatment tells the story of our artisans.'
-              }
+              L'art millénaire marocain rencontre l'élégance contemporaine. Chaque produit raconte l'histoire de nos artisans berbères.
             </p>
 
             {/* Enhanced Mobile-First CTA Buttons */}
@@ -145,14 +139,14 @@ const Hero = () => {
                 onClick={scrollToProducts}
                 className="copper-gradient text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium rounded-full hover-scale luxury-shadow border-0 font-sans tracking-wide min-h-[50px] sm:min-h-[56px]"
               >
-                {language === 'fr' ? 'Découvrir nos Rituels' : 'Discover our Rituals'}
+                Découvrir nos Trésors
               </Button>
               <Button 
                 variant="outline" 
                 size="lg"
                 className="bg-white/90 backdrop-blur-sm text-clay-700 border-2 border-white/50 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-medium rounded-full hover:bg-white hover:border-white transition-all duration-300 font-sans tracking-wide min-h-[50px] sm:min-h-[56px]"
               >
-                {language === 'fr' ? 'Notre Histoire' : 'Our Story'}
+                Notre Héritage
               </Button>
             </div>
 
@@ -198,13 +192,13 @@ const Hero = () => {
                   {/* Product Details - Mobile Optimized */}
                   <div className="text-center">
                     <h3 className="font-serif text-lg sm:text-xl font-semibold text-clay-800 mb-2">
-                      {language === 'fr' ? 'Huile d\'Argan Précieuse' : 'Precious Argan Oil'}
+                      Huile d'Argan Précieuse
                     </h3>
                     <p className="text-clay-600 text-sm elegant-text mb-2">
-                      {language === 'fr' ? 'Élixir de beauté ancestrale' : 'Ancestral beauty elixir'}
+                      Élixir de beauté ancestrale
                     </p>
                     <div className="text-xs text-copper-600 font-medium">
-                      {language === 'fr' ? 'Récolte Saisonnière • Atlas' : 'Seasonal Harvest • Atlas'}
+                      Récolte Saisonnière • Atlas
                     </div>
                   </div>
                 </div>
