@@ -1,0 +1,42 @@
+
+@layer components {
+  .moroccan-pattern {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(184, 134, 11, 0.08) 2px, transparent 2px),
+      radial-gradient(circle at 75% 75%, rgba(184, 134, 11, 0.08) 2px, transparent 2px),
+      radial-gradient(circle at 50% 50%, rgba(160, 82, 45, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px, 60px 60px, 30px 30px;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, 
+      rgba(250, 248, 245, 0.95) 0%, 
+      rgba(245, 241, 232, 0.9) 50%, 
+      rgba(184, 134, 11, 0.1) 100%);
+  }
+
+  .copper-gradient {
+    background: linear-gradient(135deg, #B8860B 0%, #A17609 100%);
+  }
+
+  .clay-gradient {
+    background: linear-gradient(135deg, #A0522D 0%, #8B4726 100%);
+  }
+
+  .luxury-shadow {
+    box-shadow: 0 20px 60px rgba(184, 134, 11, 0.15), 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .elegant-border {
+    border-image: linear-gradient(45deg, #B8860B, #F1C660, #B8860B) 1;
+  }
+
+  .hover-scale {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05) translateY(-4px);
+    box-shadow: 0 25px 70px rgba(184, 134, 11, 0.2), 0 12px 30px rgba(0, 0, 0, 0.08);
+  }
+}
