@@ -1,7 +1,11 @@
 
 import { Mail, Map, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
+  const { language } = useLanguage();
+
   return (
     <footer className="bg-sand-800 text-sand-100 relative overflow-hidden">
       {/* Background Pattern */}
@@ -17,8 +21,10 @@ const Footer = () => {
                 Perle d'Atlas
               </h3>
               <p className="text-sand-300 mb-6 leading-relaxed">
-                La beauté ancestrale du Maroc, réinventée pour la femme moderne. 
-                Découvrez nos rituels authentiques inspirés des traditions séculaires.
+                {language === 'fr'
+                  ? 'La beauté ancestrale du Maroc, réinventée pour la femme moderne. Découvrez nos rituels authentiques inspirés des traditions séculaires.'
+                  : 'The ancestral beauty of Morocco, reinvented for the modern woman. Discover our authentic rituals inspired by centuries-old traditions.'
+                }
               </p>
               <div className="flex space-x-4">
                 <div className="w-10 h-10 bg-amber-600 rounded-full flex items-center justify-center hover:bg-amber-500 transition-colors cursor-pointer">
@@ -33,17 +39,23 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Collections */}
+            {/* Navigation */}
             <div>
               <h4 className="text-lg font-serif font-semibold text-amber-400 mb-6">
-                Nos Collections
+                {language === 'fr' ? 'Navigation' : 'Navigation'}
               </h4>
               <ul className="space-y-3">
-                {['Parfums', 'Huiles précieuses', 'Crèmes nourrissantes', 'Masques purifiants', 'Nouveautés'].map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
-                      {item}
-                    </a>
+                {[
+                  { name: language === 'fr' ? 'Boutique' : 'Shop', href: '/boutique' },
+                  { name: language === 'fr' ? 'Régions' : 'Regions', href: '/regions' },
+                  { name: language === 'fr' ? 'Rituels' : 'Rituals', href: '/rituels' },
+                  { name: language === 'fr' ? 'Ingrédients' : 'Ingredients', href: '/ingredients' },
+                  { name: language === 'fr' ? 'À propos' : 'About', href: '/a-propos' }
+                ].map((item) => (
+                  <li key={item.name}>
+                    <Link to={item.href} className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
+                      {item.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -52,15 +64,15 @@ const Footer = () => {
             {/* Services */}
             <div>
               <h4 className="text-lg font-serif font-semibold text-amber-400 mb-6">
-                Services
+                {language === 'fr' ? 'Services' : 'Services'}
               </h4>
               <ul className="space-y-3">
                 {[
-                  'Rituels de beauté',
-                  'Conseils personnalisés',
-                  'Livraison express',
-                  'Échantillons gratuits',
-                  'Programme fidélité'
+                  language === 'fr' ? 'Rituels de beauté' : 'Beauty rituals',
+                  language === 'fr' ? 'Conseils personnalisés' : 'Personalized advice',
+                  language === 'fr' ? 'Livraison express' : 'Express delivery',
+                  language === 'fr' ? 'Échantillons gratuits' : 'Free samples',
+                  language === 'fr' ? 'Programme fidélité' : 'Loyalty program'
                 ].map((item) => (
                   <li key={item}>
                     <a href="#" className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
@@ -74,16 +86,20 @@ const Footer = () => {
             {/* Contact & Legal */}
             <div>
               <h4 className="text-lg font-serif font-semibold text-amber-400 mb-6">
-                Contact & Informations
+                {language === 'fr' ? 'Contact & Informations' : 'Contact & Information'}
               </h4>
               <ul className="space-y-3">
+                <li>
+                  <Link to="/contact" className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
+                    {language === 'fr' ? 'Nous contacter' : 'Contact us'}
+                  </Link>
+                </li>
                 {[
-                  'Nous contacter',
                   'FAQ',
-                  'Livraison & Retours',
+                  language === 'fr' ? 'Livraison & Retours' : 'Shipping & Returns',
                   'CGV',
-                  'Politique de confidentialité',
-                  'Mentions légales'
+                  language === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy',
+                  language === 'fr' ? 'Mentions légales' : 'Legal Notice'
                 ].map((item) => (
                   <li key={item}>
                     <a href="#" className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
@@ -101,14 +117,14 @@ const Footer = () => {
           <div className="container mx-auto px-4 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center text-sm text-sand-400">
               <div className="mb-4 md:mb-0">
-                © 2024 Perle d'Atlas. Tous droits réservés.
+                © 2024 Perle d'Atlas. {language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}
               </div>
               <div className="flex space-x-6">
-                <span>Paiement sécurisé</span>
+                <span>{language === 'fr' ? 'Paiement sécurisé' : 'Secure payment'}</span>
                 <span>•</span>
-                <span>Livraison suivie</span>
+                <span>{language === 'fr' ? 'Livraison suivie' : 'Tracked delivery'}</span>
                 <span>•</span>
-                <span>Service client 7j/7</span>
+                <span>{language === 'fr' ? 'Service client 7j/7' : 'Customer service 24/7'}</span>
               </div>
             </div>
           </div>

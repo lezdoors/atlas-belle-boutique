@@ -1,5 +1,6 @@
 
 import { User } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import CulturalNavigation from '@/components/CulturalNavigation';
 
@@ -16,18 +17,20 @@ const HeaderMobileMenu: React.FC<HeaderMobileMenuProps> = ({
 
   const categories = language === 'fr' 
     ? [
-        { name: 'Parfums', href: '/parfums' },
-        { name: 'Huiles', href: '/huiles' },
-        { name: 'Crèmes', href: '/cremes' },
-        { name: 'Masques', href: '/masques' },
-        { name: 'Nouveautés', href: '/nouveautes' },
+        { name: 'Boutique', href: '/boutique' },
+        { name: 'Régions', href: '/regions' },
+        { name: 'Rituels', href: '/rituels' },
+        { name: 'Ingrédients', href: '/ingredients' },
+        { name: 'À propos', href: '/a-propos' },
+        { name: 'Contact', href: '/contact' },
       ]
     : [
-        { name: 'Perfumes', href: '/perfumes' },
-        { name: 'Oils', href: '/oils' },
-        { name: 'Creams', href: '/creams' },
-        { name: 'Masks', href: '/masks' },
-        { name: 'New Arrivals', href: '/new-arrivals' },
+        { name: 'Shop', href: '/boutique' },
+        { name: 'Regions', href: '/regions' },
+        { name: 'Rituals', href: '/rituels' },
+        { name: 'Ingredients', href: '/ingredients' },
+        { name: 'About', href: '/a-propos' },
+        { name: 'Contact', href: '/contact' },
       ];
 
   if (!isMenuOpen) return null;
@@ -44,34 +47,27 @@ const HeaderMobileMenu: React.FC<HeaderMobileMenuProps> = ({
           {/* Main Categories */}
           <div className="space-y-4">
             {categories.map((category) => (
-              <a
+              <Link
                 key={category.name}
-                href={category.href}
+                to={category.href}
                 className="block text-sand-700 hover:text-amber-600 transition-colors duration-200 font-medium py-3 text-lg border-b border-sand-100 last:border-0"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {category.name}
-              </a>
+              </Link>
             ))}
-            <a
-              href="/rituels"
-              className="block text-sand-700 hover:text-amber-600 transition-colors duration-200 font-medium py-3 text-lg border-b border-sand-100"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {language === 'fr' ? 'Rituels de beauté' : 'Beauty rituals'}
-            </a>
           </div>
 
           {/* Account Section */}
           <div className="pt-6 border-t border-sand-200">
-            <a
-              href="/compte"
+            <Link
+              to="/compte"
               className="flex items-center text-sand-700 hover:text-amber-600 transition-colors duration-200 font-medium py-3 text-lg"
               onClick={() => setIsMenuOpen(false)}
             >
               <User className="h-5 w-5 mr-3" />
               {language === 'fr' ? 'Mon compte' : 'My account'}
-            </a>
+            </Link>
           </div>
         </nav>
       </div>
