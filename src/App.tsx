@@ -1,10 +1,13 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CartProvider } from "@/contexts/CartContext";
 import ErrorBoundary from "@/components/security/ErrorBoundary";
 import SecurityConfig from "@/components/security/SecurityConfig";
+import CartDrawer from "@/components/CartDrawer";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -14,6 +17,7 @@ import ProgrammeFidelite from "./pages/ProgrammeFidelite";
 import ProductDetail from "./pages/ProductDetail";
 import Regions from "./pages/Regions";
 import Ingredients from "./pages/Ingredients";
+import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
 import OrderSuccess from "./pages/OrderSuccess";
 
@@ -36,25 +40,29 @@ const App = () => (
   <ErrorBoundary>
     <SecurityConfig />
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/boutique" element={<Boutique />} />
-            <Route path="/rituels" element={<Rituels />} />
-            <Route path="/programme-fidelite" element={<ProgrammeFidelite />} />
-            <Route path="/produit/:id" element={<ProductDetail />} />
-            <Route path="/regions" element={<Regions />} />
-            <Route path="/ingredients" element={<Ingredients />} />
-            <Route path="/order-success" element={<OrderSuccess />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      <CartProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/boutique" element={<Boutique />} />
+              <Route path="/rituels" element={<Rituels />} />
+              <Route path="/programme-fidelite" element={<ProgrammeFidelite />} />
+              <Route path="/produit/:id" element={<ProductDetail />} />
+              <Route path="/regions" element={<Regions />} />
+              <Route path="/ingredients" element={<Ingredients />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/order-success" element={<OrderSuccess />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <CartDrawer />
+          </BrowserRouter>
+        </TooltipProvider>
+      </CartProvider>
     </QueryClientProvider>
   </ErrorBoundary>
 );

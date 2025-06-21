@@ -1,77 +1,72 @@
 
-import { User, ShoppingCart, Search as SearchIcon, Menu, X } from 'lucide-react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import SearchBar from '@/components/SearchBar';
+import { Badge } from '@/components/ui/badge';
+import { Heart, ShoppingCart, User } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useCart } from '@/contexts/CartContext';
 import LanguageDropdown from '@/components/LanguageDropdown';
+import MobileSearch from '@/components/MobileSearch';
 
-interface HeaderActionsProps {
-  isMenuOpen: boolean;
-  setIsMenuOpen: (open: boolean) => void;
-  setShowMobileSearch: (show: boolean) => void;
-  handleSearch: (query: string) => void;
-}
+const HeaderActions = () => {
+  const { language } = useLanguage();
+  const { totalItems, openCart } = useCart();
+  const [wishlistCount] = useState(0); // TODO: Implement wishlist context
 
-const HeaderActions: React.FC<HeaderActionsProps> = ({
-  isMenuOpen,
-  setIsMenuOpen,
-  setShowMobileSearch,
-  handleSearch
-}) => {
   return (
-    <>
-      {/* Desktop Search Bar & Language Dropdown */}
-      <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
-        <SearchBar onSearch={handleSearch} className="w-48 lg:w-64" />
-        <LanguageDropdown />
+    <div className="flex items-center space-x-2 md:space-x-4">
+      {/* Mobile Search */}
+      <div className="md:hidden">
+        <MobileSearch />
       </div>
 
-      {/* Action Icons - Enhanced mobile tap targets */}
-      <div className="flex items-center space-x-2">
-        {/* Mobile Search Button */}
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="md:hidden h-10 w-10 hover:bg-copper-50 transition-colors"
-          onClick={() => setShowMobileSearch(true)}
-        >
-          <SearchIcon className="h-5 w-5 text-clay-700" />
-        </Button>
+      {/* Language Dropdown */}
+      <LanguageDropdown />
 
-        {/* User Account Button */}
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="hidden sm:flex h-10 w-10 hover:bg-copper-50 transition-colors"
-        >
-          <User className="h-5 w-5 text-clay-700" />
-        </Button>
-        
-        {/* Shopping Cart Button with enhanced styling */}
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="relative h-10 w-10 hover:bg-copper-50 transition-colors"
-        >
-          <ShoppingCart className="h-5 w-5 text-clay-700" />
-          <span className="absolute -top-1 -right-1 bg-copper-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center text-[11px] font-medium luxury-shadow">
-            0
-          </span>
-        </Button>
+      {/* Wishlist */}
+      <Button
+        variant="ghost"
+        size="icon"
+        className="relative text-clay-700 hover:text-copper-600 transition-colors"
+      >
+        <Heart className="h-5 w-5" />
+        {wishlistCount > 0 && (
+          <Badge 
+            variant="destructive" 
+            className="absolute -top-1 -right-1 bg-copper-500 text-white min-w-[18px] h-5 rounded-full flex items-center justify-center text-xs"
+          >
+            {wishlistCount}
+          </Badge>
+        )}
+      </Button>
 
-        {/* Mobile Menu Button with enhanced animation */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="lg:hidden h-10 w-10 ml-2 hover:bg-copper-50 transition-all duration-300"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          <div className="relative">
-            <Menu className={`h-5 w-5 text-clay-700 transition-all duration-300 ${isMenuOpen ? 'opacity-0 rotate-180' : 'opacity-100 rotate-0'}`} />
-            <X className={`h-5 w-5 text-clay-700 absolute inset-0 transition-all duration-300 ${isMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 rotate-180'}`} />
-          </div>
-        </Button>
-      </div>
-    </>
+      {/* Cart */}
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={openCart}
+        className="relative text-clay-700 hover:text-copper-600 transition-colors"
+      >
+        <ShoppingCart className="h-5 w-5" />
+        {totalItems > 0 && (
+          <Badge 
+            variant="destructive" 
+            className="absolute -top-1 -right-1 bg-copper-500 text-white min-w-[18px] h-5 rounded-full flex items-center justify-center text-xs"
+          >
+            {totalItems > 99 ? '99+' : totalItems}
+          </Badge>
+        )}
+      </Button>
+
+      {/* User Account */}
+      <Button
+        variant="ghost"
+        size="icon"
+        className="text-clay-700 hover:text-copper-600 transition-colors"
+      >
+        <User className="h-5 w-5" />
+      </Button>
+    </div>
   );
 };
 

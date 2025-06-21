@@ -1,8 +1,9 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Star, ShoppingCart, Eye } from 'lucide-react';
+import { Star, ShoppingCart, Eye, Plus } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useCart } from '@/contexts/CartContext';
 import { convertAndFormat } from '@/utils/currencyConverter';
 import ProductBadge from '@/components/ProductBadge';
 import WishlistButton from '@/components/WishlistButton';
@@ -31,6 +32,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { language, currency } = useLanguage();
+  const { addToCart } = useCart();
 
   // Create multiple images for the gallery (for demo purposes)
   const productImages = [
@@ -51,6 +53,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       ? ['Tous types de peau'] 
       : ['All skin types']),
     region: product.region || 'Marrakech'
+  };
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      priceMAD: product.priceMAD,
+      image: product.image
+    });
   };
 
   return (
@@ -96,9 +107,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div className="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
             <Button 
               size="sm" 
+              onClick={handleAddToCart}
               className="w-full copper-gradient text-white rounded-full luxury-shadow border-0 font-medium tracking-wide min-h-[44px] text-sm"
             >
-              <ShoppingCart className="h-4 w-4 mr-2" />
+              <Plus className="h-4 w-4 mr-2" />
               {language === 'fr' ? 'Ajouter au panier' : 'Add to cart'}
             </Button>
           </div>

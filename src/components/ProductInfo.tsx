@@ -1,8 +1,9 @@
 
 import { useState } from 'react';
-import { Star, ShoppingCart, Heart, Share2 } from 'lucide-react';
+import { Star, ShoppingCart, Heart, Share2, Minus, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useCart } from '@/contexts/CartContext';
 import { convertAndFormat } from '@/utils/currencyConverter';
 
 interface ProductInfoProps {
@@ -14,13 +15,29 @@ interface ProductInfoProps {
     rating: number;
     reviews: number;
     description: string;
+    image: string;
   };
-  onOrderNow: (quantity: number) => void;
+  onOrderNow?: (quantity: number) => void;
 }
 
 const ProductInfo = ({ product, onOrderNow }: ProductInfoProps) => {
   const { language, currency } = useLanguage();
+  const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState('');
+
+  // Mock sizes for demonstration
+  const sizes = ['50ml', '100ml', '200ml'];
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      priceMAD: product.priceMAD,
+      image: product.image,
+      size: selectedSize
+    }, quantity);
+  };
 
   return (
     <div className="space-y-6">
@@ -69,8 +86,28 @@ const ProductInfo = ({ product, onOrderNow }: ProductInfoProps) => {
         </p>
       </div>
 
-      {/* Quantity & Add to Cart */}
+      {/* Size Selection */}
       <div className="space-y-4">
+        <div>
+          <label className="text-clay-700 font-medium mb-3 block">
+            {language === 'fr' ? 'Taille:' : 'Size:'}
+          </label>
+          <div className="flex space-x-3">
+            {sizes.map((size) => (
+              <Button
+                key={size}
+                variant={selectedSize === size ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedSize(size)}
+                className={selectedSize === size ? "copper-gradient text-white" : ""}
+              >
+                {size}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        {/* Quantity & Add to Cart */}
         <div className="flex items-center space-x-4">
           <label className="text-clay-700 font-medium">
             {language === 'fr' ? 'Quantité:' : 'Quantity:'}
@@ -78,16 +115,16 @@ const ProductInfo = ({ product, onOrderNow }: ProductInfoProps) => {
           <div className="flex items-center border border-sand-300 rounded-lg">
             <button 
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
-              className="px-3 py-2 hover:bg-sand-100"
+              className="px-3 py-2 hover:bg-sand-100 transition-colors"
             >
-              -
+              <Minus className="h-4 w-4" />
             </button>
-            <span className="px-4 py-2 border-x border-sand-300">{quantity}</span>
+            <span className="px-4 py-2 border-x border-sand-300 min-w-[3rem] text-center">{quantity}</span>
             <button 
               onClick={() => setQuantity(quantity + 1)}
-              className="px-3 py-2 hover:bg-sand-100"
+              className="px-3 py-2 hover:bg-sand-100 transition-colors"
             >
-              +
+              <Plus className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -96,11 +133,23 @@ const ProductInfo = ({ product, onOrderNow }: ProductInfoProps) => {
           <Button 
             size="lg" 
             className="flex-1 copper-gradient text-white rounded-full min-h-[48px]"
-            onClick={() => onOrderNow(quantity)}
+            onClick={handleAddToCart}
+            disabled={!selectedSize}
           >
             <ShoppingCart className="h-5 w-5 mr-2" />
-            {language === 'fr' ? 'Commander maintenant' : 'Order Now'}
+            {language === 'fr' ? 'Ajouter au panier' : 'Add to Cart'}
           </Button>
+          {onOrderNow && (
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="flex-1 rounded-full min-h-[48px]"
+              onClick={() => onOrderNow(quantity)}
+              disabled={!selectedSize}
+            >
+              {language === 'fr' ? 'Commander maintenant' : 'Buy Now'}
+            </Button>
+          )}
           <Button variant="outline" size="lg" className="rounded-full min-h-[48px]">
             <Heart className="h-5 w-5" />
           </Button>
