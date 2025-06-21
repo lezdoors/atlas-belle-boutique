@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Heart, ShoppingCart, User } from 'lucide-react';
+import { Heart, ShoppingCart, User, Search } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
 import LanguageDropdown from '@/components/LanguageDropdown';
@@ -12,12 +12,20 @@ const HeaderActions = () => {
   const { language } = useLanguage();
   const { totalItems, openCart } = useCart();
   const [wishlistCount] = useState(0); // TODO: Implement wishlist context
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
 
   return (
     <div className="flex items-center space-x-2 md:space-x-4">
       {/* Mobile Search */}
       <div className="md:hidden">
-        <MobileSearch />
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setShowMobileSearch(true)}
+          className="text-clay-700 hover:text-copper-600 transition-colors"
+        >
+          <Search className="h-5 w-5" />
+        </Button>
       </div>
 
       {/* Language Dropdown */}
@@ -66,6 +74,12 @@ const HeaderActions = () => {
       >
         <User className="h-5 w-5" />
       </Button>
+
+      {/* Mobile Search Modal */}
+      <MobileSearch 
+        isOpen={showMobileSearch} 
+        onClose={() => setShowMobileSearch(false)} 
+      />
     </div>
   );
 };

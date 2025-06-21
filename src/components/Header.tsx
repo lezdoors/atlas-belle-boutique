@@ -68,12 +68,7 @@ const Header = () => {
             </div>
 
             {/* Action Icons - Improved alignment */}
-            <HeaderActions 
-              isMenuOpen={isMenuOpen}
-              setIsMenuOpen={setIsMenuOpen}
-              setShowMobileSearch={setShowMobileSearch}
-              handleSearch={handleSearch}
-            />
+            <HeaderActions />
           </div>
 
           {/* Mobile Language Dropdown - Only visible when menu is closed */}

@@ -24,6 +24,7 @@ const ProductDetail = () => {
     name: language === 'fr' ? 'Huile d\'Argan Premium' : 'Premium Argan Oil',
     priceMAD: 299,
     originalPriceMAD: 399,
+    image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=600', // Main product image
     images: [
       'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=600',
       'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=600',
