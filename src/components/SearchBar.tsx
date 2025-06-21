@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Search, X } from 'lucide-react';
+import { Search, X, AlertCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { validateSearchQuery } from '@/utils/inputValidation';
+import { searchRateLimiter, getUserIdentifier } from '@/utils/rateLimiter';
 
 interface SearchResult {
   id: number;
@@ -22,6 +24,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className }) => {
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [results, setResults] = useState<SearchResult[]>([]);
+  const [isRateLimited, setIsRateLimited] = useState(false);
   const { language } = useLanguage();
 
   // Mock search results
@@ -32,26 +35,45 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className }) => {
   ];
 
   const handleInputChange = (value: string) => {
-    setQuery(value);
+    // Validate and sanitize input
+    const sanitizedQuery = validateSearchQuery(value);
+    setQuery(sanitizedQuery);
     
-    if (value.length > 2) {
+    if (sanitizedQuery.length > 2) {
+      // Check rate limiting
+      const userIdentifier = getUserIdentifier();
+      const rateLimitCheck = searchRateLimiter.checkLimit(userIdentifier);
+      
+      if (!rateLimitCheck.allowed) {
+        setIsRateLimited(true);
+        setResults([]);
+        setIsOpen(true);
+        return;
+      }
+      
+      setIsRateLimited(false);
+      
       // Filter mock results based on query
       const filtered = mockResults.filter(item => 
-        item.name.toLowerCase().includes(value.toLowerCase())
+        item.name.toLowerCase().includes(sanitizedQuery.toLowerCase())
       );
       setResults(filtered);
       setIsOpen(true);
     } else {
       setResults([]);
       setIsOpen(false);
+      setIsRateLimited(false);
     }
   };
 
   const handleSearch = () => {
-    if (onSearch) {
-      onSearch(query);
+    if (query.trim() && !isRateLimited) {
+      const sanitizedQuery = validateSearchQuery(query);
+      if (onSearch) {
+        onSearch(sanitizedQuery);
+      }
+      setIsOpen(false);
     }
-    setIsOpen(false);
   };
 
   const handleResultClick = (result: SearchResult) => {
@@ -66,6 +88,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className }) => {
     setQuery('');
     setResults([]);
     setIsOpen(false);
+    setIsRateLimited(false);
   };
 
   return (
@@ -76,8 +99,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className }) => {
           value={query}
           onChange={(e) => handleInputChange(e.target.value)}
           placeholder={language === 'fr' ? 'Rechercher un produit...' : 'Search products...'}
-          className="pl-10 pr-16"
+          className={`pl-10 pr-16 ${isRateLimited ? 'border-red-500' : ''}`}
           onFocus={() => query.length > 2 && setIsOpen(true)}
+          maxLength={100}
         />
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-clay-400" />
         
@@ -97,6 +121,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className }) => {
             size="icon"
             onClick={handleSearch}
             className="h-6 w-6"
+            disabled={isRateLimited}
           >
             <Search className="h-3 w-3" />
           </Button>
@@ -104,26 +129,42 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, className }) => {
       </div>
 
       {/* Search Results Dropdown */}
-      {isOpen && results.length > 0 && (
+      {isOpen && (
         <Card className="absolute top-full left-0 right-0 mt-1 z-50 max-h-80 overflow-y-auto">
           <div className="p-2">
-            {results.map((result) => (
-              <button
-                key={result.id}
-                onClick={() => handleResultClick(result)}
-                className="w-full flex items-center space-x-3 p-3 hover:bg-pearl-50 rounded-lg transition-colors text-left"
-              >
-                <img 
-                  src={result.image} 
-                  alt={result.name}
-                  className="w-10 h-10 object-cover rounded-lg"
-                />
-                <div>
-                  <div className="font-medium text-clay-800">{result.name}</div>
-                  <div className="text-sm text-clay-500">{result.category}</div>
-                </div>
-              </button>
-            ))}
+            {isRateLimited ? (
+              <div className="flex items-center p-3 text-red-600">
+                <AlertCircle className="h-4 w-4 mr-2" />
+                <span className="text-sm">
+                  {language === 'fr' 
+                    ? 'Trop de recherches. Veuillez patienter.'
+                    : 'Too many searches. Please wait.'
+                  }
+                </span>
+              </div>
+            ) : results.length > 0 ? (
+              results.map((result) => (
+                <button
+                  key={result.id}
+                  onClick={() => handleResultClick(result)}
+                  className="w-full flex items-center space-x-3 p-3 hover:bg-pearl-50 rounded-lg transition-colors text-left"
+                >
+                  <img 
+                    src={result.image} 
+                    alt={result.name}
+                    className="w-10 h-10 object-cover rounded-lg"
+                  />
+                  <div>
+                    <div className="font-medium text-clay-800">{result.name}</div>
+                    <div className="text-sm text-clay-500">{result.category}</div>
+                  </div>
+                </button>
+              ))
+            ) : (
+              <div className="p-3 text-sm text-clay-500 text-center">
+                {language === 'fr' ? 'Aucun résultat trouvé' : 'No results found'}
+              </div>
+            )}
           </div>
         </Card>
       )}

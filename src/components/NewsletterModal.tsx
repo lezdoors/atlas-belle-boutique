@@ -4,9 +4,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { X, Mail, Gift } from 'lucide-react';
+import { X, Mail, Gift, AlertCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
+import { validateEmail, sanitizeInput } from '@/utils/inputValidation';
+import { formRateLimiter, getUserIdentifier } from '@/utils/rateLimiter';
 
 interface NewsletterModalProps {
   isOpen: boolean;
@@ -16,29 +18,79 @@ interface NewsletterModalProps {
 const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [isRateLimited, setIsRateLimited] = useState(false);
   const { language } = useLanguage();
   const { toast } = useToast();
 
+  const handleEmailChange = (value: string) => {
+    const sanitized = sanitizeInput(value);
+    setEmail(sanitized);
+    
+    if (sanitized && !validateEmail(sanitized)) {
+      setEmailError(language === 'fr' ? 'Adresse e-mail invalide' : 'Invalid email address');
+    } else {
+      setEmailError('');
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!email || !validateEmail(email)) {
+      setEmailError(language === 'fr' ? 'Veuillez entrer une adresse e-mail valide' : 'Please enter a valid email address');
+      return;
+    }
+
+    // Check rate limiting
+    const userIdentifier = getUserIdentifier();
+    const rateLimitCheck = formRateLimiter.checkLimit(userIdentifier);
+    
+    if (!rateLimitCheck.allowed) {
+      setIsRateLimited(true);
+      toast({
+        title: language === 'fr' ? 'Limite atteinte' : 'Rate limit exceeded',
+        description: language === 'fr' 
+          ? 'Trop de tentatives. Veuillez patienter.'
+          : 'Too many attempts. Please wait.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     setIsSubmitting(true);
+    setIsRateLimited(false);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      // Simulate API call with sanitized email
+      const sanitizedEmail = sanitizeInput(email);
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
-    // Mark as shown in session storage so it doesn't appear again
-    sessionStorage.setItem('newsletter-modal-shown', 'true');
+      // Mark as shown in session storage so it doesn't appear again
+      sessionStorage.setItem('newsletter-modal-shown', 'true');
 
-    toast({
-      title: language === 'fr' ? 'Inscription réussie !' : 'Successfully subscribed!',
-      description: language === 'fr' 
-        ? 'Merci de vous être inscrit à notre newsletter. Votre code de réduction arrive bientôt !'
-        : 'Thank you for subscribing to our newsletter. Your discount code is coming soon!',
-    });
+      toast({
+        title: language === 'fr' ? 'Inscription réussie !' : 'Successfully subscribed!',
+        description: language === 'fr' 
+          ? 'Merci de vous être inscrit à notre newsletter. Votre code de réduction arrive bientôt !'
+          : 'Thank you for subscribing to our newsletter. Your discount code is coming soon!',
+      });
 
-    setIsSubmitting(false);
-    setEmail('');
-    onClose();
+      setEmail('');
+      setEmailError('');
+      onClose();
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      toast({
+        title: language === 'fr' ? 'Erreur' : 'Error',
+        description: language === 'fr' 
+          ? 'Une erreur est survenue. Veuillez réessayer.'
+          : 'An error occurred. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleClose = () => {
@@ -84,19 +136,41 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) =>
                   id="newsletter-email"
                   type="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => handleEmailChange(e.target.value)}
                   placeholder={language === 'fr' ? 'votre@email.com' : 'your@email.com'}
                   required
-                  className="pl-10 rounded-full border-clay-200 focus:border-copper-400 focus:ring-copper-400/20"
+                  className={`pl-10 rounded-full border-clay-200 focus:border-copper-400 focus:ring-copper-400/20 ${
+                    emailError ? 'border-red-500' : ''
+                  }`}
+                  maxLength={100}
+                  disabled={isSubmitting || isRateLimited}
                 />
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-clay-400" />
               </div>
+              {emailError && (
+                <div className="flex items-center mt-1 text-red-600 text-sm">
+                  <AlertCircle className="h-4 w-4 mr-1" />
+                  {emailError}
+                </div>
+              )}
             </div>
+
+            {isRateLimited && (
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                <div className="flex items-center text-amber-800 text-sm">
+                  <AlertCircle className="h-4 w-4 mr-2" />
+                  {language === 'fr' 
+                    ? 'Veuillez patienter avant de réessayer.'
+                    : 'Please wait before trying again.'
+                  }
+                </div>
+              </div>
+            )}
 
             <Button 
               type="submit" 
               className="w-full copper-gradient text-white rounded-full hover-scale luxury-shadow py-3 h-auto"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !!emailError || isRateLimited}
             >
               {isSubmitting 
                 ? (language === 'fr' ? 'Inscription...' : 'Subscribing...')
