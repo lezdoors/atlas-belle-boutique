@@ -23,7 +23,7 @@ const Hero = () => {
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
-        <source src="/lovable-uploads/73847-549547533.mp4" type="video/mp4" />
+        <source src="https://atlas-belle-boutique.lovable.app/perle-datlas-hero.mp4" type="video/mp4" />
         {/* Fallback background for browsers that don't support video */}
         <div className="absolute inset-0 bg-pearl-100"></div>
       </video>
