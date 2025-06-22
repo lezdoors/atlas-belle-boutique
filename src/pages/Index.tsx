@@ -21,6 +21,7 @@ import IngredientOriginMap from '@/components/IngredientOriginMap';
 import FourSeasons from '@/components/FourSeasons';
 import PullToRefresh from '@/components/PullToRefresh';
 import AboutSection from '@/components/AboutSection';
+import SEOOptimizer from '@/components/SEOOptimizer';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
 const Index = () => {
@@ -37,73 +38,13 @@ const Index = () => {
     setVideoEnded(ended);
   };
 
-  // Enhanced SEO meta tags
-  useEffect(() => {
-    // Update page title
-    document.title = 'Perle de l\'Atlas - Cosmétiques de Luxe Marocains | Tradition & Élégance';
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Découvrez Perle de l\'Atlas, la marque de cosmétiques de luxe marocains. Produits artisanaux authentiques alliant traditions ancestrales et élégance moderne. Huiles d\'argan, soins naturels du Maroc.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Découvrez Perle de l\'Atlas, la marque de cosmétiques de luxe marocains. Produits artisanaux authentiques alliant traditions ancestrales et élégance moderne. Huiles d\'argan, soins naturels du Maroc.';
-      document.head.appendChild(meta);
-    }
-
-    const ogTags = [
-      { property: 'og:title', content: 'Perle de l\'Atlas - Cosmétiques de Luxe Marocains' },
-      { property: 'og:description', content: 'Découvrez nos produits de beauté artisanaux du Maroc, alliant traditions ancestrales et élégance contemporaine.' },
-      { property: 'og:image', content: 'https://images.unsplash.com/photo-1466442929976-97f336a657be?auto=format&fit=crop&w=1200&q=80' },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:url', content: window.location.href },
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'Perle de l\'Atlas - Cosmétiques de Luxe Marocains' },
-      { name: 'twitter:description', content: 'Découvrez nos produits de beauté artisanaux du Maroc, alliant traditions ancestrales et élégance contemporaine.' },
-      { name: 'twitter:image', content: 'https://images.unsplash.com/photo-1466442929976-97f336a657be?auto=format&fit=crop&w=1200&q=80' }
-    ];
-
-    ogTags.forEach(tag => {
-      const existingTag = document.querySelector(`meta[${tag.property ? 'property' : 'name'}="${tag.property || tag.name}"]`);
-      if (existingTag) {
-        existingTag.setAttribute('content', tag.content);
-      } else {
-        const meta = document.createElement('meta');
-        if (tag.property) meta.setAttribute('property', tag.property);
-        if (tag.name) meta.setAttribute('name', tag.name);
-        meta.setAttribute('content', tag.content);
-        document.head.appendChild(meta);
-      }
-    });
-
-    const structuredData = {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Perle de l'Atlas",
-      "description": "Marque de cosmétiques de luxe marocains",
-      "url": window.location.origin,
-      "logo": `${window.location.origin}/favicon.svg`,
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+212-524-123-456",
-        "contactType": "customer service"
-      }
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(structuredData);
-    document.head.appendChild(script);
-
-    return () => {
-      const addedElements = document.querySelectorAll('meta[data-added="true"], script[type="application/ld+json"]');
-      addedElements.forEach(el => el.remove());
-    };
-  }, []);
-
   return (
     <LanguageProvider>
+      <SEOOptimizer 
+        title="Perle de l'Atlas – Cosmétiques de Luxe Marocains"
+        description="Découvrez les soins haut de gamme de Perle de l'Atlas : parfums, huiles et crèmes artisanales marocaines, conçus avec des ingrédients rares."
+        image="/lovable-uploads/673f0b19-2270-4e9f-a2e5-59b15f441af5.png"
+      />
       <PullToRefresh onRefresh={handleRefresh}>
         <div className="min-h-screen bg-pearl-50">
           <Header />

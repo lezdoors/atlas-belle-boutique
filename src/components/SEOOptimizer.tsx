@@ -10,9 +10,9 @@ interface SEOOptimizerProps {
 }
 
 const SEOOptimizer = ({ 
-  title = "Perle de l'Atlas - Cosmétiques de Luxe Marocains | Tradition & Élégance",
-  description = "Découvrez Perle de l'Atlas, la marque de cosmétiques de luxe marocains. Produits artisanaux authentiques alliant traditions ancestrales et élégance moderne.",
-  image = "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/397b8d88-7594-4433-8004-050f047a13b6.png",
+  title = "Perle de l'Atlas – Cosmétiques de Luxe Marocains",
+  description = "Découvrez les soins haut de gamme de Perle de l'Atlas : parfums, huiles et crèmes artisanales marocaines, conçus avec des ingrédients rares.",
+  image = "/lovable-uploads/673f0b19-2270-4e9f-a2e5-59b15f441af5.png",
   url,
   type = "website"
 }: SEOOptimizerProps) => {
@@ -32,7 +32,7 @@ const SEOOptimizer = ({
     const ogTags = [
       { property: 'og:title', content: title },
       { property: 'og:description', content: description },
-      { property: 'og:image', content: image },
+      { property: 'og:image', content: `${window.location.origin}${image}` },
       { property: 'og:url', content: currentUrl },
       { property: 'og:type', content: type },
       { property: 'og:site_name', content: "Perle de l'Atlas" },
@@ -40,7 +40,8 @@ const SEOOptimizer = ({
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: title },
       { name: 'twitter:description', content: description },
-      { name: 'twitter:image', content: image },
+      { name: 'twitter:image', content: `${window.location.origin}${image}` },
+      { name: 'twitter:url', content: currentUrl },
       { name: 'twitter:site', content: '@perledatlas' }
     ];
 
@@ -78,7 +79,7 @@ const SEOOptimizer = ({
           "url": window.location.origin,
           "logo": {
             "@type": "ImageObject",
-            "url": image,
+            "url": `${window.location.origin}${image}`,
             "width": "400",
             "height": "400"
           },
