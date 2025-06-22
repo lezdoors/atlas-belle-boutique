@@ -1,5 +1,5 @@
 
-import PerleAtlasRefinedLogo from '@/components/PerleAtlasRefinedLogo';
+import PerleAtlasNewLogo from '@/components/PerleAtlasNewLogo';
 import { User, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -9,11 +9,10 @@ const FooterBrand = () => {
   return (
     <div className="lg:col-span-2">
       <div className="flex items-center mb-6">
-        <PerleAtlasRefinedLogo 
+        <PerleAtlasNewLogo 
           size="lg" 
           variant="full"
-          withBackground={false}
-          className="mr-4 bg-transparent"
+          className="mr-4"
         />
       </div>
       

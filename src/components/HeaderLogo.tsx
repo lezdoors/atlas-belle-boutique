@@ -1,7 +1,7 @@
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'react-router-dom';
-import PerleAtlasRefinedLogo from './PerleAtlasRefinedLogo';
+import PerleAtlasNewLogo from './PerleAtlasNewLogo';
 
 const HeaderLogo = () => {
   const { language } = useLanguage();
@@ -9,11 +9,10 @@ const HeaderLogo = () => {
   return (
     <Link to="/" className="flex items-center flex-shrink-0 group">
       <div className="transition-transform duration-300 group-hover:scale-105">
-        <PerleAtlasRefinedLogo 
+        <PerleAtlasNewLogo 
           size="md"
           variant="header"
-          withBackground={false}
-          className="filter drop-shadow-sm bg-transparent"
+          className="filter drop-shadow-sm"
         />
       </div>
     </Link>
