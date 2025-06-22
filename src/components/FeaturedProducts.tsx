@@ -1,134 +1,223 @@
-
 import { useState } from 'react';
+import { Filter, Grid, List } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useLanguage } from '@/contexts/LanguageContext';
-import FeaturedProductsHeader from '@/components/FeaturedProductsHeader';
-import FeaturedProductsInfoBar from '@/components/FeaturedProductsInfoBar';
-import ProductCard from '@/components/ProductCard';
-import ProductFilters from '@/components/ProductFilters';
+import ProductCard from './ProductCard';
+import FeaturedProductsHeader from './FeaturedProductsHeader';
+import FeaturedProductsInfoBar from './FeaturedProductsInfoBar';
+import DynamicBeautyBanner from './DynamicBeautyBanner';
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+  category: string;
+  rating: number;
+  numReviews: number;
+}
+
+const mockProducts: Product[] = [
+  {
+    id: 1,
+    name: "Huile d'Argan Premium",
+    description: "L'huile d'argan pure, pressée à froid, pour une peau nourrie et éclatante.",
+    price: 49.99,
+    imageUrl: "/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
+    category: "Huiles",
+    rating: 4.8,
+    numReviews: 125
+  },
+  {
+    id: 2,
+    name: "Savon Noir Beldi",
+    description: "Un savon traditionnel marocain pour exfolier et purifier la peau en douceur.",
+    price: 29.99,
+    imageUrl: "/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png",
+    category: "Soins du Corps",
+    rating: 4.5,
+    numReviews: 90
+  },
+  {
+    id: 3,
+    name: "Ghassoul Volcanique",
+    description: "Un masque purifiant à l'argile volcanique pour nettoyer et revitaliser la peau.",
+    price: 39.99,
+    imageUrl: "/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png",
+    category: "Soins du Visage",
+    rating: 4.7,
+    numReviews: 110
+  },
+  {
+    id: 4,
+    name: "Eau de Rose de Dadès",
+    description: "Une eau florale rafraîchissante pour tonifier et hydrater la peau.",
+    price: 24.99,
+    imageUrl: "/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
+    category: "Toniques",
+    rating: 4.6,
+    numReviews: 80
+  },
+  {
+    id: 5,
+    name: "Crème de Jour Éclat",
+    description: "Une crème hydratante légère pour illuminer et protéger la peau.",
+    price: 54.99,
+    imageUrl: "/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png",
+    category: "Soins du Visage",
+    rating: 4.9,
+    numReviews: 150
+  },
+  {
+    id: 6,
+    name: "Huile Capillaire Fortifiante",
+    description: "Un mélange d'huiles précieuses pour renforcer et faire briller les cheveux.",
+    price: 34.99,
+    imageUrl: "/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png",
+    category: "Soins Capillaires",
+    rating: 4.4,
+    numReviews: 70
+  },
+  {
+    id: 7,
+    name: "Baume à Lèvres Nourrissant",
+    description: "Un baume riche en beurre de karité et huile d'argan pour des lèvres douces et hydratées.",
+    price: 19.99,
+    imageUrl: "/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
+    category: "Soins des Lèvres",
+    rating: 4.7,
+    numReviews: 100
+  },
+  {
+    id: 8,
+    name: "Sérum Anti-Âge Revitalisant",
+    description: "Un sérum concentré en actifs anti-âge pour lisser les rides et raffermir la peau.",
+    price: 69.99,
+    imageUrl: "/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png",
+    category: "Soins du Visage",
+    rating: 4.8,
+    numReviews: 130
+  }
+];
 
 const FeaturedProducts = () => {
-  const { language } = useLanguage();
-  const [filtersOpen, setFiltersOpen] = useState(false);
-
-  const products = [
-    {
-      id: 1,
-      name: language === 'fr' ? 'Huile d\'Argan Bio' : 'Organic Argan Oil',
-      priceMAD: 958,
-      originalPriceMAD: 1172,
-      image: '/placeholder.svg',
-      rating: 4.8,
-      reviews: 124,
-      badge: { type: 'bestseller' as const },
-      description: language === 'fr' 
-        ? 'Huile pure d\'argan pressée à froid'
-        : 'Pure cold-pressed argan oil',
-      region: 'Essaouira',
-      skinType: language === 'fr' ? ['Peau sèche', 'Peau mature'] : ['Dry skin', 'Mature skin'],
-      ingredients: language === 'fr' ? ['Huile d\'argan', 'Vitamine E'] : ['Argan oil', 'Vitamin E']
-    },
-    {
-      id: 2,
-      name: language === 'fr' ? 'Parfum Oud & Rose' : 'Oud & Rose Perfume',
-      priceMAD: 1560,
-      originalPriceMAD: 1775,
-      image: '/placeholder.svg',
-      rating: 4.9,
-      reviews: 89,
-      badge: { type: 'new' as const },
-      description: language === 'fr'
-        ? 'Fragrance envoûtante aux notes orientales'
-        : 'Enchanting fragrance with oriental notes',
-      region: 'Fès',
-      skinType: language === 'fr' ? ['Tous types de peau'] : ['All skin types'],
-      ingredients: language === 'fr' ? ['Oud', 'Rose de Damas', 'Ambre'] : ['Oud', 'Damask rose', 'Amber']
-    },
-    {
-      id: 3,
-      name: language === 'fr' ? 'Masque à l\'Argile Rouge' : 'Red Clay Mask',
-      priceMAD: 484,
-      originalPriceMAD: 591,
-      image: '/placeholder.svg',
-      rating: 4.7,
-      reviews: 156,
-      badge: { type: 'limited' as const },
-      description: language === 'fr'
-        ? 'Masque purifiant à l\'argile du Maroc'
-        : 'Purifying mask with Moroccan clay',
-      region: 'Atlas',
-      skinType: language === 'fr' ? ['Peau grasse', 'Peau mixte'] : ['Oily skin', 'Combination skin'],
-      ingredients: language === 'fr' ? ['Argile rouge', 'Huile d\'olive', 'Miel'] : ['Red clay', 'Olive oil', 'Honey']
-    },
-    {
-      id: 4,
-      name: language === 'fr' ? 'Crème Anti-Âge Précieuse' : 'Precious Anti-Aging Cream',
-      priceMAD: 1344,
-      originalPriceMAD: 1560,
-      image: '/placeholder.svg',
-      rating: 4.8,
-      reviews: 203,
-      badge: { type: 'discount' as const, discount: 25 },
-      description: language === 'fr'
-        ? 'Soin anti-âge aux extraits de cactus'
-        : 'Anti-aging care with cactus extracts',
-      region: 'Marrakech',
-      skinType: language === 'fr' ? ['Peau mature', 'Peau sèche'] : ['Mature skin', 'Dry skin'],
-      ingredients: language === 'fr' ? ['Extrait de cactus', 'Acide hyaluronique', 'Peptides'] : ['Cactus extract', 'Hyaluronic acid', 'Peptides']
-    }
-  ];
-
-  const handleFiltersChange = (filters: any) => {
-    // Here you would implement the actual filtering logic
-    console.log('Filters changed:', filters);
-  };
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [showFilters, setShowFilters] = useState(false);
 
   return (
-    <section id="featured-products" className="py-20 bg-gradient-to-br from-pearl-50 to-beige-50">
+    <section id="featured-products" className="py-16 bg-gradient-to-b from-pearl-50 to-white">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
         <FeaturedProductsHeader />
-
-        {/* Info Bar */}
         <FeaturedProductsInfoBar />
-
-        {/* Filters */}
-        <ProductFilters 
-          onFiltersChange={handleFiltersChange}
-          isOpen={filtersOpen}
-          onToggle={() => setFiltersOpen(!filtersOpen)}
-        />
-
-        {/* Products Grid with Enhanced Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {products.map((product, index) => (
-            <div 
-              key={product.id}
-              className="animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+        
+        {/* Filters and View Controls */}
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 gap-4">
+          <div className="flex items-center gap-4">
+            <Button
+              variant="outline"
+              onClick={() => setShowFilters(!showFilters)}
+              className="flex items-center gap-2 border-clay-200 hover:border-clay-400 text-clay-700"
             >
-              <ProductCard product={product} />
+              <Filter className="h-4 w-4" />
+              Filtres
+            </Button>
+            
+            <div className="hidden lg:flex items-center gap-2">
+              <Button
+                variant={viewMode === 'grid' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setViewMode('grid')}
+                className="p-2"
+              >
+                <Grid className="h-4 w-4" />
+              </Button>
+              <Button
+                variant={viewMode === 'list' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setViewMode('list')}
+                className="p-2"
+              >
+                <List className="h-4 w-4" />
+              </Button>
             </div>
-          ))}
+          </div>
+          
+          <p className="text-sm text-clay-600">
+            {mockProducts.length} produits trouvés
+          </p>
         </div>
 
-        {/* Enhanced CTA Section */}
-        <div className="text-center bg-white/80 backdrop-blur-sm rounded-3xl p-12 luxury-shadow">
-          <h3 className="font-display font-bold text-2xl text-clay-800 mb-4">
-            {language === 'fr' ? 'Découvrez Toute Notre Collection' : 'Discover Our Complete Collection'}
-          </h3>
-          <p className="elegant-text text-clay-600 mb-8 max-w-2xl mx-auto">
-            {language === 'fr' 
-              ? 'Plus de 150 produits authentiques vous attendent, chacun racontant une histoire unique du Maroc'
-              : 'Over 150 authentic products await you, each telling a unique story of Morocco'
-            }
-          </p>
-          <Button 
-            size="lg"
-            className="copper-gradient text-white px-12 py-4 text-lg font-medium rounded-full hover-scale luxury-shadow border-0 tracking-wide"
-          >
-            {language === 'fr' ? 'Voir toute la collection' : 'View entire collection'}
-          </Button>
+        {/* Dynamic Beauty Banner - Using the space under filters */}
+        <DynamicBeautyBanner />
+
+        {/* Filter Panel */}
+        {showFilters && (
+          <div className="bg-white rounded-xl p-6 mb-8 luxury-shadow border border-clay-100">
+            <h4 className="font-serif text-lg font-semibold text-clay-800 mb-4">Filtrer par :</h4>
+            
+            <div className="space-y-3">
+              <div>
+                <label className="block text-sm font-medium text-clay-700 mb-1">Catégorie :</label>
+                <select className="w-full bg-pearl-50 border border-clay-200 rounded-md shadow-sm focus:border-amber-500 focus:ring-amber-500 text-sm text-clay-600">
+                  <option>Toutes les catégories</option>
+                  <option>Huiles</option>
+                  <option>Soins du Visage</option>
+                  <option>Soins du Corps</option>
+                  <option>Soins Capillaires</option>
+                  <option>Soins des Lèvres</option>
+                  <option>Toniques</option>
+                </select>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-clay-700 mb-1">Prix :</label>
+                <div className="flex items-center space-x-2">
+                  <input 
+                    type="number" 
+                    placeholder="Min" 
+                    className="w-24 bg-pearl-50 border border-clay-200 rounded-md shadow-sm focus:border-amber-500 focus:ring-amber-500 text-sm text-clay-600" 
+                  />
+                  <span className="text-sm text-clay-500">à</span>
+                  <input 
+                    type="number" 
+                    placeholder="Max" 
+                    className="w-24 bg-pearl-50 border border-clay-200 rounded-md shadow-sm focus:border-amber-500 focus:ring-amber-500 text-sm text-clay-600" 
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-clay-700 mb-1">Note :</label>
+                <div className="flex items-center space-x-3">
+                  <input type="radio" id="rating-4" name="rating" className="focus:ring-amber-500 h-4 w-4 text-amber-500 border-clay-300" />
+                  <label htmlFor="rating-4" className="text-sm text-clay-600">4 étoiles et plus</label>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <input type="radio" id="rating-3" name="rating" className="focus:ring-amber-500 h-4 w-4 text-amber-500 border-clay-300" />
+                  <label htmlFor="rating-3" className="text-sm text-clay-600">3 étoiles et plus</label>
+                </div>
+              </div>
+              
+              <Button variant="outline" className="w-full border-clay-300 text-clay-700 hover:bg-clay-50 hover:border-clay-400">
+                Appliquer les filtres
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {/* Products Grid */}
+        <div className={`grid gap-6 ${
+          viewMode === 'grid' 
+            ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' 
+            : 'grid-cols-1'
+        }`}>
+          {mockProducts.map((product) => (
+            <ProductCard 
+              key={product.id} 
+              product={product} 
+              viewMode={viewMode}
+            />
+          ))}
         </div>
       </div>
     </section>

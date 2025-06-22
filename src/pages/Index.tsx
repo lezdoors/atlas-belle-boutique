@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import MissionHero from '@/components/MissionHero';
 import MissionSection from '@/components/MissionSection';
 import ShopByRegion from '@/components/ShopByRegion';
 import RegionalCollections from '@/components/RegionalCollections';
@@ -15,6 +16,7 @@ import Footer from '@/components/Footer';
 import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
 import BackToTop from '@/components/BackToTop';
 import FloatingCart from '@/components/FloatingCart';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import OurArtisans from '@/components/OurArtisans';
 import IngredientOriginMap from '@/components/IngredientOriginMap';
 import PullToRefresh from '@/components/PullToRefresh';
@@ -106,6 +108,7 @@ const Index = () => {
           <Header />
           <main>
             <Hero onVideoEnded={handleVideoEnded} />
+            <MissionHero />
             <MissionSection />
             <ShopByRegion />
             <RegionalCollections />
@@ -121,6 +124,7 @@ const Index = () => {
           <Footer />
           <SamraRefactoredChatbot videoEnded={videoEnded} />
           <FloatingCart />
+          <FloatingWhatsApp />
           <BackToTop />
         </div>
       </PullToRefresh>
