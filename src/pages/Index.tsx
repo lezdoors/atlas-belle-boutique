@@ -19,6 +19,7 @@ import FloatingCart from '@/components/FloatingCart';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import OurArtisans from '@/components/OurArtisans';
 import IngredientOriginMap from '@/components/IngredientOriginMap';
+import FourSeasons from '@/components/FourSeasons';
 import PullToRefresh from '@/components/PullToRefresh';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
@@ -117,6 +118,7 @@ const Index = () => {
             <IngredientSpotlight />
             <OurArtisans />
             <IngredientOriginMap />
+            <FourSeasons />
             <Testimonials />
             <Categories />
             <BrandStory />

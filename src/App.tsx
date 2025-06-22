@@ -27,6 +27,10 @@ import ProgrammeFidelite from "./pages/ProgrammeFidelite";
 import SkinQuiz from "./pages/SkinQuiz";
 import NotFound from "./pages/NotFound";
 import Wholesale from "./pages/Wholesale";
+import Printemps from "./pages/collections/Printemps";
+import Ete from "./pages/collections/Ete";
+import Automne from "./pages/collections/Automne";
+import Hiver from "./pages/collections/Hiver";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -73,6 +77,10 @@ function App() {
                   <Route path="/quiz-peau" element={<SkinQuiz />} />
                   <Route path="/professionnels" element={<Wholesale />} />
                   <Route path="/grossistes" element={<Wholesale />} />
+                  <Route path="/collections/printemps" element={<Printemps />} />
+                  <Route path="/collections/ete" element={<Ete />} />
+                  <Route path="/collections/automne" element={<Automne />} />
+                  <Route path="/collections/hiver" element={<Hiver />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </BrowserRouter>
