@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Filter, Grid, List } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -224,8 +223,7 @@ const FeaturedProducts = () => {
           {mockProducts.map((product) => (
             <ProductCard 
               key={product.id} 
-              product={product} 
-              viewMode={viewMode}
+              product={product}
             />
           ))}
         </div>
