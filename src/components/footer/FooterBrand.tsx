@@ -1,5 +1,5 @@
 
-import PerleAtlasLogo from '@/components/PerleAtlasLogo';
+import PerleAtlasImprovedLogo from '@/components/PerleAtlasImprovedLogo';
 import { User, Mail, Map } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -9,19 +9,11 @@ const FooterBrand = () => {
   return (
     <div className="lg:col-span-2">
       <div className="flex items-center mb-6">
-        <PerleAtlasLogo 
-          size="small" 
-          variant="light"
+        <PerleAtlasImprovedLogo 
+          size="lg" 
+          variant="dark"
           className="mr-4"
         />
-        <div>
-          <h3 className="text-xl font-serif font-bold text-amber-400">
-            Perle de l'Atlas
-          </h3>
-          <div className="text-sm text-sand-400 font-serif italic">
-            Authenticité & Élégance
-          </div>
-        </div>
       </div>
       
       <p className="text-sand-300 mb-6 leading-relaxed">
