@@ -8,10 +8,29 @@ import CompanyInfoFields from './fields/CompanyInfoFields';
 import ContactInfoFields from './fields/ContactInfoFields';
 import BusinessDetailsFields from './fields/BusinessDetailsFields';
 import ProjectDetailsFields from './fields/ProjectDetailsFields';
+import { sanitizeInput } from '@/utils/inputValidation';
 
 const WholesaleForm = () => {
   const { language } = useLanguage();
   const { form, isSubmitting, onSubmit } = useWholesaleForm();
+
+  const handleSecureSubmit = (data: any) => {
+    // Sanitize all text inputs before submission
+    const sanitizedData = {
+      ...data,
+      company_name: sanitizeInput(data.company_name),
+      contact_name: sanitizeInput(data.contact_name),
+      email: sanitizeInput(data.email),
+      phone: sanitizeInput(data.phone),
+      website: data.website ? sanitizeInput(data.website) : '',
+      address: sanitizeInput(data.address),
+      business_type: sanitizeInput(data.business_type),
+      products_interest: sanitizeInput(data.products_interest),
+      message: data.message ? sanitizeInput(data.message) : ''
+    };
+    
+    onSubmit(sanitizedData);
+  };
 
   return (
     <section className="py-16 bg-pearl-200">
@@ -31,7 +50,7 @@ const WholesaleForm = () => {
             </CardHeader>
             <CardContent>
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <form onSubmit={form.handleSubmit(handleSecureSubmit)} className="space-y-6">
                   <CompanyInfoFields control={form.control} />
                   <ContactInfoFields control={form.control} />
                   <BusinessDetailsFields control={form.control} />

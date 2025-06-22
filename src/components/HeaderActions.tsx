@@ -2,10 +2,11 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Heart, ShoppingCart, User, Search } from 'lucide-react';
+import { Heart, ShoppingCart, Search } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
 import MobileSearch from '@/components/MobileSearch';
+import UserMenu from '@/components/auth/UserMenu';
 
 const HeaderActions = () => {
   const { language } = useLanguage();
@@ -62,14 +63,8 @@ const HeaderActions = () => {
         )}
       </Button>
 
-      {/* User Account - Simplified for mobile */}
-      <Button
-        variant="ghost"
-        size="icon"
-        className="text-clay-700 hover:text-copper-600 transition-colors h-10 w-10"
-      >
-        <User className="h-5 w-5" />
-      </Button>
+      {/* User Account - Now with authentication */}
+      <UserMenu />
 
       {/* Mobile Search Modal */}
       <MobileSearch 

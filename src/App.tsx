@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { SelectionProvider } from "@/contexts/SelectionContext";
 import SEOOptimizer from "@/components/SEOOptimizer";
@@ -27,6 +28,7 @@ import ProgrammeFidelite from "./pages/ProgrammeFidelite";
 import SkinQuiz from "./pages/SkinQuiz";
 import NotFound from "./pages/NotFound";
 import Wholesale from "./pages/Wholesale";
+import Auth from "./pages/Auth";
 import Printemps from "./pages/collections/Printemps";
 import Ete from "./pages/collections/Ete";
 import Automne from "./pages/collections/Automne";
@@ -48,44 +50,47 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <LanguageProvider>
-          <CartProvider>
-            <SelectionProvider>
-              {/* Global optimizers that don't need router context */}
-              <MobileOptimizer />
-              <PerformanceOptimizer />
-              <SecurityConfig />
-              
-              <Toaster />
-              <BrowserRouter>
-                {/* SEO Optimizer now inside Router context */}
-                <SEOOptimizer />
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/a-propos" element={<About />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/boutique" element={<Boutique />} />
-                  <Route path="/product/:id" element={<ProductDetail />} />
-                  <Route path="/ma-selection" element={<MaSelection />} />
-                  <Route path="/checkout" element={<Checkout />} />
-                  <Route path="/order-success" element={<OrderSuccess />} />
-                  <Route path="/regions" element={<Regions />} />
-                  <Route path="/rituels" element={<Rituels />} />
-                  <Route path="/ingredients" element={<Ingredients />} />
-                  <Route path="/ingredients/:id" element={<IngredientDetail />} />
-                  <Route path="/programme-fidelite" element={<ProgrammeFidelite />} />
-                  <Route path="/quiz-peau" element={<SkinQuiz />} />
-                  <Route path="/professionnels" element={<Wholesale />} />
-                  <Route path="/grossistes" element={<Wholesale />} />
-                  <Route path="/collections/printemps" element={<Printemps />} />
-                  <Route path="/collections/ete" element={<Ete />} />
-                  <Route path="/collections/automne" element={<Automne />} />
-                  <Route path="/collections/hiver" element={<Hiver />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </BrowserRouter>
-            </SelectionProvider>
-          </CartProvider>
+          <AuthProvider>
+            <CartProvider>
+              <SelectionProvider>
+                {/* Global optimizers that don't need router context */}
+                <MobileOptimizer />
+                <PerformanceOptimizer />
+                <SecurityConfig />
+                
+                <Toaster />
+                <BrowserRouter>
+                  {/* SEO Optimizer now inside Router context */}
+                  <SEOOptimizer />
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/auth" element={<Auth />} />
+                    <Route path="/a-propos" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/boutique" element={<Boutique />} />
+                    <Route path="/product/:id" element={<ProductDetail />} />
+                    <Route path="/ma-selection" element={<MaSelection />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/order-success" element={<OrderSuccess />} />
+                    <Route path="/regions" element={<Regions />} />
+                    <Route path="/rituels" element={<Rituels />} />
+                    <Route path="/ingredients" element={<Ingredients />} />
+                    <Route path="/ingredients/:id" element={<IngredientDetail />} />
+                    <Route path="/programme-fidelite" element={<ProgrammeFidelite />} />
+                    <Route path="/quiz-peau" element={<SkinQuiz />} />
+                    <Route path="/professionnels" element={<Wholesale />} />
+                    <Route path="/grossistes" element={<Wholesale />} />
+                    <Route path="/collections/printemps" element={<Printemps />} />
+                    <Route path="/collections/ete" element={<Ete />} />
+                    <Route path="/collections/automne" element={<Automne />} />
+                    <Route path="/collections/hiver" element={<Hiver />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </BrowserRouter>
+              </SelectionProvider>
+            </CartProvider>
+          </AuthProvider>
         </LanguageProvider>
       </TooltipProvider>
     </QueryClientProvider>

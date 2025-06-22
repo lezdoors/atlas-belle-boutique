@@ -22,7 +22,6 @@ import FourSeasons from '@/components/FourSeasons';
 import PullToRefresh from '@/components/PullToRefresh';
 import AboutSection from '@/components/AboutSection';
 import SEOOptimizer from '@/components/SEOOptimizer';
-import { LanguageProvider } from '@/contexts/LanguageContext';
 
 const Index = () => {
   const [videoEnded, setVideoEnded] = useState(false);
@@ -39,7 +38,7 @@ const Index = () => {
   };
 
   return (
-    <LanguageProvider>
+    <>
       <SEOOptimizer 
         title="Perle de l'Atlas - Cosmétiques de Luxe Marocains"
         description="Découvrez l'élégance naturelle du Maroc à travers nos soins rares et artisanaux."
@@ -71,7 +70,7 @@ const Index = () => {
           <BackToTop />
         </div>
       </PullToRefresh>
-    </LanguageProvider>
+    </>
   );
 };
 

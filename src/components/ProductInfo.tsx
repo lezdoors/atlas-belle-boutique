@@ -4,7 +4,9 @@ import { Star, ShoppingCart, Heart, Share2, Minus, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { convertAndFormat } from '@/utils/currencyConverter';
+import { toast } from 'sonner';
 
 interface ProductInfoProps {
   product: {
@@ -23,6 +25,7 @@ interface ProductInfoProps {
 const ProductInfo = ({ product, onOrderNow }: ProductInfoProps) => {
   const { language, currency } = useLanguage();
   const { addToCart } = useCart();
+  const { user } = useAuth();
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('');
 
@@ -30,6 +33,16 @@ const ProductInfo = ({ product, onOrderNow }: ProductInfoProps) => {
   const sizes = ['50ml', '100ml', '200ml'];
 
   const handleAddToCart = () => {
+    if (!user) {
+      toast.error(language === 'fr' ? 'Veuillez vous connecter pour ajouter au panier' : 'Please sign in to add to cart');
+      return;
+    }
+
+    if (!selectedSize) {
+      toast.error(language === 'fr' ? 'Veuillez sélectionner une taille' : 'Please select a size');
+      return;
+    }
+
     addToCart({
       id: product.id,
       name: product.name,
@@ -37,6 +50,24 @@ const ProductInfo = ({ product, onOrderNow }: ProductInfoProps) => {
       image: product.image,
       size: selectedSize
     }, quantity);
+
+    toast.success(language === 'fr' ? 'Produit ajouté au panier' : 'Product added to cart');
+  };
+
+  const handleOrderNow = () => {
+    if (!user) {
+      toast.error(language === 'fr' ? 'Veuillez vous connecter pour commander' : 'Please sign in to order');
+      return;
+    }
+
+    if (!selectedSize) {
+      toast.error(language === 'fr' ? 'Veuillez sélectionner une taille' : 'Please select a size');
+      return;
+    }
+
+    if (onOrderNow) {
+      onOrderNow(quantity);
+    }
   };
 
   return (
@@ -144,7 +175,7 @@ const ProductInfo = ({ product, onOrderNow }: ProductInfoProps) => {
               size="lg" 
               variant="outline"
               className="flex-1 rounded-full min-h-[48px]"
-              onClick={() => onOrderNow(quantity)}
+              onClick={handleOrderNow}
               disabled={!selectedSize}
             >
               {language === 'fr' ? 'Commander maintenant' : 'Buy Now'}
