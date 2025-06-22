@@ -11,14 +11,22 @@ export interface CarouselSlide {
 export const carouselData: CarouselSlide[] = [
   {
     id: 1,
-    image: "/lovable-uploads/b7aaf2ae-0eb0-43e2-b2a8-ea0f9b7feef5.png",
-    title: "Été Doré",
-    subtitle: "Rituel d'Éclat",
-    poetic: "L'été doré révèle la lumière cachée de votre beauté.",
-    season: "summer"
+    image: "/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
+    title: "Essence Dorée",
+    subtitle: "Huile d'Argan Pure",
+    poetic: "L'or liquide du Maroc révèle votre éclat naturel.",
+    season: "golden"
   },
   {
     id: 2,
+    image: "/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png",
+    title: "Tradition Authentique",
+    subtitle: "Savon Noir Beldi",
+    poetic: "Les rituels ancestraux pour une peau purifiée.",
+    season: "tradition"
+  },
+  {
+    id: 3,
     image: "/lovable-uploads/6d0913b6-03ca-40b5-9002-ea188762b64f.png",
     title: "Rituels Ancestraux",
     subtitle: "Sagesse Berbère",
@@ -26,7 +34,7 @@ export const carouselData: CarouselSlide[] = [
     season: "heritage"
   },
   {
-    id: 3,
+    id: 4,
     image: "/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png",
     title: "Éclat Naturel",
     subtitle: "Inspiration Marocaine",
