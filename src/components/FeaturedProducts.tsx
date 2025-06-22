@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Filter, Grid, List } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,11 +11,12 @@ interface Product {
   id: number;
   name: string;
   description: string;
-  price: number;
-  imageUrl: string;
+  priceMAD: number;
+  image: string;
   category: string;
   rating: number;
-  numReviews: number;
+  reviews: number;
+  badge: { type: 'new' | 'bestseller' | 'limited' | 'discount'; discount?: number };
 }
 
 const mockProducts: Product[] = [
@@ -22,81 +24,89 @@ const mockProducts: Product[] = [
     id: 1,
     name: "Huile d'Argan Premium",
     description: "L'huile d'argan pure, pressée à froid, pour une peau nourrie et éclatante.",
-    price: 49.99,
-    imageUrl: "/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
+    priceMAD: 299,
+    image: "/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
     category: "Huiles",
     rating: 4.8,
-    numReviews: 125
+    reviews: 125,
+    badge: { type: 'bestseller' }
   },
   {
     id: 2,
     name: "Savon Noir Beldi",
     description: "Un savon traditionnel marocain pour exfolier et purifier la peau en douceur.",
-    price: 29.99,
-    imageUrl: "/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png",
+    priceMAD: 179,
+    image: "/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png",
     category: "Soins du Corps",
     rating: 4.5,
-    numReviews: 90
+    reviews: 90,
+    badge: { type: 'new' }
   },
   {
     id: 3,
     name: "Ghassoul Volcanique",
     description: "Un masque purifiant à l'argile volcanique pour nettoyer et revitaliser la peau.",
-    price: 39.99,
-    imageUrl: "/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png",
+    priceMAD: 239,
+    image: "/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png",
     category: "Soins du Visage",
     rating: 4.7,
-    numReviews: 110
+    reviews: 110,
+    badge: { type: 'limited' }
   },
   {
     id: 4,
     name: "Eau de Rose de Dadès",
     description: "Une eau florale rafraîchissante pour tonifier et hydrater la peau.",
-    price: 24.99,
-    imageUrl: "/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
+    priceMAD: 149,
+    image: "/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
     category: "Toniques",
     rating: 4.6,
-    numReviews: 80
+    reviews: 80,
+    badge: { type: 'bestseller' }
   },
   {
     id: 5,
     name: "Crème de Jour Éclat",
     description: "Une crème hydratante légère pour illuminer et protéger la peau.",
-    price: 54.99,
-    imageUrl: "/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png",
+    priceMAD: 329,
+    image: "/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png",
     category: "Soins du Visage",
     rating: 4.9,
-    numReviews: 150
+    reviews: 150,
+    badge: { type: 'new' }
   },
   {
     id: 6,
     name: "Huile Capillaire Fortifiante",
     description: "Un mélange d'huiles précieuses pour renforcer et faire briller les cheveux.",
-    price: 34.99,
-    imageUrl: "/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png",
+    priceMAD: 209,
+    image: "/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png",
     category: "Soins Capillaires",
     rating: 4.4,
-    numReviews: 70
+    reviews: 70,
+    badge: { type: 'limited' }
   },
   {
     id: 7,
     name: "Baume à Lèvres Nourrissant",
     description: "Un baume riche en beurre de karité et huile d'argan pour des lèvres douces et hydratées.",
-    price: 19.99,
-    imageUrl: "/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
+    priceMAD: 119,
+    image: "/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
     category: "Soins des Lèvres",
     rating: 4.7,
-    numReviews: 100
+    reviews: 100,
+    badge: { type: 'bestseller' }
   },
   {
     id: 8,
     name: "Sérum Anti-Âge Revitalisant",
     description: "Un sérum concentré en actifs anti-âge pour lisser les rides et raffermir la peau.",
-    price: 69.99,
-    imageUrl: "/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png",
+    priceMAD: 419,
+    image: "/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png",
     category: "Soins du Visage",
     rating: 4.8,
-    numReviews: 130
+    reviews: 130,
+    badge: { type: 'discount', discount: 15 }
   }
 ];
 
