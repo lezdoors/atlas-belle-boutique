@@ -41,8 +41,8 @@ const Index = () => {
   return (
     <LanguageProvider>
       <SEOOptimizer 
-        title="Perle de l'Atlas – Cosmétiques de Luxe Marocains"
-        description="Découvrez les soins haut de gamme de Perle de l'Atlas : parfums, huiles et crèmes artisanales marocaines, conçus avec des ingrédients rares."
+        title="Perle de l'Atlas - Cosmétiques de Luxe Marocains"
+        description="Découvrez l'élégance naturelle du Maroc à travers nos soins rares et artisanaux."
         image="/lovable-uploads/673f0b19-2270-4e9f-a2e5-59b15f441af5.png"
       />
       <PullToRefresh onRefresh={handleRefresh}>
@@ -68,7 +68,6 @@ const Index = () => {
           <Footer />
           <SamraRefactoredChatbot videoEnded={videoEnded} />
           <FloatingCart />
-          {/* WhatsApp button removed - functionality integrated in chatbot */}
           <BackToTop />
         </div>
       </PullToRefresh>

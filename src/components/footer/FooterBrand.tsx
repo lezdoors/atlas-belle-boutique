@@ -13,7 +13,7 @@ const FooterBrand = () => {
           size="lg" 
           variant="full"
           withBackground={false}
-          className="mr-4 h-16"
+          className="mr-4 h-16 bg-transparent"
         />
       </div>
       

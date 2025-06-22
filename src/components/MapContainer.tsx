@@ -23,30 +23,44 @@ interface MapContainerProps {
 const MapContainer = ({ regions, selectedRegion, onRegionSelect }: MapContainerProps) => {
   const { language } = useLanguage();
 
+  const handleRegionClick = (regionId: string) => {
+    onRegionSelect(selectedRegion === regionId ? null : regionId);
+    
+    // Smooth scroll to region content
+    const regionElement = document.getElementById(`region-${regionId}`);
+    if (regionElement) {
+      regionElement.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest'
+      });
+    }
+  };
+
   return (
     <Card className="bg-white/90 backdrop-blur-sm border-0 luxury-shadow rounded-2xl overflow-hidden">
-      <CardContent className="p-8">
-        <h3 className="font-display font-bold text-xl text-clay-800 mb-6 text-center">
+      <CardContent className="p-4 sm:p-6 lg:p-8">
+        <h3 className="font-display font-bold text-lg sm:text-xl text-clay-800 mb-4 sm:mb-6 text-center">
           {language === 'fr' ? 'Carte Interactive du Maroc' : 'Interactive Map of Morocco'}
         </h3>
         
-        {/* Simplified Morocco Map */}
-        <div className="relative w-full h-96 bg-gradient-to-br from-beige-100 to-pearl-200 rounded-xl overflow-hidden">
+        {/* Responsive Morocco Map */}
+        <div className="relative w-full h-64 sm:h-80 lg:h-96 bg-gradient-to-br from-beige-100 to-pearl-200 rounded-xl overflow-hidden">
           {/* Decorative Morocco silhouette background */}
           <div className="absolute inset-0 opacity-10 bg-copper-600 rounded-xl"></div>
           
-          {/* Region Markers */}
+          {/* Region Markers - Responsive positioning */}
           {regions.map((region) => (
             <MapRegionMarker
               key={region.id}
               region={region}
               isSelected={selectedRegion === region.id}
-              onSelect={() => onRegionSelect(selectedRegion === region.id ? null : region.id)}
+              onSelect={() => handleRegionClick(region.id)}
             />
           ))}
         </div>
 
-        <div className="text-center mt-6 text-sm text-clay-600">
+        <div className="text-center mt-4 sm:mt-6 text-sm text-clay-600">
           {language === 'fr' 
             ? 'Cliquez sur les points pour découvrir chaque région'
             : 'Click on the points to discover each region'

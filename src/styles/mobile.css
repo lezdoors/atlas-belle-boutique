@@ -60,6 +60,29 @@
   .mobile-menu.open {
     transform: translateX(0);
   }
+
+  /* Hero section mobile optimizations */
+  .hero-section {
+    padding-top: 6rem;
+    padding-bottom: 3rem;
+  }
+  
+  /* Testimonials mobile optimizations */
+  .testimonial-card {
+    margin-bottom: 2rem;
+  }
+  
+  /* Map region buttons responsive behavior */
+  .region-buttons {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .region-button {
+    min-width: calc(50% - 0.25rem);
+    font-size: 0.875rem;
+    padding: 0.75rem 1rem;
+  }
 }
 
 /* Tablet optimizations */
@@ -67,6 +90,11 @@
   .container {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+  
+  /* Testimonials grid optimization for tablets */
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -113,5 +141,24 @@ textarea:focus-visible {
     padding-right: max(1rem, env(safe-area-inset-right));
     padding-top: max(1rem, env(safe-area-inset-top));
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* Header full-width fixes */
+header {
+  width: 100vw;
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+
+/* Footer responsive improvements */
+.footer-content {
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    padding: 2rem;
   }
 }

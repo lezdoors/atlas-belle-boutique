@@ -25,7 +25,8 @@ const PerleAtlasRefinedLogo = ({
     <img 
       src="/lovable-uploads/17e659e7-d9cb-4996-9b8d-458208d6b68b.png"
       alt="Perle de l'Atlas - Cosmétiques de Luxe Marocains"
-      className={`${sizeClasses[size]} ${className} object-contain`}
+      className={`${sizeClasses[size]} ${className} object-contain bg-transparent`}
+      style={{ backgroundColor: 'transparent' }}
     />
   );
 };
