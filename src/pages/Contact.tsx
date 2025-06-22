@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
@@ -133,7 +134,7 @@ const Contact = () => {
               <h2 className="section-title text-clay-800 mb-12 text-center">
                 {language === 'fr' ? 'Nos Bureaux' : 'Our Offices'}
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* USA Office */}
                 <Card className="hover-scale">
                   <CardHeader>
@@ -153,6 +154,29 @@ const Contact = () => {
                     <div className="mt-4 pt-4 border-t border-pearl-200">
                       <p className="text-sm text-clay-500">
                         {language === 'fr' ? 'Bureau principal' : 'Main office'}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Morocco Office */}
+                <Card className="hover-scale">
+                  <CardHeader>
+                    <div className="flex items-center space-x-3">
+                      <MapPin className="h-6 w-6 text-copper-600" />
+                      <CardTitle className="font-serif text-clay-800">
+                        Bureau Maroc
+                      </CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2 text-clay-600">
+                      <p className="font-medium">Casablanca</p>
+                      <p>Maroc</p>
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-pearl-200">
+                      <p className="text-sm text-clay-500">
+                        {language === 'fr' ? 'Centre de sourcing' : 'Sourcing center'}
                       </p>
                     </div>
                   </CardContent>

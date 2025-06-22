@@ -41,6 +41,16 @@ const FooterContact = () => {
             <p>822 C Street #11, Hayward, CA 94541</p>
           </div>
         </div>
+
+        <div className="flex items-start space-x-2 text-sand-300 text-sm">
+          <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+          <div>
+            <p className="font-medium text-amber-300 mb-1">
+              Bureau Maroc :
+            </p>
+            <p>Casablanca, Maroc</p>
+          </div>
+        </div>
         
         <div className="flex items-start space-x-2 text-sand-300 text-sm">
           <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
