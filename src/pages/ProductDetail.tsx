@@ -1,9 +1,7 @@
-
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import BackToTop from '@/components/BackToTop';
 import CheckoutForm from '@/components/CheckoutForm';
 import ProductImageGallery from '@/components/ProductImageGallery';
@@ -143,7 +141,6 @@ const ProductDetail = () => {
       )}
 
       <Footer />
-      <FloatingWhatsApp />
       <BackToTop />
     </div>
   );

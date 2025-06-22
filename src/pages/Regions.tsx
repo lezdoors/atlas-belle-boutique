@@ -1,7 +1,5 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import BackToTop from '@/components/BackToTop';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -238,7 +236,6 @@ const Regions = () => {
       </section>
 
       <Footer />
-      <FloatingWhatsApp />
       <BackToTop />
     </div>
   );

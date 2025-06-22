@@ -1,7 +1,5 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import BackToTop from '@/components/BackToTop';
 import LoyaltyHero from '@/components/loyalty/LoyaltyHero';
 import UserProgressSection from '@/components/loyalty/UserProgressSection';
@@ -40,7 +38,6 @@ const ProgrammeFidelite = () => {
       <CTASection />
 
       <Footer />
-      <FloatingWhatsApp />
       <BackToTop />
     </div>
   );

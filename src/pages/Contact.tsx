@@ -1,7 +1,5 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import BackToTop from '@/components/BackToTop';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { MessageCircle, Mail, MapPin, Clock, Phone } from 'lucide-react';
@@ -240,7 +238,6 @@ const Contact = () => {
       </main>
 
       <Footer />
-      <FloatingWhatsApp />
       <BackToTop />
     </div>
   );

@@ -1,11 +1,9 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
 import ProductFilters from '@/components/ProductFilters';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import BackToTop from '@/components/BackToTop';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -186,7 +184,6 @@ const Boutique = () => {
       </section>
 
       <Footer />
-      <FloatingWhatsApp />
       <BackToTop />
     </div>
   );

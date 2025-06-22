@@ -1,7 +1,5 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import BackToTop from '@/components/BackToTop';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Sparkles, Droplets, Heart, Sun } from 'lucide-react';
@@ -226,7 +224,6 @@ const Rituels = () => {
       </main>
 
       <Footer />
-      <FloatingWhatsApp />
       <BackToTop />
     </div>
   );

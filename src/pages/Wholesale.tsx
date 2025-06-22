@@ -1,7 +1,6 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import BackToTop from '@/components/BackToTop';
 import WholesaleHero from '@/components/wholesale/WholesaleHero';
 import WholesaleBenefits from '@/components/wholesale/WholesaleBenefits';
@@ -19,7 +18,6 @@ const Wholesale = () => {
       </main>
 
       <Footer />
-      <FloatingWhatsApp />
       <BackToTop />
     </div>
   );

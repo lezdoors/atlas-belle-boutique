@@ -1,10 +1,8 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import BackToTop from '@/components/BackToTop';
 import { Button } from '@/components/ui/button';
 import { ShoppingBag, Trash2, Heart } from 'lucide-react';
@@ -202,7 +200,6 @@ const MaSelection = () => {
       </section>
 
       <Footer />
-      <FloatingWhatsApp />
       <BackToTop />
     </div>
   );
