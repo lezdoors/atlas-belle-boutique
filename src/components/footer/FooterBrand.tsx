@@ -1,6 +1,6 @@
 
 import PerleAtlasLuxuryLogo from '@/components/PerleAtlasLuxuryLogo';
-import { User, Mail, Map } from 'lucide-react';
+import { User, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const FooterBrand = () => {
@@ -12,8 +12,8 @@ const FooterBrand = () => {
         <PerleAtlasLuxuryLogo 
           size="lg" 
           variant="full"
-          withBackground={true}
-          className="mr-4"
+          withBackground={false}
+          className="mr-4 h-20"
         />
       </div>
       
@@ -33,7 +33,7 @@ const FooterBrand = () => {
           <Mail className="h-5 w-5 text-white" />
         </div>
         <div className="w-10 h-10 bg-amber-600 rounded-full flex items-center justify-center hover:bg-amber-500 transition-colors cursor-pointer">
-          <Map className="h-5 w-5 text-white" />
+          <MapPin className="h-5 w-5 text-white" />
         </div>
       </div>
     </div>

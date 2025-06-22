@@ -16,11 +16,11 @@ import Footer from '@/components/Footer';
 import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
 import BackToTop from '@/components/BackToTop';
 import FloatingCart from '@/components/FloatingCart';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import OurArtisans from '@/components/OurArtisans';
 import IngredientOriginMap from '@/components/IngredientOriginMap';
 import FourSeasons from '@/components/FourSeasons';
 import PullToRefresh from '@/components/PullToRefresh';
+import AboutSection from '@/components/AboutSection';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
 const Index = () => {
@@ -110,6 +110,7 @@ const Index = () => {
           <main>
             <Hero onVideoEnded={handleVideoEnded} />
             <MissionHero />
+            <AboutSection />
             <MissionSection />
             <ShopByRegion />
             <RegionalCollections />
@@ -126,7 +127,7 @@ const Index = () => {
           <Footer />
           <SamraRefactoredChatbot videoEnded={videoEnded} />
           <FloatingCart />
-          <FloatingWhatsApp />
+          {/* WhatsApp button removed - functionality integrated in chatbot */}
           <BackToTop />
         </div>
       </PullToRefresh>

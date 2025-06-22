@@ -12,36 +12,37 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
   const [isLoading, setIsLoading] = useState(true);
   const [videoEnded, setVideoEnded] = useState(false);
 
-  // Using high-quality artisan desert image from Supabase media bucket
-  const fallbackImage = "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/754f1a74-0a9c-4277-8cff-2105a643bcf8.png";
+  // Using high-quality optimized desert video and fallback image
+  const fallbackImage = "https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151?auto=format&fit=crop&w=1920&q=80";
+  const optimizedVideoUrl = "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/desert-luxury-compressed.mp4";
 
   useEffect(() => {
-    console.log('Hero video component mounted, checking video load');
+    console.log('Hero video component mounted, checking optimized video load');
     if (videoRef.current) {
       const video = videoRef.current;
       
       const handleLoadedData = () => {
-        console.log('Video loaded successfully');
+        console.log('Optimized video loaded successfully');
         setIsLoading(false);
         onVideoLoaded(true);
         onVideoError(false);
       };
       
       const handleError = (e: Event) => {
-        console.error('Video failed to load:', e);
+        console.error('Video failed to load, using fallback:', e);
         setIsLoading(false);
         onVideoError(true);
         onVideoLoaded(false);
       };
 
       const handleCanPlay = () => {
-        console.log('Video can play');
+        console.log('Optimized video can play');
         setIsLoading(false);
         onVideoLoaded(true);
       };
 
       const handleVideoEnded = () => {
-        console.log('Video ended - no longer looping');
+        console.log('Video ended - transitioning to carousel');
         setVideoEnded(true);
         onVideoEnded?.(true);
       };
@@ -51,7 +52,8 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
       video.addEventListener('canplay', handleCanPlay);
       video.addEventListener('ended', handleVideoEnded);
       
-      // Force load attempt
+      // Preload metadata for faster loading
+      video.preload = 'metadata';
       video.load();
       
       return () => {
@@ -67,16 +69,16 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
     <div className="absolute inset-0 w-full h-full z-0">
       {/* Loading shimmer effect */}
       {isLoading && (
-        <div className="absolute inset-0 bg-gradient-to-r from-pearl-200 via-pearl-100 to-pearl-200"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-pearl-200 via-pearl-100 to-pearl-200 animate-pulse"></div>
       )}
       
-      {/* Video element - NO LOOP attribute */}
+      {/* Optimized video element */}
       <video
         ref={videoRef}
         autoPlay
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         poster={fallbackImage}
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
           videoEnded ? 'opacity-0' : 'opacity-100'
@@ -97,7 +99,7 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
           onVideoError(true);
         }}
         onCanPlay={() => {
-          console.log('Video can play');
+          console.log('Optimized video can play');
           setIsLoading(false);
           onVideoLoaded(true);
         }}
@@ -107,11 +109,13 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
           onVideoEnded?.(true);
         }}
       >
-        <source src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/73847-549547533.mp4" type="video/mp4" />
+        {/* Multiple source formats for better compatibility */}
+        <source src={optimizedVideoUrl} type="video/mp4" />
+        <source src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/desert-luxury-compressed.webm" type="video/webm" />
         Your browser does not support the video tag.
       </video>
 
-      {/* Static HD image that appears after video ends */}
+      {/* High-quality fallback image that appears after video ends */}
       <div 
         className={`absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
           videoEnded ? 'opacity-100' : 'opacity-0'
