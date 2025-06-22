@@ -83,6 +83,19 @@
     font-size: 0.875rem;
     padding: 0.75rem 1rem;
   }
+
+  /* Mobile header fixes */
+  .mobile-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Ensure logos have transparent backgrounds */
+  img[alt*="Perle de l'Atlas"] {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
 }
 
 /* Tablet optimizations */
@@ -161,4 +174,29 @@ header {
   .footer-content {
     padding: 2rem;
   }
+}
+
+/* Animation for mobile menu slide-in */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+/* Ensure dropdown menus have proper background and z-index */
+[role="menu"], [data-radix-dropdown-menu-content] {
+  background: white !important;
+  backdrop-filter: blur(8px);
+  z-index: 9999 !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }

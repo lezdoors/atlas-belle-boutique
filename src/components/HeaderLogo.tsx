@@ -13,7 +13,7 @@ const HeaderLogo = () => {
           size="md"
           variant="header"
           withBackground={false}
-          className="filter drop-shadow-sm h-12 md:h-14 bg-transparent"
+          className="filter drop-shadow-sm bg-transparent"
         />
       </div>
     </Link>

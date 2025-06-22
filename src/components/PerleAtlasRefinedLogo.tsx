@@ -15,18 +15,21 @@ const PerleAtlasRefinedLogo = ({
   withBackground = false
 }: PerleAtlasRefinedLogoProps) => {
   const sizeClasses = {
-    sm: 'h-12 w-auto',
-    md: 'h-16 w-auto',
-    lg: 'h-20 w-auto',
-    xl: 'h-24 w-auto'
+    sm: 'h-10 w-auto',
+    md: 'h-12 w-auto md:h-14',
+    lg: 'h-16 w-auto md:h-20',
+    xl: 'h-20 w-auto md:h-24'
   };
 
   return (
     <img 
       src="/lovable-uploads/17e659e7-d9cb-4996-9b8d-458208d6b68b.png"
       alt="Perle de l'Atlas - Cosmétiques de Luxe Marocains"
-      className={`${sizeClasses[size]} ${className} object-contain bg-transparent`}
-      style={{ backgroundColor: 'transparent' }}
+      className={`${sizeClasses[size]} ${className} object-contain`}
+      style={{ 
+        backgroundColor: 'transparent',
+        background: 'transparent'
+      }}
     />
   );
 };

@@ -1,5 +1,7 @@
 
 import { useState, useEffect } from 'react';
+import { Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import LanguageDropdown from '@/components/LanguageDropdown';
 import EnhancedNewsletterModal from '@/components/EnhancedNewsletterModal';
 import MobileSearch from '@/components/MobileSearch';
@@ -56,10 +58,10 @@ const Header = () => {
           <HeaderTopBar />
         </div>
 
-        {/* Main Header - Enhanced mobile layout with sticky behavior */}
+        {/* Main Header - Enhanced mobile layout */}
         <div className="w-full px-4 py-2 md:py-3">
           <div className="w-full max-w-7xl mx-auto flex items-center justify-between h-12 md:h-16">
-            {/* Logo - Enhanced spacing */}
+            {/* Logo */}
             <HeaderLogo />
 
             {/* Desktop Navigation - Better vertical alignment and spacing */}
@@ -67,15 +69,29 @@ const Header = () => {
               <HeaderNavigation />
             </div>
 
-            {/* Action Icons - Improved alignment */}
-            <HeaderActions />
-          </div>
+            {/* Mobile Actions - Hamburger + Cart/User icons */}
+            <div className="flex items-center space-x-2">
+              {/* Desktop Language Dropdown - Hidden on mobile */}
+              <div className="hidden md:block">
+                <LanguageDropdown />
+              </div>
 
-          {/* Mobile Language Dropdown - Only visible when menu is closed */}
-          <div className={`md:hidden mt-2 flex justify-center transition-all duration-200 ${
-            isMenuOpen ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'
-          }`}>
-            <LanguageDropdown />
+              {/* Action Icons (Search, Cart, User) - Simplified for mobile */}
+              <HeaderActions />
+
+              {/* Mobile Hamburger Menu - Only visible on mobile */}
+              <div className="lg:hidden">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="text-clay-700 hover:text-copper-600 transition-colors"
+                  aria-label="Toggle menu"
+                >
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
 

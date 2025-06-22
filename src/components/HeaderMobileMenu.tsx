@@ -67,7 +67,9 @@ const HeaderMobileMenu = ({ isMenuOpen, setIsMenuOpen }: HeaderMobileMenuProps) 
 
           {/* Language Dropdown and Contact Info */}
           <div className="pt-6 border-t border-pearl-200 space-y-4">
-            <LanguageDropdown />
+            <div className="flex justify-center">
+              <LanguageDropdown />
+            </div>
             <div className="text-center text-sm text-clay-600 font-serif">
               <p>Contact: +212 524 123 456</p>
               <p>contact@perledatlas.ma</p>

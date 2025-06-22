@@ -5,7 +5,6 @@ import { Badge } from '@/components/ui/badge';
 import { Heart, ShoppingCart, User, Search } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
-import LanguageDropdown from '@/components/LanguageDropdown';
 import MobileSearch from '@/components/MobileSearch';
 
 const HeaderActions = () => {
@@ -15,27 +14,24 @@ const HeaderActions = () => {
   const [showMobileSearch, setShowMobileSearch] = useState(false);
 
   return (
-    <div className="flex items-center space-x-2 md:space-x-4">
-      {/* Mobile Search */}
+    <div className="flex items-center space-x-1 md:space-x-2">
+      {/* Mobile Search - Only on small screens */}
       <div className="md:hidden">
         <Button
           variant="ghost"
           size="icon"
           onClick={() => setShowMobileSearch(true)}
-          className="text-clay-700 hover:text-copper-600 transition-colors"
+          className="text-clay-700 hover:text-copper-600 transition-colors h-10 w-10"
         >
           <Search className="h-5 w-5" />
         </Button>
       </div>
 
-      {/* Language Dropdown */}
-      <LanguageDropdown />
-
-      {/* Wishlist */}
+      {/* Wishlist - Simplified for mobile */}
       <Button
         variant="ghost"
         size="icon"
-        className="relative text-clay-700 hover:text-copper-600 transition-colors"
+        className="relative text-clay-700 hover:text-copper-600 transition-colors h-10 w-10"
       >
         <Heart className="h-5 w-5" />
         {wishlistCount > 0 && (
@@ -48,12 +44,12 @@ const HeaderActions = () => {
         )}
       </Button>
 
-      {/* Cart */}
+      {/* Cart - Simplified for mobile */}
       <Button
         variant="ghost"
         size="icon"
         onClick={openCart}
-        className="relative text-clay-700 hover:text-copper-600 transition-colors"
+        className="relative text-clay-700 hover:text-copper-600 transition-colors h-10 w-10"
       >
         <ShoppingCart className="h-5 w-5" />
         {totalItems > 0 && (
@@ -66,11 +62,11 @@ const HeaderActions = () => {
         )}
       </Button>
 
-      {/* User Account */}
+      {/* User Account - Simplified for mobile */}
       <Button
         variant="ghost"
         size="icon"
-        className="text-clay-700 hover:text-copper-600 transition-colors"
+        className="text-clay-700 hover:text-copper-600 transition-colors h-10 w-10"
       >
         <User className="h-5 w-5" />
       </Button>
