@@ -1,10 +1,11 @@
+
 import { useState } from 'react';
-import { Filter, Grid, List } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import ProductCard from './ProductCard';
 import FeaturedProductsHeader from './FeaturedProductsHeader';
 import FeaturedProductsInfoBar from './FeaturedProductsInfoBar';
 import DynamicBeautyBanner from './DynamicBeautyBanner';
+import ProductsToolbar from './ProductsToolbar';
+import ProductFiltersPanel from './ProductFiltersPanel';
+import ProductsGrid from './ProductsGrid';
 
 interface Product {
   id: number;
@@ -119,114 +120,19 @@ const FeaturedProducts = () => {
         <FeaturedProductsHeader />
         <FeaturedProductsInfoBar />
         
-        {/* Filters and View Controls */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 gap-4">
-          <div className="flex items-center gap-4">
-            <Button
-              variant="outline"
-              onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center gap-2 border-clay-200 hover:border-clay-400 text-clay-700"
-            >
-              <Filter className="h-4 w-4" />
-              Filtres
-            </Button>
-            
-            <div className="hidden lg:flex items-center gap-2">
-              <Button
-                variant={viewMode === 'grid' ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setViewMode('grid')}
-                className="p-2"
-              >
-                <Grid className="h-4 w-4" />
-              </Button>
-              <Button
-                variant={viewMode === 'list' ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setViewMode('list')}
-                className="p-2"
-              >
-                <List className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-          
-          <p className="text-sm text-clay-600">
-            {mockProducts.length} produits trouvés
-          </p>
-        </div>
+        <ProductsToolbar
+          showFilters={showFilters}
+          setShowFilters={setShowFilters}
+          viewMode={viewMode}
+          setViewMode={setViewMode}
+          productCount={mockProducts.length}
+        />
 
-        {/* Dynamic Beauty Banner - Using the space under filters */}
         <DynamicBeautyBanner />
 
-        {/* Filter Panel */}
-        {showFilters && (
-          <div className="bg-white rounded-xl p-6 mb-8 luxury-shadow border border-clay-100">
-            <h4 className="font-serif text-lg font-semibold text-clay-800 mb-4">Filtrer par :</h4>
-            
-            <div className="space-y-3">
-              <div>
-                <label className="block text-sm font-medium text-clay-700 mb-1">Catégorie :</label>
-                <select className="w-full bg-pearl-50 border border-clay-200 rounded-md shadow-sm focus:border-amber-500 focus:ring-amber-500 text-sm text-clay-600">
-                  <option>Toutes les catégories</option>
-                  <option>Huiles</option>
-                  <option>Soins du Visage</option>
-                  <option>Soins du Corps</option>
-                  <option>Soins Capillaires</option>
-                  <option>Soins des Lèvres</option>
-                  <option>Toniques</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-clay-700 mb-1">Prix :</label>
-                <div className="flex items-center space-x-2">
-                  <input 
-                    type="number" 
-                    placeholder="Min" 
-                    className="w-24 bg-pearl-50 border border-clay-200 rounded-md shadow-sm focus:border-amber-500 focus:ring-amber-500 text-sm text-clay-600" 
-                  />
-                  <span className="text-sm text-clay-500">à</span>
-                  <input 
-                    type="number" 
-                    placeholder="Max" 
-                    className="w-24 bg-pearl-50 border border-clay-200 rounded-md shadow-sm focus:border-amber-500 focus:ring-amber-500 text-sm text-clay-600" 
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-clay-700 mb-1">Note :</label>
-                <div className="flex items-center space-x-3">
-                  <input type="radio" id="rating-4" name="rating" className="focus:ring-amber-500 h-4 w-4 text-amber-500 border-clay-300" />
-                  <label htmlFor="rating-4" className="text-sm text-clay-600">4 étoiles et plus</label>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <input type="radio" id="rating-3" name="rating" className="focus:ring-amber-500 h-4 w-4 text-amber-500 border-clay-300" />
-                  <label htmlFor="rating-3" className="text-sm text-clay-600">3 étoiles et plus</label>
-                </div>
-              </div>
-              
-              <Button variant="outline" className="w-full border-clay-300 text-clay-700 hover:bg-clay-50 hover:border-clay-400">
-                Appliquer les filtres
-              </Button>
-            </div>
-          </div>
-        )}
+        <ProductFiltersPanel showFilters={showFilters} />
 
-        {/* Products Grid */}
-        <div className={`grid gap-6 ${
-          viewMode === 'grid' 
-            ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' 
-            : 'grid-cols-1'
-        }`}>
-          {mockProducts.map((product) => (
-            <ProductCard 
-              key={product.id} 
-              product={product}
-            />
-          ))}
-        </div>
+        <ProductsGrid products={mockProducts} viewMode={viewMode} />
       </div>
     </section>
   );
