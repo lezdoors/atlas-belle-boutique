@@ -55,14 +55,14 @@ const BrandStory = () => {
             </div>
           </div>
 
-          {/* Images - Updated with new desert image */}
+          {/* Images - Updated with new coastal image */}
           <div className="relative">
             <div className="grid grid-cols-2 gap-4 h-[600px]">
-              {/* Main large image - Updated to use the new desert image with people */}
+              {/* Main large image - Updated to use the new coastal image */}
               <div className="col-span-2 relative overflow-hidden rounded-2xl luxury-shadow">
                 <img 
-                  src="/lovable-uploads/5a6e176e-a311-4e23-a48f-5439e70ecb3f.png"
-                  alt="Désert marocain avec silhouettes - Notre inspiration"
+                  src="/lovable-uploads/coastal-natural-beauty.jpg"
+                  alt="Beauté naturelle côtière marocaine - Notre inspiration"
                   className="w-full h-64 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
