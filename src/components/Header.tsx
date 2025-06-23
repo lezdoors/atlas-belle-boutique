@@ -21,7 +21,7 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 20);
+      setIsScrolled(scrollPosition > 10);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -48,26 +48,26 @@ const Header = () => {
           ? 'bg-white/98 backdrop-blur-xl shadow-lg border-b border-amber-100/50' 
           : 'bg-white/95 backdrop-blur-md'
       }`}>
-        {/* Top Bar - Hide on scroll for cleaner look */}
+        {/* Top Bar - Hide on scroll for mobile app feel */}
         <div className={`hidden md:block transition-all duration-500 ${isScrolled ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
           <HeaderTopBar />
         </div>
 
-        {/* Main Header - Luxury layout with generous spacing */}
-        <div className="w-full px-6 lg:px-8 py-4">
-          <div className="w-full max-w-7xl mx-auto flex items-center justify-between h-16">
+        {/* Main Header - App-like layout with minimal padding */}
+        <div className="w-full px-4 lg:px-6 py-3 lg:py-4">
+          <div className="w-full max-w-7xl mx-auto flex items-center justify-between h-14 lg:h-16">
             {/* Logo */}
-            <div className="flex items-center">
+            <div className="flex items-center flex-shrink-0">
               <HeaderLogo />
             </div>
 
             {/* Desktop Navigation - Centered with elegant spacing */}
-            <div className="hidden lg:flex items-center h-full flex-1 justify-center mx-12">
+            <div className="hidden lg:flex items-center h-full flex-1 justify-center mx-8">
               <HeaderNavigation />
             </div>
 
             {/* Right Side Actions */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 lg:space-x-4">
               {/* Desktop Language Dropdown */}
               <div className="hidden lg:block">
                 <LanguageDropdown />
@@ -82,7 +82,7 @@ const Header = () => {
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="text-clay-800 hover:text-amber-600 transition-all duration-300 h-11 w-11 rounded-full hover:bg-amber-50"
+                  className="text-clay-700 hover:text-amber-600 transition-all duration-300 h-10 w-10 rounded-full hover:bg-amber-50/80 ml-2"
                   aria-label="Toggle menu"
                 >
                   <Menu className="h-5 w-5" />

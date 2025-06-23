@@ -17,7 +17,7 @@ const HeaderNavigation = () => {
     },
     { 
       href: '/collections', 
-      label: language === 'fr' ? 'Collections' : 'Collections' 
+      label: 'Collections'
     },
     { 
       href: '/about', 
@@ -35,17 +35,19 @@ const HeaderNavigation = () => {
 
   return (
     <nav className="flex items-center justify-center h-full">
-      <ul className="flex items-center space-x-12 h-full">
+      <ul className="flex items-center space-x-8 lg:space-x-12 h-full">
         {navItems.map((item) => (
           <li key={item.href} className="h-full flex items-center">
             <Link
               to={item.href}
-              className={`h-full flex items-center text-sm font-normal font-sans tracking-wider transition-all duration-300 relative group px-1 ${
-                location.pathname === item.href ? 'text-amber-600' : 'text-clay-800 hover:text-amber-600'
+              className={`h-full flex items-center text-sm lg:text-base font-light tracking-wide transition-all duration-300 relative group px-2 py-1 ${
+                location.pathname === item.href 
+                  ? 'text-amber-600 font-medium' 
+                  : 'text-clay-800 hover:text-amber-600'
               }`}
             >
               {item.label}
-              <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 transition-all duration-300 ${
+              <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 transition-all duration-300 transform origin-center ${
                 location.pathname === item.href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
               }`}></span>
             </Link>

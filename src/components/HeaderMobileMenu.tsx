@@ -16,7 +16,7 @@ const HeaderMobileMenu = ({ isMenuOpen, setIsMenuOpen }: HeaderMobileMenuProps) 
   const navItems = [
     { href: '/', label: language === 'fr' ? 'Accueil' : 'Home' },
     { href: '/boutique', label: language === 'fr' ? 'Boutique' : 'Shop' },
-    { href: '/collections', label: language === 'fr' ? 'Collections' : 'Collections' },
+    { href: '/collections', label: 'Collections' },
     { href: '/about', label: language === 'fr' ? 'Notre Mission' : 'Our Mission' },
     { href: '/testimonials', label: language === 'fr' ? 'Témoignages' : 'Testimonials' },
     { href: '/contact', label: 'Contact' }
@@ -28,34 +28,34 @@ const HeaderMobileMenu = ({ isMenuOpen, setIsMenuOpen }: HeaderMobileMenuProps) 
     <div className="lg:hidden fixed inset-0 z-50">
       {/* Enhanced backdrop with luxury blur */}
       <div 
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-all duration-500"
+        className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-all duration-500"
         onClick={() => setIsMenuOpen(false)}
       />
       
-      {/* Luxury menu panel */}
-      <div className="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-white/98 backdrop-blur-xl shadow-2xl animate-slide-in-right">
-        <div className="p-8 h-full flex flex-col">
+      {/* App-like menu panel */}
+      <div className="absolute top-0 right-0 h-full w-72 max-w-[85vw] bg-white/98 backdrop-blur-xl shadow-2xl animate-slide-in-right">
+        <div className="p-6 h-full flex flex-col">
           {/* Header with close button */}
-          <div className="flex justify-between items-center mb-12 pb-6 border-b border-amber-100">
-            <h2 className="font-serif font-medium text-2xl text-clay-800">Menu</h2>
+          <div className="flex justify-between items-center mb-8 pb-4 border-b border-amber-100/60">
+            <h2 className="font-light text-xl text-clay-800 tracking-wide">Menu</h2>
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsMenuOpen(false)}
-              className="hover:bg-amber-50 h-11 w-11 rounded-full transition-all duration-300"
+              className="hover:bg-amber-50/80 h-10 w-10 rounded-full transition-all duration-300 text-clay-600"
             >
               <X className="h-5 w-5" />
             </Button>
           </div>
 
-          {/* Navigation Links with luxury styling */}
-          <nav className="flex-1 space-y-3 mb-12">
+          {/* Navigation Links with app-like styling */}
+          <nav className="flex-1 space-y-1 mb-8">
             {navItems.map((item, index) => (
               <Link
                 key={item.href}
                 to={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="block py-4 px-6 text-clay-800 hover:text-amber-600 hover:bg-amber-50 rounded-2xl transition-all duration-300 font-sans font-normal text-lg tracking-wide"
+                className="block py-4 px-4 text-clay-800 hover:text-amber-600 hover:bg-amber-50/60 rounded-xl transition-all duration-300 font-light text-base tracking-wide border-b border-transparent hover:border-amber-100/40"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {item.label}
@@ -64,12 +64,12 @@ const HeaderMobileMenu = ({ isMenuOpen, setIsMenuOpen }: HeaderMobileMenuProps) 
           </nav>
 
           {/* Language Dropdown and Contact Info */}
-          <div className="pt-8 border-t border-amber-100 space-y-6">
+          <div className="pt-6 border-t border-amber-100/60 space-y-4">
             <div className="flex justify-center">
               <LanguageDropdown />
             </div>
-            <div className="text-center text-sm text-clay-600 font-sans space-y-2">
-              <p className="font-medium">Contact</p>
+            <div className="text-center text-sm text-clay-500 font-light space-y-1">
+              <p className="font-medium text-clay-700">Contact</p>
               <p>+212 524 123 456</p>
               <p>contact@perledatlas.ma</p>
             </div>
