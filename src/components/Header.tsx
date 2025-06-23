@@ -17,11 +17,11 @@ const Header = () => {
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Enhanced scroll detection for header styling
+  // Enhanced scroll detection for luxury header styling
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50);
+      setIsScrolled(scrollPosition > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -35,67 +35,64 @@ const Header = () => {
     if (!hasShownModal) {
       const timer = setTimeout(() => {
         setShowNewsletterModal(true);
-      }, 8000); // Increased delay for better UX
+      }, 8000);
 
       return () => clearTimeout(timer);
     }
   }, []);
 
-  const handleSearch = (query: string) => {
-    console.log('Searching for:', query);
-    // Here you would implement the actual search functionality
-  };
-
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
+      <header className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-xl border-b border-sand-200 luxury-shadow' 
-          : 'bg-white/90 backdrop-blur-md border-b border-transparent'
+          ? 'bg-white/98 backdrop-blur-xl shadow-lg border-b border-amber-100/50' 
+          : 'bg-white/95 backdrop-blur-md'
       }`}>
-        {/* Top Bar - Hide on scroll for cleaner mobile look */}
-        <div className={`hidden md:block transition-all duration-300 ${isScrolled ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
+        {/* Top Bar - Hide on scroll for cleaner look */}
+        <div className={`hidden md:block transition-all duration-500 ${isScrolled ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
           <HeaderTopBar />
         </div>
 
-        {/* Main Header - Enhanced mobile layout */}
-        <div className="w-full px-4 py-2 md:py-3">
-          <div className="w-full max-w-7xl mx-auto flex items-center justify-between h-12 md:h-16">
+        {/* Main Header - Luxury layout with generous spacing */}
+        <div className="w-full px-6 lg:px-8 py-4">
+          <div className="w-full max-w-7xl mx-auto flex items-center justify-between h-16">
             {/* Logo */}
-            <HeaderLogo />
+            <div className="flex items-center">
+              <HeaderLogo />
+            </div>
 
-            {/* Desktop Navigation - Better vertical alignment and spacing */}
-            <div className="hidden lg:flex items-center h-full flex-1 justify-center">
+            {/* Desktop Navigation - Centered with elegant spacing */}
+            <div className="hidden lg:flex items-center h-full flex-1 justify-center mx-12">
               <HeaderNavigation />
             </div>
 
-            {/* Mobile Actions - Hamburger + Cart/User icons */}
-            <div className="flex items-center space-x-2">
-              {/* Desktop Language Dropdown - Hidden on mobile */}
-              <div className="hidden md:block">
+            {/* Right Side Actions */}
+            <div className="flex items-center space-x-4">
+              {/* Desktop Language Dropdown */}
+              <div className="hidden lg:block">
                 <LanguageDropdown />
               </div>
 
-              {/* Action Icons (Search, Cart, User) - Simplified for mobile */}
+              {/* Action Icons */}
               <HeaderActions />
 
-              {/* Mobile Hamburger Menu - Only visible on mobile */}
+              {/* Mobile Hamburger Menu */}
               <div className="lg:hidden">
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="text-clay-700 hover:text-copper-600 transition-colors"
+                  className="text-clay-800 hover:text-amber-600 transition-all duration-300 h-11 w-11 rounded-full hover:bg-amber-50"
                   aria-label="Toggle menu"
                 >
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-5 w-5" />
                 </Button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Enhanced Mobile Menu */}
+        {/* Mobile Menu */}
         <HeaderMobileMenu 
           isMenuOpen={isMenuOpen}
           setIsMenuOpen={setIsMenuOpen}
@@ -108,7 +105,7 @@ const Header = () => {
         onClose={() => setShowMobileSearch(false)} 
       />
 
-      {/* Enhanced Newsletter Modal */}
+      {/* Newsletter Modal */}
       <EnhancedNewsletterModal 
         isOpen={showNewsletterModal} 
         onClose={() => setShowNewsletterModal(false)} 
