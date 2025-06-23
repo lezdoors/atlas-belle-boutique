@@ -110,6 +110,16 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) =>
       <DialogContent className="max-w-md rounded-3xl border-0 luxury-shadow bg-gradient-to-br from-pearl-50 to-beige-50 animate-fade-in">
         <DialogHeader>
           <DialogTitle className="sr-only">Newsletter Subscription</DialogTitle>
+          {/* Prominent Close Button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleClose}
+            className="absolute top-4 right-4 z-10 text-clay-600 hover:text-clay-800 hover:bg-clay-100 rounded-full w-8 h-8 transition-colors duration-200"
+            aria-label={language === 'fr' ? 'Fermer' : 'Close'}
+          >
+            <X className="h-4 w-4" />
+          </Button>
         </DialogHeader>
         
         <div className="text-center space-y-6 p-2">

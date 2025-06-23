@@ -55,7 +55,7 @@ const BrandStory = () => {
             </div>
           </div>
 
-          {/* Images - Updated with new coastal image */}
+          {/* Images - Updated with new Moroccan architecture image */}
           <div className="relative">
             <div className="grid grid-cols-2 gap-4 h-[600px]">
               {/* Main large image - Updated to use the new coastal image */}
@@ -77,9 +77,10 @@ const BrandStory = () => {
                 />
               </div>
               
+              {/* Updated mosque/architecture image */}
               <div className="relative overflow-hidden rounded-2xl luxury-shadow">
                 <img 
-                  src="https://images.unsplash.com/photo-1466442929976-97f336a657be?w=300&h=300&fit=crop&crop=center"
+                  src="/lovable-uploads/moroccan-architecture.jpg"
                   alt="Architecture traditionnelle marocaine"
                   className="w-full h-full object-cover"
                 />
