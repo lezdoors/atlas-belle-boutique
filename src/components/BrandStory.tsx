@@ -55,16 +55,17 @@ const BrandStory = () => {
             </div>
           </div>
 
-          {/* Images */}
+          {/* Images - Updated with desert background */}
           <div className="relative">
             <div className="grid grid-cols-2 gap-4 h-[600px]">
-              {/* Main large image */}
+              {/* Main large image - Updated to use desert image */}
               <div className="col-span-2 relative overflow-hidden rounded-2xl luxury-shadow">
                 <img 
-                  src="https://images.unsplash.com/photo-1466442929976-97f336a657be?w=600&h=400&fit=crop&crop=center"
-                  alt="Architecture traditionnelle marocaine"
+                  src="/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png"
+                  alt="Désert marocain - Inspiration de nos produits"
                   className="w-full h-64 object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
               
               {/* Two smaller images */}
@@ -78,8 +79,8 @@ const BrandStory = () => {
               
               <div className="relative overflow-hidden rounded-2xl luxury-shadow">
                 <img 
-                  src="https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151?w=300&h=300&fit=crop&crop=center"
-                  alt="Désert du Sahara"
+                  src="https://images.unsplash.com/photo-1466442929976-97f336a657be?w=300&h=300&fit=crop&crop=center"
+                  alt="Architecture traditionnelle marocaine"
                   className="w-full h-full object-cover"
                 />
               </div>

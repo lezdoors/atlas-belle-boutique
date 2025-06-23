@@ -1,10 +1,23 @@
 
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useState, useEffect } from 'react';
 
 const HeaderNavigation = () => {
   const { language } = useLanguage();
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Enhanced scroll detection for better text visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
     { 
@@ -42,8 +55,8 @@ const HeaderNavigation = () => {
               to={item.href}
               className={`h-full flex items-center text-sm lg:text-base font-light tracking-wide transition-all duration-300 relative group px-2 py-1 ${
                 location.pathname === item.href 
-                  ? 'text-amber-600 font-medium' 
-                  : 'text-clay-800 hover:text-amber-600'
+                  ? `${isScrolled ? 'text-amber-700' : 'text-amber-600'} font-medium` 
+                  : `${isScrolled ? 'text-clay-900 hover:text-amber-700' : 'text-clay-800 hover:text-amber-600'}`
               }`}
             >
               {item.label}
