@@ -8,11 +8,11 @@ const HeaderNavigation = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Enhanced scroll detection for better text visibility
+  // Enhanced scroll detection for color inversion
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 10);
+      setIsScrolled(scrollPosition > 100);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -53,14 +53,18 @@ const HeaderNavigation = () => {
           <li key={item.href} className="h-full flex items-center">
             <Link
               to={item.href}
-              className={`h-full flex items-center text-sm lg:text-base font-light tracking-wide transition-all duration-300 relative group px-2 py-1 ${
+              className={`h-full flex items-center text-sm lg:text-base font-light tracking-wide transition-all duration-700 relative group px-2 py-1 ${
                 location.pathname === item.href 
-                  ? `${isScrolled ? 'text-amber-700' : 'text-amber-600'} font-medium` 
-                  : `${isScrolled ? 'text-clay-900 hover:text-amber-700' : 'text-clay-800 hover:text-amber-600'}`
+                  ? `${isScrolled ? 'text-amber-700' : 'text-amber-200'} font-medium` 
+                  : `${isScrolled ? 'text-clay-900 hover:text-amber-700' : 'text-white hover:text-amber-200'}`
               }`}
             >
               {item.label}
-              <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 transition-all duration-300 transform origin-center ${
+              <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r transition-all duration-300 transform origin-center ${
+                isScrolled 
+                  ? 'from-amber-400 to-amber-600' 
+                  : 'from-amber-200 to-amber-300'
+              } ${
                 location.pathname === item.href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
               }`}></span>
             </Link>

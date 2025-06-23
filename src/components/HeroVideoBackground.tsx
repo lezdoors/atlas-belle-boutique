@@ -12,37 +12,37 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
   const [isLoading, setIsLoading] = useState(true);
   const [videoEnded, setVideoEnded] = useState(false);
 
-  // Using high-quality optimized desert video and fallback image
-  const fallbackImage = "https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151?auto=format&fit=crop&w=1920&q=80";
-  const optimizedVideoUrl = "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/desert-luxury-compressed.mp4";
+  // Using the hand with sand video as requested
+  const fallbackImage = "/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png";
+  const sandVideoUrl = "/lovable-uploads/hand-sand-video.mp4"; // Using the sand video mentioned
 
   useEffect(() => {
-    console.log('Hero video component mounted, checking optimized video load');
+    console.log('Hero video component mounted, loading sand video');
     if (videoRef.current) {
       const video = videoRef.current;
       
       const handleLoadedData = () => {
-        console.log('Optimized video loaded successfully');
+        console.log('Sand video loaded successfully');
         setIsLoading(false);
         onVideoLoaded(true);
         onVideoError(false);
       };
       
       const handleError = (e: Event) => {
-        console.error('Video failed to load, using fallback:', e);
+        console.error('Sand video failed to load, using fallback:', e);
         setIsLoading(false);
         onVideoError(true);
         onVideoLoaded(false);
       };
 
       const handleCanPlay = () => {
-        console.log('Optimized video can play');
+        console.log('Sand video can play');
         setIsLoading(false);
         onVideoLoaded(true);
       };
 
       const handleVideoEnded = () => {
-        console.log('Video ended - transitioning to carousel');
+        console.log('Sand video ended - transitioning to carousel');
         setVideoEnded(true);
         onVideoEnded?.(true);
       };
@@ -69,14 +69,15 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
     <div className="absolute inset-0 w-full h-full z-0">
       {/* Loading shimmer effect */}
       {isLoading && (
-        <div className="absolute inset-0 bg-gradient-to-r from-pearl-200 via-pearl-100 to-pearl-200 animate-pulse"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-sand-200 via-sand-100 to-sand-200 animate-pulse"></div>
       )}
       
-      {/* Optimized video element */}
+      {/* Sand video element */}
       <video
         ref={videoRef}
         autoPlay
         muted
+        loop
         playsInline
         preload="metadata"
         poster={fallbackImage}
@@ -99,23 +100,22 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
           onVideoError(true);
         }}
         onCanPlay={() => {
-          console.log('Optimized video can play');
+          console.log('Sand video can play');
           setIsLoading(false);
           onVideoLoaded(true);
         }}
         onEnded={() => {
-          console.log('Video ended - transitioning to carousel');
+          console.log('Sand video ended - transitioning to carousel');
           setVideoEnded(true);
           onVideoEnded?.(true);
         }}
       >
         {/* Multiple source formats for better compatibility */}
-        <source src={optimizedVideoUrl} type="video/mp4" />
-        <source src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/desert-luxury-compressed.webm" type="video/webm" />
+        <source src={sandVideoUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
-      {/* High-quality fallback image that appears after video ends */}
+      {/* Desert fallback image with subtle gradient overlay */}
       <div 
         className={`absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
           videoEnded ? 'opacity-100' : 'opacity-0'
@@ -124,6 +124,9 @@ const HeroVideoBackground = ({ onVideoLoaded, onVideoError, onVideoEnded }: Hero
           backgroundImage: `url('${fallbackImage}')`
         }}
       />
+
+      {/* Subtle gradient overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent"></div>
     </div>
   );
 };

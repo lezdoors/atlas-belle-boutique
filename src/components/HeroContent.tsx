@@ -1,14 +1,44 @@
 
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, Sparkles, Phone, ChevronDown } from 'lucide-react';
+import { ArrowDown, Sparkles, Phone, ChevronDown, Play, Pause } from 'lucide-react';
 
 interface HeroContentProps {
   onScrollToProducts: () => void;
 }
 
 const HeroContent = ({ onScrollToProducts }: HeroContentProps) => {
+  const [isPlaying, setIsPlaying] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleVideo = () => {
+    const video = document.querySelector('video') as HTMLVideoElement;
+    if (video) {
+      if (isPlaying) {
+        video.pause();
+      } else {
+        video.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
   return (
-    <div className="text-center lg:text-left order-2 lg:order-1 space-y-6 sm:space-y-8">
+    <div className="text-center lg:text-left order-2 lg:order-1 space-y-6 sm:space-y-8 relative">
+      {/* Video Control Button - Bottom Right */}
+      <Button
+        onClick={toggleVideo}
+        variant="ghost"
+        size="icon"
+        className="fixed bottom-6 right-6 z-50 bg-black/30 backdrop-blur-sm text-white hover:bg-black/50 transition-all duration-300 rounded-full w-12 h-12"
+      >
+        {isPlaying ? (
+          <Pause className="h-5 w-5" />
+        ) : (
+          <Play className="h-5 w-5 ml-0.5" />
+        )}
+      </Button>
+
       {/* Luxury decorative badge with enhanced animation */}
       <div className="inline-flex items-center bg-white/90 backdrop-blur-md rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6 luxury-shadow animate-fade-in">
         <Sparkles className="h-3 w-3 sm:h-4 sm:w-4 text-copper-600 mr-2 animate-pulse" />
