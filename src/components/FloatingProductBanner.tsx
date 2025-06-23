@@ -130,8 +130,7 @@ const FloatingProductBanner = () => {
               className="flex space-x-4 overflow-x-auto scrollbar-hide pb-2"
               style={{ 
                 scrollbarWidth: 'none',
-                msOverflowStyle: 'none',
-                WebkitScrollbar: { display: 'none' }
+                msOverflowStyle: 'none'
               }}
             >
               {products.map((product) => (
