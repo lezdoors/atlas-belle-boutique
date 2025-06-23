@@ -1,0 +1,24 @@
+
+/* Newsletter modal styles */
+.newsletter-backdrop {
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Enhanced newsletter modal */
+.newsletter-success {
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: white;
+}
+
+/* Product quick view enhancements */
+.quick-view-backdrop {
+  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.quick-view-content {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(184, 134, 11, 0.2);
+}

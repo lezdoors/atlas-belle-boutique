@@ -1,0 +1,51 @@
+
+/* Product card enhancements */
+.product-card {
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.product-card:hover {
+  border-color: rgba(184, 134, 11, 0.3);
+  transform: translateY(-4px);
+}
+
+/* Testimonial card styles */
+.testimonial-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
+  backdrop-filter: blur(10px);
+}
+
+/* Enhanced card hover effects for different sections */
+.ingredient-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(184, 134, 11, 0.2);
+}
+
+.artisan-card:hover {
+  transform: perspective(1000px) rotateY(5deg);
+}
+
+/* Enhanced about section */
+.mission-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(184, 134, 11, 0.1);
+  transition: all 0.3s ease;
+}
+
+.mission-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(184, 134, 11, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced seasonal carousel */
+.seasonal-slide {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.seasonal-slide.active {
+  transform: scale(1.05);
+  z-index: 2;
+}

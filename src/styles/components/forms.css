@@ -1,0 +1,51 @@
+
+/* Enhanced form styling */
+.form-field {
+  position: relative;
+}
+
+.form-field input:focus + label,
+.form-field input:not(:placeholder-shown) + label {
+  transform: translateY(-1.5rem) scale(0.875);
+  color: #B8860B;
+}
+
+.form-field label {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  color: #6B7280;
+}
+
+/* Progress indicators */
+.progress-step {
+  position: relative;
+}
+
+.progress-step::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background: #E5E7EB;
+  z-index: -1;
+}
+
+.progress-step.completed::after {
+  background: #B8860B;
+}
+
+/* Search enhancement */
+.search-suggestion {
+  transition: all 0.2s ease;
+}
+
+.search-suggestion:hover {
+  background: rgba(184, 134, 11, 0.1);
+  transform: translateX(4px);
+}
