@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Heart, ShoppingBag, Search } from 'lucide-react';
@@ -15,14 +15,15 @@ const HeaderActions = () => {
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Track scroll for color inversion
-  useState(() => {
+  // Fixed scroll tracking implementation
+  useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      setIsScrolled(window.scrollY > 50);
     };
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  });
+  }, []);
 
   const iconColorClass = isScrolled ? 'text-clay-700 hover:text-amber-600' : 'text-white hover:text-amber-200';
   const hoverBgClass = isScrolled ? 'hover:bg-amber-50/80' : 'hover:bg-white/20';
@@ -35,7 +36,7 @@ const HeaderActions = () => {
           variant="ghost"
           size="icon"
           onClick={() => setShowMobileSearch(true)}
-          className={`transition-all duration-700 h-10 w-10 lg:h-11 lg:w-11 rounded-full group ${iconColorClass} ${hoverBgClass}`}
+          className={`transition-all duration-500 h-10 w-10 lg:h-11 lg:w-11 rounded-full group ${iconColorClass} ${hoverBgClass}`}
         >
           <Search className="h-4 w-4 lg:h-5 lg:w-5 transition-transform duration-200 group-hover:scale-110" />
         </Button>
@@ -45,7 +46,7 @@ const HeaderActions = () => {
       <Button
         variant="ghost"
         size="icon"
-        className={`relative transition-all duration-700 h-10 w-10 lg:h-11 lg:w-11 rounded-full group ${iconColorClass} ${hoverBgClass}`}
+        className={`relative transition-all duration-500 h-10 w-10 lg:h-11 lg:w-11 rounded-full group ${iconColorClass} ${hoverBgClass}`}
       >
         <Heart className="h-4 w-4 lg:h-5 lg:w-5 transition-all duration-200 group-hover:scale-110 group-hover:fill-amber-600/20" />
         {wishlistCount > 0 && (
@@ -63,7 +64,7 @@ const HeaderActions = () => {
         variant="ghost"
         size="icon"
         onClick={openCart}
-        className={`relative transition-all duration-700 h-10 w-10 lg:h-11 lg:w-11 rounded-full group ${iconColorClass} ${hoverBgClass}`}
+        className={`relative transition-all duration-500 h-10 w-10 lg:h-11 lg:w-11 rounded-full group ${iconColorClass} ${hoverBgClass}`}
       >
         <ShoppingBag className="h-4 w-4 lg:h-5 lg:w-5 transition-transform duration-200 group-hover:scale-110" />
         {totalItems > 0 && (

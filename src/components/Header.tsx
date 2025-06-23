@@ -17,11 +17,11 @@ const Header = () => {
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Enhanced scroll detection for transparent header overlay
+  // Enhanced scroll detection for smoother transparent header transitions
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 100); // Increased threshold for better effect
+      setIsScrolled(scrollPosition > 50); // Reduced threshold for earlier transition
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -43,18 +43,18 @@ const Header = () => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-700 ${
+      <header className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-amber-100/50' 
-          : 'bg-transparent backdrop-blur-sm'
+          ? 'bg-white/98 backdrop-blur-xl shadow-xl border-b border-amber-100/50' 
+          : 'bg-black/20 backdrop-blur-md'
       }`}>
-        {/* Top Bar - Hide on all devices for clean overlay effect */}
+        {/* Top Bar - Hidden for clean overlay effect */}
         <div className="hidden">
           <HeaderTopBar />
         </div>
 
-        {/* Main Header - Transparent overlay design */}
-        <div className="w-full px-4 lg:px-6 py-4 lg:py-5">
+        {/* Main Header - Enhanced transparent overlay design */}
+        <div className="w-full px-4 lg:px-6 py-3 lg:py-4">
           <div className="w-full max-w-7xl mx-auto flex items-center justify-between h-14 lg:h-16">
             {/* Logo */}
             <div className="flex items-center flex-shrink-0">
@@ -68,7 +68,7 @@ const Header = () => {
 
             {/* Right Side Actions */}
             <div className="flex items-center space-x-2 lg:space-x-4">
-              {/* Desktop Language Dropdown - Remove French flag styling */}
+              {/* Desktop Language Dropdown */}
               <div className="hidden lg:block">
                 <LanguageDropdown />
               </div>
@@ -82,8 +82,10 @@ const Header = () => {
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className={`transition-all duration-300 h-10 w-10 rounded-full hover:bg-white/20 ml-2 ${
-                    isScrolled ? 'text-clay-700 hover:text-amber-600' : 'text-white hover:text-amber-200'
+                  className={`transition-all duration-500 h-10 w-10 rounded-full ml-2 ${
+                    isScrolled 
+                      ? 'text-clay-700 hover:text-amber-600 hover:bg-amber-50/80' 
+                      : 'text-white hover:text-amber-200 hover:bg-white/20'
                   }`}
                   aria-label="Toggle menu"
                 >

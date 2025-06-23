@@ -6,6 +6,7 @@ import HeroDecorativeElements from '@/components/HeroDecorativeElements';
 import HeroContent from '@/components/HeroContent';
 import HeroProductShowcase from '@/components/HeroProductShowcase';
 import SeasonalCarousel from '@/components/SeasonalCarousel';
+import VideoControls from '@/components/VideoControls';
 
 interface HeroProps {
   onVideoEnded?: (ended: boolean) => void;
@@ -59,10 +60,15 @@ const Hero = ({ onVideoEnded }: HeroProps) => {
       {(videoError || !videoLoaded) && <HeroFallbackBackground />}
 
       {/* Dark Overlay for Readability */}
-      <div className="absolute inset-0 bg-black/40 z-10"></div>
+      <div className="absolute inset-0 bg-black/30 z-10"></div>
 
       {/* Floating Decorative Elements */}
       <HeroDecorativeElements />
+
+      {/* Video Controls - Only show when video is loaded and not in error state */}
+      {videoLoaded && !videoError && (
+        <VideoControls />
+      )}
 
       {/* Main Content Container */}
       <div className="relative z-40 container mx-auto px-4 py-8 sm:py-16">
