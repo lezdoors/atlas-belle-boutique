@@ -12,8 +12,23 @@ const PerleAtlasNewLogo = ({
   size = 'md',
   variant = 'full'
 }: PerleAtlasNewLogoProps) => {
+  // Size mapping for responsive logo sizing
+  const sizeClasses = {
+    sm: 'w-16 md:w-20',
+    md: 'w-20 md:w-24 lg:w-28',
+    lg: 'w-24 md:w-28 lg:w-32',
+    xl: 'w-28 md:w-32 lg:w-36'
+  };
+
   return (
-    <div className={`logo inline-block ${className}`}>
+    <div 
+      className={`inline-block ${sizeClasses[size]} ${className}`}
+      style={{
+        width: 'clamp(120px, 15vw, 240px)',
+        maxWidth: '100%',
+        height: 'auto'
+      }}
+    >
       <svg 
         viewBox="0 0 512 512" 
         xmlns="http://www.w3.org/2000/svg"
@@ -55,14 +70,6 @@ const PerleAtlasNewLogo = ({
           PERLE DE L'ATLAS
         </text>
       </svg>
-      
-      <style jsx>{`
-        .logo {
-          width: clamp(120px, 15vw, 240px);
-          max-width: 100%;
-          height: auto;
-        }
-      `}</style>
     </div>
   );
 };
