@@ -8,25 +8,66 @@ import CompanyInfoFields from './fields/CompanyInfoFields';
 import ContactInfoFields from './fields/ContactInfoFields';
 import BusinessDetailsFields from './fields/BusinessDetailsFields';
 import ProjectDetailsFields from './fields/ProjectDetailsFields';
-import { sanitizeInput } from '@/utils/inputValidation';
+import { sanitizeInput, validateEmail, validateName } from '@/utils/inputValidation';
+import { formRateLimiter, getUserIdentifier } from '@/utils/rateLimiter';
+import { useToast } from '@/hooks/use-toast';
 
 const WholesaleForm = () => {
   const { language } = useLanguage();
+  const { toast } = useToast();
   const { form, isSubmitting, onSubmit } = useWholesaleForm();
 
   const handleSecureSubmit = (data: any) => {
-    // Sanitize all text inputs before submission
+    // Rate limiting check
+    const userIdentifier = getUserIdentifier();
+    const rateLimitResult = formRateLimiter.checkLimit(userIdentifier);
+    
+    if (!rateLimitResult.allowed) {
+      toast({
+        variant: "destructive",
+        title: language === 'fr' ? "Trop de tentatives" : "Too many attempts",
+        description: language === 'fr' 
+          ? "Veuillez attendre avant de réessayer"
+          : "Please wait before trying again"
+      });
+      return;
+    }
+
+    // Additional validation
+    if (!validateEmail(data.email)) {
+      toast({
+        variant: "destructive",
+        title: language === 'fr' ? "Email invalide" : "Invalid email",
+        description: language === 'fr' 
+          ? "Veuillez entrer un email valide"
+          : "Please enter a valid email"
+      });
+      return;
+    }
+
+    if (!validateName(data.contact_name)) {
+      toast({
+        variant: "destructive",
+        title: language === 'fr' ? "Nom invalide" : "Invalid name",
+        description: language === 'fr' 
+          ? "Veuillez entrer un nom valide"
+          : "Please enter a valid name"
+      });
+      return;
+    }
+
+    // Sanitize all text inputs before submission with length limits
     const sanitizedData = {
       ...data,
-      company_name: sanitizeInput(data.company_name),
-      contact_name: sanitizeInput(data.contact_name),
-      email: sanitizeInput(data.email),
-      phone: sanitizeInput(data.phone),
-      website: data.website ? sanitizeInput(data.website) : '',
-      address: sanitizeInput(data.address),
-      business_type: sanitizeInput(data.business_type),
-      products_interest: sanitizeInput(data.products_interest),
-      message: data.message ? sanitizeInput(data.message) : ''
+      company_name: sanitizeInput(data.company_name).slice(0, 100),
+      contact_name: sanitizeInput(data.contact_name).slice(0, 100),
+      email: sanitizeInput(data.email).slice(0, 255),
+      phone: sanitizeInput(data.phone).slice(0, 20),
+      website: data.website ? sanitizeInput(data.website).slice(0, 255) : '',
+      address: sanitizeInput(data.address).slice(0, 500),
+      business_type: sanitizeInput(data.business_type).slice(0, 50),
+      products_interest: sanitizeInput(data.products_interest).slice(0, 2000),
+      message: data.message ? sanitizeInput(data.message).slice(0, 1000) : ''
     };
     
     onSubmit(sanitizedData);

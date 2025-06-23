@@ -8,6 +8,8 @@ import { ShoppingCart, Loader2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { validateEmail, validatePhone, validateName, sanitizeInput } from '@/utils/inputValidation';
+import { formRateLimiter, getUserIdentifier } from '@/utils/rateLimiter';
 
 interface CheckoutFormProps {
   product: {
@@ -31,23 +33,101 @@ const CheckoutForm = ({ product, quantity, onClose }: CheckoutFormProps) => {
     address: ''
   });
 
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: ''
+  });
+
+  const validateForm = () => {
+    const newErrors = {
+      name: '',
+      email: '',
+      phone: '',
+      address: ''
+    };
+
+    // Validate name
+    if (!formData.name.trim()) {
+      newErrors.name = language === 'fr' ? 'Le nom est requis' : 'Name is required';
+    } else if (!validateName(formData.name)) {
+      newErrors.name = language === 'fr' ? 'Nom invalide' : 'Invalid name';
+    }
+
+    // Validate email
+    if (!formData.email.trim()) {
+      newErrors.email = language === 'fr' ? 'L\'email est requis' : 'Email is required';
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = language === 'fr' ? 'Email invalide' : 'Invalid email';
+    }
+
+    // Validate phone if provided
+    if (formData.phone && !validatePhone(formData.phone)) {
+      newErrors.phone = language === 'fr' ? 'Numéro de téléphone invalide' : 'Invalid phone number';
+    }
+
+    setErrors(newErrors);
+    return !Object.values(newErrors).some(error => error !== '');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Rate limiting check
+    const userIdentifier = getUserIdentifier();
+    const rateLimitResult = formRateLimiter.checkLimit(userIdentifier);
+    
+    if (!rateLimitResult.allowed) {
+      toast({
+        variant: "destructive",
+        title: language === 'fr' ? "Trop de tentatives" : "Too many attempts",
+        description: language === 'fr' 
+          ? "Veuillez attendre avant de réessayer"
+          : "Please wait before trying again"
+      });
+      return;
+    }
+
+    if (!validateForm()) {
+      toast({
+        variant: "destructive",
+        title: language === 'fr' ? "Erreur de validation" : "Validation Error",
+        description: language === 'fr' 
+          ? "Veuillez corriger les erreurs dans le formulaire"
+          : "Please correct the errors in the form"
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
+      // Sanitize all inputs
+      const sanitizedData = {
+        name: sanitizeInput(formData.name).slice(0, 100), // Apply length limit
+        email: sanitizeInput(formData.email).slice(0, 255),
+        phone: sanitizeInput(formData.phone).slice(0, 20),
+        address: sanitizeInput(formData.address).slice(0, 500)
+      };
+
+      // Validate quantity and price constraints
+      if (quantity <= 0 || quantity > 1000) {
+        throw new Error(language === 'fr' ? 'Quantité invalide' : 'Invalid quantity');
+      }
+
+      const totalPrice = product.priceMAD * quantity;
+      if (totalPrice <= 0 || totalPrice > 1000000) {
+        throw new Error(language === 'fr' ? 'Prix invalide' : 'Invalid price');
+      }
+
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: {
-          productName: product.name,
+          productName: sanitizeInput(product.name),
           priceMAD: product.priceMAD,
           currency: currency,
-          customerInfo: {
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            shippingAddress: formData.address
-          },
-          productId: product.id.toString(),
+          customerInfo: sanitizedData,
+          productId: product.id.toString().slice(0, 50), // Apply length limit
           quantity: quantity
         }
       });
@@ -104,10 +184,14 @@ const CheckoutForm = ({ product, quantity, onClose }: CheckoutFormProps) => {
             id="name"
             type="text"
             required
+            maxLength={100}
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="border-sand-300 focus:border-copper-500"
+            className={`border-sand-300 focus:border-copper-500 ${errors.name ? 'border-red-500' : ''}`}
           />
+          {errors.name && (
+            <p className="text-sm text-red-600">{errors.name}</p>
+          )}
         </div>
 
         <div className="space-y-2">
@@ -118,10 +202,14 @@ const CheckoutForm = ({ product, quantity, onClose }: CheckoutFormProps) => {
             id="email"
             type="email"
             required
+            maxLength={255}
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="border-sand-300 focus:border-copper-500"
+            className={`border-sand-300 focus:border-copper-500 ${errors.email ? 'border-red-500' : ''}`}
           />
+          {errors.email && (
+            <p className="text-sm text-red-600">{errors.email}</p>
+          )}
         </div>
 
         <div className="space-y-2">
@@ -131,10 +219,14 @@ const CheckoutForm = ({ product, quantity, onClose }: CheckoutFormProps) => {
           <Input
             id="phone"
             type="tel"
+            maxLength={20}
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            className="border-sand-300 focus:border-copper-500"
+            className={`border-sand-300 focus:border-copper-500 ${errors.phone ? 'border-red-500' : ''}`}
           />
+          {errors.phone && (
+            <p className="text-sm text-red-600">{errors.phone}</p>
+          )}
         </div>
 
         <div className="space-y-2">
@@ -143,14 +235,18 @@ const CheckoutForm = ({ product, quantity, onClose }: CheckoutFormProps) => {
           </Label>
           <Textarea
             id="address"
+            maxLength={500}
             value={formData.address}
             onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-            className="border-sand-300 focus:border-copper-500 min-h-[80px]"
+            className={`border-sand-300 focus:border-copper-500 min-h-[80px] ${errors.address ? 'border-red-500' : ''}`}
             placeholder={language === 'fr' 
               ? 'Adresse complète de livraison...'
               : 'Complete shipping address...'
             }
           />
+          {errors.address && (
+            <p className="text-sm text-red-600">{errors.address}</p>
+          )}
         </div>
 
         <div className="flex space-x-3 pt-4">
