@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import ProductCard from './ProductCard';
-import BannerHeader from './BannerHeader';
-import BannerScrollIndicator from './BannerScrollIndicator';
-import { Product } from './types';
+import ProductCard from './banner/ProductCard';
+import BannerHeader from './banner/BannerHeader';
+import BannerScrollIndicator from './banner/BannerScrollIndicator';
+import { Product } from './banner/types';
 
 const FloatingProductBanner = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
