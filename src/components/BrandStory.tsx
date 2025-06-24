@@ -55,33 +55,33 @@ const BrandStory = () => {
             </div>
           </div>
 
-          {/* Images - Updated with new hero image */}
+          {/* Images - Updated with authentic Perle d'Atlas images */}
           <div className="relative">
             <div className="grid grid-cols-2 gap-4 h-[600px]">
-              {/* Main large image - Updated to use the new hero image */}
+              {/* Main large image - Using authentic Perle d'Atlas landscape */}
               <div className="col-span-2 relative overflow-hidden rounded-2xl luxury-shadow">
                 <img 
                   src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//puneet-saravanan-W0po8aJGTDU-unsplash.jpg"
-                  alt="Paysage majestueux inspirant notre marque - Perle de l'Atlas"
+                  alt="Paysage majestueux de l'Atlas - Perle de l'Atlas"
                   className="w-full h-64 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
               
-              {/* Two smaller images */}
+              {/* Authentic Perle d'Atlas product images */}
               <div className="relative overflow-hidden rounded-2xl luxury-shadow">
                 <img 
-                  src="https://images.unsplash.com/photo-1486718448742-163732cd1544?w=300&h=300&fit=crop&crop=center"
-                  alt="Artisanat marocain"
+                  src="/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png"
+                  alt="Produits artisanaux Perle d'Atlas"
                   className="w-full h-full object-cover"
                 />
               </div>
               
-              {/* Updated mosque/architecture image */}
+              {/* Authentic Moroccan craftsmanship from our collection */}
               <div className="relative overflow-hidden rounded-2xl luxury-shadow">
                 <img 
-                  src="/lovable-uploads/moroccan-architecture.jpg"
-                  alt="Architecture traditionnelle marocaine"
+                  src="/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png"
+                  alt="Artisanat traditionnel marocain - Perle d'Atlas"
                   className="w-full h-full object-cover"
                 />
               </div>

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -22,7 +21,7 @@ const FragranceShowcase = () => {
           id: 11,
           name: language === 'fr' ? "Oud Imperial" : "Imperial Oud",
           price: 149,
-          image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=500&q=80",
+          image: "/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png",
           rating: 4.9,
           reviews: 87
         },
@@ -30,7 +29,7 @@ const FragranceShowcase = () => {
           id: 12,
           name: language === 'fr' ? "Rose de Marrakech" : "Rose of Marrakech",
           price: 129,
-          image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=500&q=80",
+          image: "/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png",
           rating: 4.8,
           reviews: 124
         }
@@ -45,7 +44,7 @@ const FragranceShowcase = () => {
           id: 21,
           name: language === 'fr' ? "Cèdre d'Atlas" : "Atlas Cedar",
           price: 119,
-          image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=500&q=80",
+          image: "/lovable-uploads/d4ad8eb5-ea3d-4931-ae8c-008b30d0e998.png",
           rating: 4.7,
           reviews: 156
         },
@@ -53,7 +52,7 @@ const FragranceShowcase = () => {
           id: 22,
           name: language === 'fr' ? "Thé des Montagnes" : "Mountain Tea",
           price: 109,
-          image: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=500&q=80",
+          image: "/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png",
           rating: 4.6,
           reviews: 92
         }
@@ -68,7 +67,7 @@ const FragranceShowcase = () => {
           id: 31,
           name: language === 'fr' ? "Ambre Saharien" : "Saharan Amber",
           price: 139,
-          image: "https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151?auto=format&fit=crop&w=500&q=80",
+          image: "/lovable-uploads/5a6e176e-a311-4e23-a48f-5439e70ecb3f.png",
           rating: 4.9,
           reviews: 203
         },
@@ -76,7 +75,7 @@ const FragranceShowcase = () => {
           id: 32,
           name: language === 'fr' ? "Santal Mystique" : "Mystic Sandalwood",
           price: 125,
-          image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=500&q=80",
+          image: "/lovable-uploads/673f0b19-2270-4e9f-a2e5-59b15f441af5.png",
           rating: 4.8,
           reviews: 178
         }
@@ -91,7 +90,7 @@ const FragranceShowcase = () => {
           id: 41,
           name: language === 'fr' ? "Huile d'Argan Royal" : "Royal Argan Oil",
           price: 89,
-          image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=500&q=80",
+          image: "/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png",
           rating: 4.9,
           reviews: 267
         },
@@ -99,7 +98,7 @@ const FragranceShowcase = () => {
           id: 42,
           name: language === 'fr' ? "Essence de Jasmin" : "Jasmine Essence",
           price: 95,
-          image: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?auto=format&fit=crop&w=500&q=80",
+          image: "/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png",
           rating: 4.7,
           reviews: 145
         }

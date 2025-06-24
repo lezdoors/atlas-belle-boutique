@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -19,7 +18,7 @@ const FeaturedProducts = () => {
       name: language === 'fr' ? "Huile d'Argan Premium" : "Premium Argan Oil",
       price: 89,
       originalPrice: 120,
-      image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=500&q=80",
+      image: "/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png",
       category: language === 'fr' ? "Huiles Précieuses" : "Precious Oils",
       description: language === 'fr' ? "100% pure, pressée à froid" : "100% pure, cold-pressed",
       rating: 4.9,
@@ -32,7 +31,7 @@ const FeaturedProducts = () => {
       name: language === 'fr' ? "Savon Noir Traditionnel" : "Traditional Black Soap",
       price: 35,
       originalPrice: null,
-      image: "https://images.unsplash.com/photo-1482881497185-d4a9ddbe4151?auto=format&fit=crop&w=500&q=80",
+      image: "/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png",
       category: language === 'fr' ? "Gommage & Purification" : "Exfoliation & Purification",
       description: language === 'fr' ? "Olive et eucalyptus" : "Olive and eucalyptus",
       rating: 4.7,
@@ -45,7 +44,7 @@ const FeaturedProducts = () => {
       name: language === 'fr' ? "Ghassoul de l'Atlas" : "Atlas Ghassoul Clay",
       price: 42,
       originalPrice: null,
-      image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=500&q=80",
+      image: "/lovable-uploads/5a6e176e-a311-4e23-a48f-5439e70ecb3f.png",
       category: language === 'fr' ? "Masques & Soins" : "Masks & Treatments",
       description: language === 'fr' ? "Argile purifiante volcanique" : "Volcanic purifying clay",
       rating: 4.8,
@@ -58,7 +57,7 @@ const FeaturedProducts = () => {
       name: language === 'fr' ? "Eau de Rose Damascena" : "Damascena Rose Water",
       price: 28,
       originalPrice: 35,
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80",
+      image: "/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png",
       category: language === 'fr' ? "Hydrolats & Toniques" : "Hydrosols & Toners",
       description: language === 'fr' ? "Distillation artisanale" : "Artisanal distillation",
       rating: 4.6,
@@ -116,10 +115,6 @@ const FeaturedProducts = () => {
                     alt={product.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  {/* Temporary Image Badge */}
-                  <div className="absolute top-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
-                    {language === 'fr' ? 'Image Temporaire' : 'Temporary Image'}
-                  </div>
                 </div>
 
                 {/* Product Badges */}
