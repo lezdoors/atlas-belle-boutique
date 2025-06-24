@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Heart, ShoppingBag, Search } from 'lucide-react';
+import { Heart, ShoppingBag, Search, User } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
 import MobileSearch from '@/components/MobileSearch';
@@ -11,11 +11,10 @@ import UserMenu from '@/components/auth/UserMenu';
 const HeaderActions = () => {
   const { language } = useLanguage();
   const { totalItems, openCart } = useCart();
-  const [wishlistCount] = useState(0); // TODO: Implement wishlist context
+  const [wishlistCount] = useState(0);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Fixed scroll tracking implementation
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -29,18 +28,16 @@ const HeaderActions = () => {
   const hoverBgClass = isScrolled ? 'hover:bg-amber-50/80' : 'hover:bg-white/20';
 
   return (
-    <div className="flex items-center space-x-3 lg:space-x-4">
-      {/* Mobile Search - Only on small screens */}
-      <div className="lg:hidden">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setShowMobileSearch(true)}
-          className={`transition-all duration-500 h-10 w-10 lg:h-11 lg:w-11 rounded-full group ${iconColorClass} ${hoverBgClass}`}
-        >
-          <Search className="h-4 w-4 lg:h-5 lg:w-5 transition-transform duration-200 group-hover:scale-110" />
-        </Button>
-      </div>
+    <div className="flex items-center space-x-2 lg:space-x-3">
+      {/* Search Icon - Always visible */}
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => setShowMobileSearch(true)}
+        className={`transition-all duration-500 h-10 w-10 lg:h-11 lg:w-11 rounded-full group ${iconColorClass} ${hoverBgClass}`}
+      >
+        <Search className="h-4 w-4 lg:h-5 lg:w-5 transition-transform duration-200 group-hover:scale-110" />
+      </Button>
 
       {/* Wishlist Icon */}
       <Button
@@ -78,7 +75,13 @@ const HeaderActions = () => {
       </Button>
 
       {/* User Account Icon */}
-      <UserMenu />
+      <Button
+        variant="ghost"
+        size="icon"
+        className={`transition-all duration-500 h-10 w-10 lg:h-11 lg:w-11 rounded-full group ${iconColorClass} ${hoverBgClass}`}
+      >
+        <User className="h-4 w-4 lg:h-5 lg:w-5 transition-transform duration-200 group-hover:scale-110" />
+      </Button>
 
       {/* Mobile Search Modal */}
       <MobileSearch 

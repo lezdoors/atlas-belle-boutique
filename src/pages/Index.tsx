@@ -6,7 +6,7 @@ import MissionHero from '@/components/MissionHero';
 import MissionSection from '@/components/MissionSection';
 import ShopByRegion from '@/components/ShopByRegion';
 import RegionalCollections from '@/components/RegionalCollections';
-import FeaturedProducts from '@/components/FeaturedProducts';
+import FragranceShowcase from '@/components/FragranceShowcase';
 import ProductStorySection from '@/components/ProductStorySection';
 import IngredientSpotlight from '@/components/IngredientSpotlight';
 import Testimonials from '@/components/Testimonials';
@@ -54,7 +54,7 @@ const Index = () => {
             <MissionSection />
             <ShopByRegion />
             <RegionalCollections />
-            <FeaturedProducts />
+            <FragranceShowcase />
             <ProductStorySection productId={1} productName="Huile d'Argan Premium" />
             <IngredientSpotlight />
             <OurArtisans />

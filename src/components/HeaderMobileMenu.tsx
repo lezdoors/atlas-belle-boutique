@@ -13,12 +13,11 @@ interface HeaderMobileMenuProps {
 const HeaderMobileMenu = ({ isMenuOpen, setIsMenuOpen }: HeaderMobileMenuProps) => {
   const { language } = useLanguage();
 
+  // Simplified luxury brand navigation for mobile
   const navItems = [
     { href: '/', label: language === 'fr' ? 'Accueil' : 'Home' },
     { href: '/boutique', label: language === 'fr' ? 'Boutique' : 'Shop' },
     { href: '/collections', label: 'Collections' },
-    { href: '/about', label: language === 'fr' ? 'Notre Mission' : 'Our Mission' },
-    { href: '/testimonials', label: language === 'fr' ? 'Témoignages' : 'Testimonials' },
     { href: '/contact', label: 'Contact' }
   ];
 
