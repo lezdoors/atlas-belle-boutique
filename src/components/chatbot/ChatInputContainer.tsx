@@ -25,6 +25,11 @@ const ChatInputContainer = ({
   showQuickActions = true,
   showFallbackActions = false
 }: ChatInputContainerProps) => {
+  
+  const handleEmailContact = () => {
+    window.location.href = 'mailto:contact@atlasperle.com?subject=Question depuis le site Perle de l\'Atlas';
+  };
+
   return (
     <div className="p-2 md:p-3 border-t border-pearl-200">
       {showQuickActions && (
@@ -36,7 +41,7 @@ const ChatInputContainer = ({
       )}
       
       {showFallbackActions && (
-        <div className="mb-2 md:mb-3">
+        <div className="mb-2 md:mb-3 space-y-2">
           <Button
             onClick={onWhatsAppRedirect}
             variant="outline"
@@ -46,6 +51,17 @@ const ChatInputContainer = ({
             <MessageCircle className="h-4 w-4" />
             <span className="text-sm">
               {language === 'fr' ? '📞 Contacter via WhatsApp' : '📞 Contact via WhatsApp'}
+            </span>
+          </Button>
+          
+          <Button
+            onClick={handleEmailContact}
+            variant="outline"
+            size="sm"
+            className="w-full flex items-center gap-2 border-amber-200 hover:border-amber-400 hover:bg-amber-50 text-amber-700"
+          >
+            <span className="text-sm">
+              {language === 'fr' ? '📧 Écrire un email' : '📧 Send email'}
             </span>
           </Button>
         </div>

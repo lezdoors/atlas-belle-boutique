@@ -13,12 +13,26 @@ const FooterContact = () => {
     window.open(whatsappUrl, '_blank');
   };
 
+  const handleEmailClick = () => {
+    window.location.href = 'mailto:contact@atlasperle.com';
+  };
+
   return (
     <div>
       <h4 className="text-lg font-serif font-semibold text-amber-400 mb-6">
         {language === 'fr' ? 'Contact' : 'Contact'}
       </h4>
       
+      {/* Email Contact */}
+      <div className="mb-4">
+        <button 
+          onClick={handleEmailClick}
+          className="flex items-center space-x-2 text-sand-300 hover:text-amber-400 transition-colors text-sm group"
+        >
+          <span>📧 contact@atlasperle.com</span>
+        </button>
+      </div>
+
       {/* WhatsApp Contact */}
       <div className="mb-4">
         <button 

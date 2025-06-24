@@ -12,7 +12,8 @@ export const wholesaleSchema = z.object({
     .regex(/^[a-zA-ZÀ-ÿ\s\-']+$/, 'Le nom ne peut contenir que des lettres, espaces, tirets et apostrophes'),
   email: z.string()
     .email('Email invalide')
-    .max(255, 'L\'email ne peut pas dépasser 255 caractères'),
+    .max(255, 'L\'email ne peut pas dépasser 255 caractères')
+    .refine((email) => email.includes('@'), 'Format d\'email invalide'),
   phone: z.string()
     .min(10, 'Numéro de téléphone requis')
     .max(20, 'Le numéro de téléphone ne peut pas dépasser 20 caractères')
@@ -36,3 +37,7 @@ export const wholesaleSchema = z.object({
 });
 
 export type WholesaleFormData = z.infer<typeof wholesaleSchema>;
+
+// Configuration du domaine officiel
+export const OFFICIAL_DOMAIN = 'atlasperle.com';
+export const CONTACT_EMAIL = 'contact@atlasperle.com';

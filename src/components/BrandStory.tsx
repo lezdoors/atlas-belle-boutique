@@ -55,14 +55,14 @@ const BrandStory = () => {
             </div>
           </div>
 
-          {/* Images - Updated with new Moroccan architecture image */}
+          {/* Images - Updated with new hero image */}
           <div className="relative">
             <div className="grid grid-cols-2 gap-4 h-[600px]">
-              {/* Main large image - Updated to use the new coastal image */}
+              {/* Main large image - Updated to use the new atlas landscape image */}
               <div className="col-span-2 relative overflow-hidden rounded-2xl luxury-shadow">
                 <img 
-                  src="/lovable-uploads/coastal-natural-beauty.jpg"
-                  alt="Beauté naturelle côtière marocaine - Notre inspiration"
+                  src="/lovable-uploads/hero-image-atlas-landscape.jpg"
+                  alt="Paysage majestueux de l'Atlas marocain - Notre inspiration"
                   className="w-full h-64 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
