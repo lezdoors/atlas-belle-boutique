@@ -58,11 +58,11 @@ const BrandStory = () => {
           {/* Images - Updated with new hero image */}
           <div className="relative">
             <div className="grid grid-cols-2 gap-4 h-[600px]">
-              {/* Main large image - Updated to use the new atlas landscape image */}
+              {/* Main large image - Updated to use the new hero image */}
               <div className="col-span-2 relative overflow-hidden rounded-2xl luxury-shadow">
                 <img 
-                  src="/lovable-uploads/hero-image-atlas-landscape.jpg"
-                  alt="Paysage majestueux de l'Atlas marocain - Notre inspiration"
+                  src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//puneet-saravanan-W0po8aJGTDU-unsplash.jpg"
+                  alt="Paysage majestueux inspirant notre marque - Perle de l'Atlas"
                   className="w-full h-64 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>

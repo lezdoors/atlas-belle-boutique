@@ -3,6 +3,7 @@ import ChatQuickActions from './ChatQuickActions';
 import ChatInput from './ChatInput';
 import { Button } from '@/components/ui/button';
 import { MessageCircle } from 'lucide-react';
+import { SITE_CONFIG, getWhatsAppUrl } from '@/utils/siteConfig';
 
 interface ChatInputContainerProps {
   message: string;
@@ -27,7 +28,7 @@ const ChatInputContainer = ({
 }: ChatInputContainerProps) => {
   
   const handleEmailContact = () => {
-    window.location.href = 'mailto:contact@atlasperle.com?subject=Question depuis le site Perle de l\'Atlas';
+    window.location.href = `mailto:${SITE_CONFIG.email}?subject=Question depuis le site Perle de l'Atlas`;
   };
 
   return (

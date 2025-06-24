@@ -22,7 +22,7 @@ const PerleAtlasOfficialLogo = ({
 
   return (
     <img 
-      src="/lovable-uploads/perle-atlas-logo.png"
+      src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//openart-image_FM_tdaPY_1750634878009_raw.png"
       alt="Perle de l'Atlas - Cosmétiques de Luxe Marocains"
       className={`${sizeClasses[size]} ${className} object-contain`}
       style={{ 

@@ -2,19 +2,18 @@
 import { Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { SITE_CONFIG, getWhatsAppUrl } from '@/utils/siteConfig';
 
 const FooterContact = () => {
   const { language } = useLanguage();
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = '+33663068980';
-    const message = encodeURIComponent('Bonjour! Je suis intéressé(e) par vos produits Perle d\'Atlas.');
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    const whatsappUrl = getWhatsAppUrl('Bonjour! Je suis intéressé(e) par vos produits Perle d\'Atlas.');
     window.open(whatsappUrl, '_blank');
   };
 
   const handleEmailClick = () => {
-    window.location.href = 'mailto:contact@atlasperle.com';
+    window.location.href = `mailto:${SITE_CONFIG.email}`;
   };
 
   return (
@@ -29,7 +28,7 @@ const FooterContact = () => {
           onClick={handleEmailClick}
           className="flex items-center space-x-2 text-sand-300 hover:text-amber-400 transition-colors text-sm group"
         >
-          <span>📧 contact@atlasperle.com</span>
+          <span>📧 {SITE_CONFIG.email}</span>
         </button>
       </div>
 
@@ -40,7 +39,7 @@ const FooterContact = () => {
           className="flex items-center space-x-2 text-sand-300 hover:text-green-400 transition-colors text-sm group"
         >
           <Phone className="h-4 w-4 group-hover:text-green-400" />
-          <span>WhatsApp : 06 63 06 89 80</span>
+          <span>WhatsApp : {SITE_CONFIG.whatsapp.displayNumber}</span>
         </button>
       </div>
 
@@ -52,7 +51,7 @@ const FooterContact = () => {
             <p className="font-medium text-amber-300 mb-1">
               {language === 'fr' ? 'Adresse USA :' : 'USA Address:'}
             </p>
-            <p>822 C Street #11, Hayward, CA 94541</p>
+            <p>{SITE_CONFIG.addresses.usa}</p>
           </div>
         </div>
 
@@ -62,7 +61,7 @@ const FooterContact = () => {
             <p className="font-medium text-amber-300 mb-1">
               Bureau Maroc :
             </p>
-            <p>Casablanca, Maroc</p>
+            <p>{SITE_CONFIG.addresses.morocco}</p>
           </div>
         </div>
         
@@ -86,17 +85,26 @@ const FooterContact = () => {
             {language === 'fr' ? 'Nous contacter' : 'Contact us'}
           </Link>
         </li>
-        {[
-          'FAQ',
-          language === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy',
-          language === 'fr' ? 'Mentions légales' : 'Legal Notice'
-        ].map((item) => (
-          <li key={item}>
-            <a href="#" className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
-              {item}
-            </a>
-          </li>
-        ))}
+        <li>
+          <a href="#" className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
+            {language === 'fr' ? 'Mentions légales' : 'Legal Notice'}
+          </a>
+        </li>
+        <li>
+          <a href="#" className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
+            {language === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy'}
+          </a>
+        </li>
+        <li>
+          <a href="#" className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
+            {language === 'fr' ? 'Conditions générales de vente' : 'Terms of Sale'}
+          </a>
+        </li>
+        <li>
+          <a href="#" className="text-sand-300 hover:text-amber-400 transition-colors text-sm">
+            FAQ
+          </a>
+        </li>
       </ul>
     </div>
   );

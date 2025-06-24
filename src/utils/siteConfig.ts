@@ -3,8 +3,8 @@ export const SITE_CONFIG = {
   domain: 'atlasperle.com',
   email: 'contact@atlasperle.com',
   whatsapp: {
-    number: '+33663068980',
-    displayNumber: '06 63 06 89 80'
+    number: '+212612345678',
+    displayNumber: '+212 6 12 34 56 78'
   },
   company: {
     name: 'Perle de l\'Atlas',

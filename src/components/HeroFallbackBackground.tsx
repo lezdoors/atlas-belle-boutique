@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 const HeroFallbackBackground = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  // Using the beautiful desert landscape from your uploaded images
-  const fallbackImage = "/lovable-uploads/5a6e176e-a311-4e23-a48f-5439e70ecb3f.png";
+  // Using the new hero image from Supabase storage
+  const fallbackImage = "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//puneet-saravanan-W0po8aJGTDU-unsplash.jpg";
 
   useEffect(() => {
     const img = new Image();
