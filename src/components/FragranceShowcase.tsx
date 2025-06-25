@@ -12,14 +12,14 @@ const FragranceShowcase = () => {
   // Define fragrance categories directly here to avoid import issues
   const fragranceCategories = [
     {
-      id: 'oriental',
+      id: 1,
       name: language === 'fr' ? 'Collection Orientale' : 'Oriental Collection',
       description: language === 'fr' 
         ? 'Des fragrances mystiques aux accords profonds et envoûtants'
         : 'Mystical fragrances with deep and captivating accords',
       products: [
         {
-          id: 'oriental-1',
+          id: 11,
           name: language === 'fr' ? 'Oud Impérial' : 'Imperial Oud',
           price: 89,
           image: '/lovable-uploads/5a6e176e-a311-4e23-a48f-5439e70ecb3f.png',
@@ -27,7 +27,7 @@ const FragranceShowcase = () => {
           reviews: 124
         },
         {
-          id: 'oriental-2',
+          id: 12,
           name: language === 'fr' ? 'Rose de Damas' : 'Damascus Rose',
           price: 75,
           image: '/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png',
@@ -37,14 +37,14 @@ const FragranceShowcase = () => {
       ]
     },
     {
-      id: 'floral',
+      id: 2,
       name: language === 'fr' ? 'Collection Florale' : 'Floral Collection',
       description: language === 'fr' 
         ? 'Des senteurs délicates inspirées des jardins marocains'
         : 'Delicate scents inspired by Moroccan gardens',
       products: [
         {
-          id: 'floral-1',
+          id: 21,
           name: language === 'fr' ? 'Jasmin Royal' : 'Royal Jasmine',
           price: 65,
           image: '/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png',
@@ -52,7 +52,7 @@ const FragranceShowcase = () => {
           reviews: 156
         },
         {
-          id: 'floral-2',
+          id: 22,
           name: language === 'fr' ? 'Neroli Précieux' : 'Precious Neroli',
           price: 72,
           image: '/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png',
@@ -62,14 +62,14 @@ const FragranceShowcase = () => {
       ]
     },
     {
-      id: 'woody',
+      id: 3,
       name: language === 'fr' ? 'Collection Boisée' : 'Woody Collection',
       description: language === 'fr' 
         ? 'Des compositions chaleureuses aux notes de bois précieux'
         : 'Warm compositions with precious wood notes',
       products: [
         {
-          id: 'woody-1',
+          id: 31,
           name: language === 'fr' ? 'Cèdre Atlas' : 'Atlas Cedar',
           price: 82,
           image: '/lovable-uploads/673f0b19-2270-4e9f-a2e5-59b15f441af5.png',
@@ -77,7 +77,7 @@ const FragranceShowcase = () => {
           reviews: 67
         },
         {
-          id: 'woody-2',
+          id: 32,
           name: language === 'fr' ? 'Santal Mystique' : 'Mystic Sandalwood',
           price: 95,
           image: '/lovable-uploads/6d0913b6-03ca-40b5-9002-ea188762b64f.png',

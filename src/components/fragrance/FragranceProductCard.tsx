@@ -7,7 +7,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from 'sonner';
 
 interface FragranceProduct {
-  id: string;
+  id: number;
   name: string;
   price: number;
   image: string;
