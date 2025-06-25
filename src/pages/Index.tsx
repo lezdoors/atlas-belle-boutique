@@ -22,12 +22,12 @@ import FourSeasons from '@/components/FourSeasons';
 import PullToRefresh from '@/components/PullToRefresh';
 import AboutSection from '@/components/AboutSection';
 import SEOOptimizer from '@/components/SEOOptimizer';
+import BottomNavigation from '@/components/mobile/BottomNavigation';
 
 const Index = () => {
   const [videoEnded, setVideoEnded] = useState(false);
 
   const handleRefresh = async () => {
-    // Simulate refresh action
     await new Promise(resolve => setTimeout(resolve, 1000));
     window.location.reload();
   };
@@ -45,7 +45,7 @@ const Index = () => {
         image="/lovable-uploads/673f0b19-2270-4e9f-a2e5-59b15f441af5.png"
       />
       <PullToRefresh onRefresh={handleRefresh}>
-        <div className="min-h-screen bg-pearl-50">
+        <div className="min-h-screen bg-pearl-50 pb-20 lg:pb-0">
           <Header />
           <main>
             <Hero onVideoEnded={handleVideoEnded} />
@@ -68,6 +68,7 @@ const Index = () => {
           <SamraRefactoredChatbot videoEnded={videoEnded} />
           <FloatingCart />
           <BackToTop />
+          <BottomNavigation />
         </div>
       </PullToRefresh>
     </>
