@@ -1,11 +1,10 @@
-
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart, Eye, Star } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from 'sonner';
-import { FragranceProduct } from './fragranceData';
+import { FragranceProduct } from './fragrance/fragranceData';
 
 interface FragranceProductCardProps {
   product: FragranceProduct;
