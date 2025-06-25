@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import LanguageDropdown from '@/components/LanguageDropdown';
-import EnhancedNewsletterModal from '@/components/EnhancedNewsletterModal';
 import MobileSearch from '@/components/MobileSearch';
 import HeaderTopBar from '@/components/HeaderTopBar';
 import HeaderLogo from '@/components/HeaderLogo';
@@ -13,7 +12,6 @@ import HeaderMobileMenu from '@/components/HeaderMobileMenu';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showNewsletterModal, setShowNewsletterModal] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -26,19 +24,6 @@ const Header = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Show newsletter modal only once per session
-  useEffect(() => {
-    const hasShownModal = sessionStorage.getItem('newsletter-modal-shown');
-    
-    if (!hasShownModal) {
-      const timer = setTimeout(() => {
-        setShowNewsletterModal(true);
-      }, 8000);
-
-      return () => clearTimeout(timer);
-    }
   }, []);
 
   return (
@@ -107,12 +92,6 @@ const Header = () => {
       <MobileSearch 
         isOpen={showMobileSearch} 
         onClose={() => setShowMobileSearch(false)} 
-      />
-
-      {/* Newsletter Modal */}
-      <EnhancedNewsletterModal 
-        isOpen={showNewsletterModal} 
-        onClose={() => setShowNewsletterModal(false)} 
       />
     </>
   );
