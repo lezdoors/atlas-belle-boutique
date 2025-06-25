@@ -102,8 +102,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <Card className="group hover-scale bg-white/90 backdrop-blur-sm border-0 luxury-shadow h-full flex flex-col overflow-hidden rounded-2xl">
       <CardContent className="p-0 flex flex-col h-full">
-        {/* Enhanced Product Image with Swipeable Gallery */}
-        <div className="relative overflow-hidden aspect-[3/4]">
+        {/* Mobile-Optimized Product Image - Smaller aspect ratio */}
+        <div className="relative overflow-hidden aspect-[4/3] lg:aspect-[3/4]">
           <SwipeableGallery 
             images={productImages}
             alt={product.name}
@@ -120,16 +120,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           />
 
           {/* Authenticity Seal */}
-          <div className="absolute bottom-3 left-3 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute bottom-2 left-2 lg:bottom-3 lg:left-3 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
             <PerleAtlasLogo 
               size="favicon" 
               variant="watermark"
-              className="bg-white/90 rounded-full p-1"
+              className="bg-white/90 rounded-full p-1 w-6 h-6 lg:w-8 lg:h-8"
             />
           </div>
 
           {/* Enhanced Action Buttons - More Touch-Friendly */}
-          <div className="absolute top-4 right-4 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
+          <div className="absolute top-2 right-2 lg:top-4 lg:right-4 flex flex-col space-y-1 lg:space-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
             <SaveForLaterButton 
               item={saveForLaterItem}
             />
@@ -143,35 +143,35 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="bg-white/90 hover:bg-white hover:text-copper-600 transition-colors rounded-full luxury-shadow h-10 w-10"
+                className="bg-white/90 hover:bg-white hover:text-copper-600 transition-colors rounded-full luxury-shadow h-8 w-8 lg:h-10 lg:w-10"
               >
-                <Eye className="h-4 w-4" />
+                <Eye className="h-3 w-3 lg:h-4 lg:w-4" />
               </Button>
             </QuickViewModal>
           </div>
 
           {/* Enhanced Quick Actions Overlay - Touch-Friendly */}
-          <div className="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+          <div className="absolute inset-x-2 bottom-2 lg:inset-x-4 lg:bottom-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
             <Button 
               size="sm" 
               onClick={handleAddToCart}
-              className="w-full copper-gradient text-white rounded-full luxury-shadow border-0 font-medium tracking-wide min-h-[44px] text-sm"
+              className="w-full copper-gradient text-white rounded-full luxury-shadow border-0 font-medium tracking-wide min-h-[40px] lg:min-h-[44px] text-xs lg:text-sm"
             >
-              <Plus className="h-4 w-4 mr-2" />
+              <Plus className="h-3 w-3 lg:h-4 lg:w-4 mr-2" />
               {language === 'fr' ? 'Ajouter au panier' : 'Add to cart'}
             </Button>
           </div>
         </div>
 
         {/* Product Info - Mobile Optimized */}
-        <div className="p-4 sm:p-6 flex flex-col flex-grow bg-white">
+        <div className="p-3 lg:p-4 xl:p-6 flex flex-col flex-grow bg-white">
           {/* Rating with Enhanced Styling */}
-          <div className="flex items-center mb-3">
+          <div className="flex items-center mb-2 lg:mb-3">
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
                 <Star 
                   key={i} 
-                  className={`h-3 w-3 sm:h-4 sm:w-4 ${
+                  className={`h-3 w-3 lg:h-4 lg:w-4 ${
                     i < Math.floor(product.rating) 
                       ? 'text-copper-500 fill-current' 
                       : 'text-pearl-300'
@@ -179,29 +179,29 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 />
               ))}
             </div>
-            <span className="text-xs sm:text-sm text-clay-600 ml-2 font-medium">
+            <span className="text-xs lg:text-sm text-clay-600 ml-2 font-medium">
               ({product.reviews})
             </span>
           </div>
 
           {/* Product Name with Enhanced Typography */}
-          <h3 className="font-display font-semibold text-clay-800 mb-3 text-base sm:text-lg leading-snug">
+          <h3 className="font-display font-semibold text-clay-800 mb-2 lg:mb-3 text-sm lg:text-base xl:text-lg leading-snug line-clamp-2">
             {product.name}
           </h3>
 
           {/* Description */}
-          <p className="elegant-text text-clay-600 text-sm mb-4 sm:mb-6 flex-grow leading-relaxed line-clamp-2">
+          <p className="elegant-text text-clay-600 text-xs lg:text-sm mb-3 lg:mb-4 xl:mb-6 flex-grow leading-relaxed line-clamp-2">
             {product.description}
           </p>
 
           {/* Enhanced Price Section - Mobile Optimized */}
-          <div className="flex items-center justify-between mt-auto pt-4 border-t border-pearl-200">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-3">
-              <span className="text-lg sm:text-xl font-bold text-copper-600">
+          <div className="flex items-center justify-between mt-auto pt-3 lg:pt-4 border-t border-pearl-200">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-3">
+              <span className="text-base lg:text-lg xl:text-xl font-bold text-copper-600">
                 {convertAndFormat(product.priceMAD, currency)}
               </span>
               {product.originalPriceMAD && (
-                <span className="text-sm text-clay-400 line-through">
+                <span className="text-xs lg:text-sm text-clay-400 line-through">
                   {convertAndFormat(product.originalPriceMAD, currency)}
                 </span>
               )}
