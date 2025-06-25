@@ -41,11 +41,12 @@ const FragranceProductCard = ({ product }: FragranceProductCardProps) => {
     );
   };
 
-  // Create multiple images for the gallery (using the same image for now, in a real app these would be different angles)
+  // Create multiple images for the gallery - using the main image and some variations
   const productImages = [
     product.image,
-    product.image, // In real app, these would be different views
-    product.image,
+    // Add some fallback images for demonstration
+    '/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png',
+    '/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png',
   ];
 
   return (

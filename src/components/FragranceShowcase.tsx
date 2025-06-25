@@ -22,7 +22,7 @@ const FragranceShowcase = () => {
           id: 11,
           name: language === 'fr' ? 'Collection Prestige' : 'Prestige Collection',
           price: 150,
-          image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//women%20face%20covered.jpg',
+          image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/women%20face%20covered.jpg',
           rating: 4.9,
           reviews: 127
         },
@@ -30,7 +30,7 @@ const FragranceShowcase = () => {
           id: 12,
           name: language === 'fr' ? 'Crème Précieuse Atlas' : 'Atlas Precious Cream',
           price: 89,
-          image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//orange%20rose%20and%20bottle%20behind%20it.jpg',
+          image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/orange%20rose%20and%20bottle%20behind%20it.jpg',
           rating: 4.7,
           reviews: 89
         }
@@ -47,7 +47,7 @@ const FragranceShowcase = () => {
           id: 21,
           name: language === 'fr' ? 'Parfum Royal Argan' : 'Royal Argan Perfume',
           price: 95,
-          image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//perfume%20bottle%20roses%20in%20it.jpg',
+          image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/perfume%20bottle%20roses%20in%20it.jpg',
           rating: 4.8,
           reviews: 156
         },

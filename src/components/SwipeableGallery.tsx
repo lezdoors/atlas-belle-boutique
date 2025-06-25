@@ -48,13 +48,21 @@ const SwipeableGallery: React.FC<SwipeableGalleryProps> = ({
   const goToPrevious = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setCurrentIndex(currentIndex > 0 ? currentIndex - 1 : images.length - 1);
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    } else {
+      setCurrentIndex(images.length - 1); // Loop to last image
+    }
   };
 
   const goToNext = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setCurrentIndex(currentIndex < images.length - 1 ? currentIndex + 1 : 0);
+    if (currentIndex < images.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    } else {
+      setCurrentIndex(0); // Loop to first image
+    }
   };
 
   const goToSlide = (index: number, e: React.MouseEvent) => {
@@ -96,7 +104,7 @@ const SwipeableGallery: React.FC<SwipeableGalleryProps> = ({
             <Button
               variant="ghost"
               size="icon"
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full h-8 w-8 z-10 shadow-lg"
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full h-8 w-8 z-30 shadow-lg pointer-events-auto"
               onClick={goToPrevious}
               type="button"
             >
@@ -105,7 +113,7 @@ const SwipeableGallery: React.FC<SwipeableGalleryProps> = ({
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full h-8 w-8 z-10 shadow-lg"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full h-8 w-8 z-30 shadow-lg pointer-events-auto"
               onClick={goToNext}
               type="button"
             >
@@ -116,12 +124,12 @@ const SwipeableGallery: React.FC<SwipeableGalleryProps> = ({
 
         {/* Indicators - Only show if more than 1 image */}
         {images.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
             {images.map((_, index) => (
               <button
                 key={index}
                 type="button"
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                className={`w-2 h-2 rounded-full transition-all duration-300 pointer-events-auto ${
                   index === currentIndex 
                     ? 'bg-white w-6' 
                     : 'bg-white/60 hover:bg-white/80'
