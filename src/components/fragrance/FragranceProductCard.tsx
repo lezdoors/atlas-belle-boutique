@@ -16,7 +16,15 @@ const FragranceProductCard = ({ product }: FragranceProductCardProps) => {
   const { language } = useLanguage();
 
   const handleQuickShop = () => {
-    addToCart(product);
+    // Convert FragranceProduct to CartItem format
+    const cartItem = {
+      id: product.id,
+      name: product.name,
+      priceMAD: product.price * 10.5, // Convert euros to MAD (approximate rate)
+      image: product.image
+    };
+    
+    addToCart(cartItem);
     toast.success(
       language === 'fr' 
         ? `${product.name} ajouté au panier` 
