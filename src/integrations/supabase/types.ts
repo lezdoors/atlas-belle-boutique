@@ -219,7 +219,7 @@ export type Database = {
           status: string | null
           title: string | null
           updated_at: string | null
-          user_id: string | null
+          user_id: string
           verified_purchase: boolean | null
         }
         Insert: {
@@ -233,7 +233,7 @@ export type Database = {
           status?: string | null
           title?: string | null
           updated_at?: string | null
-          user_id?: string | null
+          user_id: string
           verified_purchase?: boolean | null
         }
         Update: {
@@ -247,7 +247,7 @@ export type Database = {
           status?: string | null
           title?: string | null
           updated_at?: string | null
-          user_id?: string | null
+          user_id?: string
           verified_purchase?: boolean | null
         }
         Relationships: [
@@ -501,19 +501,19 @@ export type Database = {
           created_at: string | null
           id: string
           product_id: string | null
-          user_id: string | null
+          user_id: string
         }
         Insert: {
           created_at?: string | null
           id?: string
           product_id?: string | null
-          user_id?: string | null
+          user_id: string
         }
         Update: {
           created_at?: string | null
           id?: string
           product_id?: string | null
-          user_id?: string | null
+          user_id?: string
         }
         Relationships: [
           {
