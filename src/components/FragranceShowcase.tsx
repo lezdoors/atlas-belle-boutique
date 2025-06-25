@@ -2,16 +2,91 @@
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import FragranceShowcaseHeader from '@/components/fragrance/FragranceShowcaseHeader';
-import FragranceCategorySection from '@/components/fragrance/FragranceCategorySection';
 import FragranceViewAllButton from '@/components/fragrance/FragranceViewAllButton';
-import { getFragranceCategories } from '@/components/fragrance/fragranceData';
+import FragranceProductCard from '@/components/fragrance/FragranceProductCard';
 
 const FragranceShowcase = () => {
   const { language } = useLanguage();
   const [showAll, setShowAll] = useState(false);
 
-  // Get categories based on current language
-  const fragranceCategories = getFragranceCategories(language);
+  // Define fragrance categories directly here to avoid import issues
+  const fragranceCategories = [
+    {
+      id: 'oriental',
+      name: language === 'fr' ? 'Collection Orientale' : 'Oriental Collection',
+      description: language === 'fr' 
+        ? 'Des fragrances mystiques aux accords profonds et envoûtants'
+        : 'Mystical fragrances with deep and captivating accords',
+      products: [
+        {
+          id: 'oriental-1',
+          name: language === 'fr' ? 'Oud Impérial' : 'Imperial Oud',
+          price: 89,
+          image: '/lovable-uploads/5a6e176e-a311-4e23-a48f-5439e70ecb3f.png',
+          rating: 4.8,
+          reviews: 124
+        },
+        {
+          id: 'oriental-2',
+          name: language === 'fr' ? 'Rose de Damas' : 'Damascus Rose',
+          price: 75,
+          image: '/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png',
+          rating: 4.6,
+          reviews: 89
+        }
+      ]
+    },
+    {
+      id: 'floral',
+      name: language === 'fr' ? 'Collection Florale' : 'Floral Collection',
+      description: language === 'fr' 
+        ? 'Des senteurs délicates inspirées des jardins marocains'
+        : 'Delicate scents inspired by Moroccan gardens',
+      products: [
+        {
+          id: 'floral-1',
+          name: language === 'fr' ? 'Jasmin Royal' : 'Royal Jasmine',
+          price: 65,
+          image: '/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png',
+          rating: 4.7,
+          reviews: 156
+        },
+        {
+          id: 'floral-2',
+          name: language === 'fr' ? 'Neroli Précieux' : 'Precious Neroli',
+          price: 72,
+          image: '/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png',
+          rating: 4.5,
+          reviews: 98
+        }
+      ]
+    },
+    {
+      id: 'woody',
+      name: language === 'fr' ? 'Collection Boisée' : 'Woody Collection',
+      description: language === 'fr' 
+        ? 'Des compositions chaleureuses aux notes de bois précieux'
+        : 'Warm compositions with precious wood notes',
+      products: [
+        {
+          id: 'woody-1',
+          name: language === 'fr' ? 'Cèdre Atlas' : 'Atlas Cedar',
+          price: 82,
+          image: '/lovable-uploads/673f0b19-2270-4e9f-a2e5-59b15f441af5.png',
+          rating: 4.9,
+          reviews: 67
+        },
+        {
+          id: 'woody-2',
+          name: language === 'fr' ? 'Santal Mystique' : 'Mystic Sandalwood',
+          price: 95,
+          image: '/lovable-uploads/6d0913b6-03ca-40b5-9002-ea188762b64f.png',
+          rating: 4.8,
+          reviews: 134
+        }
+      ]
+    }
+  ];
   
   // Show first 2 categories initially, all when expanded
   const displayedCategories = showAll ? fragranceCategories : fragranceCategories.slice(0, 2);
@@ -35,60 +110,10 @@ const FragranceShowcase = () => {
                 </p>
               </div>
 
-              {/* Products Grid - Responsive Desktop Layout */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 lg:gap-8">
+              {/* Products Grid - Desktop Layout: 2 columns */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
                 {category.products.map((product) => (
-                  <div
-                    key={product.id}
-                    className="group bg-white rounded-2xl overflow-hidden luxury-shadow hover-scale transition-all duration-300"
-                  >
-                    {/* Product Image */}
-                    <div className="relative aspect-[4/3] lg:aspect-[16/10] overflow-hidden">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      
-                      {/* Price Badge */}
-                      <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-clay-800 px-3 py-1 rounded-full text-sm font-semibold">
-                        {product.price}€
-                      </div>
-                    </div>
-
-                    {/* Product Info */}
-                    <div className="p-6 lg:p-8">
-                      <h4 className="font-display font-bold text-xl lg:text-2xl text-clay-800 mb-3">
-                        {product.name}
-                      </h4>
-                      <p className="text-clay-600 text-sm lg:text-base mb-4 leading-relaxed">
-                        {language === 'fr' ? 'Fragrance luxueuse aux notes subtiles et raffinées.' : 'Luxurious fragrance with subtle and refined notes.'}
-                      </p>
-
-                      {/* Notes */}
-                      <div className="mb-6">
-                        <h5 className="text-sm font-medium text-clay-700 mb-2">
-                          {language === 'fr' ? 'Notes principales:' : 'Key notes:'}
-                        </h5>
-                        <div className="flex flex-wrap gap-2">
-                          {['Oud', 'Rose', 'Ambre'].map((note, idx) => (
-                            <span
-                              key={idx}
-                              className="bg-copper-100 text-copper-700 px-3 py-1 rounded-full text-xs font-medium"
-                            >
-                              {note}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Action Button */}
-                      <button className="w-full copper-gradient text-white rounded-full py-3 font-medium transition-all duration-300 hover:shadow-lg">
-                        {language === 'fr' ? 'Découvrir' : 'Discover'}
-                      </button>
-                    </div>
-                  </div>
+                  <FragranceProductCard key={product.id} product={product} />
                 ))}
               </div>
             </div>

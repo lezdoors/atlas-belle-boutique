@@ -5,7 +5,15 @@ import { ShoppingCart, Eye, Star } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from 'sonner';
-import { FragranceProduct } from './fragranceData';
+
+interface FragranceProduct {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  rating: number;
+  reviews: number;
+}
 
 interface FragranceProductCardProps {
   product: FragranceProduct;
@@ -33,10 +41,10 @@ const FragranceProductCard = ({ product }: FragranceProductCardProps) => {
   };
 
   return (
-    <Card className="group bg-white border-0 luxury-shadow rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105 flex-shrink-0 w-80 lg:w-auto">
+    <Card className="group bg-white border-0 luxury-shadow rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105">
       <div className="relative">
-        {/* Product Image */}
-        <div className="aspect-square overflow-hidden bg-gradient-to-br from-pearl-100 to-beige-100">
+        {/* Product Image - Fixed aspect ratio */}
+        <div className="aspect-[4/3] overflow-hidden bg-gradient-to-br from-pearl-100 to-beige-100">
           <img
             src={product.image}
             alt={product.name}
@@ -49,10 +57,15 @@ const FragranceProductCard = ({ product }: FragranceProductCardProps) => {
           <Button
             size="icon"
             variant="ghost"
-            className="bg-white/90 hover:bg-white text-clay-700 rounded-full"
+            className="bg-white/90 hover:bg-white text-clay-700 rounded-full h-8 w-8"
           >
             <Eye className="h-4 w-4" />
           </Button>
+        </div>
+
+        {/* Price Badge */}
+        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-clay-800 px-3 py-1 rounded-full text-sm font-semibold">
+          {product.price}€
         </div>
       </div>
 
@@ -77,11 +90,26 @@ const FragranceProductCard = ({ product }: FragranceProductCardProps) => {
           </span>
         </div>
 
-        {/* Price */}
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-xl font-bold text-clay-800">
-            {product.price}€
-          </span>
+        {/* Description */}
+        <p className="text-clay-600 text-sm mb-4 leading-relaxed">
+          {language === 'fr' ? 'Fragrance luxueuse aux notes subtiles et raffinées.' : 'Luxurious fragrance with subtle and refined notes.'}
+        </p>
+
+        {/* Notes */}
+        <div className="mb-6">
+          <h5 className="text-sm font-medium text-clay-700 mb-2">
+            {language === 'fr' ? 'Notes principales:' : 'Key notes:'}
+          </h5>
+          <div className="flex flex-wrap gap-2">
+            {['Oud', 'Rose', 'Ambre'].map((note, idx) => (
+              <span
+                key={idx}
+                className="bg-copper-100 text-copper-700 px-3 py-1 rounded-full text-xs font-medium"
+              >
+                {note}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Quick Shop Button */}
