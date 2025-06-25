@@ -19,7 +19,7 @@ const HeaderNavigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Simplified luxury brand navigation
+  // Clean luxury brand navigation - no duplicates
   const navItems = [
     { 
       href: '/', 
@@ -30,8 +30,8 @@ const HeaderNavigation = () => {
       label: language === 'fr' ? 'Boutique' : 'Shop' 
     },
     { 
-      href: '/collections', 
-      label: 'Collections'
+      href: '/a-propos', 
+      label: language === 'fr' ? 'À propos' : 'About' 
     },
     { 
       href: '/contact', 

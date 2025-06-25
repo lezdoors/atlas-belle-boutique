@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import MissionHero from '@/components/MissionHero';
 import MissionSection from '@/components/MissionSection';
+import PremiumProductsGrid from '@/components/PremiumProductsGrid';
 import ShopByRegion from '@/components/ShopByRegion';
 import RegionalCollections from '@/components/RegionalCollections';
 import FragranceShowcase from '@/components/FragranceShowcase';
@@ -51,6 +52,7 @@ const Index = () => {
             <Hero onVideoEnded={handleVideoEnded} />
             <MissionHero />
             <AboutSection />
+            <PremiumProductsGrid />
             <MissionSection />
             <ShopByRegion />
             <RegionalCollections />

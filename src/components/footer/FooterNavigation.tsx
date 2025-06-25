@@ -12,12 +12,12 @@ const FooterNavigation = () => {
       </h4>
       <ul className="space-y-3">
         {[
+          { name: language === 'fr' ? 'Accueil' : 'Home', href: '/' },
           { name: language === 'fr' ? 'Boutique' : 'Shop', href: '/boutique' },
-          { name: language === 'fr' ? 'Ma Sélection' : 'My Selection', href: '/ma-selection' },
+          { name: language === 'fr' ? 'À propos' : 'About', href: '/a-propos' },
+          { name: 'Contact', href: '/contact' },
           { name: language === 'fr' ? 'Régions' : 'Regions', href: '/regions' },
-          { name: language === 'fr' ? 'Rituels' : 'Rituals', href: '/rituels' },
-          { name: language === 'fr' ? 'Ingrédients' : 'Ingredients', href: '/ingredients' },
-          { name: language === 'fr' ? 'À propos' : 'About', href: '/a-propos' }
+          { name: language === 'fr' ? 'Ingrédients' : 'Ingredients', href: '/ingredients' }
         ].map((item) => (
           <li key={item.name}>
             <Link to={item.href} className="text-sand-300 hover:text-amber-400 transition-colors text-sm">

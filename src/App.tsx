@@ -11,6 +11,7 @@ import SEOOptimizer from "@/components/SEOOptimizer";
 import MobileOptimizer from "@/components/MobileOptimizer";
 import PerformanceOptimizer from "@/components/PerformanceOptimizer";
 import SecurityConfig from "@/components/security/SecurityConfig";
+import GDPRConsent from "@/components/GDPRConsent";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -57,6 +58,7 @@ function App() {
                 <MobileOptimizer />
                 <PerformanceOptimizer />
                 <SecurityConfig />
+                <GDPRConsent />
                 
                 <Toaster />
                 <BrowserRouter>
