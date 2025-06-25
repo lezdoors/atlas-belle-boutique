@@ -16,8 +16,13 @@ import GDPRConsent from "@/components/GDPRConsent";
 import PullToRefresh from "@/components/PullToRefresh";
 
 const Index = () => {
+  const handleRefresh = async () => {
+    // Simple page refresh functionality
+    window.location.reload();
+  };
+
   return (
-    <PullToRefresh>
+    <PullToRefresh onRefresh={handleRefresh}>
       <div className="min-h-screen bg-white">
         <Header />
         <main>

@@ -50,7 +50,15 @@ const ProductSearchBar = ({ onResults, onSearch, className = '' }: ProductSearch
 
       if (error) throw error;
 
-      const searchResults = data || [];
+      // Transform the data to match our SearchResult interface
+      const searchResults: SearchResult[] = (data || []).map(item => ({
+        id: item.id,
+        name_fr: item.name_fr,
+        name_en: item.name_en,
+        category: item.category,
+        images: Array.isArray(item.images) ? item.images as string[] : []
+      }));
+
       setResults(searchResults);
       setShowResults(true);
       onResults(searchResults);
