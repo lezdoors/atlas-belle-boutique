@@ -4,12 +4,15 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import FragranceShowcaseHeader from '@/components/fragrance/FragranceShowcaseHeader';
 import FragranceCategorySection from '@/components/fragrance/FragranceCategorySection';
 import FragranceViewAllButton from '@/components/fragrance/FragranceViewAllButton';
-import { fragranceCategories } from '@/components/fragrance/fragranceData';
+import { getFragranceCategories } from '@/components/fragrance/fragranceData';
 
 const FragranceShowcase = () => {
   const { language } = useLanguage();
   const [showAll, setShowAll] = useState(false);
 
+  // Get categories based on current language
+  const fragranceCategories = getFragranceCategories(language);
+  
   // Show first 2 categories initially, all when expanded
   const displayedCategories = showAll ? fragranceCategories : fragranceCategories.slice(0, 2);
 
@@ -50,7 +53,7 @@ const FragranceShowcase = () => {
                       
                       {/* Price Badge */}
                       <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-clay-800 px-3 py-1 rounded-full text-sm font-semibold">
-                        {product.price}
+                        {product.price}€
                       </div>
                     </div>
 
@@ -60,7 +63,7 @@ const FragranceShowcase = () => {
                         {product.name}
                       </h4>
                       <p className="text-clay-600 text-sm lg:text-base mb-4 leading-relaxed">
-                        {product.description}
+                        {language === 'fr' ? 'Fragrance luxueuse aux notes subtiles et raffinées.' : 'Luxurious fragrance with subtle and refined notes.'}
                       </p>
 
                       {/* Notes */}
@@ -69,7 +72,7 @@ const FragranceShowcase = () => {
                           {language === 'fr' ? 'Notes principales:' : 'Key notes:'}
                         </h5>
                         <div className="flex flex-wrap gap-2">
-                          {product.notes.slice(0, 3).map((note, idx) => (
+                          {['Oud', 'Rose', 'Ambre'].map((note, idx) => (
                             <span
                               key={idx}
                               className="bg-copper-100 text-copper-700 px-3 py-1 rounded-full text-xs font-medium"
@@ -97,7 +100,6 @@ const FragranceShowcase = () => {
           <div className="text-center mt-12 lg:mt-16">
             <FragranceViewAllButton 
               onClick={() => setShowAll(true)}
-              language={language}
             />
           </div>
         )}
