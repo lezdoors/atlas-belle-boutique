@@ -45,25 +45,35 @@ const SwipeableGallery: React.FC<SwipeableGalleryProps> = ({
     }
   };
 
-  const goToPrevious = () => {
+  const goToPrevious = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     setCurrentIndex(currentIndex > 0 ? currentIndex - 1 : images.length - 1);
   };
 
-  const goToNext = () => {
+  const goToNext = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     setCurrentIndex(currentIndex < images.length - 1 ? currentIndex + 1 : 0);
   };
 
+  const goToSlide = (index: number, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentIndex(index);
+  };
+
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative h-full ${className}`}>
       <div
         ref={galleryRef}
-        className="relative overflow-hidden rounded-2xl"
+        className="relative overflow-hidden h-full"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
         <div
-          className="flex transition-transform duration-300 ease-out"
+          className="flex transition-transform duration-300 ease-out h-full"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {images.map((image, index) => (
@@ -72,42 +82,51 @@ const SwipeableGallery: React.FC<SwipeableGalleryProps> = ({
               src={image}
               alt={`${alt} ${index + 1}`}
               className="w-full h-full object-cover flex-shrink-0"
+              onError={(e) => {
+                console.error('Image failed to load:', image);
+                e.currentTarget.src = '/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png';
+              }}
             />
           ))}
         </div>
 
-        {/* Navigation Buttons */}
+        {/* Navigation Buttons - Only show if more than 1 image */}
         {images.length > 1 && (
           <>
             <Button
               variant="ghost"
               size="icon"
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full h-8 w-8"
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full h-8 w-8 z-10 shadow-lg"
               onClick={goToPrevious}
+              type="button"
             >
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="h-4 w-4 text-clay-700" />
             </Button>
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full h-8 w-8"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full h-8 w-8 z-10 shadow-lg"
               onClick={goToNext}
+              type="button"
             >
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-4 w-4 text-clay-700" />
             </Button>
           </>
         )}
 
-        {/* Indicators */}
+        {/* Indicators - Only show if more than 1 image */}
         {images.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
             {images.map((_, index) => (
               <button
                 key={index}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentIndex ? 'bg-white' : 'bg-white/50'
+                type="button"
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex 
+                    ? 'bg-white w-6' 
+                    : 'bg-white/60 hover:bg-white/80'
                 }`}
-                onClick={() => setCurrentIndex(index)}
+                onClick={(e) => goToSlide(index, e)}
               />
             ))}
           </div>

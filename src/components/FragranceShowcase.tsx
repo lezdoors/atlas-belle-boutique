@@ -9,46 +9,46 @@ const FragranceShowcase = () => {
   const { language } = useLanguage();
   const [showAll, setShowAll] = useState(false);
 
-  // Define fragrance categories directly here to avoid import issues
+  // Define fragrance categories with the correct Supabase images
   const fragranceCategories = [
     {
       id: 1,
-      name: language === 'fr' ? 'Collection Orientale' : 'Oriental Collection',
+      name: language === 'fr' ? 'Collection Prestige' : 'Prestige Collection',
       description: language === 'fr' 
-        ? 'Des fragrances mystiques aux accords profonds et envoûtants'
-        : 'Mystical fragrances with deep and captivating accords',
+        ? 'Découvrez nos créations d\'exception, inspirées des traditions millénaires du Maroc'
+        : 'Discover our exceptional creations, inspired by Morocco\'s ancient traditions',
       products: [
         {
           id: 11,
-          name: language === 'fr' ? 'Oud Impérial' : 'Imperial Oud',
-          price: 89,
-          image: '/lovable-uploads/5a6e176e-a311-4e23-a48f-5439e70ecb3f.png',
-          rating: 4.8,
-          reviews: 124
+          name: language === 'fr' ? 'Collection Prestige' : 'Prestige Collection',
+          price: 150,
+          image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//women%20face%20covered.jpg',
+          rating: 4.9,
+          reviews: 127
         },
         {
           id: 12,
-          name: language === 'fr' ? 'Rose de Damas' : 'Damascus Rose',
-          price: 75,
-          image: '/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png',
-          rating: 4.6,
+          name: language === 'fr' ? 'Crème Précieuse Atlas' : 'Atlas Precious Cream',
+          price: 89,
+          image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//orange%20rose%20and%20bottle%20behind%20it.jpg',
+          rating: 4.7,
           reviews: 89
         }
       ]
     },
     {
       id: 2,
-      name: language === 'fr' ? 'Collection Florale' : 'Floral Collection',
+      name: language === 'fr' ? 'Collection Parfums' : 'Perfume Collection',
       description: language === 'fr' 
         ? 'Des senteurs délicates inspirées des jardins marocains'
         : 'Delicate scents inspired by Moroccan gardens',
       products: [
         {
           id: 21,
-          name: language === 'fr' ? 'Jasmin Royal' : 'Royal Jasmine',
-          price: 65,
-          image: '/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png',
-          rating: 4.7,
+          name: language === 'fr' ? 'Parfum Royal Argan' : 'Royal Argan Perfume',
+          price: 95,
+          image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//perfume%20bottle%20roses%20in%20it.jpg',
+          rating: 4.8,
           reviews: 156
         },
         {

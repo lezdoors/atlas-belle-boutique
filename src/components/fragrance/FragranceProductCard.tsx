@@ -5,6 +5,7 @@ import { ShoppingCart, Eye, Star } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from 'sonner';
+import SwipeableGallery from '@/components/SwipeableGallery';
 
 interface FragranceProduct {
   id: number;
@@ -40,20 +41,27 @@ const FragranceProductCard = ({ product }: FragranceProductCardProps) => {
     );
   };
 
+  // Create multiple images for the gallery (using the same image for now, in a real app these would be different angles)
+  const productImages = [
+    product.image,
+    product.image, // In real app, these would be different views
+    product.image,
+  ];
+
   return (
     <Card className="group bg-white border-0 luxury-shadow rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105">
       <div className="relative">
-        {/* Product Image - Fixed aspect ratio */}
+        {/* Product Image with Gallery - Fixed aspect ratio */}
         <div className="aspect-[4/3] overflow-hidden bg-gradient-to-br from-pearl-100 to-beige-100">
-          <img
-            src={product.image}
+          <SwipeableGallery 
+            images={productImages}
             alt={product.name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="h-full w-full"
           />
         </div>
 
         {/* Quick Actions */}
-        <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
           <Button
             size="icon"
             variant="ghost"
@@ -64,7 +72,7 @@ const FragranceProductCard = ({ product }: FragranceProductCardProps) => {
         </div>
 
         {/* Price Badge */}
-        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-clay-800 px-3 py-1 rounded-full text-sm font-semibold">
+        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-clay-800 px-3 py-1 rounded-full text-sm font-semibold z-20">
           {product.price}€
         </div>
       </div>
