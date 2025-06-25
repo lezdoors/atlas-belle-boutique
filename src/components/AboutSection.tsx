@@ -21,9 +21,12 @@ const AboutSection = () => {
           {/* Visual Banner - Left Side */}
           <div className="relative group">
             <div className="relative overflow-hidden rounded-3xl luxury-shadow">
-              <img
-                src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/puneet-saravanan-W0po8aJGTDU-unsplash.jpg"
-                alt={language === 'fr' ? 'Artisanat marocain traditionnel' : 'Traditional Moroccan craftsmanship'}
+              <video
+                src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/videos//ai-women-oil.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
                 className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
               
