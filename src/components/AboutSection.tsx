@@ -22,7 +22,7 @@ const AboutSection = () => {
           <div className="relative group">
             <div className="relative overflow-hidden rounded-3xl luxury-shadow">
               <img
-                src="/lovable-uploads/223fc8e6-1152-4c77-b591-6ac326077812.png"
+                src="https://images.unsplash.com/photo-1466442929976-97f336a657be?auto=format&fit=crop&w=800&q=80"
                 alt={language === 'fr' ? 'Artisanat marocain traditionnel' : 'Traditional Moroccan craftsmanship'}
                 className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
