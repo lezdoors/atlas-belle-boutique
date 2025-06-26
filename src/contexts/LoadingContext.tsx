@@ -40,6 +40,15 @@ export const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }) =>
     setIsLoading(loading);
   };
 
+  // Safety timeout to ensure loader never stays visible for more than 2 seconds
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      console.log('LoadingContext: Safety timeout - hiding loader after 2 seconds');
+      setIsLoading(false);
+    }, 2000); // hide after 2 seconds max
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <LoadingContext.Provider value={{ isLoading, showLoader, hideLoader, setLoading }}>
       {children}
