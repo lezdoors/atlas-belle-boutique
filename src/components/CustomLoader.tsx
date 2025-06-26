@@ -16,8 +16,10 @@ const CustomLoader: React.FC<CustomLoaderProps> = ({
   const [shouldRender, setShouldRender] = useState(isVisible);
 
   useEffect(() => {
+    console.log('CustomLoader: isVisible changed to', isVisible);
+    
     if (!isVisible) {
-      // Fade out
+      // Fade out immediately when told to hide
       setOpacity(0);
       const timer = setTimeout(() => {
         setShouldRender(false);
@@ -26,13 +28,17 @@ const CustomLoader: React.FC<CustomLoaderProps> = ({
       return () => clearTimeout(timer);
     }
 
-    // Fade in the loader
+    // Show the loader
+    setShouldRender(true);
+    
+    // Fade in
     const fadeInTimer = setTimeout(() => {
       setOpacity(1);
     }, 100);
 
-    // Auto-hide after duration
+    // Auto-hide after duration (fallback)
     const hideTimer = setTimeout(() => {
+      console.log('CustomLoader: Auto-hiding after duration');
       setOpacity(0);
       setTimeout(() => {
         setShouldRender(false);
@@ -45,6 +51,20 @@ const CustomLoader: React.FC<CustomLoaderProps> = ({
       clearTimeout(hideTimer);
     };
   }, [isVisible, onComplete, duration]);
+
+  // Additional safety timeout - force hide after 5 seconds regardless
+  useEffect(() => {
+    const safetyTimer = setTimeout(() => {
+      console.log('CustomLoader: Safety timeout - force hiding');
+      setOpacity(0);
+      setTimeout(() => {
+        setShouldRender(false);
+        onComplete?.();
+      }, 500);
+    }, 5000);
+
+    return () => clearTimeout(safetyTimer);
+  }, [onComplete]);
 
   if (!shouldRender) return null;
 
