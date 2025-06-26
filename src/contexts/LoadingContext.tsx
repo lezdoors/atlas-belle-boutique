@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface LoadingContextType {
   isLoading: boolean;
@@ -23,7 +23,7 @@ interface LoadingProviderProps {
 }
 
 export const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(false); // Start with false to avoid initial loading
+  const [isLoading, setIsLoading] = useState(false);
 
   const showLoader = () => {
     console.log('LoadingContext: Showing loader');
@@ -39,15 +39,6 @@ export const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }) =>
     console.log('LoadingContext: Setting loading to', loading);
     setIsLoading(loading);
   };
-
-  // Safety timeout to ensure loader never stays visible for more than 2 seconds
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      console.log('LoadingContext: Safety timeout - hiding loader after 2 seconds');
-      setIsLoading(false);
-    }, 2000); // hide after 2 seconds max
-    return () => clearTimeout(timeout);
-  }, []);
 
   return (
     <LoadingContext.Provider value={{ isLoading, showLoader, hideLoader, setLoading }}>

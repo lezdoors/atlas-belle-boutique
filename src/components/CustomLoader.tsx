@@ -2,12 +2,10 @@
 import React, { useState, useEffect } from 'react';
 
 interface CustomLoaderProps {
-  onComplete?: () => void;
   isVisible?: boolean;
 }
 
 const CustomLoader: React.FC<CustomLoaderProps> = ({ 
-  onComplete,
   isVisible = true
 }) => {
   const [opacity, setOpacity] = useState(0);

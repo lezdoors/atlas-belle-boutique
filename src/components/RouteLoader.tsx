@@ -13,11 +13,11 @@ const RouteLoader: React.FC = () => {
     console.log('RouteLoader: Route changed to', location.pathname);
     showLoader();
     
-    // Hide loader after content loads
+    // Hide loader after a short delay to allow content to load
     const timer = setTimeout(() => {
       console.log('RouteLoader: Hiding loader after route change');
       hideLoader();
-    }, 1000);
+    }, 500); // Reduced from 1000ms to 500ms
 
     return () => {
       console.log('RouteLoader: Cleaning up timer');
@@ -28,7 +28,6 @@ const RouteLoader: React.FC = () => {
   return (
     <CustomLoader 
       isVisible={isLoading}
-      onComplete={hideLoader}
     />
   );
 };
