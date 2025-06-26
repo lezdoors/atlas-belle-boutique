@@ -1,5 +1,4 @@
 
-import PerleAtlasLogo from '@/components/PerleAtlasLogo';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const FooterBottom = () => {
@@ -10,10 +9,10 @@ const FooterBottom = () => {
       <div className="container mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-sand-400">
           <div className="mb-4 md:mb-0 flex items-center">
-            <PerleAtlasLogo 
-              size="favicon" 
-              variant="watermark"
-              className="mr-3 opacity-60"
+            <img 
+              src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//atlas-logo.png"
+              alt="Perle de l'Atlas"
+              className="h-6 w-auto object-contain mr-3 opacity-60"
             />
             <span>
               © 2024 Perle de l'Atlas. {language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}

@@ -1,5 +1,4 @@
 
-import PerleAtlasNewLogo from '@/components/PerleAtlasNewLogo';
 import { User, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -9,10 +8,10 @@ const FooterBrand = () => {
   return (
     <div className="lg:col-span-2">
       <div className="flex items-center mb-6">
-        <PerleAtlasNewLogo 
-          size="lg" 
-          variant="full"
-          className="mr-4"
+        <img 
+          src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//atlas-logo.png"
+          alt="Perle de l'Atlas - Cosmétiques de Luxe Marocains"
+          className="h-12 w-auto object-contain mr-4"
         />
       </div>
       
