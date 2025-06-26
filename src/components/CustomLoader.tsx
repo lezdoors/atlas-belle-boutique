@@ -70,9 +70,9 @@ const CustomLoader: React.FC<CustomLoaderProps> = ({
           {/* Main logo with shimmer overlay */}
           <div className="relative">
             <img 
-              src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Logo-1.png"
+              src="/lovable-uploads/ba21e7d0-cbef-422b-8a7d-1e701b06df53.png"
               alt="Perle de l'Atlas"
-              className="h-24 w-auto mx-auto filter drop-shadow-lg relative z-10"
+              className="h-32 w-auto mx-auto filter drop-shadow-lg relative z-10"
               style={{
                 animation: 'logoFloat 3s ease-in-out infinite'
               }}
@@ -116,7 +116,7 @@ const CustomLoader: React.FC<CustomLoaderProps> = ({
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes logoFloat {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-8px); }
