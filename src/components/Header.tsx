@@ -38,9 +38,9 @@ const Header = () => {
           <HeaderTopBar />
         </div>
 
-        {/* Main Header - Enhanced transparent overlay design */}
-        <div className="w-full px-4 lg:px-6 py-3 lg:py-4">
-          <div className="w-full max-w-7xl mx-auto flex items-center justify-between h-14 lg:h-16">
+        {/* Main Header - Enhanced transparent overlay design with full width */}
+        <div className="w-full px-6 lg:px-8 py-3 lg:py-4">
+          <div className="w-full flex items-center justify-between h-14 lg:h-16">
             {/* Logo */}
             <div className="flex items-center flex-shrink-0">
               <HeaderLogo />

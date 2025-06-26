@@ -11,7 +11,7 @@ const HeaderLogo = () => {
         <img 
           src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//atlas-logo.png"
           alt="Perle de l'Atlas - Cosmétiques de Luxe Marocains"
-          className="h-8 w-auto lg:h-10 object-contain filter drop-shadow-sm"
+          className="h-10 w-auto lg:h-12 object-contain filter drop-shadow-sm"
         />
       </div>
     </Link>
