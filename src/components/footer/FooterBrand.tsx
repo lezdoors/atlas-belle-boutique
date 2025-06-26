@@ -9,7 +9,7 @@ const FooterBrand = () => {
     <div className="lg:col-span-2">
       <div className="flex items-center mb-6">
         <img 
-          src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//atlas-logo.png"
+          src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Logo-1.png"
           alt="Perle de l'Atlas - Cosmétiques de Luxe Marocains"
           className="h-12 w-auto object-contain mr-4"
         />

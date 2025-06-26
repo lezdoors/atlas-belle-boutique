@@ -10,7 +10,7 @@ const FooterBottom = () => {
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-sand-400">
           <div className="mb-4 md:mb-0 flex items-center">
             <img 
-              src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//atlas-logo.png"
+              src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Logo-1.png"
               alt="Perle de l'Atlas"
               className="h-6 w-auto object-contain mr-3 opacity-60"
             />
