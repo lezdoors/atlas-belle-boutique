@@ -26,17 +26,14 @@ export const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }) =>
   const [isLoading, setIsLoading] = useState(false);
 
   const showLoader = () => {
-    console.log('LoadingContext: Showing loader');
     setIsLoading(true);
   };
   
   const hideLoader = () => {
-    console.log('LoadingContext: Hiding loader');
     setIsLoading(false);
   };
   
   const setLoading = (loading: boolean) => {
-    console.log('LoadingContext: Setting loading to', loading);
     setIsLoading(loading);
   };
 
