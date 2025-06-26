@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -6,7 +7,6 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { LoadingProvider } from "@/contexts/LoadingContext";
 import { AuthProvider } from "@/hooks/useAuth";
-import RouteLoader from "@/components/RouteLoader";
 import BottomNavigation from "@/components/mobile/BottomNavigation";
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -44,9 +44,6 @@ function App() {
               <LanguageProvider>
                 <CartProvider>
                   <div className="min-h-screen bg-white">
-                    {/* Route-aware loader */}
-                    <RouteLoader />
-                    
                     <Routes>
                       <Route path="/" element={<Index />} />
                       <Route path="/a-propos" element={<About />} />
