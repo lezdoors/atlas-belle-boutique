@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -19,6 +19,7 @@ const Auth = () => {
   
   const { user, signIn, signUp } = useAuth();
   const { language } = useLanguage();
+  const navigate = useNavigate();
 
   // Redirect if already authenticated
   if (user) {
@@ -31,25 +32,67 @@ const Auth = () => {
 
     try {
       if (isSignUp) {
-        await signUp(email, password, fullName);
-        toast.success(
-          language === 'fr' 
-            ? 'Compte créé avec succès! Vérifiez votre email.' 
-            : 'Account created successfully! Check your email.'
-        );
+        const { error } = await signUp(email, password, fullName);
+        if (error) {
+          if (error.message.includes('User already registered')) {
+            toast.error(
+              language === 'fr' 
+                ? 'Un compte existe déjà avec cet email'
+                : 'An account with this email already exists'
+            );
+          } else {
+            toast.error(
+              language === 'fr' 
+                ? 'Erreur: ' + error.message
+                : 'Error: ' + error.message
+            );
+          }
+        } else {
+          toast.success(
+            language === 'fr' 
+              ? 'Bienvenue chez Perle de l\'Atlas! Votre compte a été créé avec succès. Vérifiez votre email pour confirmer votre inscription.'
+              : 'Welcome to Perle de l\'Atlas! Your account has been created successfully. Check your email to confirm your signup.'
+          );
+          // Clear form
+          setEmail('');
+          setPassword('');
+          setFullName('');
+          // Redirect to home after a short delay
+          setTimeout(() => {
+            navigate('/');
+          }, 2000);
+        }
       } else {
-        await signIn(email, password);
-        toast.success(
-          language === 'fr' 
-            ? 'Connexion réussie!' 
-            : 'Successfully signed in!'
-        );
+        const { error } = await signIn(email, password);
+        if (error) {
+          if (error.message.includes('Invalid login credentials')) {
+            toast.error(
+              language === 'fr' 
+                ? 'Email ou mot de passe incorrect'
+                : 'Invalid email or password'
+            );
+          } else {
+            toast.error(
+              language === 'fr' 
+                ? 'Erreur: ' + error.message
+                : 'Error: ' + error.message
+            );
+          }
+        } else {
+          toast.success(
+            language === 'fr' 
+              ? 'Connexion réussie! Bienvenue!'
+              : 'Successfully signed in! Welcome!'
+          );
+          // Redirect to home
+          navigate('/');
+        }
       }
     } catch (error: any) {
       toast.error(
         language === 'fr' 
-          ? 'Erreur: ' + (error.message || 'Une erreur est survenue')
-          : 'Error: ' + (error.message || 'An error occurred')
+          ? 'Une erreur inattendue est survenue'
+          : 'An unexpected error occurred'
       );
     } finally {
       setLoading(false);
