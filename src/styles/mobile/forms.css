@@ -1,0 +1,26 @@
+
+/* Mobile Form Components */
+
+@media (max-width: 768px) {
+  /* Enhanced section spacing for mobile */
+  .section-padding {
+    padding: 3rem 1rem;
+  }
+  
+  /* On.com style form elements */
+  input, select, textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+    border-radius: 16px;
+    border: 2px solid rgba(0, 0, 0, 0.08);
+    background: white;
+    transition: all 0.3s ease;
+    min-height: 48px;
+    padding: 12px 16px;
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    border-color: rgba(184, 134, 11, 0.3);
+    box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.05);
+    outline: none;
+  }
+}

@@ -1,0 +1,53 @@
+
+/* Mobile Navigation Components */
+
+@media (max-width: 768px) {
+  /* Better mobile menu with app-like animations */
+  .mobile-menu {
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+  
+  /* Map region buttons responsive behavior */
+  .region-buttons {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  
+  .region-button {
+    min-width: calc(50% - 0.375rem);
+    font-size: 0.875rem;
+    padding: 1rem;
+    border-radius: 16px;
+    min-height: 48px;
+    background: white;
+    border: 2px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .region-button:active {
+    transform: scale(0.95);
+    background: #f8f8f8;
+  }
+
+  /* On.com style header */
+  .mobile-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* Bottom navigation safe area - On.com style */
+  .bottom-nav-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+  }
+}

@@ -1,0 +1,45 @@
+
+/* Mobile Card Components */
+
+@media (max-width: 768px) {
+  /* On.com style card styling */
+  .mobile-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+    border: none;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .mobile-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* On.com inspired product cards */
+  .product-card {
+    margin-bottom: 1.5rem;
+    border-radius: 20px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+  }
+  
+  .product-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* On.com style testimonial cards */
+  .testimonial-card {
+    margin-bottom: 2rem;
+    border-radius: 24px;
+    padding: 2rem;
+    background: white;
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.06);
+    border: none;
+  }
+}
