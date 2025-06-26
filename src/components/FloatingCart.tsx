@@ -13,17 +13,17 @@ const FloatingCart = () => {
   if (totalItems === 0) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 lg:hidden">
+    <div className="fixed bottom-24 right-4 z-40 lg:bottom-6 lg:right-6">
       <Button
         size="lg"
         onClick={openCart}
-        className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-full w-14 h-14 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative"
+        className="bg-black hover:bg-gray-800 text-white rounded-full w-14 h-14 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 relative border-none on-style-button p-0"
       >
         <ShoppingBag className="h-5 w-5" />
         {totalItems > 0 && (
           <Badge 
             variant="destructive" 
-            className="absolute -top-2 -right-2 bg-red-500 text-white min-w-[22px] h-6 rounded-full flex items-center justify-center text-xs font-bold border-2 border-white shadow-sm"
+            className="absolute -top-2 -right-2 bg-amber-500 text-white min-w-[22px] h-6 rounded-full flex items-center justify-center text-xs font-bold border-2 border-white shadow-sm"
           >
             {totalItems > 99 ? '99+' : totalItems}
           </Badge>
