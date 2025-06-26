@@ -8,33 +8,27 @@ const RouteLoader: React.FC = () => {
   const { isLoading, hideLoader, showLoader } = useLoading();
   const location = useLocation();
 
-  // Handle route changes
+  // Handle route changes with a single effect
   useEffect(() => {
+    console.log('RouteLoader: Route changed to', location.pathname);
     showLoader();
     
-    // Hide loader after route content loads
+    // Hide loader after content loads
     const timer = setTimeout(() => {
+      console.log('RouteLoader: Hiding loader after route change');
       hideLoader();
-    }, 800);
+    }, 1000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      console.log('RouteLoader: Cleaning up timer');
+      clearTimeout(timer);
+    };
   }, [location.pathname, showLoader, hideLoader]);
-
-  // Fallback timeout - force hide loader after maximum time
-  useEffect(() => {
-    const fallbackTimer = setTimeout(() => {
-      console.log('Fallback timeout - force hiding loader');
-      hideLoader();
-    }, 4000); // 4 seconds maximum
-
-    return () => clearTimeout(fallbackTimer);
-  }, [hideLoader]);
 
   return (
     <CustomLoader 
       isVisible={isLoading}
       onComplete={hideLoader}
-      duration={3000}
     />
   );
 };

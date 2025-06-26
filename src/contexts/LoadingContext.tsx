@@ -23,7 +23,7 @@ interface LoadingProviderProps {
 }
 
 export const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(true); // Start with loading on initial load
+  const [isLoading, setIsLoading] = useState(false); // Start with false to avoid initial loading
 
   const showLoader = () => {
     console.log('LoadingContext: Showing loader');
@@ -39,16 +39,6 @@ export const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }) =>
     console.log('LoadingContext: Setting loading to', loading);
     setIsLoading(loading);
   };
-
-  // Initial page load timeout - hide loader after app is ready
-  useEffect(() => {
-    const initialTimer = setTimeout(() => {
-      console.log('LoadingContext: Initial load timeout - hiding loader');
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(initialTimer);
-  }, []);
 
   return (
     <LoadingContext.Provider value={{ isLoading, showLoader, hideLoader, setLoading }}>

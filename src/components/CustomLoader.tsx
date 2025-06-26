@@ -3,13 +3,11 @@ import React, { useState, useEffect } from 'react';
 
 interface CustomLoaderProps {
   onComplete?: () => void;
-  duration?: number;
   isVisible?: boolean;
 }
 
 const CustomLoader: React.FC<CustomLoaderProps> = ({ 
   onComplete,
-  duration = 3000,
   isVisible = true
 }) => {
   const [opacity, setOpacity] = useState(0);
@@ -19,52 +17,23 @@ const CustomLoader: React.FC<CustomLoaderProps> = ({
     console.log('CustomLoader: isVisible changed to', isVisible);
     
     if (!isVisible) {
-      // Fade out immediately when told to hide
+      // Fade out when hiding
       setOpacity(0);
       const timer = setTimeout(() => {
         setShouldRender(false);
-        onComplete?.();
-      }, 500);
+        console.log('CustomLoader: Render set to false');
+      }, 300);
       return () => clearTimeout(timer);
     }
 
-    // Show the loader
+    // Show and fade in when visible
     setShouldRender(true);
-    
-    // Fade in
     const fadeInTimer = setTimeout(() => {
       setOpacity(1);
-    }, 100);
+    }, 50);
 
-    // Auto-hide after duration (fallback)
-    const hideTimer = setTimeout(() => {
-      console.log('CustomLoader: Auto-hiding after duration');
-      setOpacity(0);
-      setTimeout(() => {
-        setShouldRender(false);
-        onComplete?.();
-      }, 500);
-    }, duration);
-
-    return () => {
-      clearTimeout(fadeInTimer);
-      clearTimeout(hideTimer);
-    };
-  }, [isVisible, onComplete, duration]);
-
-  // Additional safety timeout - force hide after 5 seconds regardless
-  useEffect(() => {
-    const safetyTimer = setTimeout(() => {
-      console.log('CustomLoader: Safety timeout - force hiding');
-      setOpacity(0);
-      setTimeout(() => {
-        setShouldRender(false);
-        onComplete?.();
-      }, 500);
-    }, 5000);
-
-    return () => clearTimeout(safetyTimer);
-  }, [onComplete]);
+    return () => clearTimeout(fadeInTimer);
+  }, [isVisible]);
 
   if (!shouldRender) return null;
 
@@ -73,7 +42,7 @@ const CustomLoader: React.FC<CustomLoaderProps> = ({
       className="fixed inset-0 z-[9999] bg-gradient-to-br from-pearl-50 via-white to-amber-50/30 flex items-center justify-center"
       style={{ 
         opacity,
-        transition: 'opacity 500ms cubic-bezier(0.4, 0, 0.2, 1)'
+        transition: 'opacity 300ms ease-in-out'
       }}
     >
       <div className="text-center">
