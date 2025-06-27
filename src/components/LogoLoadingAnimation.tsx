@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import PerleAtlasOfficialLogo from './PerleAtlasOfficialLogo';
 
 interface LogoLoadingAnimationProps {
   onComplete?: () => void;
@@ -9,8 +10,8 @@ interface LogoLoadingAnimationProps {
 
 const LogoLoadingAnimation: React.FC<LogoLoadingAnimationProps> = ({ 
   onComplete,
-  duration = 1500, // Reduced duration for better UX
-  showOnMount = false // Only show when explicitly requested
+  duration = 1500,
+  showOnMount = false
 }) => {
   const [isVisible, setIsVisible] = useState(showOnMount);
   const [opacity, setOpacity] = useState(0);
@@ -18,18 +19,18 @@ const LogoLoadingAnimation: React.FC<LogoLoadingAnimationProps> = ({
   useEffect(() => {
     if (!showOnMount) return;
 
-    // Fade in the loading text
+    // Fade in the loading screen
     const fadeInTimer = setTimeout(() => {
       setOpacity(1);
     }, 100);
 
-    // Show loading text for specified duration, then fade out
+    // Hide loading screen after duration
     const hideTimer = setTimeout(() => {
       setOpacity(0);
       setTimeout(() => {
         setIsVisible(false);
         onComplete?.();
-      }, 300); // Shorter fade out duration
+      }, 300);
     }, duration);
 
     return () => {
@@ -47,10 +48,10 @@ const LogoLoadingAnimation: React.FC<LogoLoadingAnimationProps> = ({
         style={{ opacity }}
       >
         <div className="mb-4">
-          <img 
-            src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Logo-1.png"
-            alt="Perle de l'Atlas"
-            className="h-16 w-auto mx-auto filter drop-shadow-sm animate-pulse"
+          <PerleAtlasOfficialLogo 
+            size="xl"
+            animated={true}
+            className="animate-logo-float"
           />
         </div>
         <p className="font-serif text-clay-600 text-lg tracking-wide">

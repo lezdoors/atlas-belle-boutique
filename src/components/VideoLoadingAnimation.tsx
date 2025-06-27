@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import PerleAtlasOfficialLogo from './PerleAtlasOfficialLogo';
 
 interface VideoLoadingAnimationProps {
   isVisible: boolean;
@@ -16,7 +17,7 @@ const VideoLoadingAnimation: React.FC<VideoLoadingAnimationProps> = ({
     if (isVisible) {
       setShouldShow(true);
     } else {
-      // Add a small delay before hiding to allow for smooth transition
+      // Smooth transition delay
       const timer = setTimeout(() => {
         setShouldShow(false);
         onVideoLoad?.();
@@ -32,12 +33,12 @@ const VideoLoadingAnimation: React.FC<VideoLoadingAnimationProps> = ({
       isVisible ? 'opacity-100' : 'opacity-0'
     }`}>
       <div className="text-center">
-        {/* Elegant logo with subtle animation */}
-        <div className="mb-6 animate-pulse">
-          <img 
-            src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Logo-1.png"
-            alt="Perle de l'Atlas"
-            className="h-12 w-auto mx-auto filter drop-shadow-lg"
+        {/* Elegant logo with animation */}
+        <div className="mb-6">
+          <PerleAtlasOfficialLogo 
+            size="lg"
+            animated={true}
+            className="animate-logo-float"
           />
         </div>
         
