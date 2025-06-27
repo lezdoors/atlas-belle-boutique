@@ -7,7 +7,6 @@ import Categories from "@/components/Categories";
 import FourSeasons from "@/components/FourSeasons";
 import MissionSection from "@/components/MissionSection";
 import OurArtisans from "@/components/OurArtisans";
-import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import FloatingCart from "@/components/FloatingCart";
@@ -39,8 +38,9 @@ const Index = () => {
             <Categories />
             <FourSeasons />
             <MissionSection />
-            <OurArtisans />
-            <Testimonials />
+            <div className="pb-12">
+              <OurArtisans />
+            </div>
           </main>
           <Footer />
           <CartDrawer />

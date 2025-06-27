@@ -15,7 +15,7 @@ const FragranceViewAllButton = ({ onClick }: FragranceViewAllButtonProps) => {
         variant="outline" 
         size="lg"
         onClick={onClick}
-        className="border-2 border-copper-500 text-copper-600 hover:bg-copper-500 hover:text-white transition-colors duration-300"
+        className="border-2 border-copper-500 text-copper-600 hover:bg-copper-500 hover:text-white transition-all duration-300 hover-scale"
       >
         {language === 'fr' ? 'Voir toutes les collections' : 'View all collections'}
       </Button>
