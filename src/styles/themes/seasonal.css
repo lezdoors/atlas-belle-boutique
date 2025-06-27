@@ -1,0 +1,81 @@
+
+/* Seasonal Theme System - Elegant Color Palettes */
+
+/* Spring - Renaissance & Growth */
+.theme-spring {
+  --seasonal-primary: #7C9885;    /* Sage green */
+  --seasonal-secondary: #A8B5A0;  /* Soft mint */
+  --seasonal-accent: #E8F5E8;     /* Fresh white-green */
+  --seasonal-dark: #4A5D4F;       /* Deep forest */
+  --seasonal-light: #F0F8F0;      /* Morning mist */
+}
+
+/* Summer - Warmth & Vitality */
+.theme-summer {
+  --seasonal-primary: #D4A574;    /* Warm sand */
+  --seasonal-secondary: #E6C79C;  /* Golden wheat */
+  --seasonal-accent: #FFF8E7;     /* Cream */
+  --seasonal-dark: #8B6914;       /* Deep amber */
+  --seasonal-light: #FFFBF0;      /* Sunlight */
+}
+
+/* Autumn - Harvest & Depth */
+.theme-autumn {
+  --seasonal-primary: #B8704F;    /* Terracotta */
+  --seasonal-secondary: #D4956B;  /* Burnt orange */
+  --seasonal-accent: #F5E6D3;     /* Warm cream */
+  --seasonal-dark: #7A4A2E;       /* Rich earth */
+  --seasonal-light: #FAF0E6;      /* Warm white */
+}
+
+/* Winter - Contemplation & Elegance */
+.theme-winter {
+  --seasonal-primary: #6B7A8F;    /* Steel blue */
+  --seasonal-secondary: #8B9DC3;  /* Soft periwinkle */
+  --seasonal-accent: #F0F4F8;     /* Cool white */
+  --seasonal-dark: #3A4750;       /* Charcoal */
+  --seasonal-light: #F8FAFC;      /* Pure white */
+}
+
+/* Seasonal gradient overlays */
+.seasonal-gradient-spring {
+  background: linear-gradient(135deg, rgba(124, 152, 133, 0.1), rgba(232, 245, 232, 0.2));
+}
+
+.seasonal-gradient-summer {
+  background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(255, 248, 231, 0.2));
+}
+
+.seasonal-gradient-autumn {
+  background: linear-gradient(135deg, rgba(184, 112, 79, 0.1), rgba(245, 230, 211, 0.2));
+}
+
+.seasonal-gradient-winter {
+  background: linear-gradient(135deg, rgba(107, 122, 143, 0.1), rgba(240, 244, 248, 0.2));
+}
+
+/* Seasonal text colors */
+.text-seasonal-primary {
+  color: var(--seasonal-primary);
+}
+
+.text-seasonal-secondary {
+  color: var(--seasonal-secondary);
+}
+
+.text-seasonal-dark {
+  color: var(--seasonal-dark);
+}
+
+/* Seasonal backgrounds */
+.bg-seasonal-primary {
+  background-color: var(--seasonal-primary);
+}
+
+.bg-seasonal-accent {
+  background-color: var(--seasonal-accent);
+}
+
+.bg-seasonal-light {
+  background-color: var(--seasonal-light);
+}

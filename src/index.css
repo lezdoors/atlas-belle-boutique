@@ -1,6 +1,8 @@
 
 /* Import organized CSS files */
 @import './styles/base.css';
+@import './styles/themes/seasonal.css';
+@import './styles/premium-animations.css';
 @import './styles/components.css';
 @import './styles/animations.css';
 @import './styles/typography.css';
@@ -11,7 +13,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Enhanced base styles for better performance and SEO */
+/* Enhanced base styles for premium experience */
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -23,24 +25,40 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern", "liga", "clig", "calt";
+  }
+  
+  /* Premium typography defaults */
+  h1, h2, h3, h4, h5, h6 {
+    font-feature-settings: "kern", "liga", "clig", "calt";
+    letter-spacing: -0.02em;
   }
 }
 
-/* Custom utilities for better mobile experience */
+/* Premium utility classes */
 @layer utilities {
-  .touch-manipulation {
-    touch-action: manipulation;
+  .text-balance {
+    text-wrap: balance;
   }
   
-  .contain-layout {
-    contain: layout;
+  .luxury-shadow {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
   }
   
-  .will-change-transform {
+  .copper-gradient {
+    background: linear-gradient(135deg, #B8860B 0%, #DAA520 50%, #CD853F 100%);
+  }
+  
+  .moroccan-pattern {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(184, 134, 11, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(217, 119, 6, 0.06) 0%, transparent 50%);
+    background-size: 80px 80px;
+    background-position: 0 0, 40px 40px;
+  }
+  
+  .parallax-element {
     will-change: transform;
-  }
-  
-  .backface-hidden {
-    backface-visibility: hidden;
+    transform: translateZ(0);
   }
 }

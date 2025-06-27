@@ -16,15 +16,18 @@ import PullToRefresh from "@/components/PullToRefresh";
 import MobileOptimizer from "@/components/MobileOptimizer";
 import PerformanceOptimizer from "@/components/PerformanceOptimizer";
 import BottomNavigation from "@/components/mobile/BottomNavigation";
+import { SeasonalThemeProvider } from "@/components/seasonal/SeasonalThemeProvider";
+import HistoricalStoryBlock from "@/components/storytelling/HistoricalStoryBlock";
+import SeasonRitualsSection from "@/components/storytelling/SeasonRitualsSection";
+import ArtisanSpotlight from "@/components/storytelling/ArtisanSpotlight";
 
 const Index = () => {
   const handleRefresh = async () => {
-    // Simple page refresh functionality
     window.location.reload();
   };
 
   return (
-    <>
+    <SeasonalThemeProvider>
       <MobileOptimizer />
       <PerformanceOptimizer />
       
@@ -33,10 +36,35 @@ const Index = () => {
           <Header />
           <main className="pb-20 lg:pb-0">
             <Hero />
+            
+            {/* Historical Journey Begins */}
+            <HistoricalStoryBlock
+              title="L'Héritage des Montagnes de l'Atlas"
+              subtitle="Depuis des Millénaires"
+              content="Au cœur des montagnes de l'Atlas, là où les traditions se transmettent de mère en fille depuis des générations, naît notre histoire. Chaque produit Perle d'Atlas puise ses racines dans ce savoir ancestral, préservé et sublimé par nos artisans."
+              image="/lovable-uploads/hero-image-atlas-landscape.jpg"
+            />
+
             <AboutSection />
+            
+            {/* Seasonal Rituals */}
+            <SeasonRitualsSection />
+            
             <EnhancedFragranceShowcase />
             <Categories />
             <FourSeasons />
+            
+            {/* Artisan Stories */}
+            <ArtisanSpotlight />
+            
+            <HistoricalStoryBlock
+              title="La Philosophie du Temps Naturel"
+              subtitle="Rythmes Ancestraux"
+              content="Nous suivons le calendrier de la nature, respectant les cycles lunaires pour la récolte, les saisons pour la production. Cette approche nous permet de créer des produits d'une qualité exceptionnelle, en harmonie avec les rythmes naturels du Maroc."
+              image="/lovable-uploads/moroccan-architecture.jpg"
+              reversed
+            />
+            
             <MissionSection />
             <div className="pb-12">
               <OurArtisans />
@@ -50,7 +78,7 @@ const Index = () => {
           <BottomNavigation />
         </div>
       </PullToRefresh>
-    </>
+    </SeasonalThemeProvider>
   );
 };
 
