@@ -27,14 +27,13 @@ const PerleAtlasOfficialLogo = ({
   return (
     <div className={`${animated ? 'animate-fade-in' : ''} ${className}`}>
       <img 
-        src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//atlas-logo.png"
+        src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/perle-atlas-logo.png"
         alt="Perle de l'Atlas - Cosmétiques de Luxe Marocains"
         className={`${sizeClasses[size]} object-contain transition-all duration-700 ${
           imageLoaded ? 'opacity-100' : 'opacity-0'
         } ${animated ? 'animate-luxury-glow' : ''}`}
         style={{ 
           imageRendering: 'crisp-edges',
-          imageRendering: '-webkit-optimize-contrast',
           backfaceVisibility: 'hidden',
           WebkitBackfaceVisibility: 'hidden'
         }}

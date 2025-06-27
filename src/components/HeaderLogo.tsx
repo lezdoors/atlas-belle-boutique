@@ -11,14 +11,13 @@ const HeaderLogo = () => {
     <Link to="/" className="flex items-center flex-shrink-0 group">
       <div className="transition-all duration-500 group-hover:scale-105">
         <img 
-          src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//atlas-logo.png"
+          src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/perle-atlas-logo.png"
           alt="Perle de l'Atlas - Cosmétiques de Luxe Marocains"
           className={`h-12 w-auto lg:h-16 object-contain transition-all duration-700 ${
             imageLoaded ? 'opacity-100 animate-fade-in' : 'opacity-0'
           }`}
           style={{ 
             imageRendering: 'crisp-edges',
-            imageRendering: '-webkit-optimize-contrast',
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden'
           }}
