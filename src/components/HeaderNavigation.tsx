@@ -8,18 +8,17 @@ const HeaderNavigation = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Enhanced scroll detection for color inversion
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 100);
+      setIsScrolled(scrollPosition > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Clean luxury brand navigation - no duplicates
+  // Refined luxury navigation - removed duplicates
   const navItems = [
     { 
       href: '/', 
@@ -30,8 +29,8 @@ const HeaderNavigation = () => {
       label: language === 'fr' ? 'Boutique' : 'Shop' 
     },
     { 
-      href: '/a-propos', 
-      label: language === 'fr' ? 'À propos' : 'About' 
+      href: '/heritage', 
+      label: language === 'fr' ? 'Notre Héritage' : 'Our Heritage' 
     },
     { 
       href: '/contact', 
@@ -46,17 +45,17 @@ const HeaderNavigation = () => {
           <li key={item.href} className="h-full flex items-center">
             <Link
               to={item.href}
-              className={`h-full flex items-center text-sm lg:text-base font-light tracking-wide transition-all duration-700 relative group px-2 py-1 ${
+              className={`h-full flex items-center text-sm lg:text-base font-light tracking-wide transition-all duration-500 relative group px-3 py-2 font-serif ${
                 location.pathname === item.href 
-                  ? `${isScrolled ? 'text-amber-700' : 'text-amber-200'} font-medium` 
-                  : `${isScrolled ? 'text-clay-900 hover:text-amber-700' : 'text-white hover:text-amber-200'}`
+                  ? `${isScrolled ? 'text-copper-700' : 'text-copper-200'} font-medium` 
+                  : `${isScrolled ? 'text-clay-800 hover:text-copper-700' : 'text-white hover:text-copper-200'}`
               }`}
             >
               {item.label}
-              <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r transition-all duration-300 transform origin-center ${
+              <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r transition-all duration-500 transform origin-center ${
                 isScrolled 
-                  ? 'from-amber-400 to-amber-600' 
-                  : 'from-amber-200 to-amber-300'
+                  ? 'from-copper-500 to-copper-700' 
+                  : 'from-copper-200 to-copper-300'
               } ${
                 location.pathname === item.href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
               }`}></span>

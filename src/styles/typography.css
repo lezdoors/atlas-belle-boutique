@@ -1,21 +1,96 @@
 
-/* Typography enhancements */
+/* Refined Typography for Luxury Moroccan Brand */
+
+/* Hero Typography */
 .hero-title {
   @apply font-display font-bold text-5xl md:text-6xl lg:text-7xl leading-none;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .hero-subtitle {
   @apply font-serif text-xl md:text-2xl leading-relaxed;
   letter-spacing: 0.03em;
+  font-weight: 300;
 }
 
+/* Section Headings */
 .section-title {
   @apply font-display font-bold text-3xl md:text-4xl lg:text-5xl;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
+/* Elegant Body Text */
 .elegant-text {
   @apply font-serif leading-relaxed;
+  letter-spacing: 0.01em;
+  line-height: 1.7;
+}
+
+/* Poetic Captions */
+.poetic-caption {
+  @apply font-serif italic text-copper-600;
   letter-spacing: 0.02em;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* Navigation Typography */
+.nav-text {
+  @apply font-serif;
+  letter-spacing: 0.05em;
+  font-weight: 300;
+}
+
+/* Luxury Button Typography */
+.luxury-button-text {
+  @apply font-serif;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+/* Product Card Typography */
+.product-title {
+  @apply font-display font-semibold;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.product-description {
+  @apply font-serif;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* Responsive Typography Utilities */
+@media (max-width: 768px) {
+  .hero-title {
+    @apply text-4xl;
+    line-height: 1.1;
+  }
+  
+  .section-title {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  .elegant-text {
+    @apply text-base;
+    line-height: 1.6;
+  }
+}
+
+/* Enhanced readability */
+.readable-text {
+  line-height: 1.75;
+  font-size: 1.125rem;
+  color: rgb(55 65 81);
+}
+
+@media (max-width: 640px) {
+  .readable-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
 }

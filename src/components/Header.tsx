@@ -15,11 +15,11 @@ const Header = () => {
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Enhanced scroll detection for smoother transparent header transitions
+  // Enhanced scroll detection for luxury transparent header transitions
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50); // Reduced threshold for earlier transition
+      setIsScrolled(scrollPosition > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -28,31 +28,26 @@ const Header = () => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ${
+      <header className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-700 ${
         isScrolled 
-          ? 'bg-white/98 backdrop-blur-xl shadow-xl border-b border-amber-100/50' 
-          : 'bg-black/20 backdrop-blur-md'
+          ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-copper-100/30' 
+          : 'bg-transparent'
       }`}>
-        {/* Top Bar - Hidden for clean overlay effect */}
-        <div className="hidden">
-          <HeaderTopBar />
-        </div>
-
-        {/* Main Header - Enhanced transparent overlay design with full width */}
-        <div className="w-full px-6 lg:px-8 py-3 lg:py-4">
-          <div className="w-full flex items-center justify-between h-14 lg:h-16">
-            {/* Logo */}
+        {/* Luxury Main Header */}
+        <div className="w-full px-4 lg:px-8 py-3 lg:py-4">
+          <div className="w-full flex items-center justify-between h-12 lg:h-16">
+            {/* Logo - Enhanced with luxury styling */}
             <div className="flex items-center flex-shrink-0">
               <HeaderLogo />
             </div>
 
-            {/* Desktop Navigation - Centered with elegant spacing */}
-            <div className="hidden lg:flex items-center h-full flex-1 justify-center mx-8">
+            {/* Desktop Navigation - Simplified and elegant */}
+            <div className="hidden lg:flex items-center h-full flex-1 justify-center mx-12">
               <HeaderNavigation />
             </div>
 
-            {/* Right Side Actions */}
-            <div className="flex items-center space-x-2 lg:space-x-4">
+            {/* Right Side Actions - Refined */}
+            <div className="flex items-center space-x-3 lg:space-x-4">
               {/* Desktop Language Dropdown */}
               <div className="hidden lg:block">
                 <LanguageDropdown />
@@ -61,16 +56,16 @@ const Header = () => {
               {/* Action Icons */}
               <HeaderActions />
 
-              {/* Mobile Hamburger Menu */}
+              {/* Mobile Hamburger Menu - Luxury styling */}
               <div className="lg:hidden">
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className={`transition-all duration-500 h-10 w-10 rounded-full ml-2 ${
+                  className={`transition-all duration-500 h-11 w-11 rounded-full ml-2 ${
                     isScrolled 
-                      ? 'text-clay-700 hover:text-amber-600 hover:bg-amber-50/80' 
-                      : 'text-white hover:text-amber-200 hover:bg-white/20'
+                      ? 'text-clay-700 hover:text-copper-600 hover:bg-copper-50/80' 
+                      : 'text-white hover:text-copper-200 hover:bg-white/20'
                   }`}
                   aria-label="Toggle menu"
                 >

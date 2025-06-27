@@ -22,13 +22,12 @@ const Hero = ({ onVideoEnded }: HeroProps) => {
   };
 
   const handleVideoEnded = (ended: boolean) => {
-    console.log('Hero video ended:', ended);
     onVideoEnded?.(ended);
   };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
+      {/* Enhanced Video Background */}
       {!videoError && (
         <HeroVideoBackground 
           onVideoLoaded={setVideoLoaded}
@@ -37,24 +36,35 @@ const Hero = ({ onVideoEnded }: HeroProps) => {
         />
       )}
 
-      {/* Enhanced Luxury Fallback Background - loads immediately */}
+      {/* Luxury Fallback Background */}
       {(videoError || !videoLoaded) && <HeroFallbackBackground />}
 
-      {/* Dark Overlay for Readability */}
-      <div className="absolute inset-0 bg-black/30 z-10"></div>
+      {/* Sophisticated Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 z-10"></div>
 
       {/* Floating Decorative Elements */}
       <HeroDecorativeElements />
 
-      {/* Main Content Container - loads immediately */}
-      <div className="relative z-40 container mx-auto px-4 py-8 sm:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh]">
+      {/* Main Content Container */}
+      <div className="relative z-40 container mx-auto px-6 lg:px-8 py-12 sm:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-[85vh]">
           
-          {/* Left Section - Hero Content */}
+          {/* Hero Content */}
           <HeroContent onScrollToProducts={scrollToProducts} />
 
-          {/* Right Section - Product Showcase */}
-          <HeroProductShowcase />
+          {/* Product Showcase - Refined */}
+          <div className="relative order-1 lg:order-2 flex justify-center items-center">
+            <div className="relative animate-elegant-fade-in">
+              {/* Luxury Decorative Frame */}
+              <div className="absolute -inset-8 copper-gradient rounded-full opacity-20 blur-3xl animate-gentle-float"></div>
+              
+              {/* Floating Moroccan Elements */}
+              <div className="absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-br from-copper-300 to-copper-500 rounded-full opacity-40 animate-gentle-float blur-sm"></div>
+              <div className="absolute -bottom-8 -left-8 w-12 h-12 bg-gradient-to-br from-clay-300 to-clay-500 rounded-full opacity-30 animate-gentle-float blur-sm" style={{
+                animationDelay: '2s'
+              }}></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

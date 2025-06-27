@@ -10,7 +10,6 @@ import WishlistButton from '@/components/WishlistButton';
 import SaveForLaterButton from '@/components/SaveForLaterButton';
 import QuickViewModal from '@/components/QuickViewModal';
 import SwipeableGallery from '@/components/SwipeableGallery';
-import PerleAtlasLogo from './PerleAtlasLogo';
 
 interface Product {
   id: number;
@@ -36,9 +35,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { language, currency } = useLanguage();
   const { addToCart } = useCart();
 
-  // Ensure we're using authentic Perle d'Atlas images
+  // Ensure authentic product images
   const getAuthenticImage = (originalImage: string) => {
-    // Map any remaining stock images to our authentic Perle d'Atlas images
     const imageMap: { [key: string]: string } = {
       'photo-1465146344425-f00d5f5c8f07': '/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png',
       'photo-1482881497185-d4a9ddbe4151': '/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png',
@@ -47,39 +45,47 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       'photo-1469474968028-56623f02e42e': '/lovable-uploads/d4ad8eb5-ea3d-4931-ae8c-008b30d0e998.png'
     };
 
-    // Check if the image URL contains any stock photo identifier
     for (const [stockId, authenticImage] of Object.entries(imageMap)) {
       if (originalImage.includes(stockId)) {
         return authenticImage;
       }
     }
-
-    // If already an authentic image or unknown, return as is
     return originalImage;
   };
 
   const authenticImage = getAuthenticImage(product.image);
+  const productImages = [authenticImage, authenticImage, authenticImage];
 
-  // Create multiple images for the gallery (using the same authentic image)
-  const productImages = [
-    authenticImage,
-    authenticImage, // In real app, these would be different angles/views
-    authenticImage,
-  ];
+  // Generate poetic seasonal caption
+  const getSeasonalCaption = () => {
+    const currentMonth = new Date().getMonth();
+    const season = currentMonth >= 2 && currentMonth <= 4 ? 'spring' :
+                   currentMonth >= 5 && currentMonth <= 7 ? 'summer' :
+                   currentMonth >= 8 && currentMonth <= 10 ? 'autumn' : 'winter';
+    
+    const seasonalCaptions = {
+      spring: language === 'fr' ? 'Éveil printanier' : 'Spring Awakening',
+      summer: language === 'fr' ? 'Éclat d\'été' : 'Summer Radiance',
+      autumn: language === 'fr' ? 'Chaleur d\'automne' : 'Autumn Warmth',
+      winter: language === 'fr' ? 'Douceur hivernale' : 'Winter Comfort'
+    };
+    
+    return seasonalCaptions[season];
+  };
 
   const enhancedProduct = {
     ...product,
     image: authenticImage,
     longDescription: product.longDescription || (language === 'fr' 
-      ? 'Un produit authentique du Maroc, créé avec des ingrédients naturels et des méthodes traditionnelles pour révéler votre beauté naturelle.'
-      : 'An authentic product from Morocco, created with natural ingredients and traditional methods to reveal your natural beauty.'),
+      ? 'Création artisanale authentique du Maroc, élaborée selon les traditions ancestrales pour révéler votre beauté naturelle.'
+      : 'Authentic artisanal creation from Morocco, crafted according to ancestral traditions to reveal your natural beauty.'),
     ingredients: product.ingredients || (language === 'fr' 
-      ? ['Huile d\'argan', 'Beurre de karité', 'Huile de rose'] 
-      : ['Argan oil', 'Shea butter', 'Rose oil']),
+      ? ['Huile d\'argan', 'Beurre de karité', 'Essence de rose'] 
+      : ['Argan oil', 'Shea butter', 'Rose essence']),
     skinType: product.skinType || (language === 'fr' 
       ? ['Tous types de peau'] 
       : ['All skin types']),
-    region: product.region || 'Marrakech'
+    region: product.region || 'Atlas Mountains'
   };
 
   const handleAddToCart = () => {
@@ -91,7 +97,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     });
   };
 
-  // Convert product to item format for SaveForLaterButton
   const saveForLaterItem = {
     id: product.id,
     name: product.name,
@@ -100,39 +105,35 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
-    <Card className="group hover-scale bg-white/90 backdrop-blur-sm border-0 luxury-shadow h-full flex flex-col overflow-hidden rounded-2xl">
+    <Card className="group hover-sophisticate bg-white/95 backdrop-blur-sm border-0 luxury-shadow h-full flex flex-col overflow-hidden rounded-3xl transition-all duration-500">
       <CardContent className="p-0 flex flex-col h-full">
-        {/* Mobile-Optimized Product Image - Smaller aspect ratio */}
-        <div className="relative overflow-hidden aspect-[4/3] lg:aspect-[3/4]">
+        {/* Enhanced Product Image */}
+        <div className="relative overflow-hidden aspect-[4/3] lg:aspect-square">
           <SwipeableGallery 
             images={productImages}
             alt={product.name}
-            className="h-full w-full"
+            className="h-full w-full transition-transform duration-500 group-hover:scale-110"
           />
           
-          {/* Enhanced Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          {/* Elegant Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
           
-          {/* Badge */}
+          {/* Seasonal Edition Badge */}
+          <div className="absolute top-3 left-3">
+            <div className="bg-copper-600/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide">
+              {language === 'fr' ? 'Édition 2025' : '2025 Edition'}
+            </div>
+          </div>
+
+          {/* Product Badge */}
           <ProductBadge 
             type={product.badge.type} 
             discount={product.badge.type === 'discount' ? 25 : undefined}
           />
 
-          {/* Authenticity Seal */}
-          <div className="absolute bottom-2 left-2 lg:bottom-3 lg:left-3 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-            <PerleAtlasLogo 
-              size="favicon" 
-              variant="watermark"
-              className="bg-white/90 rounded-full p-1 w-6 h-6 lg:w-8 lg:h-8"
-            />
-          </div>
-
-          {/* Enhanced Action Buttons - More Touch-Friendly */}
-          <div className="absolute top-2 right-2 lg:top-4 lg:right-4 flex flex-col space-y-1 lg:space-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
-            <SaveForLaterButton 
-              item={saveForLaterItem}
-            />
+          {/* Refined Action Buttons */}
+          <div className="absolute top-3 right-3 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
+            <SaveForLaterButton item={saveForLaterItem} />
             <WishlistButton 
               productId={product.id} 
               productName={product.name}
@@ -143,35 +144,35 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="bg-white/90 hover:bg-white hover:text-copper-600 transition-colors rounded-full luxury-shadow h-8 w-8 lg:h-10 lg:w-10"
+                className="bg-white/90 hover:bg-white hover:text-copper-600 transition-all duration-300 rounded-full luxury-shadow h-10 w-10 backdrop-blur-sm"
               >
-                <Eye className="h-3 w-3 lg:h-4 lg:w-4" />
+                <Eye className="h-4 w-4" />
               </Button>
             </QuickViewModal>
           </div>
 
-          {/* Enhanced Quick Actions Overlay - Touch-Friendly */}
-          <div className="absolute inset-x-2 bottom-2 lg:inset-x-4 lg:bottom-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+          {/* Enhanced Quick Add to Cart */}
+          <div className="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
             <Button 
               size="sm" 
               onClick={handleAddToCart}
-              className="w-full copper-gradient text-white rounded-full luxury-shadow border-0 font-medium tracking-wide min-h-[40px] lg:min-h-[44px] text-xs lg:text-sm"
+              className="w-full copper-gradient text-white rounded-full luxury-shadow border-0 font-medium tracking-wide min-h-[44px] backdrop-blur-sm"
             >
-              <Plus className="h-3 w-3 lg:h-4 lg:w-4 mr-2" />
+              <Plus className="h-4 w-4 mr-2" />
               {language === 'fr' ? 'Ajouter au panier' : 'Add to cart'}
             </Button>
           </div>
         </div>
 
-        {/* Product Info - Mobile Optimized */}
-        <div className="p-3 lg:p-4 xl:p-6 flex flex-col flex-grow bg-white">
-          {/* Rating with Enhanced Styling */}
-          <div className="flex items-center mb-2 lg:mb-3">
+        {/* Refined Product Info */}
+        <div className="p-6 flex flex-col flex-grow bg-white">
+          {/* Rating */}
+          <div className="flex items-center mb-3">
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
                 <Star 
                   key={i} 
-                  className={`h-3 w-3 lg:h-4 lg:w-4 ${
+                  className={`h-4 w-4 ${
                     i < Math.floor(product.rating) 
                       ? 'text-copper-500 fill-current' 
                       : 'text-pearl-300'
@@ -179,35 +180,40 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 />
               ))}
             </div>
-            <span className="text-xs lg:text-sm text-clay-600 ml-2 font-medium">
+            <span className="text-sm text-clay-600 ml-2 font-medium">
               ({product.reviews})
             </span>
           </div>
 
-          {/* Product Name with Enhanced Typography */}
-          <h3 className="font-display font-semibold text-clay-800 mb-2 lg:mb-3 text-sm lg:text-base xl:text-lg leading-snug line-clamp-2">
+          {/* Product Name */}
+          <h3 className="font-display font-semibold text-clay-800 mb-2 text-lg leading-snug line-clamp-2">
             {product.name}
           </h3>
 
+          {/* Poetic Seasonal Caption */}
+          <p className="text-copper-600 text-sm font-serif italic mb-2">
+            {getSeasonalCaption()}
+          </p>
+
           {/* Description */}
-          <p className="elegant-text text-clay-600 text-xs lg:text-sm mb-3 lg:mb-4 xl:mb-6 flex-grow leading-relaxed line-clamp-2">
+          <p className="elegant-text text-clay-600 text-sm mb-4 flex-grow leading-relaxed line-clamp-2 font-serif">
             {product.description}
           </p>
 
-          {/* Enhanced Price Section - Mobile Optimized */}
-          <div className="flex items-center justify-between mt-auto pt-3 lg:pt-4 border-t border-pearl-200">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-3">
-              <span className="text-base lg:text-lg xl:text-xl font-bold text-copper-600">
+          {/* Enhanced Price Section */}
+          <div className="flex items-center justify-between pt-4 border-t border-pearl-200">
+            <div className="flex flex-col space-y-1">
+              <span className="text-xl font-bold text-copper-600">
                 {convertAndFormat(product.priceMAD, currency)}
               </span>
               {product.originalPriceMAD && (
-                <span className="text-xs lg:text-sm text-clay-400 line-through">
+                <span className="text-sm text-clay-400 line-through">
                   {convertAndFormat(product.originalPriceMAD, currency)}
                 </span>
               )}
             </div>
             {product.originalPriceMAD && (
-              <div className="bg-copper-100 text-copper-700 px-2 py-1 rounded-full text-xs font-medium">
+              <div className="bg-copper-100 text-copper-700 px-3 py-1 rounded-full text-xs font-medium">
                 -{Math.round(((product.originalPriceMAD - product.priceMAD) / product.originalPriceMAD) * 100)}%
               </div>
             )}
