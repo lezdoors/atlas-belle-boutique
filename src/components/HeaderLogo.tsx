@@ -11,8 +11,11 @@ const HeaderLogo = () => {
         <img 
           src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Logo-1.png"
           alt="Perle de l'Atlas - Cosmétiques de Luxe Marocains"
-          className="h-16 w-auto lg:h-20 object-contain filter drop-shadow-sm bg-transparent"
-          style={{ backgroundColor: 'transparent' }}
+          className="h-16 w-auto lg:h-20 object-contain filter drop-shadow-sm mix-blend-multiply"
+          style={{ 
+            backgroundColor: 'transparent',
+            background: 'transparent'
+          }}
         />
       </div>
     </Link>
