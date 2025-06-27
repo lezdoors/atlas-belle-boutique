@@ -1,24 +1,35 @@
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-
-const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
+import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
 
 serve(async (req) => {
   const { email, fullName, language = 'fr' } = await req.json()
 
-  if (!RESEND_API_KEY) {
-    return new Response(
-      JSON.stringify({ error: 'RESEND_API_KEY not configured' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    )
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
   }
 
-  const subject = language === 'fr' 
-    ? 'Bienvenue chez Perle de l\'Atlas'
-    : 'Welcome to Perle de l\'Atlas'
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders })
+  }
 
-  const htmlContent = language === 'fr' 
-    ? `
+  try {
+    const client = new SMTPClient({
+      connection: {
+        hostname: "s1097.can1.mysecurecloudhost.com",
+        port: 465,
+        tls: true,
+        auth: {
+          username: "contact@atlasperle.com",
+          password: "Kamaka00.",
+        },
+      },
+    });
+
+    const subject = 'Bienvenue chez Perle de l\'Atlas 🌿'
+
+    const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="text-align: center; margin-bottom: 30px;">
           <img src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Logo-1.png" alt="Perle de l'Atlas" style="max-width: 200px; height: auto;">
@@ -33,7 +44,7 @@ serve(async (req) => {
         </p>
         
         <p style="font-size: 16px; line-height: 1.6; color: #333; margin-bottom: 20px;">
-          Merci pour votre inscription. Nous sommes ravis de vous compter parmi notre communauté.
+          Merci pour votre inscription. Nous sommes ravis de vous accueillir dans l'univers de l'artisanat et du bien-être marocain.
         </p>
         
         <p style="font-size: 16px; line-height: 1.6; color: #333; margin-bottom: 20px;">
@@ -52,73 +63,26 @@ serve(async (req) => {
         </p>
       </div>
     `
-    : `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-        <div style="text-align: center; margin-bottom: 30px;">
-          <img src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Logo-1.png" alt="Perle de l'Atlas" style="max-width: 200px; height: auto;">
-        </div>
-        
-        <h1 style="color: #8B4513; text-align: center; font-size: 28px; margin-bottom: 20px;">
-          Welcome to Perle de l'Atlas 🌿
-        </h1>
-        
-        <p style="font-size: 16px; line-height: 1.6; color: #333; margin-bottom: 20px;">
-          ${fullName ? `Dear ${fullName},` : 'Hello,'}
-        </p>
-        
-        <p style="font-size: 16px; line-height: 1.6; color: #333; margin-bottom: 20px;">
-          Thank you for joining our community. We're delighted to have you with us.
-        </p>
-        
-        <p style="font-size: 16px; line-height: 1.6; color: #333; margin-bottom: 20px;">
-          Discover our luxury cosmetics inspired by ancestral Moroccan traditions and crafted with passion by our local artisans.
-        </p>
-        
-        <div style="text-align: center; margin: 30px 0;">
-          <a href="${Deno.env.get('SITE_URL') || 'https://perle-atlas.lovable.app'}" 
-             style="display: inline-block; background: linear-gradient(135deg, #D4AF37, #B8860B); color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; font-weight: bold;">
-            Discover our products
-          </a>
-        </div>
-        
-        <p style="font-size: 14px; color: #666; text-align: center; margin-top: 30px;">
-          Perle de l'Atlas - Luxury Moroccan Cosmetics
-        </p>
-      </div>
-    `
 
-  try {
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: 'Perle de l\'Atlas <noreply@perle-atlas.com>',
-        to: [email],
-        subject: subject,
-        html: htmlContent,
-      }),
+    await client.send({
+      from: "Perle de l'Atlas <contact@atlasperle.com>",
+      to: email,
+      subject: subject,
+      content: htmlContent,
+      html: htmlContent,
+    });
+
+    await client.close();
+
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
     })
-
-    if (res.ok) {
-      const data = await res.json()
-      return new Response(JSON.stringify(data), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      })
-    } else {
-      const error = await res.text()
-      return new Response(JSON.stringify({ error }), {
-        status: res.status,
-        headers: { 'Content-Type': 'application/json' },
-      })
-    }
   } catch (error) {
+    console.error('Error sending welcome email:', error)
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
     })
   }
 })

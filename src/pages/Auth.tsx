@@ -32,6 +32,16 @@ const Auth = () => {
 
     try {
       if (isSignUp) {
+        if (!fullName.trim()) {
+          toast.error(
+            language === 'fr' 
+              ? 'Le nom complet est requis'
+              : 'Full name is required'
+          );
+          setLoading(false);
+          return;
+        }
+
         const { error } = await signUp(email, password, fullName);
         if (error) {
           if (error.message.includes('User already registered')) {
@@ -50,8 +60,8 @@ const Auth = () => {
         } else {
           toast.success(
             language === 'fr' 
-              ? 'Bienvenue chez Perle de l\'Atlas! Votre compte a été créé avec succès. Vérifiez votre email pour confirmer votre inscription.'
-              : 'Welcome to Perle de l\'Atlas! Your account has been created successfully. Check your email to confirm your signup.'
+              ? 'Bienvenue chez Perle de l\'Atlas! Votre compte a été créé avec succès. Un email de bienvenue vous a été envoyé.'
+              : 'Welcome to Perle de l\'Atlas! Your account has been created successfully. A welcome email has been sent to you.'
           );
           // Clear form
           setEmail('');
@@ -127,7 +137,7 @@ const Auth = () => {
                   <div>
                     <Input
                       type="text"
-                      placeholder={language === 'fr' ? 'Nom complet' : 'Full name'}
+                      placeholder={language === 'fr' ? 'Nom complet *' : 'Full name *'}
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       required
@@ -139,7 +149,7 @@ const Auth = () => {
                 <div>
                   <Input
                     type="email"
-                    placeholder="Email"
+                    placeholder="Email *"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -150,7 +160,7 @@ const Auth = () => {
                 <div>
                   <Input
                     type="password"
-                    placeholder={language === 'fr' ? 'Mot de passe' : 'Password'}
+                    placeholder={language === 'fr' ? 'Mot de passe *' : 'Password *'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
