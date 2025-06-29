@@ -30,7 +30,7 @@
 
 /* Poetic Captions */
 .poetic-caption {
-  @apply font-serif italic text-copper-600;
+  @apply font-serif italic text-black/60;
   letter-spacing: 0.02em;
   font-weight: 300;
   line-height: 1.6;
