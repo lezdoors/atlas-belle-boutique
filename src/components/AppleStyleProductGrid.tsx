@@ -20,7 +20,7 @@ const AppleStyleProductGrid = () => {
       id: 1,
       name: language === 'fr' ? 'Luminaires Artisanaux' : 'Artisanal Lighting',
       price: 'À partir de 2,500 MAD',
-      image: '/lovable-uploads/4d22e63c-9766-4547-889d-0462b7de47e6.png',
+      image: 'https://gjmakezifpaglzzvuoid.supabase.co/storage/v1/object/public/pictures//moroccan-lighting.jpg',
       isNew: true
     },
     {
