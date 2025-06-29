@@ -1,4 +1,5 @@
 
+
 import { MapPin } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -36,11 +37,11 @@ const MapContainer = ({ regions, selectedRegion, onRegionSelect }: MapContainerP
         
         {/* Interactive Morocco Map */}
         <div className="relative w-full h-64 sm:h-80 lg:h-96 bg-gradient-to-br from-amber-50 to-orange-100 rounded-xl overflow-hidden border-2 border-copper-200">
-          {/* Morocco outline background */}
+          {/* Accurate Morocco outline background */}
           <div 
-            className="absolute inset-0 opacity-20 rounded-xl"
+            className="absolute inset-0 opacity-25 rounded-xl"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cpath d='M50 80 L120 70 L180 85 L250 90 L320 100 L350 130 L340 180 L300 220 L200 240 L120 220 L80 180 L60 140 Z' fill='%23d4946b' stroke='%23b8860b' stroke-width='2'/%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 400'%3E%3Cpath d='M60 120 L80 100 L120 90 L160 85 L200 80 L250 82 L300 85 L350 90 L400 95 L430 110 L440 130 L435 150 L430 170 L425 190 L420 210 L410 230 L400 250 L380 270 L360 285 L340 295 L320 300 L300 305 L280 310 L260 315 L240 320 L220 325 L200 330 L180 335 L160 340 L140 345 L120 350 L100 355 L85 360 L75 350 L70 340 L65 330 L60 320 L55 310 L50 300 L45 280 L42 260 L40 240 L38 220 L35 200 L32 180 L30 160 L35 140 L45 125 Z M90 200 L85 220 L80 240 L75 260 L70 280 L65 300 L60 320 L55 340 L50 360 L45 380 L50 390 L60 385 L70 380 L80 375 L90 370 L100 365 L110 360 L120 355 L130 350 L140 345 L150 340 L160 335 L170 330 L180 325 L190 320 L200 315 L210 310 L220 305 L230 300 L240 295 L250 290 L260 285 L270 280 L280 275 L290 270 L300 265 L310 260 L320 255 L330 250 L340 245 L350 240 L360 235 L370 230 L380 225 L390 220 L400 215 L410 210 L415 200 L420 190 L425 180 L430 170 L435 160 L440 150 L435 140 L430 130 L420 125 L410 120 L400 115 L390 110 L380 105 L370 102 L360 100 L350 98 L340 96 L330 94 L320 92 L310 90 L300 88 L290 86 L280 84 L270 82 L260 80 L250 78 L240 76 L230 74 L220 72 L210 70 L200 68 L190 66 L180 64 L170 62 L160 60 L150 58 L140 56 L130 54 L120 52 L110 50 L100 52 L95 60 L92 70 L90 80 L88 90 L86 100 L84 110 L82 120 L80 130 L78 140 L76 150 L74 160 L72 170 L70 180 L75 190 L85 195 Z' fill='%23d4946b' stroke='%23b8860b' stroke-width='1.5' opacity='0.6'/%3E%3C/svg%3E")`,
               backgroundSize: 'contain',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center'
@@ -57,9 +58,10 @@ const MapContainer = ({ regions, selectedRegion, onRegionSelect }: MapContainerP
             />
           ))}
           
-          {/* Decorative elements */}
-          <div className="absolute top-4 right-4 w-8 h-8 bg-yellow-400 rounded-full opacity-60 animate-pulse"></div>
+          {/* Decorative elements representing sun and desert */}
+          <div className="absolute top-4 right-4 w-8 h-8 bg-yellow-400 rounded-full opacity-60 animate-pulse shadow-lg"></div>
           <div className="absolute bottom-6 left-6 w-6 h-6 bg-orange-400 rounded-full opacity-40"></div>
+          <div className="absolute top-1/3 right-1/4 w-4 h-4 bg-amber-300 rounded-full opacity-30"></div>
         </div>
 
         <div className="text-center mt-4 sm:mt-6 text-sm text-clay-600">
@@ -74,3 +76,4 @@ const MapContainer = ({ regions, selectedRegion, onRegionSelect }: MapContainerP
 };
 
 export default MapContainer;
+
