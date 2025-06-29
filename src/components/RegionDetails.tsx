@@ -44,57 +44,62 @@ const RegionDetails = ({ selectedRegion, regions }: RegionDetailsProps) => {
   if (!region) return null;
 
   return (
-    <Card className="bg-white/90 backdrop-blur-sm border-0 luxury-shadow rounded-2xl animate-fade-in">
-      <CardContent className="p-8">
-        <div className="flex items-center mb-4">
-          <MapPin className="h-5 w-5 text-copper-600 mr-2" />
-          <h3 className="font-display font-bold text-xl text-clay-800">
-            {region.name}
-          </h3>
-        </div>
+    <div className="space-y-4">
+      <Card 
+        key={selectedRegion} 
+        className="bg-white/90 backdrop-blur-sm border-0 luxury-shadow rounded-2xl animate-fade-in"
+      >
+        <CardContent className="p-8">
+          <div className="flex items-center mb-4">
+            <MapPin className="h-5 w-5 text-copper-600 mr-2" />
+            <h3 className="font-display font-bold text-xl text-clay-800">
+              {region.name}
+            </h3>
+          </div>
 
-        <p className="elegant-text text-clay-600 mb-6 leading-relaxed">
-          {region.description}
-        </p>
+          <p className="elegant-text text-clay-600 mb-6 leading-relaxed">
+            {region.description}
+          </p>
 
-        {/* Climate & Harvest Info */}
-        <div className="grid grid-cols-2 gap-4 mb-6">
+          {/* Climate & Harvest Info */}
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <div>
+              <div className="text-xs text-clay-500 uppercase tracking-wide mb-1">
+                {language === 'fr' ? 'Climat' : 'Climate'}
+              </div>
+              <div className="text-sm font-medium text-clay-700">
+                {region.climate}
+              </div>
+            </div>
+            <div>
+              <div className="text-xs text-clay-500 uppercase tracking-wide mb-1">
+                {language === 'fr' ? 'Récolte' : 'Harvest'}
+              </div>
+              <div className="text-sm font-medium text-clay-700">
+                {region.harvest}
+              </div>
+            </div>
+          </div>
+
+          {/* Ingredients */}
           <div>
-            <div className="text-xs text-clay-500 uppercase tracking-wide mb-1">
-              {language === 'fr' ? 'Climat' : 'Climate'}
+            <div className="text-sm font-medium text-clay-700 mb-3">
+              {language === 'fr' ? 'Ingrédients principaux :' : 'Main ingredients:'}
             </div>
-            <div className="text-sm font-medium text-clay-700">
-              {region.climate}
+            <div className="flex flex-wrap gap-2">
+              {region.ingredients.map((ingredient, index) => (
+                <span
+                  key={index}
+                  className="bg-copper-100 text-copper-700 px-3 py-1 rounded-full text-sm font-medium"
+                >
+                  {ingredient}
+                </span>
+              ))}
             </div>
           </div>
-          <div>
-            <div className="text-xs text-clay-500 uppercase tracking-wide mb-1">
-              {language === 'fr' ? 'Récolte' : 'Harvest'}
-            </div>
-            <div className="text-sm font-medium text-clay-700">
-              {region.harvest}
-            </div>
-          </div>
-        </div>
-
-        {/* Ingredients */}
-        <div>
-          <div className="text-sm font-medium text-clay-700 mb-3">
-            {language === 'fr' ? 'Ingrédients principaux :' : 'Main ingredients:'}
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {region.ingredients.map((ingredient, index) => (
-              <span
-                key={index}
-                className="bg-copper-100 text-copper-700 px-3 py-1 rounded-full text-sm font-medium"
-              >
-                {ingredient}
-              </span>
-            ))}
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 

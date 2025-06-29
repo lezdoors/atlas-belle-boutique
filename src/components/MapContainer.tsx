@@ -1,4 +1,3 @@
-
 import { MapPin } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -24,17 +23,8 @@ const MapContainer = ({ regions, selectedRegion, onRegionSelect }: MapContainerP
   const { language } = useLanguage();
 
   const handleRegionClick = (regionId: string) => {
-    onRegionSelect(selectedRegion === regionId ? null : regionId);
-    
-    // Smooth scroll to region content
-    const regionElement = document.getElementById(`region-${regionId}`);
-    if (regionElement) {
-      regionElement.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest'
-      });
-    }
+    // Prevent deselection when clicking the same region - keep it selected
+    onRegionSelect(regionId);
   };
 
   return (
