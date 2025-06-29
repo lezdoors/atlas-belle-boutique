@@ -79,68 +79,66 @@ const MegaMenu = () => {
       onMouseLeave={() => setIsOpen(false)}
     >
       {/* Catalog Trigger */}
-      <button className="flex items-center space-x-1 text-sm lg:text-base font-light tracking-wide transition-all duration-500 relative group px-3 py-2 font-serif text-white hover:text-copper-200">
+      <button className="flex items-center space-x-1 text-sm lg:text-base font-light tracking-wide transition-all duration-500 relative group px-3 py-2 font-serif text-white hover:text-amber-200">
         <span>{language === 'fr' ? 'Catalogue' : 'Catalog'}</span>
         <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {/* Mega Menu Dropdown */}
       {isOpen && (
-        <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-screen max-w-6xl bg-white/98 backdrop-blur-xl shadow-2xl border border-copper-100/30 rounded-xl mt-2 z-50 overflow-hidden">
-          <div className="p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {menuCategories.map((category, index) => (
-                <div key={index} className="space-y-4">
-                  <h3 className="font-display font-semibold text-clay-800 text-sm tracking-wider border-b border-copper-200 pb-2">
-                    {category.title}
-                  </h3>
-                  <ul className="space-y-3">
-                    {category.items.map((item, itemIndex) => (
-                      <li key={itemIndex}>
-                        {item.available ? (
-                          <Link
-                            to={item.href}
-                            className="block text-clay-600 hover:text-copper-600 transition-colors duration-200 font-serif text-sm leading-relaxed hover:translate-x-1 transform transition-transform"
-                          >
-                            {item.name}
-                          </Link>
-                        ) : (
-                          <span className="block text-clay-400 font-serif text-sm leading-relaxed cursor-not-allowed">
-                            {item.name}
-                            <span className="ml-2 text-xs bg-clay-100 text-clay-500 px-2 py-1 rounded-full">
-                              {language === 'fr' ? 'Bientôt' : 'Coming Soon'}
-                            </span>
+        <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-screen bg-white shadow-lg border-t border-neutral-100 z-50">
+          <div className="grid grid-cols-3 gap-6 px-6 py-6 max-w-7xl mx-auto">
+            {menuCategories.map((category, index) => (
+              <div key={index} className="space-y-3">
+                <h3 className="text-sm font-semibold uppercase tracking-wide text-neutral-600 border-b border-neutral-200 pb-2">
+                  {category.title}
+                </h3>
+                <ul className="space-y-2">
+                  {category.items.map((item, itemIndex) => (
+                    <li key={itemIndex}>
+                      {item.available ? (
+                        <Link
+                          to={item.href}
+                          className="block text-sm text-neutral-700 hover:text-black hover:underline transition leading-relaxed"
+                        >
+                          {item.name}
+                        </Link>
+                      ) : (
+                        <span className="block text-sm text-neutral-400 leading-relaxed cursor-not-allowed">
+                          {item.name}
+                          <span className="ml-2 text-xs bg-neutral-100 text-neutral-500 px-2 py-0.5 rounded">
+                            {language === 'fr' ? 'Bientôt' : 'Coming Soon'}
                           </span>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-            
-            {/* Featured Categories at Bottom */}
-            <div className="mt-8 pt-6 border-t border-copper-200">
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link
-                  to="/catalog/new-arrivals"
-                  className="bg-copper-600 text-white px-6 py-2 rounded-full font-serif text-sm hover:bg-copper-700 transition-colors duration-200"
-                >
-                  {language === 'fr' ? 'Nouvelles Arrivées' : 'New Arrivals'}
-                </Link>
-                <Link
-                  to="/catalog/bestsellers"
-                  className="border border-copper-600 text-copper-600 px-6 py-2 rounded-full font-serif text-sm hover:bg-copper-50 transition-colors duration-200"
-                >
-                  {language === 'fr' ? 'Meilleures Ventes' : 'Best Sellers'}
-                </Link>
-                <Link
-                  to="/catalog/custom-orders"
-                  className="border border-clay-300 text-clay-600 px-6 py-2 rounded-full font-serif text-sm hover:bg-clay-50 transition-colors duration-200"
-                >
-                  {language === 'fr' ? 'Commandes Personnalisées' : 'Custom Orders'}
-                </Link>
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </div>
+            ))}
+          </div>
+          
+          {/* Featured Categories at Bottom */}
+          <div className="border-t border-neutral-100 px-6 py-4 bg-neutral-50">
+            <div className="flex justify-center space-x-4 max-w-7xl mx-auto">
+              <Link
+                to="/catalog/new-arrivals"
+                className="bg-black text-white px-4 py-2 rounded text-sm font-medium hover:bg-neutral-800 transition"
+              >
+                {language === 'fr' ? 'Nouvelles Arrivées' : 'New Arrivals'}
+              </Link>
+              <Link
+                to="/catalog/bestsellers"
+                className="border border-black text-black px-4 py-2 rounded text-sm font-medium hover:bg-black hover:text-white transition"
+              >
+                {language === 'fr' ? 'Meilleures Ventes' : 'Best Sellers'}
+              </Link>
+              <Link
+                to="/catalog/custom-orders"
+                className="text-neutral-600 px-4 py-2 text-sm hover:text-black transition"
+              >
+                {language === 'fr' ? 'Commandes Personnalisées' : 'Custom Orders'}
+              </Link>
             </div>
           </div>
         </div>
