@@ -2,6 +2,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useState, useEffect } from 'react';
+import MegaMenu from '@/components/MegaMenu';
 
 const HeaderNavigation = () => {
   const { language } = useLanguage();
@@ -18,15 +19,11 @@ const HeaderNavigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Refined luxury navigation - removed duplicates
+  // Updated navigation items - replacing boutique with catalog mega menu
   const navItems = [
     { 
       href: '/', 
       label: language === 'fr' ? 'Accueil' : 'Home' 
-    },
-    { 
-      href: '/boutique', 
-      label: language === 'fr' ? 'Boutique' : 'Shop' 
     },
     { 
       href: '/heritage', 
@@ -62,6 +59,11 @@ const HeaderNavigation = () => {
             </Link>
           </li>
         ))}
+        
+        {/* Mega Menu for Catalog */}
+        <li className="h-full flex items-center">
+          <MegaMenu />
+        </li>
       </ul>
     </nav>
   );
