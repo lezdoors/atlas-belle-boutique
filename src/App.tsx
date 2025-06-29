@@ -9,6 +9,7 @@ import { CartProvider } from "@/contexts/CartContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import AppleStyleIndex from "./pages/AppleStyleIndex";
+import NotreHeritage from "./pages/NotreHeritage";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<AppleStyleIndex />} />
                 <Route path="/original" element={<Index />} />
+                <Route path="/notre-heritage" element={<NotreHeritage />} />
               </Routes>
             </BrowserRouter>
           </TooltipProvider>
