@@ -5,6 +5,7 @@ import AboutSection from "@/components/AboutSection";
 import EnhancedFragranceShowcase from "@/components/enhanced/EnhancedFragranceShowcase";
 import Categories from "@/components/Categories";
 import FourSeasons from "@/components/FourSeasons";
+import IngredientOriginMap from "@/components/IngredientOriginMap";
 import MissionSection from "@/components/MissionSection";
 import OurArtisans from "@/components/OurArtisans";
 import Footer from "@/components/Footer";
@@ -52,6 +53,10 @@ const Index = () => {
             
             <EnhancedFragranceShowcase />
             <Categories />
+            
+            {/* Interactive Ingredient Origin Map */}
+            <IngredientOriginMap />
+            
             <FourSeasons />
             
             {/* Artisan Stories */}
