@@ -14,8 +14,8 @@ const HeroContent = ({ onScrollToProducts }: HeroContentProps) => {
     <div className="text-center lg:text-left order-2 lg:order-1 space-y-8 lg:space-y-10 relative max-w-2xl mx-auto lg:mx-0">
       {/* Luxury Artisan Badge */}
       <div className="inline-flex items-center bg-white/90 backdrop-blur-lg rounded-full px-6 py-3 mb-6 luxury-shadow animate-fade-in">
-        <Sparkles className="h-4 w-4 text-copper-600 mr-3 animate-pulse" />
-        <span className="text-sm font-medium text-clay-700 tracking-wide font-serif">
+        <Sparkles className="h-4 w-4 text-amber-600 mr-3 animate-pulse" />
+        <span className="text-sm font-medium text-gray-700 tracking-wide font-serif">
           {language === 'fr' ? 'Artisanat Marocain Authentique' : 'Authentic Moroccan Craftsmanship'}
         </span>
       </div>
@@ -25,14 +25,14 @@ const HeroContent = ({ onScrollToProducts }: HeroContentProps) => {
         <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-tight text-white mb-4 drop-shadow-2xl">
           Perle d'Atlas
         </h1>
-        <p className="font-serif text-lg sm:text-xl lg:text-2xl text-copper-200 font-light tracking-wide">
+        <p className="font-serif text-lg sm:text-xl lg:text-2xl text-amber-200 font-light tracking-wide">
           {language === 'fr' ? 'L\'âme du Maroc' : 'The Soul of Morocco'}
         </p>
       </div>
       
       {/* Poetic Introduction */}
       <div className="space-y-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-        <p className="font-serif text-lg lg:text-xl leading-relaxed text-pearl-100 max-w-xl mx-auto lg:mx-0 font-light">
+        <p className="font-serif text-lg lg:text-xl leading-relaxed text-gray-100 max-w-xl mx-auto lg:mx-0 font-light">
           {language === 'fr' 
             ? 'Où les traditions millénaires rencontrent l\'élégance contemporaine. Chaque création raconte l\'histoire de nos artisans berbères et célèbre la beauté intemporelle du Maroc.'
             : 'Where ancient traditions meet contemporary elegance. Each creation tells the story of our Berber artisans and celebrates the timeless beauty of Morocco.'
