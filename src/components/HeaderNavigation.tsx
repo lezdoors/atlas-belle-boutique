@@ -44,15 +44,15 @@ const HeaderNavigation = () => {
               to={item.href}
               className={`h-full flex items-center text-sm lg:text-base font-light tracking-wide transition-all duration-500 relative group px-3 py-2 font-serif ${
                 location.pathname === item.href 
-                  ? `${isScrolled ? 'text-copper-700' : 'text-copper-200'} font-medium` 
-                  : `${isScrolled ? 'text-clay-800 hover:text-copper-700' : 'text-white hover:text-copper-200'}`
+                  ? `${isScrolled ? 'text-amber-700' : 'text-amber-200'} font-medium` 
+                  : `${isScrolled ? 'text-gray-800 hover:text-amber-700' : 'text-white hover:text-amber-200'}`
               }`}
             >
               {item.label}
               <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r transition-all duration-500 transform origin-center ${
                 isScrolled 
-                  ? 'from-copper-500 to-copper-700' 
-                  : 'from-copper-200 to-copper-300'
+                  ? 'from-amber-500 to-amber-700' 
+                  : 'from-amber-200 to-amber-300'
               } ${
                 location.pathname === item.href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
               }`}></span>

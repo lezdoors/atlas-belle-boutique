@@ -30,7 +30,7 @@ const Header = () => {
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-700 ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-copper-100/30' 
+          ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-amber-100/30' 
           : 'bg-transparent'
       }`}>
         {/* Luxury Main Header */}
@@ -64,8 +64,8 @@ const Header = () => {
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                   className={`transition-all duration-500 h-11 w-11 rounded-full ml-2 ${
                     isScrolled 
-                      ? 'text-clay-700 hover:text-copper-600 hover:bg-copper-50/80' 
-                      : 'text-white hover:text-copper-200 hover:bg-white/20'
+                      ? 'text-gray-700 hover:text-amber-600 hover:bg-amber-50/80' 
+                      : 'text-white hover:text-amber-200 hover:bg-white/20'
                   }`}
                   aria-label="Toggle menu"
                 >

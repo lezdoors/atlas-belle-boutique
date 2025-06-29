@@ -24,7 +24,7 @@ const HeaderActions = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const iconColorClass = isScrolled ? 'text-clay-700 hover:text-amber-600' : 'text-white hover:text-amber-200';
+  const iconColorClass = isScrolled ? 'text-gray-700 hover:text-amber-600' : 'text-white hover:text-amber-200';
   const hoverBgClass = isScrolled ? 'hover:bg-amber-50/80' : 'hover:bg-white/20';
 
   return (
