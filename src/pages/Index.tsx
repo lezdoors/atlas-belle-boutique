@@ -13,7 +13,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <AppleStyleHeader />
-      <AppleStyleHero onVideoEnd={() => setVideoEnded(true)} />
+      <AppleStyleHero />
       <AppleStyleProductGrid />
       <AppleStyleAbout />
       <AppleStyleFooter />
