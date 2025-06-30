@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import ProductCarousel from '@/components/heritage/ProductCarousel';
 
 const AppleStyleHero = () => {
   const { language } = useLanguage();
@@ -19,7 +20,7 @@ const AppleStyleHero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
+      <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-extralight text-black mb-8 tracking-tight leading-none">
           Perle d'Atlas
         </h1>
@@ -33,11 +34,14 @@ const AppleStyleHero = () => {
 
         <Button
           size="lg"
-          className="bg-black text-white hover:bg-black/90 rounded-full px-8 py-4 text-lg font-light tracking-wide transition-all duration-300 hover:scale-105"
+          className="bg-black text-white hover:bg-black/90 rounded-full px-8 py-4 text-lg font-light tracking-wide transition-all duration-300 hover:scale-105 mb-16"
         >
           {language === 'fr' ? 'Découvrir' : 'Discover'}
           <ChevronRight className="ml-2 w-5 h-5" />
         </Button>
+
+        {/* Product Showcase Carousel */}
+        <ProductCarousel />
       </div>
 
       {/* Scroll Indicator */}

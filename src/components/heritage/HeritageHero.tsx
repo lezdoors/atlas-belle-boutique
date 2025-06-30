@@ -2,7 +2,6 @@
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowDown } from 'lucide-react';
-import ProductCarousel from './ProductCarousel';
 
 const HeritageHero = () => {
   const { language } = useLanguage();
@@ -34,9 +33,6 @@ const HeritageHero = () => {
             : 'Ancestral wisdom, modern elegance'
           }
         </p>
-
-        {/* Product Showcase Carousel */}
-        <ProductCarousel />
       </div>
 
       {/* Scroll Indicator */}
