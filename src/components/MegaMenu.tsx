@@ -79,7 +79,7 @@ const MegaMenu = () => {
       onMouseLeave={() => setIsOpen(false)}
     >
       {/* Catalog Trigger */}
-      <button className="flex items-center space-x-1 text-sm lg:text-base font-light tracking-wide transition-all duration-500 relative group px-3 py-2 font-serif text-white hover:text-amber-200">
+      <button className="flex items-center space-x-1 text-sm lg:text-base font-light tracking-wide transition-all duration-500 relative group px-3 py-2 font-serif text-black hover:text-amber-600">
         <span>{language === 'fr' ? 'Catalogue' : 'Catalog'}</span>
         <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
