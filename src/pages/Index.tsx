@@ -1,89 +1,24 @@
 
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import AboutSection from "@/components/AboutSection";
-import EnhancedFragranceShowcase from "@/components/enhanced/EnhancedFragranceShowcase";
-import Categories from "@/components/Categories";
-import FourSeasons from "@/components/FourSeasons";
-import IngredientOriginMap from "@/components/IngredientOriginMap";
-import MissionSection from "@/components/MissionSection";
-import OurArtisans from "@/components/OurArtisans";
-import Footer from "@/components/Footer";
-import CartDrawer from "@/components/CartDrawer";
-import FloatingCart from "@/components/FloatingCart";
-import BackToTop from "@/components/BackToTop";
-import GDPRConsent from "@/components/GDPRConsent";
-import PullToRefresh from "@/components/PullToRefresh";
-import MobileOptimizer from "@/components/MobileOptimizer";
-import PerformanceOptimizer from "@/components/PerformanceOptimizer";
-import BottomNavigation from "@/components/mobile/BottomNavigation";
-import { SeasonalThemeProvider } from "@/components/seasonal/SeasonalThemeProvider";
-import HistoricalStoryBlock from "@/components/storytelling/HistoricalStoryBlock";
-import SeasonRitualsSection from "@/components/storytelling/SeasonRitualsSection";
-import ArtisanSpotlight from "@/components/storytelling/ArtisanSpotlight";
+import { useState, useEffect } from 'react';
+import AppleStyleHeader from '@/components/AppleStyleHeader';
+import AppleStyleHero from '@/components/AppleStyleHero';
+import AppleStyleProductGrid from '@/components/AppleStyleProductGrid';
+import AppleStyleAbout from '@/components/AppleStyleAbout';
+import AppleStyleFooter from '@/components/AppleStyleFooter';
+import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
 
 const Index = () => {
-  const handleRefresh = async () => {
-    window.location.reload();
-  };
+  const [videoEnded, setVideoEnded] = useState(false);
 
   return (
-    <SeasonalThemeProvider>
-      <MobileOptimizer />
-      <PerformanceOptimizer />
-      
-      <PullToRefresh onRefresh={handleRefresh}>
-        <div className="min-h-screen bg-white">
-          <Header />
-          <main className="pb-20 lg:pb-0">
-            <Hero />
-            
-            {/* Historical Journey Begins */}
-            <HistoricalStoryBlock
-              title="L'Héritage des Montagnes de l'Atlas"
-              subtitle="Depuis des Millénaires"
-              content="Au cœur des montagnes de l'Atlas, là où les traditions se transmettent de mère en fille depuis des générations, naît notre histoire. Chaque produit Perle d'Atlas puise ses racines dans ce savoir ancestral, préservé et sublimé par nos artisans."
-              image="/lovable-uploads/hero-image-atlas-landscape.jpg"
-            />
-
-            <AboutSection />
-            
-            {/* Seasonal Rituals */}
-            <SeasonRitualsSection />
-            
-            <EnhancedFragranceShowcase />
-            <Categories />
-            
-            {/* Interactive Ingredient Origin Map */}
-            <IngredientOriginMap />
-            
-            <FourSeasons />
-            
-            {/* Artisan Stories */}
-            <ArtisanSpotlight />
-            
-            <HistoricalStoryBlock
-              title="La Philosophie du Temps Naturel"
-              subtitle="Rythmes Ancestraux"
-              content="Nous suivons le calendrier de la nature, respectant les cycles lunaires pour la récolte, les saisons pour la production. Cette approche nous permet de créer des produits d'une qualité exceptionnelle, en harmonie avec les rythmes naturels du Maroc."
-              image="/lovable-uploads/moroccan-architecture.jpg"
-              reversed
-            />
-            
-            <MissionSection />
-            <div className="pb-12">
-              <OurArtisans />
-            </div>
-          </main>
-          <Footer />
-          <CartDrawer />
-          <FloatingCart />
-          <BackToTop />
-          <GDPRConsent />
-          <BottomNavigation />
-        </div>
-      </PullToRefresh>
-    </SeasonalThemeProvider>
+    <div className="min-h-screen bg-white">
+      <AppleStyleHeader />
+      <AppleStyleHero onVideoEnd={() => setVideoEnded(true)} />
+      <AppleStyleProductGrid />
+      <AppleStyleAbout />
+      <AppleStyleFooter />
+      <SamraRefactoredChatbot videoEnded={videoEnded} />
+    </div>
   );
 };
 
