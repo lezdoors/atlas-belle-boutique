@@ -21,9 +21,11 @@ const AppleStyleHeader = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <span className="text-xl lg:text-2xl font-bold text-white tracking-tight">
-              Perle d'Atlas
-            </span>
+            <img 
+              src="https://gjmakezifpaglzzvuoid.supabase.co/storage/v1/object/public/pictures//Perle%20(Website)-4.png"
+              alt="Perle d'Atlas - Cosmétiques de Luxe Marocains"
+              className="h-8 lg:h-12 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -62,7 +64,7 @@ const AppleStyleHeader = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Only visible on mobile */}
           <Button
             variant="ghost"
             size="icon"
@@ -73,7 +75,7 @@ const AppleStyleHeader = () => {
           </Button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Only visible on mobile */}
         {isMenuOpen && (
           <div className="lg:hidden border-t border-white/10">
             <div className="px-2 pt-2 pb-3 space-y-1">

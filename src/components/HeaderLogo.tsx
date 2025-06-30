@@ -11,7 +11,7 @@ const HeaderLogo = () => {
     <Link to="/" className="flex items-center flex-shrink-0 group">
       <div className="transition-all duration-500 group-hover:scale-105">
         <img 
-          src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/perle-atlas-logo.png"
+          src="https://gjmakezifpaglzzvuoid.supabase.co/storage/v1/object/public/pictures//Perle%20(Website)-4.png"
           alt="Perle de l'Atlas - Cosmétiques de Luxe Marocains"
           className={`h-12 w-auto lg:h-16 object-contain transition-all duration-700 ${
             imageLoaded ? 'opacity-100 animate-fade-in' : 'opacity-0'

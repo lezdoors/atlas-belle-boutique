@@ -61,8 +61,12 @@ const AppleStyleFooter = () => {
           <div className="text-sm font-light text-black/60">
             © 2025 Perle d'Atlas. {language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}
           </div>
-          <div className="text-2xl font-light tracking-tight text-black">
-            Perle d'Atlas
+          <div className="flex items-center">
+            <img 
+              src="https://gjmakezifpaglzzvuoid.supabase.co/storage/v1/object/public/pictures//Perle%20(Website)-4.png"
+              alt="Perle d'Atlas"
+              className="h-8 w-auto object-contain"
+            />
           </div>
         </div>
       </div>
