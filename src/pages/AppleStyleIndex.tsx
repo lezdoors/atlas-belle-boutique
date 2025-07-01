@@ -7,19 +7,23 @@ import AppleStyleAbout from '@/components/AppleStyleAbout';
 import EarlyAccessSignup from '@/components/EarlyAccessSignup';
 import AppleStyleFooter from '@/components/AppleStyleFooter';
 import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
+import StickyTopBanner from '@/components/StickyTopBanner';
 
 const AppleStyleIndex = () => {
   const [videoEnded, setVideoEnded] = useState(false);
 
   return (
     <div className="min-h-screen bg-white">
-      <AppleStyleHeader />
-      <AppleStyleHero />
-      <AppleStyleProductGrid />
-      <AppleStyleAbout />
-      <EarlyAccessSignup />
-      <AppleStyleFooter />
-      <SamraRefactoredChatbot videoEnded={videoEnded} />
+      <StickyTopBanner />
+      <div className="pt-10">
+        <AppleStyleHeader />
+        <AppleStyleHero />
+        <AppleStyleProductGrid />
+        <AppleStyleAbout />
+        <EarlyAccessSignup />
+        <AppleStyleFooter />
+        <SamraRefactoredChatbot videoEnded={videoEnded} />
+      </div>
     </div>
   );
 };

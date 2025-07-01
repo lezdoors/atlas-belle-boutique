@@ -7,13 +7,20 @@ import CheckoutForm from '@/components/CheckoutForm';
 import { useCart } from '@/contexts/CartContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { convertAndFormat } from '@/utils/currencyConverter';
-import { ShoppingCart, ArrowLeft } from 'lucide-react';
+import { calculateShipping, formatShippingCost, getFreeShippingThreshold } from '@/utils/shippingCalculator';
+import { ShoppingCart, ArrowLeft, Truck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Checkout = () => {
   const { items, totalPrice, clearCart } = useCart();
   const { language, currency } = useLanguage();
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
+
+  // Calculate shipping
+  const convertedTotalPrice = currency === 'EUR' ? Math.round(totalPrice * 0.093) : Math.round(totalPrice * 0.099);
+  const shippingCost = calculateShipping(convertedTotalPrice, currency);
+  const freeShippingThreshold = getFreeShippingThreshold(currency);
+  const finalTotal = convertedTotalPrice + shippingCost;
 
   if (items.length === 0) {
     return (
@@ -48,11 +55,13 @@ const Checkout = () => {
     setShowCheckoutForm(false);
   };
 
+  const amountNeededForFreeShipping = Math.max(0, freeShippingThreshold - convertedTotalPrice);
+
   return (
     <div className="min-h-screen bg-pearl-100">
       <Header />
       
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 pt-32">
         {/* Breadcrumb */}
         <nav className="flex items-center space-x-2 text-sm text-clay-600 mb-8">
           <Link to="/" className="hover:text-copper-600">
@@ -103,14 +112,50 @@ const Checkout = () => {
                   ))}
                 </div>
 
-                <div className="border-t border-sand-200 pt-4">
-                  <div className="flex justify-between items-center text-lg font-bold">
-                    <span className="text-clay-800">
-                      {language === 'fr' ? 'Total' : 'Total'}
+                {/* Shipping Information */}
+                <div className="border-t border-sand-200 pt-4 space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-clay-700">
+                      {language === 'fr' ? 'Sous-total' : 'Subtotal'}
                     </span>
-                    <span className="text-copper-600">
+                    <span className="font-medium text-clay-800">
                       {convertAndFormat(totalPrice, currency)}
                     </span>
+                  </div>
+                  
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center space-x-2">
+                      <Truck className="h-4 w-4 text-clay-600" />
+                      <span className="text-clay-700">
+                        {language === 'fr' ? 'Livraison' : 'Shipping'}
+                      </span>
+                    </div>
+                    <span className={`font-medium ${shippingCost === 0 ? 'text-green-600' : 'text-clay-800'}`}>
+                      {formatShippingCost(shippingCost, currency)}
+                    </span>
+                  </div>
+
+                  {/* Free shipping progress */}
+                  {amountNeededForFreeShipping > 0 && (
+                    <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                      <p className="text-sm text-amber-700">
+                        {language === 'fr' 
+                          ? `Ajoutez ${currency === 'EUR' ? '€' : '$'}${amountNeededForFreeShipping.toFixed(2)} pour la livraison gratuite!`
+                          : `Add ${currency === 'EUR' ? '€' : '$'}${amountNeededForFreeShipping.toFixed(2)} for free shipping!`
+                        }
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="border-t border-sand-200 pt-3">
+                    <div className="flex justify-between items-center text-lg font-bold">
+                      <span className="text-clay-800">
+                        {language === 'fr' ? 'Total' : 'Total'}
+                      </span>
+                      <span className="text-copper-600">
+                        {currency === 'EUR' ? '€' : '$'}{finalTotal.toFixed(2)}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -181,7 +226,7 @@ const Checkout = () => {
                     product={{
                       id: 0,
                       name: language === 'fr' ? 'Commande multiple' : 'Multiple items',
-                      priceMAD: totalPrice
+                      priceMAD: finalTotal * (currency === 'EUR' ? 10.75 : 10.1) // Convert back to MAD for form
                     }}
                     quantity={1}
                     onClose={handleOrderComplete}

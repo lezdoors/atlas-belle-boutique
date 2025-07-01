@@ -9,6 +9,7 @@ import HeaderLogo from '@/components/HeaderLogo';
 import HeaderNavigation from '@/components/HeaderNavigation';
 import HeaderActions from '@/components/HeaderActions';
 import HeaderMobileMenu from '@/components/HeaderMobileMenu';
+import StickyTopBanner from '@/components/StickyTopBanner';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,7 +29,8 @@ const Header = () => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-700 ${
+      <StickyTopBanner />
+      <header className={`fixed top-10 left-0 right-0 z-50 w-full transition-all duration-700 ${
         isScrolled 
           ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-amber-100/30' 
           : 'bg-transparent'

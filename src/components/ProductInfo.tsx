@@ -7,6 +7,7 @@ import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { convertAndFormat } from '@/utils/currencyConverter';
 import { toast } from 'sonner';
+import TrustBadge from '@/components/TrustBadge';
 
 interface ProductInfoProps {
   product: {
@@ -208,6 +209,9 @@ const ProductInfo = ({ product, onOrderNow }: ProductInfoProps) => {
             <Share2 className="h-5 w-5" />
           </Button>
         </div>
+
+        {/* Trust Badge */}
+        <TrustBadge />
       </div>
     </div>
   );

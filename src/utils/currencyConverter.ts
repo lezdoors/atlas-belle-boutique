@@ -21,3 +21,9 @@ export const convertAndFormat = (madPrice: number, currency: Currency): string =
   const convertedPrice = convertFromMAD(madPrice, currency);
   return formatPrice(convertedPrice, currency);
 };
+
+// Helper to get localized free shipping threshold
+export const getFreeShippingThresholdText = (currency: Currency): string => {
+  if (currency === 'EUR') return '€139';
+  return '$149';
+};
