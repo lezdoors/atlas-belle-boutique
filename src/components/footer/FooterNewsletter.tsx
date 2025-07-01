@@ -2,18 +2,32 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Mail, Check, AlertCircle } from 'lucide-react';
+import { Mail, Check, AlertCircle, User } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import { validateEmail, sanitizeInput } from '@/utils/inputValidation';
+import { supabase } from '@/integrations/supabase/client';
 
 const FooterNewsletter = () => {
+  const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [emailError, setEmailError] = useState('');
+  const [firstNameError, setFirstNameError] = useState('');
   const { language } = useLanguage();
   const { toast } = useToast();
+
+  const handleFirstNameChange = (value: string) => {
+    const sanitized = sanitizeInput(value);
+    setFirstName(sanitized);
+    
+    if (sanitized && sanitized.length < 2) {
+      setFirstNameError(language === 'fr' ? 'Le prénom doit contenir au moins 2 caractères' : 'First name must be at least 2 characters');
+    } else {
+      setFirstNameError('');
+    }
+  };
 
   const handleEmailChange = (value: string) => {
     const sanitized = sanitizeInput(value);
@@ -29,6 +43,12 @@ const FooterNewsletter = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Validate inputs
+    if (!firstName || firstName.length < 2) {
+      setFirstNameError(language === 'fr' ? 'Veuillez entrer votre prénom' : 'Please enter your first name');
+      return;
+    }
+    
     if (!email || !validateEmail(email)) {
       setEmailError(language === 'fr' ? 'Veuillez entrer une adresse e-mail valide' : 'Please enter a valid email address');
       return;
@@ -37,18 +57,48 @@ const FooterNewsletter = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Store user data in Supabase
+      const { data: userData, error: userError } = await supabase
+        .from('users')
+        .insert([
+          {
+            first_name: firstName,
+            email: email,
+            user_id: null // Will be set when user signs up properly
+          }
+        ])
+        .select();
+
+      if (userError) {
+        console.error('Error saving user data:', userError);
+        throw new Error('Failed to save user data');
+      }
+
+      // Send welcome email
+      const { error: emailError } = await supabase.functions.invoke('send-welcome-email', {
+        body: {
+          email: email,
+          fullName: firstName,
+          language: language
+        }
+      });
+
+      if (emailError) {
+        console.error('Error sending welcome email:', emailError);
+        // Don't throw error here - user data is saved, just email failed
+      }
 
       setIsSubmitted(true);
       toast({
         title: language === 'fr' ? 'Inscription réussie !' : 'Successfully subscribed!',
         description: language === 'fr' 
-          ? 'Merci de vous être inscrit à notre newsletter.'
-          : 'Thank you for subscribing to our newsletter.',
+          ? 'Merci de vous être inscrit à notre newsletter. Vous recevrez bientôt un email de bienvenue.'
+          : 'Thank you for subscribing to our newsletter. You will receive a welcome email shortly.',
       });
 
+      setFirstName('');
       setEmail('');
+      setFirstNameError('');
       setEmailError('');
       
       // Reset success state after 3 seconds
@@ -97,6 +147,29 @@ const FooterNewsletter = () => {
       <form onSubmit={handleSubmit} className="space-y-3">
         <div className="relative">
           <Input
+            type="text"
+            value={firstName}
+            onChange={(e) => handleFirstNameChange(e.target.value)}
+            placeholder={language === 'fr' ? 'Votre prénom' : 'Your first name'}
+            className={`pl-10 bg-sand-800/50 border-sand-600 text-sand-100 placeholder:text-sand-400 focus:border-amber-500 focus:ring-amber-500/20 ${
+              firstNameError ? 'border-red-500' : ''
+            }`}
+            maxLength={50}
+            disabled={isSubmitting}
+            autoComplete="given-name"
+          />
+          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-sand-400" />
+        </div>
+        
+        {firstNameError && (
+          <div className="flex items-center text-red-400 text-xs">
+            <AlertCircle className="h-3 w-3 mr-1" />
+            {firstNameError}
+          </div>
+        )}
+
+        <div className="relative">
+          <Input
             type="email"
             value={email}
             onChange={(e) => handleEmailChange(e.target.value)}
@@ -121,7 +194,7 @@ const FooterNewsletter = () => {
         <Button 
           type="submit" 
           className="w-full bg-amber-600 hover:bg-amber-500 text-white text-sm py-2 h-auto border-0"
-          disabled={isSubmitting || !!emailError}
+          disabled={isSubmitting || !!emailError || !!firstNameError}
         >
           {isSubmitting 
             ? (language === 'fr' ? 'Inscription...' : 'Subscribing...')

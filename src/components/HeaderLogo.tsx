@@ -13,7 +13,7 @@ const HeaderLogo = () => {
         <img 
           src="https://gjmakezifpaglzzvuoid.supabase.co/storage/v1/object/public/pictures//Perle%20(Website)-4.png"
           alt="Perle de l'Atlas - Cosmétiques de Luxe Marocains"
-          className={`h-12 w-auto lg:h-16 object-contain transition-all duration-700 ${
+          className={`h-16 w-auto lg:h-20 object-contain transition-all duration-700 ${
             imageLoaded ? 'opacity-100 animate-fade-in' : 'opacity-0'
           }`}
           style={{ 
