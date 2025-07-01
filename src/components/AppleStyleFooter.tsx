@@ -1,8 +1,8 @@
 
-import LuxuryFooter from './footer/LuxuryFooter';
+import RefinedLuxuryFooter from './footer/RefinedLuxuryFooter';
 
 const AppleStyleFooter = () => {
-  return <LuxuryFooter />;
+  return <RefinedLuxuryFooter />;
 };
 
 export default AppleStyleFooter;
