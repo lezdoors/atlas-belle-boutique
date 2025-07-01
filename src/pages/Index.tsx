@@ -7,6 +7,7 @@ import AppleStyleAbout from '@/components/AppleStyleAbout';
 import AppleStyleFooter from '@/components/AppleStyleFooter';
 import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
 import AppleCountdownBanner from '@/components/AppleCountdownBanner';
+import LaunchModal from '@/components/LaunchModal';
 
 const Index = () => {
   const [videoEnded, setVideoEnded] = useState(false);
@@ -20,6 +21,7 @@ const Index = () => {
       <AppleStyleAbout />
       <AppleStyleFooter />
       <SamraRefactoredChatbot videoEnded={videoEnded} />
+      <LaunchModal />
     </div>
   );
 };
