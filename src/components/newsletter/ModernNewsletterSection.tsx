@@ -5,7 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Mail, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
-import { validateEmail } from '@/utils/inputValidation';
+import { validateEmail, sanitizeInput } from '@/utils/inputValidation';
+import { supabase } from '@/integrations/supabase/client';
 
 const ModernNewsletterSection = () => {
   const { language } = useLanguage();
@@ -28,9 +29,39 @@ const ModernNewsletterSection = () => {
     setIsSubmitting(true);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      // Store subscription in newsletter_subscribers table
+      const { error: subscriptionError } = await supabase
+        .from('newsletter_subscribers')
+        .insert([{ email: sanitizeInput(email) }]);
+
+      if (subscriptionError) {
+        if (subscriptionError.code === '23505') { // Unique constraint violation
+          toast({
+            title: language === 'fr' ? 'Déjà inscrit' : 'Already subscribed',
+            description: language === 'fr' 
+              ? 'Cette adresse e-mail est déjà inscrite à notre newsletter.'
+              : 'This email address is already subscribed to our newsletter.',
+          });
+          setEmail('');
+          setIsSubmitting(false);
+          return;
+        }
+        throw subscriptionError;
+      }
+
+      // Send welcome email
+      const { error: emailError } = await supabase.functions.invoke('send-welcome-email', {
+        body: {
+          email: email,
+          fullName: email.split('@')[0], // Use email prefix as fallback name
+          language: language
+        }
+      });
+
+      if (emailError) {
+        console.error('Error sending welcome email:', emailError);
+      }
+
       toast({
         title: language === 'fr' ? 'Inscription réussie !' : 'Successfully subscribed!',
         description: language === 'fr' 
@@ -40,6 +71,7 @@ const ModernNewsletterSection = () => {
       
       setEmail('');
     } catch (error) {
+      console.error('Newsletter subscription error:', error);
       toast({
         title: language === 'fr' ? 'Erreur' : 'Error',
         description: language === 'fr' 

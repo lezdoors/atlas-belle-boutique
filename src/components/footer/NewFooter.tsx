@@ -2,16 +2,84 @@
 import React, { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
+import { validateEmail, sanitizeInput } from '@/utils/inputValidation';
+import { supabase } from '@/integrations/supabase/client';
 
 const NewFooter = () => {
   const { language } = useLanguage();
+  const { toast } = useToast();
   const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Newsletter subscription:', email);
-    // Add newsletter subscription logic here
-    setEmail('');
+    
+    if (!email || !validateEmail(email)) {
+      toast({
+        title: language === 'fr' ? 'Erreur' : 'Error',
+        description: language === 'fr' ? 'Veuillez entrer une adresse e-mail valide' : 'Please enter a valid email address',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Store subscription in newsletter_subscribers table
+      const { error: subscriptionError } = await supabase
+        .from('newsletter_subscribers')
+        .insert([{ email: sanitizeInput(email) }]);
+
+      if (subscriptionError) {
+        if (subscriptionError.code === '23505') { // Unique constraint violation
+          toast({
+            title: language === 'fr' ? 'Déjà inscrit' : 'Already subscribed',
+            description: language === 'fr' 
+              ? 'Cette adresse e-mail est déjà inscrite à notre newsletter.'
+              : 'This email address is already subscribed to our newsletter.',
+          });
+          setEmail('');
+          setIsSubmitting(false);
+          return;
+        }
+        throw subscriptionError;
+      }
+
+      // Send welcome email
+      const { error: emailError } = await supabase.functions.invoke('send-welcome-email', {
+        body: {
+          email: email,
+          fullName: email.split('@')[0], // Use email prefix as fallback name
+          language: language
+        }
+      });
+
+      if (emailError) {
+        console.error('Error sending welcome email:', emailError);
+      }
+
+      toast({
+        title: language === 'fr' ? 'Inscription réussie !' : 'Successfully subscribed!',
+        description: language === 'fr' 
+          ? 'Merci de vous être inscrit à notre newsletter.'
+          : 'Thank you for subscribing to our newsletter.',
+      });
+
+      setEmail('');
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      toast({
+        title: language === 'fr' ? 'Erreur' : 'Error',
+        description: language === 'fr' 
+          ? 'Une erreur est survenue. Veuillez réessayer.'
+          : 'An error occurred. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -38,13 +106,18 @@ const NewFooter = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={language === 'fr' ? 'Votre adresse email' : 'Your email address'}
                   className="flex-1 px-6 py-4 border border-gray-300 focus:outline-none focus:border-gray-600 font-light text-base"
+                  disabled={isSubmitting}
                   required
                 />
                 <button
                   type="submit"
-                  className="px-8 py-4 bg-gray-800 text-white hover:bg-gray-700 transition-colors duration-300 font-light text-base uppercase tracking-wide"
+                  disabled={isSubmitting}
+                  className="px-8 py-4 bg-gray-800 text-white hover:bg-gray-700 transition-colors duration-300 font-light text-base uppercase tracking-wide disabled:opacity-50"
                 >
-                  {language === 'fr' ? "S'abonner" : 'Subscribe'}
+                  {isSubmitting 
+                    ? (language === 'fr' ? 'Inscription...' : 'Subscribing...')
+                    : (language === 'fr' ? "S'abonner" : 'Subscribe')
+                  }
                 </button>
               </div>
             </form>

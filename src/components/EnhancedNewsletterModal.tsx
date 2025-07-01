@@ -77,8 +77,27 @@ const EnhancedNewsletterModal = ({
     setIsLoading(true);
 
     try {
-      // Store user data in Supabase
-      const { data: userData, error: userError } = await supabase
+      // Store subscription in newsletter_subscribers table
+      const { error: subscriptionError } = await supabase
+        .from('newsletter_subscribers')
+        .insert([{ email: email }]);
+
+      if (subscriptionError) {
+        if (subscriptionError.code === '23505') { // Unique constraint violation
+          toast({
+            title: language === 'fr' ? 'Déjà inscrit' : 'Already subscribed',
+            description: language === 'fr' 
+              ? 'Cette adresse e-mail est déjà inscrite à notre newsletter.'
+              : 'This email address is already subscribed to our newsletter.',
+          });
+          setIsLoading(false);
+          return;
+        }
+        throw subscriptionError;
+      }
+
+      // Store user data in users table
+      const { error: userError } = await supabase
         .from('users')
         .insert([
           {
@@ -86,12 +105,10 @@ const EnhancedNewsletterModal = ({
             email: email,
             user_id: null // Will be set when user signs up properly
           }
-        ])
-        .select();
+        ]);
 
-      if (userError) {
+      if (userError && userError.code !== '23505') { // Ignore duplicate key errors
         console.error('Error saving user data:', userError);
-        throw new Error('Failed to save user data');
       }
 
       // Send welcome email
@@ -105,7 +122,7 @@ const EnhancedNewsletterModal = ({
 
       if (emailError) {
         console.error('Error sending welcome email:', emailError);
-        // Don't throw error here - user data is saved, just email failed
+        // Don't throw error here - subscription is saved, just email failed
       }
 
       setIsLoading(false);
