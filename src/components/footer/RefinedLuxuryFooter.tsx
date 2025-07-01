@@ -47,9 +47,10 @@ const RefinedLuxuryFooter = () => {
           
           <Link 
             to="/politique-confidentialite" 
-            className="text-xs text-gray-500 hover:text-amber-600 transition-colors underline-hover font-light"
+            className="text-xs text-gray-500 hover:text-amber-600 transition-colors relative group font-light"
           >
             {language === 'fr' ? 'Voir notre politique de confidentialité' : 'View our privacy policy'}
+            <span className="absolute bottom-0 left-0 w-0 h-px bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
           </Link>
         </div>
 
@@ -65,9 +66,10 @@ const RefinedLuxuryFooter = () => {
               <li>
                 <Link 
                   to="/catalogue" 
-                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide underline-hover"
+                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide relative group"
                 >
                   {language === 'fr' ? 'Nos produits' : 'Our products'}
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </li>
             </ul>
@@ -82,25 +84,28 @@ const RefinedLuxuryFooter = () => {
               <li>
                 <Link 
                   to="/contact" 
-                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide underline-hover"
+                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide relative group"
                 >
                   Contact
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </li>
               <li>
                 <Link 
                   to="/faq" 
-                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide underline-hover"
+                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide relative group"
                 >
                   FAQ
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </li>
               <li>
                 <Link 
                   to="/livraison-retours" 
-                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide underline-hover"
+                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide relative group"
                 >
                   {language === 'fr' ? 'Livraison & Retours' : 'Shipping & Returns'}
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </li>
             </ul>
@@ -115,22 +120,25 @@ const RefinedLuxuryFooter = () => {
               <li>
                 <Link 
                   to="/conditions-vente" 
-                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide underline-hover"
+                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide relative group"
                 >
                   {language === 'fr' ? 'Conditions Générales' : 'Terms and Conditions'}
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </li>
               <li>
                 <Link 
                   to="/politique-confidentialite" 
-                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide underline-hover"
+                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide relative group"
                 >
                   {language === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy'}
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </li>
               <li>
-                <button className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide underline-hover text-left">
+                <button className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide text-left relative group">
                   Cookies
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
                 </button>
               </li>
             </ul>
@@ -147,10 +155,11 @@ const RefinedLuxuryFooter = () => {
                   href="https://instagram.com/perledatlas" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide underline-hover"
+                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide relative group"
                   aria-label="Instagram"
                 >
                   Instagram
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
               <li>
@@ -158,10 +167,11 @@ const RefinedLuxuryFooter = () => {
                   href="https://tiktok.com/@perledatlas" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide underline-hover"
+                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide relative group"
                   aria-label="TikTok"
                 >
                   TikTok
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
               <li>
@@ -169,10 +179,11 @@ const RefinedLuxuryFooter = () => {
                   href="https://youtube.com/@perledatlas" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide underline-hover"
+                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide relative group"
                   aria-label="YouTube"
                 >
                   YouTube
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
               <li>
@@ -180,10 +191,11 @@ const RefinedLuxuryFooter = () => {
                   href="https://linkedin.com/company/perledatlas" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide underline-hover"
+                  className="text-gray-600 hover:text-amber-600 transition-colors font-light text-sm uppercase tracking-wide relative group"
                   aria-label="LinkedIn"
                 >
                   LinkedIn
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
                 </a>
               </li>
             </ul>
@@ -201,28 +213,6 @@ const RefinedLuxuryFooter = () => {
           </div>
         </div>
       </div>
-
-      {/* Custom Styles */}
-      <style jsx>{`
-        .underline-hover {
-          position: relative;
-        }
-        
-        .underline-hover::after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 1px;
-          bottom: -2px;
-          left: 0;
-          background-color: #d97706;
-          transition: width 0.3s ease;
-        }
-        
-        .underline-hover:hover::after {
-          width: 100%;
-        }
-      `}</style>
     </footer>
   );
 };
