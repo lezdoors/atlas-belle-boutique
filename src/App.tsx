@@ -12,6 +12,7 @@ import AppleStyleIndex from "./pages/AppleStyleIndex";
 import NotreHeritage from "./pages/NotreHeritage";
 import Catalogue from "./pages/Catalogue";
 import ContactPage from "./pages/ContactPage";
+import Rituels from "./pages/Rituels";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
                 <Route path="/notre-heritage" element={<NotreHeritage />} />
                 <Route path="/catalogue" element={<Catalogue />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/rituels" element={<Rituels />} />
               </Routes>
             </BrowserRouter>
           </TooltipProvider>
