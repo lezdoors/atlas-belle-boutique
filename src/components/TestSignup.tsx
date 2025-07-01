@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Mail, User, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, User, CheckCircle, AlertCircle, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { validateEmail, sanitizeInput } from '@/utils/inputValidation';
@@ -13,6 +13,11 @@ const TestSignup = () => {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [testResults, setTestResults] = useState<{
+    userCreated: boolean;
+    emailSent: boolean;
+    errorMessage?: string;
+  } | null>(null);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -28,8 +33,11 @@ const TestSignup = () => {
     }
 
     setIsSubmitting(true);
+    setTestResults(null);
 
     try {
+      console.log('Starting test signup process...');
+      
       // Store user data in Supabase
       const { data: userData, error: userError } = await supabase
         .from('users')
@@ -44,11 +52,24 @@ const TestSignup = () => {
 
       if (userError) {
         console.error('Error saving user data:', userError);
-        throw new Error('Failed to save user data');
+        setTestResults({
+          userCreated: false,
+          emailSent: false,
+          errorMessage: `Erreur de base de données: ${userError.message}`
+        });
+        toast({
+          title: 'Erreur de base de données',
+          description: userError.message,
+          variant: 'destructive',
+        });
+        return;
       }
 
+      console.log('User data saved successfully:', userData);
+
       // Send welcome email
-      const { error: emailError } = await supabase.functions.invoke('send-welcome-email', {
+      console.log('Attempting to send welcome email...');
+      const { data: emailData, error: emailError } = await supabase.functions.invoke('send-welcome-email', {
         body: {
           email: sanitizeInput(email),
           fullName: sanitizeInput(firstName),
@@ -58,12 +79,22 @@ const TestSignup = () => {
 
       if (emailError) {
         console.error('Error sending welcome email:', emailError);
+        setTestResults({
+          userCreated: true,
+          emailSent: false,
+          errorMessage: `Erreur d'email: ${emailError.message}`
+        });
         toast({
-          title: 'Utilisateur créé',
-          description: 'L\'utilisateur a été créé mais l\'email n\'a pas pu être envoyé. Vérifiez la configuration SMTP.',
+          title: 'Utilisateur créé - Email non envoyé',
+          description: `L'utilisateur a été créé mais l'email n'a pas été envoyé: ${emailError.message}`,
           variant: 'destructive',
         });
       } else {
+        console.log('Email sent successfully:', emailData);
+        setTestResults({
+          userCreated: true,
+          emailSent: true
+        });
         setIsSuccess(true);
         toast({
           title: 'Test réussi !',
@@ -74,10 +105,18 @@ const TestSignup = () => {
       setFirstName('');
       setEmail('');
       
-      // Reset success state after 5 seconds
-      setTimeout(() => setIsSuccess(false), 5000);
+      // Reset success state after 10 seconds
+      setTimeout(() => {
+        setIsSuccess(false);
+        setTestResults(null);
+      }, 10000);
     } catch (error) {
       console.error('Test signup error:', error);
+      setTestResults({
+        userCreated: false,
+        emailSent: false,
+        errorMessage: `Erreur générale: ${error instanceof Error ? error.message : 'Erreur inconnue'}`
+      });
       toast({
         title: 'Erreur',
         description: 'Une erreur est survenue lors du test d\'inscription.',
@@ -92,11 +131,29 @@ const TestSignup = () => {
     return (
       <Card className="max-w-md mx-auto">
         <CardContent className="pt-6">
-          <div className="flex items-center justify-center space-x-2 text-green-600">
-            <CheckCircle className="h-8 w-8" />
-            <div className="text-center">
-              <h3 className="font-semibold text-lg">Test réussi !</h3>
-              <p className="text-sm text-gray-600">L'email de bienvenue a été envoyé</p>
+          <div className="text-center space-y-4">
+            <div className="flex items-center justify-center">
+              <CheckCircle className="h-16 w-16 text-green-600" />
+            </div>
+            <div>
+              <h3 className="font-semibold text-xl text-green-700 mb-2">Test réussi !</h3>
+              <p className="text-sm text-gray-600 mb-4">L'email de bienvenue a été envoyé avec succès</p>
+              
+              {testResults && (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-left">
+                  <h4 className="font-medium text-green-800 mb-2">Résultats du test :</h4>
+                  <div className="space-y-1 text-sm">
+                    <div className="flex items-center text-green-700">
+                      <CheckCircle className="h-4 w-4 mr-2" />
+                      Utilisateur créé en base de données
+                    </div>
+                    <div className="flex items-center text-green-700">
+                      <CheckCircle className="h-4 w-4 mr-2" />
+                      Email de bienvenue envoyé
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </CardContent>
@@ -154,6 +211,39 @@ const TestSignup = () => {
               'Tester l\'inscription'
             )}
           </Button>
+
+          {testResults && !isSuccess && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+              <h4 className="font-medium text-red-800 mb-2">Résultats du test :</h4>
+              <div className="space-y-1 text-sm">
+                <div className="flex items-center">
+                  {testResults.userCreated ? (
+                    <CheckCircle className="h-4 w-4 mr-2 text-green-600" />
+                  ) : (
+                    <AlertCircle className="h-4 w-4 mr-2 text-red-600" />
+                  )}
+                  <span className={testResults.userCreated ? 'text-green-700' : 'text-red-700'}>
+                    Création utilisateur: {testResults.userCreated ? 'Réussie' : 'Échouée'}
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  {testResults.emailSent ? (
+                    <CheckCircle className="h-4 w-4 mr-2 text-green-600" />
+                  ) : (
+                    <AlertCircle className="h-4 w-4 mr-2 text-red-600" />
+                  )}
+                  <span className={testResults.emailSent ? 'text-green-700' : 'text-red-700'}>
+                    Envoi email: {testResults.emailSent ? 'Réussi' : 'Échoué'}
+                  </span>
+                </div>
+                {testResults.errorMessage && (
+                  <div className="mt-2 p-2 bg-red-100 rounded text-red-800 text-xs">
+                    {testResults.errorMessage}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
 
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-start text-blue-800 text-sm">

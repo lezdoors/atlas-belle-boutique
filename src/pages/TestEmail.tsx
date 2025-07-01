@@ -12,6 +12,11 @@ const TestEmail = () => {
           <p className="text-clay-600 max-w-2xl mx-auto">
             Utilisez ce formulaire pour tester la création d'utilisateur et l'envoi automatique d'emails de bienvenue.
           </p>
+          <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg max-w-2xl mx-auto">
+            <p className="text-sm text-blue-800">
+              <strong>Configuration SMTP :</strong> L'email sera envoyé depuis contact@atlasperle.com avec la configuration sécurisée.
+            </p>
+          </div>
         </div>
         
         <TestSignup />
