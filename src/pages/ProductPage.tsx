@@ -32,7 +32,7 @@ const productData: { [key: string]: ProductData } = {
   'tajine-artisanal': {
     id: 'tajine-artisanal',
     name: 'Tajine Artisanal Premium',
-    poeticDescription: 'Un voyage culinaire au cœur de l'Atlas, où chaque plat devient une célébration des saveurs ancestrales du Maroc.',
+    poeticDescription: 'Un voyage culinaire au cœur de l\'Atlas, où chaque plat devient une célébration des saveurs ancestrales du Maroc.',
     price: '89€',
     originalPrice: '120€',
     image: '/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png',
