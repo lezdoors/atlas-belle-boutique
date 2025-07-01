@@ -18,13 +18,13 @@ const AppleStyleHeader = () => {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-black/10 shadow-sm">
       <nav className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
               src="https://gjmakezifpaglzzvuoid.supabase.co/storage/v1/object/public/pictures//Perle%20(Website)-4.png"
               alt="Perle d'Atlas - Cosmétiques de Luxe Marocains"
-              className="h-8 lg:h-12 w-auto object-contain"
+              className="h-12 lg:h-16 w-auto object-contain"
             />
           </Link>
 
