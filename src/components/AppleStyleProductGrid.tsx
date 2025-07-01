@@ -53,8 +53,8 @@ const AppleStyleProductGrid = () => {
           </h2>
           <p className="text-xl font-light text-black/60 max-w-2xl mx-auto leading-relaxed">
             {language === 'fr'
-              ? 'Chaque pièce raconte une histoire, chaque détail révèle un savoir-faire ancestral'
-              : 'Every piece tells a story, every detail reveals ancestral craftsmanship'
+              ? 'Artisanat authentique du Maroc'
+              : 'Authentic Moroccan craftsmanship'
             }
           </p>
         </div>

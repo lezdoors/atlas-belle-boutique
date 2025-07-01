@@ -8,6 +8,7 @@ import EarlyAccessSignup from '@/components/EarlyAccessSignup';
 import AppleStyleFooter from '@/components/AppleStyleFooter';
 import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
 import StickyTopBanner from '@/components/StickyTopBanner';
+import AppleCountdownBanner from '@/components/AppleCountdownBanner';
 
 const AppleStyleIndex = () => {
   const [videoEnded, setVideoEnded] = useState(false);
@@ -15,6 +16,7 @@ const AppleStyleIndex = () => {
   return (
     <div className="min-h-screen bg-white">
       <StickyTopBanner />
+      <AppleCountdownBanner />
       <div className="pt-10">
         <AppleStyleHeader />
         <AppleStyleHero />
