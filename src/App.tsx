@@ -13,6 +13,11 @@ import NotreHeritage from "./pages/NotreHeritage";
 import Catalogue from "./pages/Catalogue";
 import ContactPage from "./pages/ContactPage";
 import Rituels from "./pages/Rituels";
+import Histoire from "./pages/Histoire";
+import FAQ from "./pages/FAQ";
+import MentionsLegales from "./pages/MentionsLegales";
+import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
+import ConditionsVente from "./pages/ConditionsVente";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +37,11 @@ const App = () => (
                 <Route path="/catalogue" element={<Catalogue />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/rituels" element={<Rituels />} />
+                <Route path="/histoire" element={<Histoire />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/mentions-legales" element={<MentionsLegales />} />
+                <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+                <Route path="/conditions-vente" element={<ConditionsVente />} />
               </Routes>
             </BrowserRouter>
           </TooltipProvider>
