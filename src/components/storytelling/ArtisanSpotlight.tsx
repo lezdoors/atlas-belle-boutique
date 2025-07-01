@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { MapPin, Clock, Heart } from 'lucide-react';
@@ -15,7 +16,7 @@ interface Artisan {
 
 const artisans: Artisan[] = [
   {
-    name: "Lalla Fatima",
+    name: "Lalla Malika",
     specialty: "Maîtresse de l'Huile d'Argan",
     region: "Essaouira",
     experience: "35 ans d'expertise",
