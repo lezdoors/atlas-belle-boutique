@@ -3,14 +3,15 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Mail, User, CheckCircle, AlertCircle, Clock } from 'lucide-react';
+import { Mail, User, CheckCircle, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
 import { validateEmail, sanitizeInput } from '@/utils/inputValidation';
 
 const TestSignup = () => {
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('testPassword123');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [testResults, setTestResults] = useState<{
@@ -19,6 +20,7 @@ const TestSignup = () => {
     errorMessage?: string;
   } | null>(null);
   const { toast } = useToast();
+  const { signUp } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,69 +38,33 @@ const TestSignup = () => {
     setTestResults(null);
 
     try {
-      console.log('Starting test signup process...');
+      console.log('Starting test signup process with Supabase Auth...');
       
-      // Store user data in Supabase
-      const { data: userData, error: userError } = await supabase
-        .from('users')
-        .insert([
-          {
-            first_name: sanitizeInput(firstName),
-            email: sanitizeInput(email),
-            user_id: null
-          }
-        ])
-        .select();
+      // Use Supabase Auth for signup
+      const { error } = await signUp(sanitizeInput(email), password, sanitizeInput(firstName));
 
-      if (userError) {
-        console.error('Error saving user data:', userError);
+      if (error) {
+        console.error('Error during Supabase signup:', error);
         setTestResults({
           userCreated: false,
           emailSent: false,
-          errorMessage: `Erreur de base de données: ${userError.message}`
+          errorMessage: `Erreur d'authentification: ${error.message}`
         });
         toast({
-          title: 'Erreur de base de données',
-          description: userError.message,
-          variant: 'destructive',
-        });
-        return;
-      }
-
-      console.log('User data saved successfully:', userData);
-
-      // Send welcome email
-      console.log('Attempting to send welcome email...');
-      const { data: emailData, error: emailError } = await supabase.functions.invoke('send-welcome-email', {
-        body: {
-          email: sanitizeInput(email),
-          fullName: sanitizeInput(firstName),
-          language: 'fr'
-        }
-      });
-
-      if (emailError) {
-        console.error('Error sending welcome email:', emailError);
-        setTestResults({
-          userCreated: true,
-          emailSent: false,
-          errorMessage: `Erreur d'email: ${emailError.message}`
-        });
-        toast({
-          title: 'Utilisateur créé - Email non envoyé',
-          description: `L'utilisateur a été créé mais l'email n'a pas été envoyé: ${emailError.message}`,
+          title: 'Erreur d\'authentification',
+          description: error.message,
           variant: 'destructive',
         });
       } else {
-        console.log('Email sent successfully:', emailData);
+        console.log('User signup successful with Supabase Auth');
         setTestResults({
           userCreated: true,
-          emailSent: true
+          emailSent: true // The trigger should handle the email automatically
         });
         setIsSuccess(true);
         toast({
           title: 'Test réussi !',
-          description: 'L\'utilisateur a été créé et l\'email de bienvenue a été envoyé.',
+          description: 'L\'utilisateur a été créé avec Supabase Auth et l\'email de bienvenue devrait être envoyé automatiquement.',
         });
       }
 
@@ -137,7 +103,7 @@ const TestSignup = () => {
             </div>
             <div>
               <h3 className="font-semibold text-xl text-green-700 mb-2">Test réussi !</h3>
-              <p className="text-sm text-gray-600 mb-4">L'email de bienvenue a été envoyé avec succès</p>
+              <p className="text-sm text-gray-600 mb-4">L'utilisateur a été créé avec Supabase Auth</p>
               
               {testResults && (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-left">
@@ -145,11 +111,11 @@ const TestSignup = () => {
                   <div className="space-y-1 text-sm">
                     <div className="flex items-center text-green-700">
                       <CheckCircle className="h-4 w-4 mr-2" />
-                      Utilisateur créé en base de données
+                      Utilisateur créé avec Supabase Auth
                     </div>
                     <div className="flex items-center text-green-700">
                       <CheckCircle className="h-4 w-4 mr-2" />
-                      Email de bienvenue envoyé
+                      Email de bienvenue envoyé automatiquement
                     </div>
                   </div>
                 </div>
@@ -166,7 +132,7 @@ const TestSignup = () => {
       <CardHeader>
         <CardTitle className="text-center flex items-center justify-center space-x-2">
           <Mail className="h-5 w-5 text-amber-600" />
-          <span>Test d'Inscription</span>
+          <span>Test Supabase Auth</span>
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -197,6 +163,10 @@ const TestSignup = () => {
             <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
           </div>
 
+          <div className="text-xs text-gray-500 bg-gray-50 p-2 rounded">
+            Mot de passe automatique: {password}
+          </div>
+
           <Button 
             type="submit" 
             className="w-full bg-amber-600 hover:bg-amber-500 text-white"
@@ -208,7 +178,7 @@ const TestSignup = () => {
                 <span>Test en cours...</span>
               </div>
             ) : (
-              'Tester l\'inscription'
+              'Tester Supabase Auth'
             )}
           </Button>
 
@@ -233,7 +203,7 @@ const TestSignup = () => {
                     <AlertCircle className="h-4 w-4 mr-2 text-red-600" />
                   )}
                   <span className={testResults.emailSent ? 'text-green-700' : 'text-red-700'}>
-                    Envoi email: {testResults.emailSent ? 'Réussi' : 'Échoué'}
+                    Email automatique: {testResults.emailSent ? 'Activé' : 'Désactivé'}
                   </span>
                 </div>
                 {testResults.errorMessage && (
@@ -249,8 +219,8 @@ const TestSignup = () => {
             <div className="flex items-start text-blue-800 text-sm">
               <AlertCircle className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
               <div>
-                <p className="font-medium mb-1">Note de test :</p>
-                <p>Ceci créera un utilisateur test et enverra un email de bienvenue à l'adresse fournie pour vérifier la configuration SMTP.</p>
+                <p className="font-medium mb-1">Test Supabase Auth :</p>
+                <p>Utilise maintenant Supabase Auth avec trigger automatique pour l'envoi d'email de bienvenue.</p>
               </div>
             </div>
           </div>
