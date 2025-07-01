@@ -19,21 +19,25 @@ const StickyTopBanner = () => {
   };
 
   const bannerText = language === 'fr' 
-    ? `🎁 Livraison gratuite dès ${getThresholdText()} – Expédition express depuis le Maroc 🇲🇦 via DHL`
-    : `🎁 Free shipping from ${getThresholdText()} – Express shipping from Morocco 🇲🇦 via DHL`;
+    ? `Livraison gratuite dès ${getThresholdText()} – Livraison internationale express`
+    : `Free shipping from ${getThresholdText()} – Express international delivery`;
+
+  const handleClose = () => {
+    setIsVisible(false);
+  };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-copper-600 to-amber-600 text-white shadow-lg">
-      <div className="relative flex items-center justify-center py-2 px-4">
-        <p className="text-sm font-medium text-center flex-1 pr-8">
+    <div className="fixed top-0 left-0 right-0 z-[60] bg-[#fafafa] shadow-sm transition-opacity duration-300">
+      <div className="relative flex items-center justify-center h-10 px-4">
+        <p className="text-sm font-semibold text-[#333] text-center">
           {bannerText}
         </p>
         <button
-          onClick={() => setIsVisible(false)}
-          className="absolute right-2 p-1 hover:bg-white/20 rounded-full transition-colors"
+          onClick={handleClose}
+          className="absolute right-4 p-1 hover:bg-gray-200/50 rounded-full transition-colors duration-200"
           aria-label="Close banner"
         >
-          <X className="h-4 w-4" />
+          <X className="h-4 w-4 text-gray-500" />
         </button>
       </div>
     </div>
