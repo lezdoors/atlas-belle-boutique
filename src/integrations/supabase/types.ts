@@ -54,6 +54,24 @@ export type Database = {
         }
         Relationships: []
       }
+      early_access_list: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: string
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id?: string
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
       enhanced_orders: {
         Row: {
           billing_address: Json | null
