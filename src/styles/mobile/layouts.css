@@ -18,6 +18,13 @@
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
   }
+
+  /* Ensure proper spacing for wider containers on mobile */
+  .container {
+    max-width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 
 /* Tablet optimizations */
@@ -31,6 +38,15 @@
   .testimonials-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+  }
+}
+
+/* Desktop optimizations for larger containers */
+@media (min-width: 1025px) {
+  .container {
+    max-width: 1440px;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
