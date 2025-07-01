@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ChatFloatingButton from '@/components/chatbot/ChatFloatingButton';
@@ -55,7 +56,7 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
     if (videoEnded) {
       timeoutId = setTimeout(() => {
         setShowChatbot(true);
-      }, 1000); // 1 second after video ends
+      }, 1000);
     } else {
       timeoutId = setTimeout(() => {
         setShowChatbot(true);
@@ -72,18 +73,16 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
   const detectLanguage = (text: string): 'fr' | 'en' => {
     const frenchWords = [
       'bonjour', 'salut', 'merci', 'comment', 'parler', 'français', 'produit', 'aide', 'conseil',
-      'argan', 'huile', 'beauté', 'peau', 'visage', 'cheveux', 'naturel', 'bio', 'maroc',
-      'tradition', 'ancestral', 'rituel', 'soin', 'cosmétique', 'luxe', 'artisan', 'berbère',
-      'commande', 'livraison', 'prix', 'collection', 'routine', 'recommandation', 'échantillon',
-      'grossiste', 'professionnel', 'expédition'
+      'tajine', 'verre', 'marocain', 'livraison', 'expédition', 'retour', 'prix', 'commande',
+      'artisanal', 'traditionnel', 'maroc', 'boutique', 'collection', 'newsletter', 'lancement',
+      'emballage', 'cadeau', 'support', 'service', 'client'
     ];
     
     const englishWords = [
       'hello', 'hi', 'thank', 'how', 'help', 'product', 'advice', 'english',
-      'argan', 'oil', 'beauty', 'skin', 'face', 'hair', 'natural', 'organic', 'morocco',
-      'tradition', 'ancestral', 'ritual', 'care', 'cosmetic', 'luxury', 'artisan', 'berber',
-      'order', 'shipping', 'price', 'collection', 'routine', 'recommendation', 'sample',
-      'wholesale', 'professional'
+      'tajine', 'glass', 'moroccan', 'shipping', 'delivery', 'return', 'price', 'order',
+      'handmade', 'traditional', 'morocco', 'boutique', 'collection', 'newsletter', 'launch',
+      'gift', 'wrapping', 'support', 'service', 'customer'
     ];
     
     const lowerText = text.toLowerCase();
@@ -98,183 +97,189 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
     setShowFallbackActions(false);
     
     if (detectedLang === 'fr') {
-      // Newsletter and email inquiries
-      if (lowerMessage.includes('newsletter') || lowerMessage.includes('email') || lowerMessage.includes('inscription')) {
+      // Greeting responses
+      if (lowerMessage.includes('bonjour') || lowerMessage.includes('salut') || lowerMessage.includes('hello')) {
         return {
-          text: "Magnifique ! Rejoignez notre communauté exclusive pour découvrir nos secrets de beauté saisonniers 💎 Vous recevrez nos guides de rituels ancestraux, nos dernières découvertes d'ingrédients et nos offres privilégiées. Un voyage olfactif directement dans votre boîte email !",
+          text: "Bonjour et bienvenue chez Perle de l'Atlas ! 🌟 Je suis Samra, votre assistante virtuelle. Je suis là pour vous guider dans notre boutique d'articles artisanaux marocains faits main. Comment puis-je vous aider aujourd'hui ?",
           isUser: false,
           language: detectedLang,
-          image: mediaAssets.lifestyle[0]
+          image: mediaAssets.logo
         };
       }
 
-      // Argan oil inquiries with warm Moroccan tone
-      if (lowerMessage.includes('argan') || lowerMessage.includes('huile')) {
+      // Shipping inquiries
+      if (lowerMessage.includes('livraison') || lowerMessage.includes('expédition') || lowerMessage.includes('ship')) {
         return {
-          text: "Ah, l'huile d'argan ! Notre trésor du Sud marocain 🌟 Nos artisanes berbères l'extraient avec patience selon des méthodes ancestrales. Riche en vitamine E et acides gras, elle nourrit votre peau comme une caresse du désert. Chaque goutte raconte l'histoire de nos arganiers centenaires !",
+          text: "Nous expédions dans le monde entier depuis le Maroc via notre service de livraison express internationale ! 📦 La livraison est gratuite pour les commandes de 149$ USD et plus. Les délais de livraison sont généralement de 2 à 5 jours ouvrables selon votre localisation. Toutes les commandes sont soigneusement emballées et entièrement suivies.",
+          isUser: false,
+          language: detectedLang
+        };
+      }
+
+      // Product inquiries - Tajines
+      if (lowerMessage.includes('tajine') || lowerMessage.includes('plat')) {
+        return {
+          text: "Nos tajines artisanaux sont de véritables œuvres d'art ! 🏺 Fabriqués à la main en argile traditionnelle au Maroc, ils sont parfaits pour 2 à 4 personnes. Un tajine permet une cuisson lente et savoureuse qui préserve tous les arômes. C'est l'essence même de la cuisine marocaine authentique !",
           isUser: false,
           language: detectedLang,
           image: mediaAssets.products[0]
         };
       }
-      
-      // Artisan and tradition inquiries
-      if (lowerMessage.includes('artisan') || lowerMessage.includes('tradition') || lowerMessage.includes('berbère')) {
-        return {
-          text: "Nos artisanes berbères sont les gardiennes de secrets millénaires ✨ Dans les villages de l'Atlas, de mère en fille, elles transmettent l'art de sublimer les trésors de notre terre. Chaque geste est empreint de sagesse ancestrale, chaque produit porte leur âme généreuse.",
-          isUser: false,
-          language: detectedLang,
-          image: mediaAssets.artisans[0]
-        };
-      }
-      
-      // Ingredients inquiries
-      if (lowerMessage.includes('ingrédient') || lowerMessage.includes('naturel') || lowerMessage.includes('bio')) {
-        return {
-          text: "Nos ingrédients sont cueillis avec respect dans les jardins secrets du Maroc 🌿 Du ghassoul volcanique de l'Atlas aux roses de Dadès, chaque élément est choisi pour sa pureté et son authenticité. La nature marocaine nous offre ses plus beaux présents !",
-          isUser: false,
-          language: detectedLang,
-          image: mediaAssets.ingredients[0]
-        };
-      }
-      
-      // Ritual inquiries with detailed guidance
-      if (lowerMessage.includes('ritual') || lowerMessage.includes('routine') || lowerMessage.includes('soin')) {
-        return {
-          text: "Voici notre rituel signature 'Hammam Royal' 👑 : 1) Purification au ghassoul pour libérer votre peau, 2) Tonification à l'eau de rose de Dadès pour révéler votre éclat, 3) Nourrissement à l'huile d'argan pour une douceur incomparable. Un voyage sensoriel inspiré de nos traditions !",
-          isUser: false,
-          language: detectedLang,
-          image: mediaAssets.lifestyle[0]
-        };
-      }
-      
-      // Shipping and samples
-      if (lowerMessage.includes('livraison') || lowerMessage.includes('expédition') || lowerMessage.includes('échantillon')) {
-        return {
-          text: "Pour la livraison et les échantillons, je vous connecte directement avec notre équipe spécialisée ! Ils vous proposeront les meilleures options selon votre localisation et vos besoins. Un service personnalisé comme dans les souks de Marrakech ! 📦✨",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-      
-      // Wholesale inquiries
-      if (lowerMessage.includes('grossiste') || lowerMessage.includes('professionnel') || lowerMessage.includes('revendeur')) {
-        return {
-          text: "Magnifique ! Vous souhaitez devenir partenaire de Perle d'Atlas ! 🤝 Nos équipes commerciales seront ravies de vous accompagner. Connectons-nous via WhatsApp pour discuter de nos conditions privilégiées et découvrir nos collections professionnelles.",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-      
-      // Order and purchase
-      if (lowerMessage.includes('commande') || lowerMessage.includes('acheter') || lowerMessage.includes('prix')) {
-        return {
-          text: "Avec plaisir ! Pour vous offrir un accompagnement personnalisé et des conseils sur mesure, notre équipe vous attend sur WhatsApp 💎 Vous bénéficierez d'un service privilégié et de recommandations adaptées à vos besoins uniques.",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-      
-      // WhatsApp redirect
-      if (lowerMessage.includes('whatsapp') || lowerMessage.includes('contact') || lowerMessage.includes('parler')) {
-        return {
-          text: "Parfait ! Je vous redirige vers WhatsApp pour un échange chaleureux avec notre équipe 🌸 Vous aurez des conseils personnalisés et un accompagnement privilégié dans votre découverte de nos trésors marocains !",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-      
-      // Fallback response with escalation
-      setShowFallbackActions(true);
-      return {
-        text: "Je n'ai pas bien compris, mais vous pouvez me poser une autre question ou me contacter directement sur WhatsApp pour un accompagnement personnalisé ! 😊",
-        isUser: false,
-        language: detectedLang
-      };
-    } else {
-      // English responses with newsletter support
-      if (lowerMessage.includes('newsletter') || lowerMessage.includes('email') || lowerMessage.includes('subscription')) {
-        return {
-          text: "Wonderful! Join our exclusive community to discover our seasonal beauty secrets 💎 You'll receive our ancestral ritual guides, latest ingredient discoveries, and privileged offers. An olfactory journey delivered straight to your inbox!",
-          isUser: false,
-          language: detectedLang,
-          image: mediaAssets.lifestyle[1]
-        };
-      }
 
-      // English responses with warm tone
-      if (lowerMessage.includes('argan') || lowerMessage.includes('oil')) {
+      // Product inquiries - Glasses
+      if (lowerMessage.includes('verre') || lowerMessage.includes('thé') || lowerMessage.includes('glass')) {
         return {
-          text: "Ah, argan oil! Our liquid gold from the Moroccan South 🌟 Our Berber artisans extract it with patience using ancestral methods. Rich in vitamin E and fatty acids, it nourishes your skin like a desert caress. Each drop tells the story of our century-old argan trees!",
+          text: "Nos verres marocains sont soufflés à la main selon des techniques ancestrales ! 🫖 Parfaits pour déguster le thé à la menthe traditionnel, ils sont disponibles en sets individuels ou en service complet. Chaque verre est unique et reflète le savoir-faire artisanal marocain.",
           isUser: false,
           language: detectedLang,
           image: mediaAssets.products[1]
         };
       }
-      
-      if (lowerMessage.includes('artisan') || lowerMessage.includes('tradition') || lowerMessage.includes('berber')) {
+
+      // Launch and availability
+      if (lowerMessage.includes('lancement') || lowerMessage.includes('ouverture') || lowerMessage.includes('disponible')) {
         return {
-          text: "Our Berber artisans are the guardians of thousand-year secrets ✨ In Atlas villages, from mother to daughter, they pass down the art of enhancing our land's treasures. Each gesture carries ancestral wisdom, each product bears their generous soul.",
+          text: "Nous sommes actuellement en lancement progressif ! 🎉 Notre grande ouverture officielle aura lieu très bientôt. En attendant, vous pouvez vous inscrire à notre newsletter pour un accès exclusif aux nouvelles collections et aux histoires d'artisans. Vous serez les premiers informés !",
+          isUser: false,
+          language: detectedLang
+        };
+      }
+
+      // Newsletter subscription
+      if (lowerMessage.includes('newsletter') || lowerMessage.includes('inscription') || lowerMessage.includes('email')) {
+        return {
+          text: "Excellente idée ! 💎 En vous inscrivant à notre newsletter, vous aurez un accès privilégié aux nouvelles collections, aux histoires exclusives de nos artisans, et vous serez informé en avant-première de notre grande ouverture. C'est le meilleur moyen de ne rien manquer !",
           isUser: false,
           language: detectedLang,
-          image: mediaAssets.artisans[1]
+          image: mediaAssets.lifestyle[0]
         };
       }
-      
-      if (lowerMessage.includes('ingredient') || lowerMessage.includes('natural') || lowerMessage.includes('organic')) {
+
+      // Returns and support
+      if (lowerMessage.includes('retour') || lowerMessage.includes('remboursement') || lowerMessage.includes('problème')) {
         return {
-          text: "Our ingredients are respectfully harvested from Morocco's secret gardens 🌿 From volcanic Atlas ghassoul to Dadès roses, each element is chosen for its purity and authenticity. Moroccan nature offers us its most beautiful gifts!",
-          isUser: false,
-          language: detectedLang,
-          image: mediaAssets.ingredients[1]
-        };
-      }
-      
-      if (lowerMessage.includes('ritual') || lowerMessage.includes('routine') || lowerMessage.includes('care')) {
-        return {
-          text: "Here's our signature 'Royal Hammam' ritual 👑: 1) Purification with ghassoul to free your skin, 2) Toning with Dadès rose water to reveal your radiance, 3) Nourishing with argan oil for incomparable softness. A sensory journey inspired by our traditions!",
-          isUser: false,
-          language: detectedLang,
-          image: mediaAssets.lifestyle[1]
-        };
-      }
-      
-      if (lowerMessage.includes('shipping') || lowerMessage.includes('sample')) {
-        return {
-          text: "For shipping and samples, I'll connect you directly with our specialized team! They'll offer you the best options according to your location and needs. Personalized service like in Marrakech souks! 📦✨",
+          text: "Si un produit arrive endommagé ou ne correspond pas à vos attentes, contactez notre équipe à support@atlasperle.com 📧 Nous nous engageons à offrir un service client exceptionnel et des solutions équitables. Notre équipe vous accompagnera pour résoudre toute situation.",
           isUser: false,
           language: detectedLang
         };
       }
-      
-      if (lowerMessage.includes('wholesale') || lowerMessage.includes('professional') || lowerMessage.includes('reseller')) {
+
+      // Gift wrapping
+      if (lowerMessage.includes('cadeau') || lowerMessage.includes('emballage')) {
         return {
-          text: "Wonderful! You want to become a Perle d'Atlas partner! 🤝 Our commercial teams will be delighted to support you. Let's connect via WhatsApp to discuss our privileged conditions and discover our professional collections.",
+          text: "Nos produits font de magnifiques cadeaux ! 🎁 Pour des questions spécifiques sur l'emballage cadeau, je vous invite à contacter notre équipe à support@atlasperle.com. Ils pourront vous proposer les meilleures options pour sublimer vos présents.",
           isUser: false,
           language: detectedLang
         };
       }
-      
-      if (lowerMessage.includes('order') || lowerMessage.includes('buy') || lowerMessage.includes('price')) {
+
+      // Price inquiries
+      if (lowerMessage.includes('prix') || lowerMessage.includes('coût') || lowerMessage.includes('tarif')) {
         return {
-          text: "With pleasure! To offer you personalized support and tailored advice, our team awaits you on WhatsApp 💎 You'll benefit from privileged service and recommendations adapted to your unique needs.",
+          text: "Nos prix reflètent la qualité artisanale et l'authenticité de nos créations marocaines 💎 Pour connaître les tarifs détaillés de nos tajines, verres et autres articles, je vous invite à parcourir notre boutique ou à contacter notre équipe pour des informations personnalisées.",
           isUser: false,
           language: detectedLang
         };
       }
-      
-      if (lowerMessage.includes('whatsapp') || lowerMessage.includes('contact') || lowerMessage.includes('speak')) {
-        return {
-          text: "Perfect! I'll redirect you to WhatsApp for a warm exchange with our team 🌸 You'll get personalized advice and privileged support in discovering our Moroccan treasures!",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-      
+
       // Fallback response
       setShowFallbackActions(true);
       return {
-        text: "I didn't quite understand, but you can ask me another question or contact me directly on WhatsApp for personalized assistance! 😊",
+        text: "Je ne suis pas sûre de bien comprendre votre demande 🤔 Puis-je vous aider avec nos tajines artisanaux, nos verres marocains, la livraison, ou avez-vous d'autres questions sur notre boutique ? N'hésitez pas à être plus précis !",
+        isUser: false,
+        language: detectedLang
+      };
+    } else {
+      // English responses
+      // Greeting responses
+      if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('bonjour')) {
+        return {
+          text: "Hello and welcome to Perle de l'Atlas! 🌟 I'm Samra, your virtual assistant. I'm here to guide you through our boutique of handcrafted Moroccan goods. How can I help you today?",
+          isUser: false,
+          language: detectedLang,
+          image: mediaAssets.logo
+        };
+      }
+
+      // Shipping inquiries
+      if (lowerMessage.includes('shipping') || lowerMessage.includes('delivery') || lowerMessage.includes('ship')) {
+        return {
+          text: "We ship worldwide from Morocco using express international delivery! 📦 Free shipping applies to orders of $149 USD and above. Estimated delivery times are typically 2–5 business days depending on your location. All orders are carefully packed and fully tracked.",
+          isUser: false,
+          language: detectedLang
+        };
+      }
+
+      // Product inquiries - Tajines
+      if (lowerMessage.includes('tajine') || lowerMessage.includes('tagine') || lowerMessage.includes('dish')) {
+        return {
+          text: "Our handmade tajines are true works of art! 🏺 Crafted from traditional clay in Morocco, they're sized perfectly for 2–4 people. A tajine allows slow, flavorful cooking that preserves all the aromas. It's the essence of authentic Moroccan cuisine!",
+          isUser: false,
+          language: detectedLang,
+          image: mediaAssets.products[0]
+        };
+      }
+
+      // Product inquiries - Glasses
+      if (lowerMessage.includes('glass') || lowerMessage.includes('tea') || lowerMessage.includes('moroccan glass')) {
+        return {
+          text: "Our Moroccan glasses are handblown using ancestral techniques! 🫖 Perfect for enjoying traditional mint tea, they're available as individual pieces or complete serving sets. Each glass is unique and reflects authentic Moroccan craftsmanship.",
+          isUser: false,
+          language: detectedLang,
+          image: mediaAssets.products[1]
+        };
+      }
+
+      // Launch and availability
+      if (lowerMessage.includes('launch') || lowerMessage.includes('opening') || lowerMessage.includes('available')) {
+        return {
+          text: "We're currently in soft launch! 🎉 Our grand opening is coming very soon. In the meantime, you can sign up for our newsletter to get exclusive first access to new drops and behind-the-scenes stories. You'll be among the first to know!",
+          isUser: false,
+          language: detectedLang
+        };
+      }
+
+      // Newsletter subscription
+      if (lowerMessage.includes('newsletter') || lowerMessage.includes('subscribe') || lowerMessage.includes('email')) {
+        return {
+          text: "Excellent idea! 💎 By signing up for our newsletter, you'll get exclusive first access to new collections, behind-the-scenes artisan stories, and early notification of our grand opening. It's the best way to stay connected with us!",
+          isUser: false,
+          language: detectedLang,
+          image: mediaAssets.lifestyle[0]
+        };
+      }
+
+      // Returns and support
+      if (lowerMessage.includes('return') || lowerMessage.includes('refund') || lowerMessage.includes('problem')) {
+        return {
+          text: "If a product arrives damaged or not as expected, please contact our team at support@atlasperle.com 📧 We're committed to providing exceptional customer care and fair solutions. Our support team will work with you to resolve any situation.",
+          isUser: false,
+          language: detectedLang
+        };
+      }
+
+      // Gift wrapping
+      if (lowerMessage.includes('gift') || lowerMessage.includes('wrapping')) {
+        return {
+          text: "Our products make wonderful gifts! 🎁 For specific questions about gift wrapping options, please contact our team at support@atlasperle.com. They can provide you with the best options to make your presents extra special.",
+          isUser: false,
+          language: detectedLang
+        };
+      }
+
+      // Price inquiries
+      if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('how much')) {
+        return {
+          text: "Our prices reflect the artisanal quality and authenticity of our Moroccan creations 💎 For detailed pricing on our tajines, glasses, and other items, I invite you to browse our boutique or contact our team for personalized information.",
+          isUser: false,
+          language: detectedLang
+        };
+      }
+
+      // Fallback response
+      setShowFallbackActions(true);
+      return {
+        text: "I'm not quite sure I understand your request 🤔 Can I help you with our handmade tajines, Moroccan glasses, shipping information, or do you have other questions about our boutique? Feel free to be more specific!",
         isUser: false,
         language: detectedLang
       };
@@ -284,7 +289,6 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
   const handleSendMessage = () => {
     if (!message.trim()) return;
     
-    // Mark that conversation has started
     setHasStartedConversation(true);
     
     const detectedLang = detectLanguage(message);
@@ -296,16 +300,16 @@ const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotPr
   };
 
   const handleWhatsAppRedirect = () => {
-    const phoneNumber = '+33663068980'; // Updated to the correct French number
+    const phoneNumber = '+33663068980';
     const whatsappMessage = language === 'fr' 
-      ? 'Bonjour Perle d\'Atlas ! J\'aimerais avoir des informations personnalisées sur vos produits de beauté marocains.' 
-      : 'Hello Perle d\'Atlas! I would like personalized information about your Moroccan beauty products.';
+      ? 'Bonjour Perle d\'Atlas ! J\'aimerais avoir des informations personnalisées sur vos produits artisanaux marocains.' 
+      : 'Hello Perle d\'Atlas! I would like personalized information about your handcrafted Moroccan products.';
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
   };
 
   const handleQuickActionClick = (actionMessage: string) => {
     setMessage(actionMessage);
-    setHasStartedConversation(true); // Hide quick actions
+    setHasStartedConversation(true);
     
     const detectedLang = detectLanguage(actionMessage);
     const newUserMessage: Message = { text: actionMessage, isUser: true, language: detectedLang };

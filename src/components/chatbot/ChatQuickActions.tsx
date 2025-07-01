@@ -17,26 +17,26 @@ interface ChatQuickActionsProps {
 const ChatQuickActions = ({ language, onActionClick, onWhatsAppRedirect }: ChatQuickActionsProps) => {
   const quickActions: QuickAction[] = [
     {
-      icon: Sparkles,
-      label: language === 'fr' ? 'Huile Argan' : 'Argan Oil',
+      icon: Crown,
+      label: language === 'fr' ? 'Tajines' : 'Tajines',
       action: () => {
-        const msg = language === 'fr' ? 'Parlez-moi de vos huiles d\'argan premium' : 'Tell me about your premium argan oils';
+        const msg = language === 'fr' ? 'Parlez-moi de vos tajines artisanaux' : 'Tell me about your handmade tajines';
         onActionClick(msg);
       }
     },
     {
-      icon: Heart,
-      label: language === 'fr' ? 'Rituels' : 'Rituals',
+      icon: Sparkles,
+      label: language === 'fr' ? 'Verres' : 'Glasses',
       action: () => {
-        const msg = language === 'fr' ? 'Quels sont vos rituels de beauté traditionnels ?' : 'What are your traditional beauty rituals?';
+        const msg = language === 'fr' ? 'Quels verres marocains proposez-vous ?' : 'What Moroccan glasses do you offer?';
         onActionClick(msg);
       }
     },
     {
       icon: MapPin,
-      label: language === 'fr' ? 'Artisans' : 'Artisans',
+      label: language === 'fr' ? 'Livraison' : 'Shipping',
       action: () => {
-        const msg = language === 'fr' ? 'Parlez-moi de vos artisans berbères' : 'Tell me about your Berber artisans';
+        const msg = language === 'fr' ? 'Comment fonctionne la livraison ?' : 'How does shipping work?';
         onActionClick(msg);
       }
     },
