@@ -13,38 +13,36 @@ const MentionsLegales = () => {
       title: language === 'fr' ? 'Éditeur du site' : 'Site Editor',
       content: language === 'fr' ? `
         Perle d'Atlas
-        822 C Street #11
-        Hayward, CA 94541
-        États-Unis
+        Activité : Vente de produits artisanaux marocains
+        Localisation : Maroc
         
-        Téléphone : +33 6 63 06 89 80
-        Email : contact@perle-atlas.com
+        Email : contact@atlasperle.com
         
-        Directeur de la publication : [Nom du directeur]
+        Directeur de la publication : Perle d'Atlas
       ` : `
         Perle d'Atlas
-        822 C Street #11
-        Hayward, CA 94541
-        United States
+        Activity: Sale of Moroccan artisanal products
+        Location: Morocco
         
-        Phone: +33 6 63 06 89 80
-        Email: contact@perle-atlas.com
+        Email: contact@atlasperle.com
         
-        Publication Director: [Director Name]
+        Publication Director: Perle d'Atlas
       `
     },
     {
       title: language === 'fr' ? 'Hébergement' : 'Hosting',
       content: language === 'fr' ? `
-        Ce site est hébergé par :
-        [Nom de l'hébergeur]
-        [Adresse de l'hébergeur]
+        Ce site est hébergé par Vercel Inc.
+        340 S Lemon Ave #4133
+        Walnut, CA 91789
+        États-Unis
         
         Les données sont hébergées dans des centres de données sécurisés respectant les normes internationales de sécurité.
       ` : `
-        This site is hosted by:
-        [Host Name]
-        [Host Address]
+        This site is hosted by Vercel Inc.
+        340 S Lemon Ave #4133
+        Walnut, CA 91789
+        United States
         
         Data is hosted in secure data centers complying with international security standards.
       `
@@ -70,27 +68,33 @@ const MentionsLegales = () => {
       `
     },
     {
-      title: language === 'fr' ? 'Données personnelles' : 'Personal Data',
+      title: language === 'fr' ? 'Données personnelles (Conformité RGPD)' : 'Personal Data (GDPR Compliance)',
       content: language === 'fr' ? `
-        Conformément à la loi "Informatique et Libertés" du 6 janvier 1978 modifiée et au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition au traitement de vos données personnelles.
+        Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi "Informatique et Libertés" du 6 janvier 1978 modifiée, vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition au traitement de vos données personnelles.
         
-        Ces droits peuvent être exercés en nous contactant à l'adresse : contact@perle-atlas.com
+        Ces droits peuvent être exercés en nous contactant à l'adresse : contact@atlasperle.com
         
         Nous nous engageons à ne jamais communiquer vos données personnelles à des tiers sans votre consentement préalable.
         
         Les données collectées sur ce site sont utilisées uniquement pour la gestion de votre commande et l'amélioration de nos services.
         
-        Vous pouvez consulter notre politique de confidentialité complète pour plus d'informations sur le traitement de vos données.
+        Durée de conservation des données :
+        • Données de commande : 3 ans
+        • Données de navigation : 13 mois maximum
+        • Données de contact : jusqu'à désinscription
       ` : `
-        In accordance with the "Data Protection and Freedom of Information" law of January 6, 1978 as amended and the General Data Protection Regulation (GDPR), you have the right to access, rectify, delete and oppose the processing of your personal data.
+        In accordance with the General Data Protection Regulation (GDPR) and the "Data Protection and Freedom of Information" law of January 6, 1978 as amended, you have the right to access, rectify, delete and oppose the processing of your personal data.
         
-        These rights can be exercised by contacting us at: contact@perle-atlas.com
+        These rights can be exercised by contacting us at: contact@atlasperle.com
         
         We undertake never to communicate your personal data to third parties without your prior consent.
         
         Data collected on this site is used only for managing your order and improving our services.
         
-        You can consult our complete privacy policy for more information on the processing of your data.
+        Data retention period:
+        • Order data: 3 years
+        • Navigation data: 13 months maximum
+        • Contact data: until unsubscription
       `
     },
     {
@@ -100,19 +104,19 @@ const MentionsLegales = () => {
         
         Vous pouvez désactiver les cookies dans les paramètres de votre navigateur, mais cela peut affecter le fonctionnement de certaines fonctionnalités du site.
         
-        Les cookies utilisés sont :
-        - Cookies techniques nécessaires au fonctionnement du site
-        - Cookies d'analyse pour améliorer nos services
-        - Cookies de préférences pour mémoriser vos choix
+        Types de cookies utilisés :
+        • Cookies techniques nécessaires au fonctionnement du site
+        • Cookies d'analyse pour améliorer nos services
+        • Cookies de préférences pour mémoriser vos choix
       ` : `
         This site uses cookies to improve your browsing experience and analyze site usage.
         
         You can disable cookies in your browser settings, but this may affect the operation of certain site features.
         
-        The cookies used are:
-        - Technical cookies necessary for site operation
-        - Analytics cookies to improve our services
-        - Preference cookies to remember your choices
+        Types of cookies used:
+        • Technical cookies necessary for site operation
+        • Analytics cookies to improve our services
+        • Preference cookies to remember your choices
       `
     },
     {
