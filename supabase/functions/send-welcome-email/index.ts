@@ -17,7 +17,7 @@ serve(async (req) => {
   try {
     const client = new SMTPClient({
       connection: {
-        hostname: "mail.atlasperle.com",
+        hostname: "s1097.can1.mysecurecloudhost.com",
         port: 465,
         tls: true,
         auth: {
@@ -32,7 +32,7 @@ serve(async (req) => {
     const htmlContent = `
       <div style="font-family: 'Georgia', serif; max-width: 600px; margin: 0 auto; padding: 20px; background: linear-gradient(135deg, #f8f6f3, #faf9f7); border-radius: 12px;">
         <div style="text-align: center; margin-bottom: 40px; padding: 30px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-          <img src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Logo-1.png" alt="Perle de l'Atlas" style="max-width: 200px; height: auto; margin-bottom: 20px;">
+          <img src="https://gjmakezifpaglzzvuoid.supabase.co/storage/v1/object/public/pictures//Perle%20(Website)-4.png" alt="Perle de l'Atlas" style="max-width: 200px; height: auto; margin-bottom: 20px;">
           
           <h1 style="color: #8B4513; font-size: 32px; margin: 20px 0; font-weight: 300; letter-spacing: 1px;">
             Bienvenue chez Perle de l'Atlas ✨
