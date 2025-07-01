@@ -10,6 +10,8 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import AppleStyleIndex from "./pages/AppleStyleIndex";
 import NotreHeritage from "./pages/NotreHeritage";
+import Catalogue from "./pages/Catalogue";
+import ContactPage from "./pages/ContactPage";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +28,8 @@ const App = () => (
                 <Route path="/" element={<AppleStyleIndex />} />
                 <Route path="/original" element={<Index />} />
                 <Route path="/notre-heritage" element={<NotreHeritage />} />
+                <Route path="/catalogue" element={<Catalogue />} />
+                <Route path="/contact" element={<ContactPage />} />
               </Routes>
             </BrowserRouter>
           </TooltipProvider>
