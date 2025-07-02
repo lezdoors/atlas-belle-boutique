@@ -15,7 +15,8 @@ const AppleStyleHero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center max-w-4xl mx-auto px-6 lg:px-8 py-32">
+      <div className="relative z-10 text-center w-full px-6 lg:px-12 py-32">
+        <div className="max-w-4xl mx-auto">
 
         {/* Headline */}
         <h1 className="font-serif font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 animate-fade-in opacity-0 tracking-tight" style={{ lineHeight: '1.3', animationDelay: '0.2s', animationFillMode: 'forwards' }}>
@@ -67,6 +68,7 @@ const AppleStyleHero = () => {
 
         {/* Product Showcase Carousel */}
         <ProductCarousel />
+        </div>
       </div>
 
       {/* Minimal Scroll Indicator */}

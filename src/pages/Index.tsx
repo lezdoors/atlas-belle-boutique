@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import MaisonStyleHeader from '@/components/MaisonStyleHeader';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
 import NewsletterTopBanner from '@/components/NewsletterTopBanner';
 import CountdownBanner from '@/components/CountdownBanner';
 import AppleStyleHero from '@/components/AppleStyleHero';
@@ -23,10 +23,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white w-full">
       {/* Main Header */}
-      <MaisonStyleHeader />
+      <MaisonStyleHeaderNew />
       
       {/* Main Content - with proper top spacing for fixed header */}
-      <div className="pt-20 w-full">
+      <div className="pt-32 w-full">
         {/* Full-width Hero Section */}
         <div className="w-full">
           <AppleStyleHero />
@@ -34,8 +34,8 @@ const Index = () => {
         
         {/* Clean Newsletter + Countdown Section */}
         <section className="w-full bg-white py-16">
-          <div className="w-full max-w-4xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="w-full px-6 lg:px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
               {/* Newsletter Section */}
               <div>
                 <NewsletterTopBanner />
