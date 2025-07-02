@@ -21,24 +21,62 @@ const AppleStyleHero = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extralight text-black mb-8 tracking-tight leading-none">
-          Perle d'Atlas
+        {/* Logo */}
+        <div className="mb-8">
+          <img
+            src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Perle%20(Website)-4.png"
+            alt="Perle d'Atlas"
+            className="h-20 md:h-24 lg:h-28 mx-auto"
+          />
+        </div>
+
+        {/* Headline - Two lines */}
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-black mb-6 tracking-tight leading-tight">
+          L'Art du Maroc,<br />
+          Embouteillé avec Grâce
         </h1>
         
-        <p className="text-xl md:text-2xl font-light text-black/70 mb-12 max-w-2xl mx-auto leading-relaxed">
-          {language === 'fr'
-            ? 'L\'artisanat marocain authentique rencontre l\'élégance contemporaine'
-            : 'Authentic Moroccan craftsmanship meets contemporary elegance'
-          }
+        {/* Subheadline */}
+        <p className="text-lg md:text-xl font-light text-black/70 mb-8 max-w-3xl mx-auto leading-relaxed">
+          Soins ancestraux et parfums d'exception. 100% bio, faits à la main, expédiés depuis le Maroc.
         </p>
 
-        <Button
-          size="lg"
-          className="bg-black text-white hover:bg-black/90 rounded-full px-8 py-4 text-lg font-light tracking-wide transition-all duration-300 hover:scale-105 mb-16"
-        >
-          {language === 'fr' ? 'Découvrir' : 'Discover'}
-          <ChevronRight className="ml-2 w-5 h-5" />
-        </Button>
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <Button
+            size="lg"
+            className="bg-copper-600 text-white hover:bg-copper-700 rounded-full px-8 py-4 text-lg font-light tracking-wide transition-all duration-300 hover:scale-105"
+          >
+            M'informer
+          </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            className="border-copper-600 text-copper-600 hover:bg-copper-50 rounded-full px-8 py-4 text-lg font-light tracking-wide transition-all duration-300 hover:scale-105"
+          >
+            Aperçu Boutique
+          </Button>
+        </div>
+
+        {/* Badges */}
+        <div className="flex flex-wrap justify-center gap-6 mb-16">
+          <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span className="text-sm font-medium text-black/70">100% Bio Certifié</span>
+          </div>
+          <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2">
+            <div className="w-2 h-2 bg-copper-500 rounded-full"></div>
+            <span className="text-sm font-medium text-black/70">Artisanat Lent</span>
+          </div>
+          <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2">
+            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+            <span className="text-sm font-medium text-black/70">Expédié du Maroc</span>
+          </div>
+          <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2">
+            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+            <span className="text-sm font-medium text-black/70">Sans Cruauté</span>
+          </div>
+        </div>
 
         {/* Product Showcase Carousel */}
         <ProductCarousel />
