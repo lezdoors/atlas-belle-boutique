@@ -13,7 +13,7 @@ const EarlyAccessSignup = () => {
   const { toast } = useToast();
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -43,6 +43,15 @@ const EarlyAccessSignup = () => {
 
     return () => clearInterval(timer);
   }, [launchDate]);
+
+  useEffect(() => {
+    if (showSuccess) {
+      const timer = setTimeout(() => {
+        setShowSuccess(false);
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccess]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,14 +87,26 @@ const EarlyAccessSignup = () => {
         throw error;
       }
 
-      setIsSubmitted(true);
-      toast({
-        title: language === 'fr' ? 'Inscription réussie !' : 'Successfully registered!',
-        description: language === 'fr' 
-          ? 'Vous serez notifié dès que nous lancerons.'
-          : 'You will be notified as soon as we launch.',
+      // Send admin notification
+      await supabase.functions.invoke('send-admin-notification', {
+        body: {
+          type: 'early_access_signup',
+          email: email,
+          language: language
+        }
       });
-      
+
+      // Send welcome email
+      await supabase.functions.invoke('send-welcome-email', {
+        body: {
+          email: email,
+          fullName: email.split('@')[0],
+          language: language,
+          type: 'early_access'
+        }
+      });
+
+      setShowSuccess(true);
       setEmail('');
     } catch (error) {
       console.error('Early access signup error:', error);
@@ -100,26 +121,6 @@ const EarlyAccessSignup = () => {
       setIsSubmitting(false);
     }
   };
-
-  if (isSubmitted) {
-    return (
-      <div className="bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-100 rounded-3xl p-8 text-center shadow-2xl shadow-amber-200/30">
-        <div className="flex items-center justify-center mb-4">
-          <div className="bg-green-100 rounded-full p-3">
-            <Check className="h-8 w-8 text-green-600" />
-          </div>
-        </div>
-        <h3 className="font-display font-bold text-2xl text-gray-900 mb-2">
-          {language === 'fr' ? 'Merci !' : 'Thank you!'}
-        </h3>
-        <p className="text-gray-700">
-          {language === 'fr' 
-            ? 'Vous êtes maintenant sur la liste d\'accès anticipé.'
-            : 'You are now on the early access list.'}
-        </p>
-      </div>
-    );
-  }
 
   return (
     <section className="py-20 px-4">
@@ -206,6 +207,25 @@ const EarlyAccessSignup = () => {
               </Button>
             </div>
           </form>
+
+          {/* Success Message */}
+          {showSuccess && (
+            <div className="mb-8 animate-fade-in">
+              <div className="bg-green-50 border border-green-200 rounded-2xl p-6 max-w-md mx-auto">
+                <div className="flex items-center justify-center mb-3">
+                  <div className="bg-green-100 rounded-full p-2">
+                    <Check className="h-6 w-6 text-green-600" />
+                  </div>
+                </div>
+                <p className="text-green-800 font-medium text-lg">
+                  {language === 'fr' 
+                    ? '🌿 Merci ! Vous avez été ajouté à la liste d\'accès anticipé. Restez à l\'écoute pour notre grande ouverture !'
+                    : '🌿 Thank you! You\'ve been added to the early access list. Stay tuned for our grand opening!'
+                  }
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* Privacy Note */}
           <p className="text-sm text-gray-600 font-light">

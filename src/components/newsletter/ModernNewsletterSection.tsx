@@ -1,8 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Mail, ArrowRight } from 'lucide-react';
+import { Mail, ArrowRight, Check } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import { validateEmail, sanitizeInput } from '@/utils/inputValidation';
@@ -13,6 +13,16 @@ const ModernNewsletterSection = () => {
   const { toast } = useToast();
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    if (showSuccess) {
+      const timer = setTimeout(() => {
+        setShowSuccess(false);
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccess]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,12 +59,22 @@ const ModernNewsletterSection = () => {
         throw subscriptionError;
       }
 
+      // Send admin notification
+      await supabase.functions.invoke('send-admin-notification', {
+        body: {
+          type: 'newsletter_signup',
+          email: email,
+          language: language
+        }
+      });
+
       // Send welcome email
       const { error: emailError } = await supabase.functions.invoke('send-welcome-email', {
         body: {
           email: email,
           fullName: email.split('@')[0], // Use email prefix as fallback name
-          language: language
+          language: language,
+          type: 'newsletter'
         }
       });
 
@@ -62,13 +82,7 @@ const ModernNewsletterSection = () => {
         console.error('Error sending welcome email:', emailError);
       }
 
-      toast({
-        title: language === 'fr' ? 'Inscription réussie !' : 'Successfully subscribed!',
-        description: language === 'fr' 
-          ? 'Merci de vous être inscrit à notre newsletter.'
-          : 'Thank you for subscribing to our newsletter.',
-      });
-      
+      setShowSuccess(true);
       setEmail('');
     } catch (error) {
       console.error('Newsletter subscription error:', error);
@@ -153,6 +167,25 @@ const ModernNewsletterSection = () => {
                 </Button>
               </div>
             </form>
+
+            {/* Success Message */}
+            {showSuccess && (
+              <div className="mb-8 animate-fade-in">
+                <div className="bg-green-50 border border-green-200 rounded-2xl p-6 max-w-md mx-auto">
+                  <div className="flex items-center justify-center mb-3">
+                    <div className="bg-green-100 rounded-full p-2">
+                      <Check className="h-6 w-6 text-green-600" />
+                    </div>
+                  </div>
+                  <p className="text-green-800 font-medium text-lg">
+                    {language === 'fr' 
+                      ? '🌿 Merci ! Vous avez été ajouté à notre newsletter. Restez à l\'écoute pour nos secrets de beauté !'
+                      : '🌿 Thank you! You\'ve been added to our newsletter. Stay tuned for our beauty secrets!'
+                    }
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* Privacy Note */}
             <p className="text-sm text-gray-600 font-light">
