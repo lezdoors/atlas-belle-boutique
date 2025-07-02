@@ -34,8 +34,8 @@ const Index = () => {
         
         {/* Clean Newsletter + Countdown Section */}
         <section className="w-full bg-white py-16">
-          <div className="w-full max-w-none px-6 lg:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          <div className="w-full max-w-4xl mx-auto px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Newsletter Section */}
               <div>
                 <NewsletterTopBanner />

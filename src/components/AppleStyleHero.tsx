@@ -15,21 +15,21 @@ const AppleStyleHero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center max-w-6xl mx-auto px-6 lg:px-8 py-20">
+      <div className="relative z-10 text-center max-w-4xl mx-auto px-6 lg:px-8 py-32">
 
         {/* Headline */}
-        <h1 className="font-light text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 fade-in-up tracking-wide leading-tight">
+        <h1 className="font-serif font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 animate-fade-in opacity-0 tracking-tight" style={{ lineHeight: '1.3', animationDelay: '0.2s', animationFillMode: 'forwards' }}>
           Sagesse Ancestrale,<br />
           Embouteillée avec Élégance
         </h1>
         
         {/* Subheadline */}
-        <p className="font-light text-lg md:text-xl mb-12 max-w-3xl mx-auto fade-in-up text-stone-600 leading-relaxed">
+        <p className="font-light text-base md:text-lg mb-12 max-w-2xl mx-auto animate-fade-in opacity-0 text-stone-600 leading-relaxed" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
           Soins et parfums marocains, 100% bio, artisanaux et livrés dans le monde entier.
         </p>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 fade-in-up">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
           <Button
             size="lg"
             className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-4 text-base font-normal tracking-wide transition-all duration-300"
