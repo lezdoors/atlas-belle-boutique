@@ -70,9 +70,9 @@ const ModernElegantFooter = () => {
       { name: t('footer.links.contact', language), href: '/contact' }
     ],
     [t('footer.sections.legal', language)]: [
-      { name: t('footer.links.terms', language), href: '/terms' },
+      { name: t('footer.links.terms', language), href: '/cgv' },
       { name: t('footer.links.legal', language), href: '/legal' },
-      { name: t('footer.links.privacy', language), href: '/privacy-policy' },
+      { name: t('footer.links.privacy', language), href: '/confidentialite' },
       { name: t('footer.links.cookies', language), href: '/cookies' }
     ],
     [t('footer.sections.followUs', language)]: [

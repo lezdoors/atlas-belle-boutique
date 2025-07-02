@@ -25,6 +25,10 @@ import ShippingReturns from "./pages/ShippingReturns";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
+import MentionsLegales from "./pages/MentionsLegales";
+import CGV from "./pages/CGV";
+import Confidentialite from "./pages/Confidentialite";
+import PolitiqueCookies from "./pages/PolitiqueCookies";
 
 // Import enhanced styles
 import './styles/enhanced-colors.css';
@@ -78,6 +82,10 @@ const AppRoutes = () => {
         <Route path="/shipping-returns" element={<ShippingReturns />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/legal" element={<MentionsLegales />} />
+        <Route path="/cgv" element={<CGV />} />
+        <Route path="/confidentialite" element={<Confidentialite />} />
+        <Route path="/cookies" element={<PolitiqueCookies />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
