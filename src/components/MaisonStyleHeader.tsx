@@ -46,7 +46,8 @@ const MaisonStyleHeader = () => {
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
-      <div className="container-refined">
+      <div className="w-full max-w-none px-6 lg:px-12">
+        <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between h-16 lg:h-20">
           
           {/* Logo on the left */}
@@ -55,7 +56,7 @@ const MaisonStyleHeader = () => {
               <img
                 src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Perle%20(Website)-4.png"
                 alt="Perle de l'Atlas"
-                className="h-10 lg:h-12 w-auto"
+                className="h-14 lg:h-16 w-auto"
               />
             </a>
           </div>
@@ -147,6 +148,7 @@ const MaisonStyleHeader = () => {
             </nav>
           </div>
         )}
+        </div>
       </div>
     </header>
   );

@@ -21,12 +21,12 @@ const Index = () => {
   const [videoEnded, setVideoEnded] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white w-full">
       {/* Main Header */}
       <MaisonStyleHeader />
       
       {/* Main Content - with proper top spacing for fixed header */}
-      <div className="pt-20">
+      <div className="pt-20 w-full">
         {/* Full-width Hero Section */}
         <div className="w-full">
           <AppleStyleHero />
@@ -34,8 +34,8 @@ const Index = () => {
         
         {/* Clean Newsletter + Countdown Section */}
         <section className="w-full bg-white py-16">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="w-full max-w-none px-6 lg:px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
               {/* Newsletter Section */}
               <div>
                 <NewsletterTopBanner />
