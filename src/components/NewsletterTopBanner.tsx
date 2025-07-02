@@ -43,45 +43,31 @@ const NewsletterTopBanner = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="bg-stone-800 text-white relative">
-      <div className="container-refined py-3">
-        <div className="flex items-center justify-between">
-          <div className="flex-1 flex items-center justify-center">
-            <form onSubmit={handleSubmit} className="flex items-center space-x-4 max-w-md w-full">
-              <Mail className="h-4 w-4 text-stone-300" />
-              <span className="text-sm font-light hidden sm:block">
-                {language === 'fr' 
-                  ? 'Inscrivez-vous pour recevoir nos lancements exclusifs'
-                  : 'Subscribe to receive our exclusive launches'
-                }
-              </span>
-              <Input
-                type="email"
-                placeholder={language === 'fr' ? 'Votre email' : 'Your email'}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-white/10 border-white/20 text-white placeholder:text-stone-300 h-8 text-sm"
-                required
-              />
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                size="sm"
-                className="bg-white text-stone-800 hover:bg-stone-100 h-8 px-4 text-sm font-normal"
-              >
-                {language === 'fr' ? 'Accès Anticipé' : 'Early Access'}
-              </Button>
-            </form>
-          </div>
-          
-          <button
-            onClick={() => setIsVisible(false)}
-            className="text-stone-300 hover:text-white transition-colors p-1"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
+    <div className="text-center">
+      <h3 className="text-lg font-light text-stone-700 mb-4">
+        {language === 'fr' 
+          ? 'Inscrivez-vous pour nos lancements exclusifs'
+          : 'Subscribe for exclusive launches'
+        }
+      </h3>
+      <form onSubmit={handleSubmit} className="flex items-center justify-center space-x-3 max-w-md mx-auto">
+        <Input
+          type="email"
+          placeholder={language === 'fr' ? 'Votre adresse email' : 'Your email address'}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="flex-1 bg-white border-stone-300 text-stone-700 placeholder:text-stone-400 h-10 text-sm"
+          required
+        />
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          size="sm"
+          className="bg-stone-800 text-white hover:bg-stone-900 h-10 px-6 text-sm font-light"
+        >
+          {language === 'fr' ? 'S\'inscrire' : 'Subscribe'}
+        </Button>
+      </form>
     </div>
   );
 };

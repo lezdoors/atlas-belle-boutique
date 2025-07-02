@@ -57,63 +57,18 @@ const MaisonStyleHeader = () => {
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
 
-          {/* Left Navigation - Desktop */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {navigation.slice(0, 3).map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-sm font-light text-stone-700 hover:text-stone-900 transition-colors tracking-wide"
-              >
-                {item.name}
-              </a>
-            ))}
-          </nav>
 
-          {/* Centered Logo */}
-          <div className="flex-1 lg:flex-none flex justify-center">
+          {/* Right-aligned Logo */}
+          <div className="flex-1 flex justify-end">
             <a href="/" className="flex items-center">
               <img
                 src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Perle%20(Website)-4.png"
                 alt="Perle de l'Atlas"
-                className="h-8 lg:h-10 w-auto"
+                className="h-12 lg:h-16 w-auto"
               />
             </a>
           </div>
 
-          {/* Right Navigation - Desktop */}
-          <div className="hidden lg:flex items-center space-x-8">
-            {navigation.slice(3).map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-sm font-light text-stone-700 hover:text-stone-900 transition-colors tracking-wide"
-              >
-                {item.name}
-              </a>
-            ))}
-            
-            {/* Account & Actions */}
-            <div className="flex items-center space-x-4 ml-6">
-              <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
-                <Search className="h-4 w-4" />
-              </button>
-              <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
-                <ShoppingBag className="h-4 w-4" />
-              </button>
-              <a href="/auth" className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
-                <User className="h-4 w-4" />
-              </a>
-              
-              {/* Language Toggle */}
-              <button
-                onClick={toggleLanguage}
-                className="text-xs text-stone-600 hover:text-stone-900 transition-colors px-2 py-1 border border-stone-200 rounded"
-              >
-                {language === 'fr' ? 'EN' : 'FR'}
-              </button>
-            </div>
-          </div>
 
           {/* Mobile Actions */}
           <div className="flex lg:hidden items-center space-x-2">

@@ -16,23 +16,15 @@ const AppleStyleHero = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center container-refined section-padding">
-        {/* Logo */}
-        <div className="mb-12 fade-in-up">
-          <img
-            src="/lovable-uploads/perle-atlas-logo.png"
-            alt="Perle de l'Atlas - Logo circulaire noir et or avec perle et montagnes de l'Atlas"
-            className="h-16 md:h-20 lg:h-24 mx-auto opacity-90"
-          />
-        </div>
 
         {/* Headline */}
-        <h1 className="heading-display text-5xl md:text-6xl lg:text-7xl text-foreground mb-8 fade-in-up">
+        <h1 className="font-light text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 fade-in-up tracking-wide leading-tight">
           Sagesse Ancestrale,<br />
           Embouteillée avec Élégance
         </h1>
         
         {/* Subheadline */}
-        <p className="body-text text-xl md:text-2xl mb-12 max-w-4xl mx-auto fade-in-up">
+        <p className="font-light text-lg md:text-xl mb-12 max-w-3xl mx-auto fade-in-up text-stone-600 leading-relaxed">
           Soins et parfums marocains, 100% bio, artisanaux et livrés dans le monde entier.
         </p>
 

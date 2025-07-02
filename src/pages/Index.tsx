@@ -21,25 +21,35 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Top Newsletter Banner */}
-      <NewsletterTopBanner />
-      
       {/* Main Header */}
       <MaisonStyleHeader />
-      
-      {/* Countdown Banner */}
-      <CountdownBanner />
       
       {/* Main Content - with proper top spacing for fixed header */}
       <div className="pt-20">
         <AppleStyleHero />
+        
+        {/* Countdown + Newsletter Section */}
+        <section className="bg-gradient-to-b from-amber-50/30 to-stone-50/50 border-b border-stone-200">
+          <div className="container-refined py-8">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+              {/* Newsletter Section */}
+              <div className="flex-1">
+                <NewsletterTopBanner />
+              </div>
+              
+              {/* Countdown Section */}
+              <div className="flex-1">
+                <CountdownBanner />
+              </div>
+            </div>
+          </div>
+        </section>
+        
         <AppleStyleProductGrid />
         <FeaturedCollections />
         <SpecialOffers />
         <WrappedWithCare />
         <AppleStyleAbout />
-        <EarlyAccessSignup />
-        <NewsletterSignup />
         <ModernElegantFooter />
         <SamraRefactoredChatbot videoEnded={videoEnded} />
       </div>
