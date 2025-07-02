@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { t } from '@/utils/translations';
 import ProductCarousel from '@/components/heritage/ProductCarousel';
 
 const AppleStyleHero = () => {
@@ -20,13 +21,14 @@ const AppleStyleHero = () => {
 
         {/* Headline */}
         <h1 className="font-serif font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 animate-fade-in opacity-0 tracking-tight" style={{ lineHeight: '1.3', animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-          An Invitation to the<br />
-          Moroccan Art of Living
+          {language === 'fr' ? 'Une Invitation à l\'Art de Vivre Marocain' : 'An Invitation to the Moroccan Art of Living'}
         </h1>
         
         {/* Subheadline */}
         <p className="font-light text-base md:text-lg mb-12 animate-fade-in opacity-0 text-stone-600 leading-relaxed" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
-          From handcrafted tableware to soulful décor, discover timeless elegance born in the Atlas.
+          {language === 'fr' 
+            ? 'De la vaisselle artisanale aux décorations empreintes d\'âme, découvrez l\'élégance intemporelle née dans l\'Atlas.'
+            : 'From handcrafted tableware to soulful décor, discover timeless elegance born in the Atlas.'}
         </p>
 
         {/* Buttons */}
@@ -35,14 +37,14 @@ const AppleStyleHero = () => {
             size="lg"
             className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-4 text-base font-normal tracking-wide transition-all duration-300"
           >
-            M'informer
+            {language === 'fr' ? 'M\'informer' : 'Get Notified'}
           </Button>
           <Button
             size="lg"
             variant="outline"
             className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-12 py-4 text-base font-normal tracking-wide transition-all duration-300"
           >
-            Aperçu Boutique
+            {language === 'fr' ? 'Aperçu Boutique' : 'Shop Preview'}
           </Button>
         </div>
 

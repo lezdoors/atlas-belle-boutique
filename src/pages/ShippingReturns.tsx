@@ -1,8 +1,7 @@
 
 import React from 'react';
-import AppleStyleHeader from '@/components/AppleStyleHeader';
-import AppleStyleFooter from '@/components/AppleStyleFooter';
-import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Truck, Shield, Globe, Clock, Mail, Package } from 'lucide-react';
 
@@ -11,10 +10,10 @@ const ShippingReturns = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <AppleStyleHeader />
+      <MaisonStyleHeaderNew />
       
       {/* Hero Section */}
-      <section className="pt-20 pb-16 bg-gray-50">
+      <section className="pt-32 pb-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <h1 className="text-5xl md:text-6xl font-extralight text-black mb-6 tracking-tight">
             {language === 'fr' ? 'Livraison & Retours' : 'Shipping & Returns'}
@@ -185,8 +184,7 @@ const ShippingReturns = () => {
         </div>
       </section>
 
-      <AppleStyleFooter />
-      <SamraRefactoredChatbot />
+      <ModernElegantFooter />
     </div>
   );
 };

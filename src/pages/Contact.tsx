@@ -1,6 +1,6 @@
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import BackToTop from '@/components/BackToTop';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { MessageCircle, Mail, MapPin, Clock, Phone } from 'lucide-react';
@@ -64,10 +64,10 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-pearl-100">
-      <Header />
+    <div className="min-h-screen bg-white">
+      <MaisonStyleHeaderNew />
       
-      <main className="pt-24 pb-16">
+      <main className="pt-32 pb-16">
         {/* Hero Section */}
         <section className="relative py-20 bg-pearl-50">
           <div className="absolute inset-0 moroccan-pattern opacity-10"></div>
@@ -261,8 +261,7 @@ const Contact = () => {
         </section>
       </main>
 
-      <Footer />
-      <BackToTop />
+      <ModernElegantFooter />
     </div>
   );
 };

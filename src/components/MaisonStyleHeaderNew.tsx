@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Search, User, Menu, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { t } from '@/utils/translations';
 
 const TajineIcon = ({ className = "h-6 w-6" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -49,11 +50,11 @@ const MaisonStyleHeaderNew = () => {
   }, [lastScrollY]);
 
   const navigation = [
-    { name: 'Shop All', href: '/shop' },
-    { name: 'Tableware', href: '/tableware' },
-    { name: 'Home Decor', href: '/decor' },
-    { name: 'Gifts', href: '/gifts' },
-    { name: 'Story', href: '/story' },
+    { name: t('navigation.shopAll', language), href: '/shop' },
+    { name: t('navigation.tableware', language), href: '/tableware' },
+    { name: t('navigation.homeDecor', language), href: '/decor' },
+    { name: t('navigation.gifts', language), href: '/gifts' },
+    { name: t('navigation.story', language), href: '/story' },
   ];
 
   return (
@@ -61,7 +62,7 @@ const MaisonStyleHeaderNew = () => {
       {/* Top Bar */}
       <div className="bg-stone-100 text-stone-700 text-sm py-2">
         <div className="text-center font-serif tracking-wide">
-          Free Shipping for U.S. Orders Over $150 (Shipped from Morocco)
+          {t('header.freeShipping', language)}
         </div>
       </div>
 
@@ -153,13 +154,13 @@ const MaisonStyleHeaderNew = () => {
                   ))}
                   <div className="border-t border-stone-200 pt-6 px-4">
                     <a href="/login" className="block text-base font-light text-stone-700 hover:text-stone-900 transition-colors py-2">
-                      Account
+                      {t('header.account', language)}
                     </a>
                     <button
                       onClick={toggleLanguage}
                       className="block text-base font-light text-stone-700 hover:text-stone-900 transition-colors py-2"
                     >
-                      {language === 'fr' ? 'English' : 'Français'}
+                      {t('header.language', language)}
                     </button>
                   </div>
                 </nav>

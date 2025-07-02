@@ -5,6 +5,7 @@ import { Instagram, Youtube } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
+import { t } from '@/utils/translations';
 
 const ModernElegantFooter = () => {
   const { language, toggleLanguage, currency } = useLanguage();
@@ -40,24 +41,24 @@ const ModernElegantFooter = () => {
   };
 
   const footerLinks = {
-    'Notre Maison': [
-      { name: 'À propos', href: '/about' },
-      { name: 'Nos artisans', href: '/artisans' },
-      { name: 'Boutique Atlas Perle', href: '/boutique' }
+    [t('footer.sections.ourHouse', language)]: [
+      { name: t('footer.links.about', language), href: '/about' },
+      { name: t('footer.links.artisans', language), href: '/artisans' },
+      { name: t('footer.links.shop', language), href: '/boutique' }
     ],
-    'Services Client': [
-      { name: 'FAQ', href: '/faq' },
-      { name: 'Suivi de commande', href: '/tracking' },
-      { name: 'Retours & échanges', href: '/returns' },
-      { name: 'Contact', href: '/contact' }
+    [t('footer.sections.customerService', language)]: [
+      { name: t('footer.links.faq', language), href: '/faq' },
+      { name: t('footer.links.tracking', language), href: '/tracking' },
+      { name: t('footer.links.shippingReturns', language), href: '/shipping-returns' },
+      { name: t('footer.links.contact', language), href: '/contact' }
     ],
-    'Mentions Légales': [
-      { name: 'Conditions Générales de Vente', href: '/terms-of-sale' },
-      { name: 'Mentions légales', href: '/legal' },
-      { name: 'Politique de confidentialité', href: '/privacy' },
-      { name: 'Paramètres des cookies', href: '/cookies' }
+    [t('footer.sections.legal', language)]: [
+      { name: t('footer.links.terms', language), href: '/terms' },
+      { name: t('footer.links.legal', language), href: '/legal' },
+      { name: t('footer.links.privacy', language), href: '/privacy-policy' },
+      { name: t('footer.links.cookies', language), href: '/cookies' }
     ],
-    'Suivez-nous': [
+    [t('footer.sections.followUs', language)]: [
       { name: 'Instagram', href: 'https://instagram.com', icon: Instagram },
       { name: 'TikTok', href: 'https://tiktok.com' },
       { name: 'Pinterest', href: 'https://pinterest.com' },
@@ -71,17 +72,17 @@ const ModernElegantFooter = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="text-center mb-16">
           <h2 className="font-serif text-2xl md:text-3xl text-stone-900 mb-3">
-            Newsletter
+            {t('footer.newsletter', language)}
           </h2>
           <p className="text-stone-600 font-light mb-8">
-            Inscrivez-vous pour recevoir nos dernières actualités
+            {t('footer.newsletterSubtitle', language)}
           </p>
           
           <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
             <div className="flex gap-3 mb-3">
               <Input
                 type="email"
-                placeholder="Votre adresse email"
+                placeholder={t('footer.emailPlaceholder', language)}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 bg-white border-stone-300 focus:border-stone-500 focus:ring-stone-500"
@@ -92,12 +93,12 @@ const ModernElegantFooter = () => {
                 disabled={isSubmitting}
                 className="px-8 bg-stone-900 text-white hover:bg-stone-800 font-light"
               >
-                {isSubmitting ? '...' : 'S\'inscrire'}
+                {isSubmitting ? '...' : t('footer.subscribe', language)}
               </Button>
             </div>
             <p className="text-xs text-stone-500">
-              <a href="/privacy" className="hover:underline">
-                Voir notre politique de confidentialité
+              <a href="/privacy-policy" className="hover:underline">
+                {t('footer.privacyLink', language)}
               </a>
             </p>
           </form>
@@ -142,7 +143,7 @@ const ModernElegantFooter = () => {
             {/* Copyright */}
             <div className="order-1 md:order-2 flex-1 text-center">
               <p className="text-xs text-stone-500 font-light">
-                © 2025 Perle de l'Atlas — Tous droits réservés
+                {t('footer.copyright', language)}
               </p>
             </div>
 

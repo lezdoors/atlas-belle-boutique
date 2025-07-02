@@ -18,6 +18,10 @@ import Tableware from "./pages/Tableware";
 import Decor from "./pages/Decor";
 import Gifts from "./pages/Gifts";
 import Story from "./pages/Story";
+import ShippingReturns from "./pages/ShippingReturns";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
+import Contact from "./pages/Contact";
 
 // Import enhanced styles
 import './styles/enhanced-colors.css';
@@ -68,6 +72,10 @@ const AppRoutes = () => {
         <Route path="/gifts" element={<Gifts />} />
         <Route path="/story" element={<Story />} />
         <Route path="/boutique" element={<Shop />} />
+        <Route path="/shipping-returns" element={<ShippingReturns />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
   );
