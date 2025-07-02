@@ -9,7 +9,7 @@ import {
   validateName, 
   validateText,
   validateAuthUser,
-  prepareSecureFormData,
+  sanitizeInput,
   rateLimiter 
 } from '@/utils/securityValidation';
 
@@ -70,14 +70,24 @@ export const useSecureWholesale = () => {
         throw new Error('Message too long');
       }
 
-      // Sanitize form data
-      const sanitizedData = prepareSecureFormData(formData);
+      // Prepare properly typed data for insertion
+      const insertData = {
+        company_name: sanitizeInput(formData.company_name),
+        contact_name: sanitizeInput(formData.contact_name),
+        email: sanitizeInput(formData.email),
+        phone: sanitizeInput(formData.phone),
+        website: formData.website ? sanitizeInput(formData.website) : null,
+        address: sanitizeInput(formData.address),
+        business_type: sanitizeInput(formData.business_type),
+        products_interest: sanitizeInput(formData.products_interest),
+        message: formData.message ? sanitizeInput(formData.message) : null,
+      };
 
       console.log('Submitting secure wholesale lead for user:', user!.id);
 
       const { data, error } = await supabase
         .from('wholesale_leads')
-        .insert(sanitizedData)
+        .insert(insertData)
         .select()
         .single();
 
