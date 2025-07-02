@@ -6,7 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, User, CheckCircle, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/hooks/useAuth';
-import { validateEmail, sanitizeInput } from '@/utils/inputValidation';
+import { validateEmail, validateName, sanitizeInput } from '@/utils/inputValidation';
+import { rateLimiter } from '@/utils/securityValidation';
 
 const TestSignup = () => {
   const [firstName, setFirstName] = useState('');
@@ -25,10 +26,31 @@ const TestSignup = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!firstName || !email || !validateEmail(email)) {
+    // Rate limiting check
+    const userKey = `test_signup_${Date.now() % 1000000}`;
+    if (!rateLimiter.checkLimit(userKey, 2, 3600000)) { // 2 attempts per hour
+      toast({
+        title: 'Trop de tentatives',
+        description: 'Veuillez patienter avant de réessayer.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    
+    // Validate inputs
+    if (!validateName(firstName)) {
       toast({
         title: 'Erreur de validation',
-        description: 'Veuillez entrer un prénom et une adresse email valide',
+        description: 'Le prénom n\'est pas valide',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      toast({
+        title: 'Erreur de validation',
+        description: 'Veuillez entrer une adresse email valide',
         variant: 'destructive',
       });
       return;

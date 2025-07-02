@@ -451,6 +451,44 @@ export type Database = {
           },
         ]
       }
+      user_audit_log: {
+        Row: {
+          action: string
+          id: string
+          ip_address: unknown | null
+          metadata: Json | null
+          timestamp: string | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          id?: string
+          ip_address?: unknown | null
+          metadata?: Json | null
+          timestamp?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          id?: string
+          ip_address?: unknown | null
+          metadata?: Json | null
+          timestamp?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_audit_log_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
       user_profiles: {
         Row: {
           address: string | null
