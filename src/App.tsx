@@ -29,7 +29,7 @@ const App = () => (
             <Sonner />
             <BrowserRouter>
               <Routes>
-                <Route path="/" element={<EnhancedAppleStyleIndex />} />
+                <Route path="/" element={<Index />} />
                 <Route path="/original" element={<Index />} />
                 <Route path="/product/:slug" element={<ProductPage />} />
               </Routes>
