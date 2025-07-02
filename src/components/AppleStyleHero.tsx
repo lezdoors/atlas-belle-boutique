@@ -20,13 +20,13 @@ const AppleStyleHero = () => {
 
         {/* Headline */}
         <h1 className="font-serif font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 animate-fade-in opacity-0 tracking-tight" style={{ lineHeight: '1.3', animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-          Sagesse Ancestrale,<br />
-          Embouteillée avec Élégance
+          An Invitation to the<br />
+          Moroccan Art of Living
         </h1>
         
         {/* Subheadline */}
         <p className="font-light text-base md:text-lg mb-12 max-w-2xl mx-auto animate-fade-in opacity-0 text-stone-600 leading-relaxed" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
-          Soins et parfums marocains, 100% bio, artisanaux et livrés dans le monde entier.
+          From handcrafted tableware to soulful décor, discover timeless elegance born in the Atlas.
         </p>
 
         {/* Buttons */}

@@ -12,13 +12,11 @@ const TajineIcon = ({ className = "h-6 w-6" }: { className?: string }) => (
 );
 
 const PerleAtlasLogo = ({ className = "h-8" }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 280 40" fill="none">
-    <text x="0" y="28" fontFamily="serif" fontSize="24" fontWeight="400" fill="currentColor" letterSpacing="0.5">
-      Perle de l'Atlas
-    </text>
-    <circle cx="260" cy="20" r="8" fill="#D4AF37" opacity="0.7"/>
-    <circle cx="268" cy="15" r="4" fill="#B8860B" opacity="0.5"/>
-  </svg>
+  <img 
+    src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Perle%20(Website)-4.png"
+    alt="Perle de l'Atlas"
+    className={className}
+  />
 );
 
 const MaisonStyleHeaderNew = () => {
@@ -62,7 +60,7 @@ const MaisonStyleHeaderNew = () => {
     <div className="fixed top-0 left-0 right-0 z-50">
       {/* Top Bar */}
       <div className="bg-stone-100 text-stone-700 text-sm py-2">
-        <div className="text-center font-light tracking-wide">
+        <div className="text-center font-serif tracking-wide">
           Free Shipping for U.S. Orders Over $150 (Shipped from Morocco)
         </div>
       </div>
