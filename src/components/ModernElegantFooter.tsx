@@ -6,21 +6,38 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { t } from '@/utils/translations';
+import { validateEmail, sanitizeInput } from '@/utils/inputValidation';
+import { rateLimiter } from '@/utils/securityValidation';
+import SecureForm from '@/components/security/SecureForm';
 
 const ModernElegantFooter = () => {
   const { language, toggleLanguage, currency } = useLanguage();
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
+  const handleSecureNewsletterSubmit = async (formData: FormData, csrfToken: string) => {
+    const emailValue = formData.get('email') as string;
+    
+    // Rate limiting check
+    const userKey = `newsletter_${Date.now() % 1000000}`;
+    if (!rateLimiter.checkLimit(userKey, 3, 300000)) { // 3 attempts per 5 minutes
+      toast.error('Trop de tentatives. Veuillez patienter avant de réessayer.');
+      return;
+    }
 
+    // Validate and sanitize email
+    if (!validateEmail(emailValue)) {
+      toast.error('Veuillez entrer une adresse email valide');
+      return;
+    }
+
+    const sanitizedEmail = sanitizeInput(emailValue);
     setIsSubmitting(true);
+    
     try {
       const { error } = await supabase
         .from('newsletter_subscribers')
-        .insert([{ email }]);
+        .insert([{ email: sanitizedEmail }]);
 
       if (error) {
         if (error.code === '23505') { // Unique violation
@@ -78,15 +95,17 @@ const ModernElegantFooter = () => {
             {t('footer.newsletterSubtitle', language)}
           </p>
           
-          <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
+          <SecureForm onSubmit={handleSecureNewsletterSubmit} className="max-w-md mx-auto">
             <div className="flex gap-3 mb-3">
               <Input
                 type="email"
+                name="email"
                 placeholder={t('footer.emailPlaceholder', language)}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 bg-white border-stone-300 focus:border-stone-500 focus:ring-stone-500"
                 required
+                maxLength={255}
               />
               <Button
                 type="submit"
@@ -101,7 +120,7 @@ const ModernElegantFooter = () => {
                 {t('footer.privacyLink', language)}
               </a>
             </p>
-          </form>
+          </SecureForm>
         </div>
 
         {/* Links Grid */}

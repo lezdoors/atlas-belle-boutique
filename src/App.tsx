@@ -8,6 +8,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { useAuth } from "@/hooks/useAuth";
+import SecurityConfig from "@/components/security/SecurityConfig";
 import EnhancedAppleStyleIndex from "./pages/EnhancedAppleStyleIndex";
 import Index from "./pages/Index";
 import ProductPage from "./pages/ProductPage";
@@ -87,6 +88,7 @@ const App = () => (
       <LanguageProvider>
         <CartProvider>
           <TooltipProvider>
+            <SecurityConfig />
             <Toaster />
             <Sonner />
             <AppRoutes />
