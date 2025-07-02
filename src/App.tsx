@@ -13,6 +13,11 @@ import Index from "./pages/Index";
 import ProductPage from "./pages/ProductPage";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Shop from "./pages/Shop";
+import Tableware from "./pages/Tableware";
+import Decor from "./pages/Decor";
+import Gifts from "./pages/Gifts";
+import Story from "./pages/Story";
 
 // Import enhanced styles
 import './styles/enhanced-colors.css';
@@ -57,6 +62,12 @@ const AppRoutes = () => {
           } 
         />
         <Route path="/product/:slug" element={<ProductPage />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/tableware" element={<Tableware />} />
+        <Route path="/decor" element={<Decor />} />
+        <Route path="/gifts" element={<Gifts />} />
+        <Route path="/story" element={<Story />} />
+        <Route path="/boutique" element={<Shop />} />
       </Routes>
     </BrowserRouter>
   );
