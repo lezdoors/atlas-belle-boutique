@@ -86,7 +86,7 @@ const MaisonStyleHeader = () => {
                 <circle cx="12" cy="14" r="2"/>
               </svg>
             </button>
-            <a href="/auth" className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
+            <a href="/login" className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
               <User className="h-4 w-4" />
             </a>
             
@@ -135,7 +135,7 @@ const MaisonStyleHeader = () => {
                 </a>
               ))}
               <div className="border-t border-stone-200 pt-4 px-4">
-                <a href="/auth" className="block text-sm font-light text-stone-700 hover:text-stone-900 transition-colors py-2">
+                <a href="/login" className="block text-sm font-light text-stone-700 hover:text-stone-900 transition-colors py-2">
                   Compte
                 </a>
                 <button
