@@ -8,14 +8,14 @@ const AppleStyleHero = () => {
   const { language } = useLanguage();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden w-full">
       {/* Subtle Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-stone-50 to-white"></div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center container-refined section-padding">
+      <div className="relative z-10 text-center max-w-6xl mx-auto px-6 lg:px-8 py-20">
 
         {/* Headline */}
         <h1 className="font-light text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 fade-in-up tracking-wide leading-tight">

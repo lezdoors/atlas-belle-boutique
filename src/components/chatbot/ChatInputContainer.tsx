@@ -51,7 +51,7 @@ const ChatInputContainer = ({
           >
             <MessageCircle className="h-4 w-4" />
             <span className="text-sm">
-              {language === 'fr' ? '📞 Contacter via WhatsApp' : '📞 Contact via WhatsApp'}
+              {language === 'fr' ? 'Contacter via WhatsApp' : 'Contact via WhatsApp'}
             </span>
           </Button>
           

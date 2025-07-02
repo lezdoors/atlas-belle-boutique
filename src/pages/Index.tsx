@@ -4,6 +4,7 @@ import MaisonStyleHeader from '@/components/MaisonStyleHeader';
 import NewsletterTopBanner from '@/components/NewsletterTopBanner';
 import CountdownBanner from '@/components/CountdownBanner';
 import AppleStyleHero from '@/components/AppleStyleHero';
+import IngredientOriginMap from '@/components/IngredientOriginMap';
 import AppleStyleProductGrid from '@/components/AppleStyleProductGrid';
 import FeaturedCollections from '@/components/FeaturedCollections';
 import SpecialOffers from '@/components/SpecialOffers';
@@ -26,24 +27,30 @@ const Index = () => {
       
       {/* Main Content - with proper top spacing for fixed header */}
       <div className="pt-20">
-        <AppleStyleHero />
+        {/* Full-width Hero Section */}
+        <div className="w-full">
+          <AppleStyleHero />
+        </div>
         
-        {/* Countdown + Newsletter Section */}
-        <section className="bg-gradient-to-b from-amber-50/30 to-stone-50/50 border-b border-stone-200">
-          <div className="container-refined py-8">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        {/* Clean Newsletter + Countdown Section */}
+        <section className="w-full bg-white py-16">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Newsletter Section */}
-              <div className="flex-1">
+              <div>
                 <NewsletterTopBanner />
               </div>
               
               {/* Countdown Section */}
-              <div className="flex-1">
+              <div>
                 <CountdownBanner />
               </div>
             </div>
           </div>
         </section>
+
+        {/* Interactive Map Section */}
+        <IngredientOriginMap />
         
         <AppleStyleProductGrid />
         <FeaturedCollections />

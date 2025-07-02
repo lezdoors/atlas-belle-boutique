@@ -79,7 +79,11 @@ const MaisonStyleHeader = () => {
               <Search className="h-4 w-4" />
             </button>
             <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
-              <ShoppingBag className="h-4 w-4" />
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M8 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V2"/>
+                <path d="M6 6h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/>
+                <circle cx="12" cy="14" r="2"/>
+              </svg>
             </button>
             <a href="/auth" className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
               <User className="h-4 w-4" />
@@ -100,7 +104,11 @@ const MaisonStyleHeader = () => {
               <Search className="h-4 w-4" />
             </button>
             <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
-              <ShoppingBag className="h-4 w-4" />
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M8 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V2"/>
+                <path d="M6 6h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/>
+                <circle cx="12" cy="14" r="2"/>
+              </svg>
             </button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

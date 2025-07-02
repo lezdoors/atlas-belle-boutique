@@ -66,23 +66,23 @@ const IngredientOriginMap = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-pearl-50 to-beige-50">
-      <div className="container mx-auto px-4">
+    <section className="w-full py-20 bg-stone-50">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center bg-copper-100 text-copper-700 px-6 py-3 rounded-full mb-6">
+          <div className="inline-flex items-center bg-stone-100 text-stone-700 px-6 py-3 rounded-full mb-6">
             <MapPin className="h-4 w-4 mr-2" />
             <span className="text-sm font-medium tracking-wide">
               {language === 'fr' ? 'Origines des Ingrédients' : 'Ingredient Origins'}
             </span>
           </div>
-          <h2 className="section-title text-clay-800 mb-6">
+          <h2 className="heading-display text-3xl lg:text-4xl text-foreground mb-6">
             {language === 'fr' 
               ? 'Du Cœur du Maroc à Votre Peau'
               : 'From the Heart of Morocco to Your Skin'
             }
           </h2>
-          <p className="elegant-text text-clay-600 max-w-3xl mx-auto text-lg">
+          <p className="body-text max-w-3xl mx-auto text-lg">
             {language === 'fr'
               ? 'Explorez les régions exceptionnelles du Maroc d\'où proviennent nos ingrédients précieux'
               : 'Explore the exceptional regions of Morocco where our precious ingredients come from'

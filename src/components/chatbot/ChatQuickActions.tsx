@@ -42,7 +42,7 @@ const ChatQuickActions = ({ language, onActionClick, onWhatsAppRedirect }: ChatQ
     },
     {
       icon: MessageCircle,
-      label: language === 'fr' ? '📞 Contacter via WhatsApp' : '📞 Contact WhatsApp',
+      label: language === 'fr' ? 'Contacter via WhatsApp' : 'Contact WhatsApp',
       action: onWhatsAppRedirect
     }
   ];

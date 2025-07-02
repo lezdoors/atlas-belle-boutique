@@ -16,8 +16,8 @@ const TrustBadge = () => {
     {
       icon: <Globe className="h-4 w-4 text-blue-600" />,
       text: language === 'fr' 
-        ? '🌍 Livraison internationale rapide et suivie'
-        : '🌍 Fast and tracked international delivery'
+        ? 'Livraison internationale rapide et suivie'
+        : 'Fast and tracked international delivery'
     }
   ];
 
