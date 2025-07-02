@@ -1,356 +1,233 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { MessageCircle, X, Send, Sparkles } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { useLanguage } from '@/contexts/LanguageContext';
-import ChatFloatingButton from '@/components/chatbot/ChatFloatingButton';
-import ChatWindow from '@/components/chatbot/ChatWindow';
-import ChatHeader from '@/components/chatbot/ChatHeader';
-import ChatMessages from '@/components/chatbot/ChatMessages';
-import ChatInputContainer from '@/components/chatbot/ChatInputContainer';
 
 interface Message {
+  id: string;
   text: string;
-  isUser: boolean;
-  language: 'fr' | 'en';
-  image?: string;
+  sender: 'user' | 'samra';
+  timestamp: Date;
 }
 
 interface SamraRefactoredChatbotProps {
   videoEnded?: boolean;
 }
 
-const SamraRefactoredChatbot = ({ videoEnded = false }: SamraRefactoredChatbotProps) => {
+const SamraRefactoredChatbot = ({ videoEnded }: SamraRefactoredChatbotProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
-  const [showChatbot, setShowChatbot] = useState(false);
-  const [hasStartedConversation, setHasStartedConversation] = useState(false);
-  const [showFallbackActions, setShowFallbackActions] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
   const { language } = useLanguage();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Fixed Supabase media URLs
-  const mediaAssets = {
-    logo: "/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png",
-    products: [
-      "/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
-      "/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png",
-      "/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png"
-    ],
-    ingredients: [
-      "/lovable-uploads/4d22e63c-9766-4547-889d-0462b7de47e6.png",
-      "/lovable-uploads/616bba28-fbf7-4dfb-bae7-e036ccd1e78b.png"
-    ],
-    artisans: [
-      "/lovable-uploads/6d0913b6-03ca-40b5-9002-ea188762b64f.png",
-      "/lovable-uploads/6fde7854-c65c-40e6-8df6-8d9ca69c3fc8.png"
-    ],
-    lifestyle: [
-      "/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png",
-      "/lovable-uploads/78b2a27c-3352-460a-b4bb-78efaec79db3.png"
-    ]
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    scrollToBottom();
+  }, [messages]);
 
-    // Show chatbot 1 second after video ends or 9 seconds on page load
-    if (videoEnded) {
-      timeoutId = setTimeout(() => {
-        setShowChatbot(true);
-      }, 1000);
-    } else {
-      timeoutId = setTimeout(() => {
-        setShowChatbot(true);
-      }, 9000);
+  useEffect(() => {
+    if (isOpen && messages.length === 0) {
+      // Add welcome message when chat opens
+      const welcomeMessage: Message = {
+        id: Date.now().toString(),
+        text: language === 'fr' 
+          ? 'Bonjour ! Je suis Samra, votre conseillère beauté. Comment puis-je vous aider à découvrir nos trésors artisanaux du Maroc ? ✨'
+          : 'Hello! I\'m Samra, your beauty consultant. How can I help you discover our handcrafted treasures from Morocco? ✨',
+        sender: 'samra',
+        timestamp: new Date()
+      };
+      setMessages([welcomeMessage]);
     }
+  }, [isOpen, language]);
 
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    };
-  }, [videoEnded]);
-
-  const detectLanguage = (text: string): 'fr' | 'en' => {
-    const frenchWords = [
-      'bonjour', 'salut', 'merci', 'comment', 'parler', 'français', 'produit', 'aide', 'conseil',
-      'tajine', 'verre', 'marocain', 'livraison', 'expédition', 'retour', 'prix', 'commande',
-      'artisanal', 'traditionnel', 'maroc', 'boutique', 'collection', 'newsletter', 'lancement',
-      'emballage', 'cadeau', 'support', 'service', 'client'
-    ];
-    
-    const englishWords = [
-      'hello', 'hi', 'thank', 'how', 'help', 'product', 'advice', 'english',
-      'tajine', 'glass', 'moroccan', 'shipping', 'delivery', 'return', 'price', 'order',
-      'handmade', 'traditional', 'morocco', 'boutique', 'collection', 'newsletter', 'launch',
-      'gift', 'wrapping', 'support', 'service', 'customer'
-    ];
-    
-    const lowerText = text.toLowerCase();
-    const frenchMatches = frenchWords.filter(word => lowerText.includes(word)).length;
-    const englishMatches = englishWords.filter(word => lowerText.includes(word)).length;
-    
-    return frenchMatches > englishMatches ? 'fr' : 'en';
-  };
-
-  const generateResponse = (userMessage: string, detectedLang: 'fr' | 'en'): Message => {
+  const getAIResponse = (userMessage: string): string => {
     const lowerMessage = userMessage.toLowerCase();
-    setShowFallbackActions(false);
     
-    if (detectedLang === 'fr') {
-      // Greeting responses
-      if (lowerMessage.includes('bonjour') || lowerMessage.includes('salut') || lowerMessage.includes('hello')) {
-        return {
-          text: "Bonjour et bienvenue chez Perle de l'Atlas ! 🌟 Je suis Samra, votre assistante virtuelle. Je suis là pour vous guider dans notre boutique d'articles artisanaux marocains faits main. Comment puis-je vous aider aujourd'hui ?",
-          isUser: false,
-          language: detectedLang,
-          image: mediaAssets.logo
-        };
-      }
-
-      // Shipping inquiries
-      if (lowerMessage.includes('livraison') || lowerMessage.includes('expédition') || lowerMessage.includes('ship')) {
-        return {
-          text: "Nous expédions dans le monde entier depuis le Maroc via notre service de livraison express internationale ! 📦 La livraison est gratuite pour les commandes de 149$ USD et plus. Les délais de livraison sont généralement de 2 à 5 jours ouvrables selon votre localisation. Toutes les commandes sont soigneusement emballées et entièrement suivies.",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-
-      // Product inquiries - Tajines
-      if (lowerMessage.includes('tajine') || lowerMessage.includes('plat')) {
-        return {
-          text: "Nos tajines artisanaux sont de véritables œuvres d'art ! 🏺 Fabriqués à la main en argile traditionnelle au Maroc, ils sont parfaits pour 2 à 4 personnes. Un tajine permet une cuisson lente et savoureuse qui préserve tous les arômes. C'est l'essence même de la cuisine marocaine authentique !",
-          isUser: false,
-          language: detectedLang,
-          image: mediaAssets.products[0]
-        };
-      }
-
-      // Product inquiries - Glasses
-      if (lowerMessage.includes('verre') || lowerMessage.includes('thé') || lowerMessage.includes('glass')) {
-        return {
-          text: "Nos verres marocains sont soufflés à la main selon des techniques ancestrales ! 🫖 Parfaits pour déguster le thé à la menthe traditionnel, ils sont disponibles en sets individuels ou en service complet. Chaque verre est unique et reflète le savoir-faire artisanal marocain.",
-          isUser: false,
-          language: detectedLang,
-          image: mediaAssets.products[1]
-        };
-      }
-
-      // Launch and availability
-      if (lowerMessage.includes('lancement') || lowerMessage.includes('ouverture') || lowerMessage.includes('disponible')) {
-        return {
-          text: "Nous sommes actuellement en lancement progressif ! 🎉 Notre grande ouverture officielle aura lieu très bientôt. En attendant, vous pouvez vous inscrire à notre newsletter pour un accès exclusif aux nouvelles collections et aux histoires d'artisans. Vous serez les premiers informés !",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-
-      // Newsletter subscription
-      if (lowerMessage.includes('newsletter') || lowerMessage.includes('inscription') || lowerMessage.includes('email')) {
-        return {
-          text: "Excellente idée ! 💎 En vous inscrivant à notre newsletter, vous aurez un accès privilégié aux nouvelles collections, aux histoires exclusives de nos artisans, et vous serez informé en avant-première de notre grande ouverture. C'est le meilleur moyen de ne rien manquer !",
-          isUser: false,
-          language: detectedLang,
-          image: mediaAssets.lifestyle[0]
-        };
-      }
-
-      // Returns and support
-      if (lowerMessage.includes('retour') || lowerMessage.includes('remboursement') || lowerMessage.includes('problème')) {
-        return {
-          text: "Si un produit arrive endommagé ou ne correspond pas à vos attentes, contactez notre équipe à support@atlasperle.com 📧 Nous nous engageons à offrir un service client exceptionnel et des solutions équitables. Notre équipe vous accompagnera pour résoudre toute situation.",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-
-      // Gift wrapping
-      if (lowerMessage.includes('cadeau') || lowerMessage.includes('emballage')) {
-        return {
-          text: "Nos produits font de magnifiques cadeaux ! 🎁 Pour des questions spécifiques sur l'emballage cadeau, je vous invite à contacter notre équipe à support@atlasperle.com. Ils pourront vous proposer les meilleures options pour sublimer vos présents.",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-
-      // Price inquiries
-      if (lowerMessage.includes('prix') || lowerMessage.includes('coût') || lowerMessage.includes('tarif')) {
-        return {
-          text: "Nos prix reflètent la qualité artisanale et l'authenticité de nos créations marocaines 💎 Pour connaître les tarifs détaillés de nos tajines, verres et autres articles, je vous invite à parcourir notre boutique ou à contacter notre équipe pour des informations personnalisées.",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-
-      // Fallback response
-      setShowFallbackActions(true);
-      return {
-        text: "Je ne suis pas sûre de bien comprendre votre demande 🤔 Puis-je vous aider avec nos tajines artisanaux, nos verres marocains, la livraison, ou avez-vous d'autres questions sur notre boutique ? N'hésitez pas à être plus précis !",
-        isUser: false,
-        language: detectedLang
-      };
-    } else {
-      // English responses
-      // Greeting responses
-      if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('bonjour')) {
-        return {
-          text: "Hello and welcome to Perle de l'Atlas! 🌟 I'm Samra, your virtual assistant. I'm here to guide you through our boutique of handcrafted Moroccan goods. How can I help you today?",
-          isUser: false,
-          language: detectedLang,
-          image: mediaAssets.logo
-        };
-      }
-
-      // Shipping inquiries
-      if (lowerMessage.includes('shipping') || lowerMessage.includes('delivery') || lowerMessage.includes('ship')) {
-        return {
-          text: "We ship worldwide from Morocco using express international delivery! 📦 Free shipping applies to orders of $149 USD and above. Estimated delivery times are typically 2–5 business days depending on your location. All orders are carefully packed and fully tracked.",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-
-      // Product inquiries - Tajines
-      if (lowerMessage.includes('tajine') || lowerMessage.includes('tagine') || lowerMessage.includes('dish')) {
-        return {
-          text: "Our handmade tajines are true works of art! 🏺 Crafted from traditional clay in Morocco, they're sized perfectly for 2–4 people. A tajine allows slow, flavorful cooking that preserves all the aromas. It's the essence of authentic Moroccan cuisine!",
-          isUser: false,
-          language: detectedLang,
-          image: mediaAssets.products[0]
-        };
-      }
-
-      // Product inquiries - Glasses
-      if (lowerMessage.includes('glass') || lowerMessage.includes('tea') || lowerMessage.includes('moroccan glass')) {
-        return {
-          text: "Our Moroccan glasses are handblown using ancestral techniques! 🫖 Perfect for enjoying traditional mint tea, they're available as individual pieces or complete serving sets. Each glass is unique and reflects authentic Moroccan craftsmanship.",
-          isUser: false,
-          language: detectedLang,
-          image: mediaAssets.products[1]
-        };
-      }
-
-      // Launch and availability
-      if (lowerMessage.includes('launch') || lowerMessage.includes('opening') || lowerMessage.includes('available')) {
-        return {
-          text: "We're currently in soft launch! 🎉 Our grand opening is coming very soon. In the meantime, you can sign up for our newsletter to get exclusive first access to new drops and behind-the-scenes stories. You'll be among the first to know!",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-
-      // Newsletter subscription
-      if (lowerMessage.includes('newsletter') || lowerMessage.includes('subscribe') || lowerMessage.includes('email')) {
-        return {
-          text: "Excellent idea! 💎 By signing up for our newsletter, you'll get exclusive first access to new collections, behind-the-scenes artisan stories, and early notification of our grand opening. It's the best way to stay connected with us!",
-          isUser: false,
-          language: detectedLang,
-          image: mediaAssets.lifestyle[0]
-        };
-      }
-
-      // Returns and support
-      if (lowerMessage.includes('return') || lowerMessage.includes('refund') || lowerMessage.includes('problem')) {
-        return {
-          text: "If a product arrives damaged or not as expected, please contact our team at support@atlasperle.com 📧 We're committed to providing exceptional customer care and fair solutions. Our support team will work with you to resolve any situation.",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-
-      // Gift wrapping
-      if (lowerMessage.includes('gift') || lowerMessage.includes('wrapping')) {
-        return {
-          text: "Our products make wonderful gifts! 🎁 For specific questions about gift wrapping options, please contact our team at support@atlasperle.com. They can provide you with the best options to make your presents extra special.",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-
-      // Price inquiries
-      if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('how much')) {
-        return {
-          text: "Our prices reflect the artisanal quality and authenticity of our Moroccan creations 💎 For detailed pricing on our tajines, glasses, and other items, I invite you to browse our boutique or contact our team for personalized information.",
-          isUser: false,
-          language: detectedLang
-        };
-      }
-
-      // Fallback response
-      setShowFallbackActions(true);
-      return {
-        text: "I'm not quite sure I understand your request 🤔 Can I help you with our handmade tajines, Moroccan glasses, shipping information, or do you have other questions about our boutique? Feel free to be more specific!",
-        isUser: false,
-        language: detectedLang
-      };
+    // Shipping info
+    if (lowerMessage.includes('shipping') || lowerMessage.includes('livraison') || lowerMessage.includes('expédition')) {
+      return language === 'fr' 
+        ? 'Nous offrons la livraison gratuite dans le monde entier pour toute commande de 149€ ou plus ! Tous nos produits sont expédiés depuis le Maroc avec amour et soin. Comptez 5-10 jours ouvrables pour la livraison express. 📦✨'
+        : 'We offer free worldwide shipping on orders of $149 or more! All our products are shipped from Morocco with love and care. Allow 5-10 business days for express delivery. 📦✨';
     }
+    
+    // Returns/damaged items
+    if (lowerMessage.includes('return') || lowerMessage.includes('damaged') || lowerMessage.includes('retour') || lowerMessage.includes('endommagé')) {
+      return language === 'fr' 
+        ? 'Pour tout retour ou article endommagé, contactez directement notre équipe support à support@atlasperle.com. Nous nous occupons de tout avec le plus grand soin ! 💝'
+        : 'For any returns or damaged items, please contact our support team directly at support@atlasperle.com. We\'ll take care of everything with the utmost care! 💝';
+    }
+    
+    // Product info
+    if (lowerMessage.includes('tajine') || lowerMessage.includes('tea') || lowerMessage.includes('thé') || lowerMessage.includes('argan')) {
+      return language === 'fr' 
+        ? 'Nos produits sont tous authentiques et fabriqués par des artisans marocains talentueux. Chaque tajine est façonné à la main dans l\'argile de Salé, nos verres à thé sont soufflés selon la tradition de Fès, et notre huile d\'argan provient directement des coopératives berbères de l\'Atlas. 🏺✨'
+        : 'All our products are authentic and made by talented Moroccan artisans. Each tajine is hand-shaped from Salé clay, our tea glasses are blown according to Fès tradition, and our argan oil comes directly from Berber cooperatives in the Atlas Mountains. 🏺✨';
+    }
+    
+    // Care/rituals
+    if (lowerMessage.includes('ritual') || lowerMessage.includes('care') || lowerMessage.includes('rituel') || lowerMessage.includes('soin')) {
+      return language === 'fr' 
+        ? 'Nos rituels de beauté s\'inspirent des traditions séculaires du Maroc. Le hammam, l\'huile d\'argan, le savon noir... chaque produit est une invitation à prendre soin de soi avec authenticité et élégance. Voulez-vous que je vous recommande un rituel personnalisé ? 🌿💆‍♀️'
+        : 'Our beauty rituals are inspired by centuries-old Moroccan traditions. The hammam, argan oil, black soap... each product is an invitation to take care of yourself with authenticity and elegance. Would you like me to recommend a personalized ritual? 🌿💆‍♀️';
+    }
+    
+    // Contact
+    if (lowerMessage.includes('contact') || lowerMessage.includes('help')) {
+      return language === 'fr' 
+        ? 'Notre équipe est là pour vous ! Écrivez-nous à support@atlasperle.com pour toute question. Nous répondons généralement sous 24h. Vous pouvez aussi continuer à me parler, je suis là pour vous guider ! 😊'
+        : 'Our team is here for you! Write to us at support@atlasperle.com for any questions. We usually respond within 24 hours. You can also keep talking to me, I\'m here to guide you! 😊';
+    }
+    
+    // Default responses
+    const defaultResponses = language === 'fr' ? [
+      'C\'est une excellente question ! Chaque pièce de notre collection raconte une histoire unique d\'artisanat marocain. Que puis-je vous dire de plus spécifique ? ✨',
+      'Je suis ravie de pouvoir vous aider ! Explorez nos collections pour découvrir l\'âme du Maroc dans chaque création. Y a-t-il un produit qui vous intéresse particulièrement ? 🏺',
+      'L\'artisanat marocain est si riche ! Chaque région a ses spécialités. Laissez-moi vous guider vers les trésors qui vous correspondent le mieux. 💎'
+    ] : [
+      'That\'s an excellent question! Each piece in our collection tells a unique story of Moroccan craftsmanship. What can I tell you more specifically? ✨',
+      'I\'m delighted to help you! Explore our collections to discover the soul of Morocco in every creation. Is there a particular product that interests you? 🏺',
+      'Moroccan craftsmanship is so rich! Each region has its specialties. Let me guide you to the treasures that suit you best. 💎'
+    ];
+    
+    return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (!message.trim()) return;
-    
-    setHasStartedConversation(true);
-    
-    const detectedLang = detectLanguage(message);
-    const newUserMessage: Message = { text: message, isUser: true, language: detectedLang };
-    const response = generateResponse(message, detectedLang);
-    
-    setMessages(prev => [...prev, newUserMessage, response]);
+
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      text: message,
+      sender: 'user',
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
     setMessage('');
-  };
+    setIsTyping(true);
 
-  const handleWhatsAppRedirect = () => {
-    const phoneNumber = '+33663068980';
-    const whatsappMessage = language === 'fr' 
-      ? 'Bonjour Perle d\'Atlas ! J\'aimerais avoir des informations personnalisées sur vos produits artisanaux marocains.' 
-      : 'Hello Perle d\'Atlas! I would like personalized information about your handcrafted Moroccan products.';
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+    // Simulate typing delay
+    setTimeout(() => {
+      const aiResponse: Message = {
+        id: (Date.now() + 1).toString(),
+        text: getAIResponse(message),
+        sender: 'samra',
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, aiResponse]);
+      setIsTyping(false);
+    }, 1500);
   };
-
-  const handleQuickActionClick = (actionMessage: string) => {
-    setMessage(actionMessage);
-    setHasStartedConversation(true);
-    
-    const detectedLang = detectLanguage(actionMessage);
-    const newUserMessage: Message = { text: actionMessage, isUser: true, language: detectedLang };
-    const response = generateResponse(actionMessage, detectedLang);
-    
-    setMessages(prev => [...prev, newUserMessage, response]);
-    setMessage('');
-  };
-
-  // Only render if chatbot should be visible
-  if (!showChatbot) return null;
 
   return (
     <>
-      <ChatFloatingButton 
-        onClick={() => setIsOpen(true)} 
-        isOpen={isOpen} 
-      />
+      {/* Floating Button */}
+      <div className="fixed bottom-8 right-8 z-50">
+        <Button
+          onClick={() => setIsOpen(!isOpen)}
+          className={`w-16 h-16 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-white hover:from-amber-500 hover:to-amber-700 shadow-2xl shadow-amber-500/25 transition-all duration-300 hover:scale-110 ${isOpen ? 'scale-0' : 'scale-100'}`}
+          size="icon"
+        >
+          <MessageCircle className="w-7 h-7" />
+          <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse flex items-center justify-center">
+            <Sparkles className="w-2 h-2 text-white" />
+          </div>
+        </Button>
+      </div>
 
-      <ChatWindow isOpen={isOpen}>
-        <ChatHeader 
-          language={language} 
-          onClose={() => setIsOpen(false)} 
-        />
-        
-        <ChatMessages 
-          messages={messages} 
-          language={language} 
-        />
-        
-        <ChatInputContainer
-          message={message}
-          setMessage={setMessage}
-          onSendMessage={handleSendMessage}
-          language={language}
-          onQuickActionClick={handleQuickActionClick}
-          onWhatsAppRedirect={handleWhatsAppRedirect}
-          showQuickActions={!hasStartedConversation}
-          showFallbackActions={showFallbackActions}
-        />
-      </ChatWindow>
+      {/* Chat Window */}
+      {isOpen && (
+        <div className="fixed bottom-8 right-8 w-96 max-w-[calc(100vw-2rem)] bg-white rounded-3xl shadow-2xl shadow-black/20 border border-amber-100 z-40 overflow-hidden">
+          
+          {/* Header */}
+          <div className="bg-gradient-to-r from-amber-400 to-amber-600 p-6 text-white relative overflow-hidden">
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Cpath d="m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+            <div className="relative flex items-center justify-between">
+              <div>
+                <h3 className="text-xl font-light mb-1" style={{ fontFamily: 'Brush Script MT, cursive' }}>
+                  Samra
+                </h3>
+                <p className="text-amber-100 font-light text-sm">
+                  {language === 'fr' ? 'Votre conseillère beauté' : 'Your beauty consultant'}
+                </p>
+              </div>
+              <Button
+                onClick={() => setIsOpen(false)}
+                variant="ghost"
+                size="icon"
+                className="text-white hover:bg-white/20 rounded-full"
+              >
+                <X className="w-5 h-5" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Messages */}
+          <div className="h-80 p-6 overflow-y-auto bg-gradient-to-b from-amber-25 to-white">
+            {messages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`mb-4 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}
+              >
+                <div
+                  className={`inline-block max-w-[80%] p-4 rounded-2xl ${
+                    msg.sender === 'user'
+                      ? 'bg-black text-white'
+                      : 'bg-white border border-amber-100 text-black shadow-sm'
+                  }`}
+                >
+                  <p className="text-sm font-light leading-relaxed">
+                    {msg.text}
+                  </p>
+                </div>
+              </div>
+            ))}
+            
+            {isTyping && (
+              <div className="text-left mb-4">
+                <div className="inline-block bg-white border border-amber-100 text-black shadow-sm p-4 rounded-2xl">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Input */}
+          <div className="p-6 border-t border-amber-100 bg-white">
+            <form onSubmit={handleSendMessage} className="flex space-x-3">
+              <Input
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder={language === 'fr' ? 'Votre message...' : 'Your message...'}
+                className="flex-1 border-amber-200 focus:border-amber-400 rounded-xl font-light"
+                disabled={isTyping}
+              />
+              <Button
+                type="submit"
+                disabled={isTyping || !message.trim()}
+                className="bg-gradient-to-r from-amber-400 to-amber-600 text-white hover:from-amber-500 hover:to-amber-700 rounded-xl px-4 transition-all duration-200"
+              >
+                <Send className="w-4 h-4" />
+              </Button>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 };

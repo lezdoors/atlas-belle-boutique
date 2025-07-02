@@ -22,29 +22,29 @@ const LanguageDropdown = () => {
         <Button
           variant="outline"
           size="sm"
-          className="border-amber-200 hover:bg-amber-50 text-sand-700 bg-white"
+          className="border-black/20 hover:bg-black/5 text-black bg-white rounded-full font-light"
         >
           <Globe className="h-4 w-4 mr-2" />
-          {language === 'fr' ? 'Français' : 'English'} ({currency})
+          {language === 'fr' ? 'FR' : 'EN'} ({currency})
           <ChevronDown className="h-4 w-4 ml-2" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent 
         align="end" 
-        className="bg-white border border-sand-200 shadow-lg z-50"
+        className="bg-white border border-black/10 shadow-lg z-50 rounded-xl"
       >
         <DropdownMenuItem
           onClick={() => handleLanguageChange('fr')}
-          className={`cursor-pointer hover:bg-amber-50 ${
-            language === 'fr' ? 'bg-amber-50 text-amber-700' : ''
+          className={`cursor-pointer hover:bg-black/5 rounded-lg ${
+            language === 'fr' ? 'bg-black/5 text-black' : ''
           }`}
         >
           🇫🇷 Français (EUR)
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => handleLanguageChange('en')}
-          className={`cursor-pointer hover:bg-amber-50 ${
-            language === 'en' ? 'bg-amber-50 text-amber-700' : ''
+          className={`cursor-pointer hover:bg-black/5 rounded-lg ${
+            language === 'en' ? 'bg-black/5 text-black' : ''
           }`}
         >
           🇺🇸 English (USD)

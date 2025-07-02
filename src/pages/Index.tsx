@@ -2,26 +2,30 @@
 import { useState, useEffect } from 'react';
 import AppleStyleHeader from '@/components/AppleStyleHeader';
 import AppleStyleHero from '@/components/AppleStyleHero';
-import AppleStyleProductGrid from '@/components/AppleStyleProductGrid';
+import FeaturedCollections from '@/components/FeaturedCollections';
+import SpecialOffers from '@/components/SpecialOffers';
+import WrappedWithCare from '@/components/WrappedWithCare';
 import AppleStyleAbout from '@/components/AppleStyleAbout';
+import NewsletterSignup from '@/components/NewsletterSignup';
 import AppleStyleFooter from '@/components/AppleStyleFooter';
 import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
-import AppleCountdownBanner from '@/components/AppleCountdownBanner';
-import LaunchModal from '@/components/LaunchModal';
+import TopBanner from '@/components/TopBanner';
 
 const Index = () => {
   const [videoEnded, setVideoEnded] = useState(false);
 
   return (
     <div className="min-h-screen bg-white">
-      <AppleCountdownBanner />
+      <TopBanner />
       <AppleStyleHeader />
       <AppleStyleHero />
-      <AppleStyleProductGrid />
+      <FeaturedCollections />
+      <SpecialOffers />
+      <WrappedWithCare />
       <AppleStyleAbout />
+      <NewsletterSignup />
       <AppleStyleFooter />
       <SamraRefactoredChatbot videoEnded={videoEnded} />
-      <LaunchModal />
     </div>
   );
 };
