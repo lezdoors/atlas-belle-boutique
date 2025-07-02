@@ -24,21 +24,21 @@ const AppleStyleHero = () => {
         {/* Logo */}
         <div className="mb-8">
           <img
-            src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Perle%20(Website)-4.png"
-            alt="Perle d'Atlas"
+            src="/lovable-uploads/perle-atlas-logo.png"
+            alt="Perle de l'Atlas - Logo circulaire noir et or avec perle et montagnes de l'Atlas"
             className="h-20 md:h-24 lg:h-28 mx-auto"
           />
         </div>
 
-        {/* Headline - Two lines */}
+        {/* Headline */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-black mb-6 tracking-tight leading-tight">
-          L'Art du Maroc,<br />
-          Embouteillé avec Grâce
+          Sagesse Ancestrale,<br />
+          Embouteillée avec Élégance
         </h1>
         
         {/* Subheadline */}
         <p className="text-lg md:text-xl font-light text-black/70 mb-8 max-w-3xl mx-auto leading-relaxed">
-          Soins ancestraux et parfums d'exception. 100% bio, faits à la main, expédiés depuis le Maroc.
+          Soins et parfums marocains, 100% bio, artisanaux et livrés dans le monde entier.
         </p>
 
         {/* Buttons */}
