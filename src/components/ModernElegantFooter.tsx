@@ -7,7 +7,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { t } from '@/utils/translations';
 import { validateEmail, sanitizeInput } from '@/utils/inputValidation';
-import { rateLimiter } from '@/utils/securityValidation';
+import { ServerSideRateLimiter, RateLimiters } from '@/utils/serverSideRateLimiting';
 import SecureForm from '@/components/security/SecureForm';
 
 const ModernElegantFooter = () => {
@@ -18,10 +18,13 @@ const ModernElegantFooter = () => {
   const handleSecureNewsletterSubmit = async (formData: FormData, csrfToken: string) => {
     const emailValue = formData.get('email') as string;
     
-    // Rate limiting check
-    const userKey = `newsletter_${Date.now() % 1000000}`;
-    if (!rateLimiter.checkLimit(userKey, 3, 300000)) { // 3 attempts per 5 minutes
-      toast.error('Trop de tentatives. Veuillez patienter avant de réessayer.');
+    // Server-side rate limiting check
+    const rateLimitResult = await ServerSideRateLimiter.checkLimit(RateLimiters.NEWSLETTER_SIGNUP);
+    if (!rateLimitResult.allowed) {
+      const message = rateLimitResult.blocked 
+        ? 'Trop de tentatives d\'inscription. Veuillez patienter avant de réessayer.'
+        : 'Trop de tentatives. Veuillez patienter avant de réessayer.';
+      toast.error(message);
       return;
     }
 
@@ -35,6 +38,8 @@ const ModernElegantFooter = () => {
     setIsSubmitting(true);
     
     try {
+      // Record the rate limit attempt
+      await ServerSideRateLimiter.recordAttempt(RateLimiters.NEWSLETTER_SIGNUP.action);
       const { error } = await supabase
         .from('newsletter_subscribers')
         .insert([{ email: sanitizedEmail }]);

@@ -3,7 +3,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
-import { validateQuantity, validatePrice, validateAuthUser, rateLimiter } from '@/utils/securityValidation';
+import { validateQuantity, validatePrice, validateAuthUser } from '@/utils/securityValidation';
+import { ServerSideRateLimiter, RateLimiters } from '@/utils/serverSideRateLimiting';
 
 interface SecureOrderData {
   product_id: string;
@@ -27,10 +28,13 @@ export const useSecureOrder = () => {
         throw new Error('Authentication required');
       }
 
-      // Rate limiting check
-      const userKey = `order_${user!.id}`;
-      if (!rateLimiter.checkLimit(userKey, 3, 300000)) { // 3 orders per 5 minutes
-        throw new Error('Too many order attempts. Please wait before trying again.');
+      // Server-side rate limiting check
+      const rateLimitResult = await ServerSideRateLimiter.checkLimit(RateLimiters.ORDER_CREATION);
+      if (!rateLimitResult.allowed) {
+        const message = rateLimitResult.blocked 
+          ? 'Too many order attempts. You are temporarily blocked. Please try again later.'
+          : `Too many order attempts. ${rateLimitResult.remainingAttempts || 0} attempts remaining.`;
+        throw new Error(message);
       }
 
       // Validate input data
@@ -55,6 +59,9 @@ export const useSecureOrder = () => {
         quantity: secureOrderData.quantity,
         user_id: secureOrderData.user_id 
       });
+
+      // Record the rate limit attempt
+      await ServerSideRateLimiter.recordAttempt(RateLimiters.ORDER_CREATION.action);
 
       const { data, error } = await supabase
         .from('orders')

@@ -22,6 +22,24 @@ interface CheckoutRequest {
   quantity: number;
 }
 
+// Security validation functions
+const validateEmail = (email: string): boolean => {
+  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  return emailRegex.test(email) && email.length <= 255;
+};
+
+const validateQuantity = (quantity: number): boolean => {
+  return Number.isInteger(quantity) && quantity > 0 && quantity <= 1000;
+};
+
+const validatePrice = (price: number): boolean => {
+  return price > 0 && price <= 1000000 && Number.isFinite(price);
+};
+
+const sanitizeInput = (input: string): string => {
+  return input.trim().replace(/[<>]/g, '');
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -43,6 +61,27 @@ serve(async (req) => {
       quantity
     }: CheckoutRequest = await req.json();
 
+    // Security validations
+    if (!validateEmail(customerInfo.email)) {
+      throw new Error('Invalid email format');
+    }
+
+    if (!validateQuantity(quantity)) {
+      throw new Error('Invalid quantity');
+    }
+
+    if (!validatePrice(priceMAD)) {
+      throw new Error('Invalid price');
+    }
+
+    // Sanitize inputs
+    const sanitizedCustomerInfo = {
+      name: sanitizeInput(customerInfo.name),
+      email: sanitizeInput(customerInfo.email),
+      phone: customerInfo.phone ? sanitizeInput(customerInfo.phone) : undefined,
+      shippingAddress: customerInfo.shippingAddress ? sanitizeInput(customerInfo.shippingAddress) : undefined
+    };
+
     // Convert price from MAD to target currency (cents)
     const exchangeRates = { EUR: 0.093, USD: 0.099 };
     const convertedPrice = Math.round(priceMAD * exchangeRates[currency] * 100); // Convert to cents
@@ -53,7 +92,7 @@ serve(async (req) => {
 
     // Check if customer exists
     const customers = await stripe.customers.list({ 
-      email: customerInfo.email, 
+      email: sanitizedCustomerInfo.email, 
       limit: 1 
     });
     
@@ -65,7 +104,7 @@ serve(async (req) => {
     // Create checkout session
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
-      customer_email: customerId ? undefined : customerInfo.email,
+      customer_email: customerId ? undefined : sanitizedCustomerInfo.email,
       line_items: [
         {
           price_data: {
@@ -84,26 +123,40 @@ serve(async (req) => {
       cancel_url: `${req.headers.get("origin")}/produit/${productId}?checkout=cancelled`,
       metadata: {
         product_id: productId,
-        customer_name: customerInfo.name,
-        customer_phone: customerInfo.phone || '',
-        shipping_address: customerInfo.shippingAddress || '',
+        customer_name: sanitizedCustomerInfo.name,
+        customer_phone: sanitizedCustomerInfo.phone || '',
+        shipping_address: sanitizedCustomerInfo.shippingAddress || '',
       }
     });
 
-    // Insert order into Supabase
+    // Insert order into Supabase with security logging
     const { error: insertError } = await supabaseClient
       .from("orders")
       .insert({
-        customer_name: customerInfo.name,
-        email: customerInfo.email,
-        phone: customerInfo.phone,
-        shipping_address: customerInfo.shippingAddress,
+        customer_name: sanitizedCustomerInfo.name,
+        email: sanitizedCustomerInfo.email,
+        phone: sanitizedCustomerInfo.phone,
+        shipping_address: sanitizedCustomerInfo.shippingAddress,
         product_id: productId,
         quantity: quantity,
         price_total: convertedPrice,
         currency: currency,
         payment_status: 'pending',
         stripe_session_id: session.id,
+      });
+
+    // Log security event
+    await supabaseClient
+      .from("security_audit_log")
+      .insert({
+        table_name: 'orders',
+        operation: 'CREATE_CHECKOUT',
+        new_data: {
+          product_id: productId,
+          quantity: quantity,
+          currency: currency,
+          stripe_session_id: session.id
+        }
       });
 
     if (insertError) {

@@ -413,6 +413,39 @@ export type Database = {
         }
         Relationships: []
       }
+      rate_limits: {
+        Row: {
+          action: string
+          attempt_count: number | null
+          blocked_until: string | null
+          id: string
+          ip_address: unknown | null
+          last_attempt: string | null
+          reset_time: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          attempt_count?: number | null
+          blocked_until?: string | null
+          id?: string
+          ip_address?: unknown | null
+          last_attempt?: string | null
+          reset_time?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          attempt_count?: number | null
+          blocked_until?: string | null
+          id?: string
+          ip_address?: unknown | null
+          last_attempt?: string | null
+          reset_time?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       search_analytics: {
         Row: {
           clicked_product_id: string | null
@@ -450,6 +483,45 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      security_audit_log: {
+        Row: {
+          id: string
+          ip_address: unknown | null
+          new_data: Json | null
+          old_data: Json | null
+          operation: string
+          security_context: Json | null
+          table_name: string
+          timestamp: string | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          id?: string
+          ip_address?: unknown | null
+          new_data?: Json | null
+          old_data?: Json | null
+          operation: string
+          security_context?: Json | null
+          table_name: string
+          timestamp?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          id?: string
+          ip_address?: unknown | null
+          new_data?: Json | null
+          old_data?: Json | null
+          operation?: string
+          security_context?: Json | null
+          table_name?: string
+          timestamp?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
       }
       user_audit_log: {
         Row: {

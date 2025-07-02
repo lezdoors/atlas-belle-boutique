@@ -12,7 +12,9 @@ import { rateLimiter } from '@/utils/securityValidation';
 const TestSignup = () => {
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('testPassword123');
+  const [password, setPassword] = useState(() => 
+    `testPass${Math.random().toString(36).substring(2, 8)}${Date.now().toString(36)}`
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [testResults, setTestResults] = useState<{
