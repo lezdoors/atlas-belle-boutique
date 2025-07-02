@@ -1,0 +1,88 @@
+
+/* Enhanced Color Palette - Elegant & Sophisticated */
+
+:root {
+  /* Primary Brand Colors */
+  --color-primary: #1e293b;        /* Deep charcoal */
+  --color-primary-light: #334155;  /* Slate 700 */
+  --color-primary-dark: #0f172a;   /* Slate 900 */
+  
+  /* Accent Colors - Warm Golden Tones */
+  --color-accent: #d97706;          /* Amber 600 */
+  --color-accent-light: #f59e0b;   /* Amber 500 */
+  --color-accent-warm: #b45309;    /* Amber 700 */
+  --color-accent-muted: #fbbf24;   /* Amber 400 */
+  
+  /* Background Tones - Warm Neutrals */
+  --color-bg-primary: #fefdfb;     /* Warm white */
+  --color-bg-secondary: #f8fafc;   /* Slate 50 */
+  --color-bg-warm: #fef3c7;        /* Amber 100 */
+  --color-bg-clay: #f5f5f4;        /* Stone 100 */
+  
+  /* Text Colors */
+  --color-text-primary: #1e293b;   /* Slate 800 */
+  --color-text-secondary: #64748b; /* Slate 500 */
+  --color-text-muted: #94a3b8;     /* Slate 400 */
+  
+  /* Border Colors */
+  --color-border-light: #e2e8f0;   /* Slate 200 */
+  --color-border-warm: #fed7aa;     /* Orange 200 */
+  --color-border-accent: #fbbf24;   /* Amber 400 */
+}
+
+/* Enhanced Color Utilities */
+.text-primary { color: var(--color-primary); }
+.text-accent { color: var(--color-accent); }
+.text-warm { color: var(--color-accent-warm); }
+
+.bg-primary { background-color: var(--color-primary); }
+.bg-accent { background-color: var(--color-accent); }
+.bg-warm { background-color: var(--color-bg-warm); }
+.bg-clay { background-color: var(--color-bg-clay); }
+
+.border-warm { border-color: var(--color-border-warm); }
+.border-accent { border-color: var(--color-border-accent); }
+
+/* Gradient Utilities */
+.gradient-warm {
+  background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent-warm));
+}
+
+.gradient-elegant {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+}
+
+.gradient-clay {
+  background: linear-gradient(135deg, #f3e8d3, #e6d7c1);
+}
+
+/* Luxury Shadow Utilities */
+.shadow-warm {
+  box-shadow: 0 8px 32px rgba(217, 119, 6, 0.15), 0 4px 16px rgba(217, 119, 6, 0.1);
+}
+
+.shadow-elegant {
+  box-shadow: 0 8px 32px rgba(30, 41, 59, 0.12), 0 4px 16px rgba(30, 41, 59, 0.08);
+}
+
+/* Replace problematic yellow with warm golden beige */
+.focus\:ring-amber-500:focus {
+  --tw-ring-color: var(--color-accent-muted);
+}
+
+.focus\:border-amber-500:focus {
+  border-color: var(--color-accent-muted);
+}
+
+/* Enhanced input styling */
+.luxury-input {
+  background-color: var(--color-bg-clay);
+  border: 2px solid var(--color-border-light);
+  transition: all 0.3s ease;
+}
+
+.luxury-input:focus {
+  border-color: var(--color-accent-muted);
+  background-color: var(--color-bg-primary);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
