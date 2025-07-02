@@ -19,8 +19,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Enhanced base styles for premium experience */
+/* Maison Louis Marie-inspired design system */
 @layer base {
+  :root {
+    /* Neutral color palette - Maison Louis Marie style */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 15%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 15%;
+    --primary: 0 0% 15%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 15%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 15%;
+    --radius: 0.5rem;
+    
+    /* Brand colors - refined natural tones */
+    --stone-50: 30 14% 97%;
+    --stone-100: 30 14% 95%;
+    --stone-200: 30 12% 89%;
+    --stone-300: 30 10% 82%;
+    --stone-400: 30 8% 70%;
+    --stone-500: 30 6% 58%;
+    --stone-600: 30 5% 46%;
+    --stone-700: 30 4% 35%;
+    --stone-800: 30 3% 25%;
+    --stone-900: 30 3% 15%;
+    
+    /* Elegant shadows and effects */
+    --shadow-elegant: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+    --shadow-refined: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-luxury: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+    
+    /* Typography scale */
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+  }
+
   html {
     scroll-behavior: smooth;
     text-size-adjust: 100%;
@@ -32,42 +77,119 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "kern", "liga", "clig", "calt";
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-body);
+    line-height: 1.6;
   }
   
-  /* Premium typography defaults */
+  /* Editorial typography hierarchy */
   h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
     font-feature-settings: "kern", "liga", "clig", "calt";
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    font-weight: 400;
+  }
+  
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1.5rem;
+  }
+  
+  h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1.25rem;
+  }
+  
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    margin-bottom: 1.5rem;
+    color: hsl(var(--muted-foreground));
   }
 }
 
-/* Premium utility classes */
+/* Maison Louis Marie-inspired utilities */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
   
-  .luxury-shadow {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+  /* Editorial shadows */
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
   }
   
-  .copper-gradient {
-    background: linear-gradient(135deg, #d97706 0%, #b45309 50%, #92400e 100%);
+  .shadow-refined {
+    box-shadow: var(--shadow-refined);
   }
   
-  .moroccan-pattern {
-    background-image: 
-      radial-gradient(circle at 25% 25%, rgba(217, 119, 6, 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, rgba(180, 83, 9, 0.06) 0%, transparent 50%);
-    background-size: 80px 80px;
-    background-position: 0 0, 40px 40px;
+  .shadow-luxury {
+    box-shadow: var(--shadow-luxury);
   }
   
-  .parallax-element {
-    will-change: transform;
-    transform: translateZ(0);
+  /* Brand typography classes */
+  .heading-display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
   }
-
+  
+  .body-text {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: hsl(var(--muted-foreground));
+  }
+  
+  .text-refined {
+    color: hsl(var(--muted-foreground));
+    font-weight: 300;
+  }
+  
+  /* Editorial spacing */
+  .section-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .container-refined {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  /* Clean animations */
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Editorial cards */
+  .card-editorial {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow-elegant);
+  }
+  
   /* Text truncation utilities */
   .line-clamp-1 {
     overflow: hidden;
@@ -81,5 +203,12 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
 }
