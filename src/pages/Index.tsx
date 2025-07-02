@@ -16,6 +16,7 @@ import ModernElegantFooter from '@/components/ModernElegantFooter';
 import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
 import StickyTopBanner from '@/components/StickyTopBanner';
 import AppleCountdownBanner from '@/components/AppleCountdownBanner';
+import CategoryShowcase from '@/components/CategoryShowcase';
 
 const Index = () => {
   const [videoEnded, setVideoEnded] = useState(false);
@@ -51,6 +52,9 @@ const Index = () => {
 
         {/* Interactive Map Section */}
         <IngredientOriginMap />
+        
+        {/* Category Showcase Section */}
+        <CategoryShowcase />
         
         <AppleStyleProductGrid />
         <FeaturedCollections />
