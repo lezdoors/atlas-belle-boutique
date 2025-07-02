@@ -61,34 +61,34 @@ const CookieConsentBanner = () => {
   const currentContent = content[language];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-stone-200 shadow-xl animate-slide-in-bottom">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#1a1a1a] border-t border-stone-700 shadow-xl animate-slide-in-bottom">
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-start justify-between">
           <div className="flex items-start space-x-4 flex-1">
-            <Cookie className="h-6 w-6 text-stone-600 mt-1 flex-shrink-0" />
+            <Cookie className="h-6 w-6 text-stone-300 mt-1 flex-shrink-0" />
             <div className="flex-1">
-              <h3 className="font-semibold text-stone-800 mb-2">
+              <h3 className="font-semibold text-white mb-2">
                 {currentContent.title}
               </h3>
-              <p className="text-sm text-stone-600 mb-4 leading-relaxed">
+              <p className="text-sm text-stone-200 mb-4 leading-relaxed">
                 {currentContent.description}
               </p>
               
               {showDetails && (
-                <div className="bg-stone-50 rounded-lg p-4 mb-4 space-y-3">
+                <div className="bg-stone-800/50 rounded-lg p-4 mb-4 space-y-3 border border-stone-600">
                   <div>
-                    <h4 className="font-medium text-stone-800 text-sm">
+                    <h4 className="font-medium text-white text-sm">
                       {currentContent.essential}
                     </h4>
-                    <p className="text-xs text-stone-600">
+                    <p className="text-xs text-stone-300">
                       {currentContent.essentialDesc}
                     </p>
                   </div>
                   <div>
-                    <h4 className="font-medium text-stone-800 text-sm">
+                    <h4 className="font-medium text-white text-sm">
                       {currentContent.analytics}
                     </h4>
-                    <p className="text-xs text-stone-600">
+                    <p className="text-xs text-stone-300">
                       {currentContent.analyticsDesc}
                     </p>
                   </div>
@@ -98,28 +98,28 @@ const CookieConsentBanner = () => {
               <div className="flex flex-wrap gap-3">
                 <Button
                   onClick={handleAcceptAll}
-                  className="bg-stone-800 text-white hover:bg-stone-700 text-sm px-4 py-2"
+                  className="bg-[#d4af37] text-black hover:bg-[#c19b28] text-sm px-4 py-2 font-medium transition-all duration-300 hover:shadow-lg"
                 >
                   {currentContent.acceptAll}
                 </Button>
                 <Button
                   onClick={handleAcceptEssential}
                   variant="outline"
-                  className="border-stone-300 text-stone-700 hover:bg-stone-50 text-sm px-4 py-2"
+                  className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 text-sm px-4 py-2 bg-transparent transition-all duration-300"
                 >
                   {currentContent.acceptEssential}
                 </Button>
                 <Button
                   onClick={() => setShowDetails(!showDetails)}
                   variant="ghost"
-                  className="text-stone-600 hover:text-stone-800 text-sm px-3 py-2"
+                  className="text-stone-300 hover:text-white text-sm px-3 py-2 transition-all duration-300"
                 >
                   <Settings className="h-4 w-4 mr-1" />
                   {currentContent.settings}
                 </Button>
                 <a
                   href="/privacy-policy"
-                  className="text-sm text-stone-600 hover:text-stone-800 underline px-3 py-2"
+                  className="text-sm text-white underline px-3 py-2 hover:text-[#d4af37] transition-colors duration-300 decoration-white/50 hover:decoration-[#d4af37] underline-offset-2"
                 >
                   {currentContent.learnMore}
                 </a>
@@ -131,7 +131,7 @@ const CookieConsentBanner = () => {
             onClick={handleClose}
             variant="ghost"
             size="sm"
-            className="text-stone-400 hover:text-stone-600 p-1 flex-shrink-0"
+            className="text-stone-500 hover:text-stone-300 p-1 flex-shrink-0 transition-colors duration-300"
           >
             <X className="h-4 w-4" />
           </Button>
