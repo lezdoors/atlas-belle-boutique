@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Star, ShoppingCart, Truck, Shield, Leaf } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -14,10 +13,13 @@ const ProductHero: React.FC<ProductHeroProps> = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
+    // Extract numeric value from price string (e.g., "89€" -> 89)
+    const numericPrice = parseInt(product.price.replace(/[^0-9]/g, ''), 10);
+    
     addToCart({
-      id: product.id,
+      id: parseInt(product.id.split('-')[0]) || 1, // Convert string id to number
       name: product.name,
-      priceMAD: parseInt(product.price.replace('€', '')),
+      priceMAD: numericPrice,
       image: product.image
     }, quantity);
   };
