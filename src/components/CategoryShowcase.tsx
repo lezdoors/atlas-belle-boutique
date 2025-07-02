@@ -44,17 +44,17 @@ const CategoryShowcase = () => {
     <section className="w-full py-16 md:py-24 bg-stone-50">
       <div className="w-full">
         {/* Section Header */}
-        <div className="max-w-4xl mx-auto px-6 mb-12 md:mb-16 text-center">
-          <h2 className="heading-display text-3xl md:text-4xl lg:text-5xl text-stone-800 mb-4">
+        <div className="container-refined mb-12 md:mb-16">
+          <h2 className="heading-display text-3xl md:text-4xl lg:text-5xl text-center text-stone-800 mb-4">
             Nos Collections
           </h2>
-          <p className="body-text text-stone-600 max-w-2xl mx-auto">
+          <p className="body-text text-center text-stone-600 max-w-2xl mx-auto">
             Découvrez l'artisanat marocain authentique à travers nos collections soigneusement sélectionnées
           </p>
         </div>
 
-        {/* Categories Grid - Constrained width for better visual focus */}
-        <div className="max-w-6xl mx-auto px-6">
+        {/* Categories Grid */}
+        <div className="w-full">
           {/* Desktop: 3 columns for first row, 2 columns for second */}
           <div className="hidden lg:block">
             {/* First Row: 3 items */}
