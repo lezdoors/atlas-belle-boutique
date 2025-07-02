@@ -1,6 +1,8 @@
 
 import { useState, useEffect } from 'react';
-import AppleStyleHeader from '@/components/AppleStyleHeader';
+import MaisonStyleHeader from '@/components/MaisonStyleHeader';
+import NewsletterTopBanner from '@/components/NewsletterTopBanner';
+import CountdownBanner from '@/components/CountdownBanner';
 import AppleStyleHero from '@/components/AppleStyleHero';
 import AppleStyleProductGrid from '@/components/AppleStyleProductGrid';
 import FeaturedCollections from '@/components/FeaturedCollections';
@@ -19,10 +21,17 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <StickyTopBanner />
-      <AppleCountdownBanner />
-      <div className="pt-10">
-        <AppleStyleHeader />
+      {/* Top Newsletter Banner */}
+      <NewsletterTopBanner />
+      
+      {/* Main Header */}
+      <MaisonStyleHeader />
+      
+      {/* Countdown Banner */}
+      <CountdownBanner />
+      
+      {/* Main Content - with proper top spacing for fixed header */}
+      <div className="pt-20">
         <AppleStyleHero />
         <AppleStyleProductGrid />
         <FeaturedCollections />
@@ -33,6 +42,12 @@ const Index = () => {
         <NewsletterSignup />
         <ModernElegantFooter />
         <SamraRefactoredChatbot videoEnded={videoEnded} />
+      </div>
+      
+      {/* Keep existing banners for backwards compatibility */}
+      <div className="hidden">
+        <StickyTopBanner />
+        <AppleCountdownBanner />
       </div>
     </div>
   );
