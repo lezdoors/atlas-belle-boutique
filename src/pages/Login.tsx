@@ -15,7 +15,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   
-  const { user, signIn, signUp, signInWithGoogle, signInWithApple } = useAuth();
+  const { user, signIn, signUp, signInWithMagicLink, signInWithGoogle, signInWithApple } = useAuth();
   const { language } = useLanguage();
   const navigate = useNavigate();
 
