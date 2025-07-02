@@ -84,9 +84,9 @@ const ModernElegantFooter = () => {
   };
 
   return (
-    <footer className="bg-stone-50 border-t border-stone-200">
+    <footer className="bg-[#f8f7f5] border-t border-stone-200 w-full">
       {/* Newsletter Section */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+      <div className="w-full px-6 lg:px-12 xl:px-16 py-16">
         <div className="text-center mb-16">
           <h2 className="font-serif text-2xl md:text-3xl text-stone-900 mb-3">
             {t('footer.newsletter', language)}
@@ -124,7 +124,7 @@ const ModernElegantFooter = () => {
         </div>
 
         {/* Links Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-16">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-16 px-6 lg:px-12 xl:px-16">
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
               <h3 className="font-medium text-stone-900 mb-4 text-sm uppercase tracking-wide">
@@ -148,19 +148,19 @@ const ModernElegantFooter = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-stone-200 pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-center">
+        <div className="border-t border-stone-200 pt-8 w-full px-6 lg:px-12 xl:px-16">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Logo */}
             <div className="order-2 md:order-1">
               <img
-                src="/lovable-uploads/perle-atlas-logo.png"
+                src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Perle%20(Website)-4.png"
                 alt="Perle de l'Atlas"
                 className="h-8 w-auto opacity-60"
               />
             </div>
 
             {/* Copyright */}
-            <div className="order-1 md:order-2 flex-1 text-center">
+            <div className="order-1 md:order-2 flex-1 md:text-center">
               <p className="text-xs text-stone-500 font-light">
                 {t('footer.copyright', language)}
               </p>

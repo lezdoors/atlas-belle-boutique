@@ -26,7 +26,6 @@ const Index = () => {
       {/* Main Header */}
       <MaisonStyleHeaderNew />
       
-      {/* Main Content - with proper top spacing for fixed header */}
       <div className="pt-32 w-full">
         {/* Full-width Hero Section */}
         <div className="w-full">
@@ -35,7 +34,7 @@ const Index = () => {
         
         {/* Clean Newsletter + Countdown Section */}
         <section className="w-full bg-white py-16">
-          <div className="w-full px-6 lg:px-12">
+          <div className="w-full px-6 lg:px-12 xl:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Newsletter Section */}
               <div>

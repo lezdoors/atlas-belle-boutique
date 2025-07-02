@@ -163,19 +163,19 @@ const PrivacyPolicy = () => {
     <div className="min-h-screen bg-white">
       <MaisonStyleHeaderNew />
       
-      <main className="pt-32">
-        <div className="container mx-auto px-6 py-16 max-w-4xl">
-          <div className="text-center mb-12">
+      <main className="pt-32 w-full">
+        <div className="w-full px-6 lg:px-12 xl:px-16 py-16">
+          <div className="mb-12">
             <h1 className="text-4xl font-serif font-bold text-stone-800 mb-4">
               {currentContent.title}
             </h1>
             <p className="text-sm text-stone-500 mb-8">{currentContent.lastUpdated}</p>
-            <p className="text-lg text-stone-600 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg text-stone-600 leading-relaxed">
               {currentContent.intro}
             </p>
           </div>
           
-          <div className="space-y-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {currentContent.sections.map((section, index) => (
               <div key={index} className="bg-stone-50 rounded-xl p-8">
                 <h2 className="text-xl font-serif font-semibold text-stone-800 mb-6">
