@@ -16,7 +16,7 @@ const AppleStyleHero = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center w-full px-6 lg:px-12 py-32">
-        <div className="max-w-4xl mx-auto">
+        <div className="w-full">
 
         {/* Headline */}
         <h1 className="font-serif font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 animate-fade-in opacity-0 tracking-tight" style={{ lineHeight: '1.3', animationDelay: '0.2s', animationFillMode: 'forwards' }}>
@@ -25,7 +25,7 @@ const AppleStyleHero = () => {
         </h1>
         
         {/* Subheadline */}
-        <p className="font-light text-base md:text-lg mb-12 max-w-2xl mx-auto animate-fade-in opacity-0 text-stone-600 leading-relaxed" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
+        <p className="font-light text-base md:text-lg mb-12 animate-fade-in opacity-0 text-stone-600 leading-relaxed" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
           From handcrafted tableware to soulful décor, discover timeless elegance born in the Atlas.
         </p>
 
