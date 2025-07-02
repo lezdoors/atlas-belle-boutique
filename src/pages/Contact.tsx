@@ -30,8 +30,8 @@ const Contact = () => {
       icon: <Mail className="h-6 w-6" />,
       title: 'Email',
       description: language === 'fr' ? 'Support détaillé' : 'Detailed support',
-      contact: 'contact@perle-atlas.com',
-      action: () => window.location.href = 'mailto:contact@perle-atlas.com'
+      contact: 'contact@atlasperle.com',
+      action: () => window.location.href = 'mailto:contact@atlasperle.com'
     },
     {
       icon: <Phone className="h-6 w-6" />,
