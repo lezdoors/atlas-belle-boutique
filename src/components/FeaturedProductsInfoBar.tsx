@@ -9,8 +9,8 @@ const FeaturedProductsInfoBar = () => {
       <div className="flex items-center text-sm text-sand-600">
         <span className="flex items-center">
           {language === 'fr' 
-            ? `✨ Livraison gratuite dès 150€ • Échantillons offerts`
-            : `✨ Free shipping from $150 • Free samples`
+            ? `Livraison gratuite dès 150€ • Échantillons offerts`
+            : `Free shipping from $150 • Free samples`
           }
         </span>
       </div>

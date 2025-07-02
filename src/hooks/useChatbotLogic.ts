@@ -32,7 +32,7 @@ const useChatbotLogic = (): UseChatbotLogicReturn => {
     // Produits
     if (lowerMessage.includes('produit') || lowerMessage.includes('cosmétique') || lowerMessage.includes('soin')) {
       setFallbackCount(0);
-      return "Nos produits sont élaborés avec des ingrédients naturels du Maroc 🌿. Nous proposons des huiles d'argan, des soins au rhassoul, et bien plus encore. Souhaitez-vous découvrir une gamme en particulier ? Ou préférez-vous que je vous mette en contact avec notre équipe ?";
+      return "Nos produits sont élaborés avec des ingrédients naturels du Maroc. Nous proposons des huiles d'argan, des soins au rhassoul, et bien plus encore. Souhaitez-vous découvrir une gamme en particulier ? Ou préférez-vous que je vous mette en contact avec notre équipe ?";
     }
 
     // Ingrédients
