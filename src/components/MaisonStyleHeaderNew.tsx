@@ -71,23 +71,18 @@ const MaisonStyleHeaderNew = () => {
           isVisible ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
-        <div className="w-full px-6 lg:px-12 max-w-none">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-between h-20">
+        <div className="w-full px-6 lg:px-12">
+          <div className="flex items-center justify-between h-20">
               
-              {/* Left side - empty for balance */}
-              <div className="flex-1 lg:flex hidden">
-              </div>
-
-              {/* Center - Logo */}
-              <div className="flex items-center justify-center flex-1 lg:flex-initial">
+              {/* Left side - Logo */}
+              <div className="flex items-center flex-1">
                 <a href="/" className="flex items-center">
-                  <PerleAtlasLogo className="h-8 text-stone-800 hover:text-stone-600 transition-colors" />
+                  <PerleAtlasLogo className="h-24 text-stone-800 hover:text-stone-600 transition-colors" />
                 </a>
               </div>
 
               {/* Right side - Desktop Actions */}
-              <div className="hidden lg:flex items-center justify-end space-x-6 flex-1">
+              <div className="hidden lg:flex items-center justify-end space-x-6">
                 <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <Search className="h-4 w-4" />
                 </button>
@@ -170,7 +165,6 @@ const MaisonStyleHeaderNew = () => {
                 </nav>
               </div>
             )}
-          </div>
         </div>
       </header>
     </div>
