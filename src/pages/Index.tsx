@@ -9,7 +9,7 @@ import WrappedWithCare from '@/components/WrappedWithCare';
 import AppleStyleAbout from '@/components/AppleStyleAbout';
 import EarlyAccessSignup from '@/components/EarlyAccessSignup';
 import NewsletterSignup from '@/components/NewsletterSignup';
-import AppleStyleFooter from '@/components/AppleStyleFooter';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
 import StickyTopBanner from '@/components/StickyTopBanner';
 import AppleCountdownBanner from '@/components/AppleCountdownBanner';
@@ -31,7 +31,7 @@ const Index = () => {
         <AppleStyleAbout />
         <EarlyAccessSignup />
         <NewsletterSignup />
-        <AppleStyleFooter />
+        <ModernElegantFooter />
         <SamraRefactoredChatbot videoEnded={videoEnded} />
       </div>
     </div>
