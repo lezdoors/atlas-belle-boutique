@@ -18,9 +18,16 @@ const categories = [
   },
   {
     id: 'textile',
-    title: 'Textiles Berbères',
+    title: 'Textiles Marocains',
     cta: 'Découvrir les tissus',
     image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//rugs.jpg',
+    link: '/boutique'
+  },
+  {
+    id: 'decoration',
+    title: 'Décoration Berbère',
+    cta: 'Explorer la décoration',
+    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Tente-light.jpg',
     link: '/boutique'
   },
   {
@@ -35,13 +42,6 @@ const categories = [
     title: 'Soins Naturels',
     cta: 'Découvrir les soins',
     image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//coffe%20grain%20oil%20bottle.jpg',
-    link: '/boutique'
-  },
-  {
-    id: 'argan',
-    title: 'Huile d\'argane premium',
-    cta: 'Découvrir l\'argan',
-    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//2%20bottles%20purple%20background.jpg',
     link: '/boutique'
   }
 ];
