@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import AppleStyleHeader from '@/components/AppleStyleHeader';
-import AppleStyleFooter from '@/components/AppleStyleFooter';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
 import ProductHero from '@/components/product/ProductHero';
 import ProductDetails from '@/components/product/ProductDetails';
@@ -19,10 +19,10 @@ const ProductPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <AppleStyleHeader />
+      <MaisonStyleHeaderNew />
       <ProductHero product={product} />
       <ProductDetails product={product} />
-      <AppleStyleFooter />
+      <ModernElegantFooter />
       <SamraRefactoredChatbot />
     </div>
   );

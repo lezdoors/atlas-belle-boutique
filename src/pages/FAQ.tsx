@@ -1,7 +1,7 @@
 
 import React from 'react';
-import AppleStyleHeader from '@/components/AppleStyleHeader';
-import AppleStyleFooter from '@/components/AppleStyleFooter';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
 import { useLanguage } from '@/contexts/LanguageContext';
 import {
@@ -56,7 +56,7 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <AppleStyleHeader />
+      <MaisonStyleHeaderNew />
       
       {/* Hero Section */}
       <section className="pt-20 pb-16 bg-gray-50">
@@ -129,7 +129,7 @@ const FAQ = () => {
         </div>
       </section>
 
-      <AppleStyleFooter />
+      <ModernElegantFooter />
       <SamraRefactoredChatbot />
     </div>
   );

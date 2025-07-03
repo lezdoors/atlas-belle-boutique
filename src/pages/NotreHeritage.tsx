@@ -1,7 +1,7 @@
 
 import React from 'react';
-import AppleStyleHeader from '@/components/AppleStyleHeader';
-import AppleStyleFooter from '@/components/AppleStyleFooter';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Heart, Leaf, Users, Award, Mountain, Star } from 'lucide-react';
@@ -49,7 +49,7 @@ const NotreHeritage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <AppleStyleHeader />
+      <MaisonStyleHeaderNew />
       
       {/* Hero Section */}
       <section className="pt-20 pb-24 bg-gradient-to-b from-gray-50 to-white">
@@ -198,7 +198,7 @@ const NotreHeritage = () => {
         </div>
       </section>
 
-      <AppleStyleFooter />
+      <ModernElegantFooter />
       <SamraRefactoredChatbot />
     </div>
   );

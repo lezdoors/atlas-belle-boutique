@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import { useCart } from '@/contexts/CartContext';
 import EmptyCartView from '@/components/checkout/EmptyCartView';
 import CheckoutBreadcrumb from '@/components/checkout/CheckoutBreadcrumb';
@@ -16,9 +16,9 @@ const Checkout = () => {
   if (items.length === 0) {
     return (
       <div className="min-h-screen bg-pearl-100">
-        <Header />
+        <MaisonStyleHeaderNew />
         <EmptyCartView />
-        <Footer />
+        <ModernElegantFooter />
       </div>
     );
   }
@@ -30,7 +30,7 @@ const Checkout = () => {
 
   return (
     <div className="min-h-screen bg-pearl-100">
-      <Header />
+      <MaisonStyleHeaderNew />
       
       <div className="container mx-auto px-4 py-8 pt-32">
         <CheckoutBreadcrumb />
@@ -57,7 +57,7 @@ const Checkout = () => {
         </div>
       </div>
 
-      <Footer />
+      <ModernElegantFooter />
     </div>
   );
 };
