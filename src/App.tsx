@@ -10,6 +10,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { useAuth } from "@/hooks/useAuth";
 import SecurityConfig from "@/components/security/SecurityConfig";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
+import CartDrawer from "@/components/CartDrawer";
 import { Analytics } from "@vercel/analytics/react";
 import EnhancedAppleStyleIndex from "./pages/EnhancedAppleStyleIndex";
 import Index from "./pages/Index";
@@ -179,6 +180,7 @@ const App = () => (
             <Toaster />
             <Sonner />
             <AppRoutes />
+            <CartDrawer />
             <CookieConsentBanner />
             <Analytics />
           </TooltipProvider>

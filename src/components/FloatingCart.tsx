@@ -19,7 +19,11 @@ const FloatingCart = () => {
         onClick={openCart}
         className="bg-black hover:bg-gray-800 text-white rounded-full w-14 h-14 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 relative border-none on-style-button p-0"
       >
-        <ShoppingBag className="h-5 w-5" />
+        <img 
+          src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//tagine-cart.png"
+          alt="Panier Tagine"
+          className="h-5 w-5 object-contain"
+        />
         {totalItems > 0 && (
           <Badge 
             variant="destructive" 

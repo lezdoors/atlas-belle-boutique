@@ -63,7 +63,11 @@ const HeaderActions = () => {
         onClick={openCart}
         className={`relative transition-all duration-500 h-10 w-10 lg:h-11 lg:w-11 rounded-full group ${iconColorClass} ${hoverBgClass}`}
       >
-        <ShoppingBag className="h-4 w-4 lg:h-5 lg:w-5 transition-transform duration-200 group-hover:scale-110" />
+        <img 
+          src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//tagine-cart.png"
+          alt="Panier Tagine"
+          className="h-5 w-5 lg:h-6 lg:w-6 object-contain transition-transform duration-200 group-hover:scale-110"
+        />
         {totalItems > 0 && (
           <Badge 
             variant="destructive" 
