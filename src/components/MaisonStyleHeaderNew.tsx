@@ -78,9 +78,9 @@ const MaisonStyleHeaderNew = () => {
               
               {/* Left side - Logo */}
               <div className="flex items-center flex-1">
-                <a href="/" className="flex items-center">
+                <Link to="/" className="flex items-center">
                   <PerleAtlasLogo className="h-24 text-stone-800 hover:text-stone-600 transition-colors" />
-                </a>
+                </Link>
               </div>
 
               {/* Right side - Desktop Actions */}
@@ -88,9 +88,9 @@ const MaisonStyleHeaderNew = () => {
                 <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <Search className="h-4 w-4" />
                 </button>
-                <a href="/auth" className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
+                <Link to="/auth" className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <User className="h-4 w-4" />
-                </a>
+                </Link>
                 <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <TajineIcon className="h-5 w-5" />
                 </button>
@@ -126,14 +126,14 @@ const MaisonStyleHeaderNew = () => {
               <nav className="py-4">
                 <div className="flex items-center justify-center space-x-12">
                   {navigation.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
-                      href={item.href}
+                      to={item.href}
                       className="text-sm font-light text-stone-700 hover:text-stone-900 transition-colors tracking-wide relative group"
                     >
                       {item.name}
                       <span className="absolute bottom-0 left-0 w-full h-px bg-stone-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </nav>
@@ -144,14 +144,14 @@ const MaisonStyleHeaderNew = () => {
               <div className="lg:hidden border-t border-stone-200 bg-white">
                 <nav className="py-6 space-y-6">
                   {navigation.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
-                      href={item.href}
+                      to={item.href}
                       className="block text-base font-light text-stone-700 hover:text-stone-900 transition-colors px-4 py-2"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                   <div className="border-t border-stone-200 pt-6 px-4">
                     <Link to="/auth" className="block text-base font-light text-stone-700 hover:text-stone-900 transition-colors py-2">

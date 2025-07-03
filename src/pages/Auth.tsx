@@ -7,8 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useAuth } from '@/hooks/useAuth';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from 'sonner';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -111,7 +111,7 @@ const Auth = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pearl-50 to-beige-50">
-      <Header />
+      <MaisonStyleHeaderNew />
       
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-md mx-auto">
@@ -200,7 +200,7 @@ const Auth = () => {
         </div>
       </div>
       
-      <Footer />
+      <ModernElegantFooter />
     </div>
   );
 };

@@ -33,6 +33,30 @@ import Vaisselle from "./pages/categories/Vaisselle";
 import Decoration from "./pages/categories/Decoration";
 import Cadeaux from "./pages/categories/Cadeaux";
 import FAQ from "./pages/FAQ";
+import About from "./pages/About";
+import Blog from "./pages/Blog";
+import Boutique from "./pages/Boutique";
+import Catalogue from "./pages/Catalogue";
+import Auth from "./pages/Auth";
+import NotFound from "./pages/NotFound";
+import Wholesale from "./pages/Wholesale";
+import OrderSuccess from "./pages/OrderSuccess";
+import ProductDetail from "./pages/ProductDetail";
+import Ingredients from "./pages/Ingredients";
+import IngredientDetail from "./pages/IngredientDetail";
+import Regions from "./pages/Regions";
+import NotreHeritage from "./pages/NotreHeritage";
+import Histoire from "./pages/Histoire";
+import MaSelection from "./pages/MaSelection";
+import ProgrammeFidelite from "./pages/ProgrammeFidelite";
+import Rituels from "./pages/Rituels";
+import SkinQuiz from "./pages/SkinQuiz";
+import TestEmail from "./pages/TestEmail";
+import Automne from "./pages/collections/Automne";
+import Ete from "./pages/collections/Ete";
+import Hiver from "./pages/collections/Hiver";
+import Printemps from "./pages/collections/Printemps";
+import Credits from "./pages/Credits";
 
 // Import enhanced styles
 import './styles/enhanced-colors.css';
@@ -67,7 +91,10 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/original" element={<Index />} />
+        <Route path="/enhanced" element={<EnhancedAppleStyleIndex />} />
+        <Route path="/apple-style" element={<EnhancedAppleStyleIndex />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/auth" element={<Auth />} />
         <Route 
           path="/dashboard" 
           element={
@@ -76,29 +103,73 @@ const AppRoutes = () => {
             </ProtectedRoute>
           } 
         />
+        
+        {/* Product Routes */}
         <Route path="/product/:slug" element={<ProductPage />} />
+        <Route path="/product-detail/:id" element={<ProductDetail />} />
+        
+        {/* Shop Routes */}
         <Route path="/shop" element={<Shop />} />
+        <Route path="/boutique" element={<Shop />} />
+        <Route path="/catalogue" element={<Catalogue />} />
+        <Route path="/wholesale" element={<Wholesale />} />
+        
+        {/* Category Routes */}
         <Route path="/tableware" element={<Tableware />} />
         <Route path="/decor" element={<Decor />} />
         <Route path="/gifts" element={<Gifts />} />
-        <Route path="/story" element={<Story />} />
-        <Route path="/boutique" element={<Shop />} />
-        <Route path="/shipping-returns" element={<ShippingReturns />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/privacy" element={<PrivacyPolicy />} />
-        <Route path="/shipping-return" element={<ShippingReturns />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/legal" element={<MentionsLegales />} />
-        <Route path="/cgv" element={<CGV />} />
-        <Route path="/confidentialite" element={<Confidentialite />} />
-        <Route path="/cookies" element={<PolitiqueCookies />} />
-        <Route path="/contact" element={<Contact />} />
         <Route path="/categories/vaisselle" element={<Vaisselle />} />
         <Route path="/categories/decoration" element={<Decoration />} />
         <Route path="/categories/cadeaux" element={<Cadeaux />} />
+        
+        {/* Collections Routes */}
+        <Route path="/collections/automne" element={<Automne />} />
+        <Route path="/collections/ete" element={<Ete />} />
+        <Route path="/collections/hiver" element={<Hiver />} />
+        <Route path="/collections/printemps" element={<Printemps />} />
+        
+        {/* Content Routes */}
+        <Route path="/story" element={<Story />} />
+        <Route path="/about" element={<About />} />
         <Route path="/a-propos" element={<Story />} />
-        <Route path="/mentions-legales" element={<MentionsLegales />} />
+        <Route path="/notre-heritage" element={<NotreHeritage />} />
+        <Route path="/histoire" element={<Histoire />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/ingredients" element={<Ingredients />} />
+        <Route path="/ingredient/:id" element={<IngredientDetail />} />
+        <Route path="/regions" element={<Regions />} />
+        <Route path="/rituels" element={<Rituels />} />
+        <Route path="/skin-quiz" element={<SkinQuiz />} />
+        
+        {/* User Routes */}
+        <Route path="/ma-selection" element={<MaSelection />} />
+        <Route path="/programme-fidelite" element={<ProgrammeFidelite />} />
+        
+        {/* Support Routes */}
+        <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<FAQ />} />
+        <Route path="/shipping-returns" element={<ShippingReturns />} />
+        <Route path="/shipping-return" element={<ShippingReturns />} />
+        
+        {/* Legal Routes */}
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/legal" element={<MentionsLegales />} />
+        <Route path="/mentions-legales" element={<MentionsLegales />} />
+        <Route path="/cgv" element={<CGV />} />
+        <Route path="/confidentialite" element={<Confidentialite />} />
+        <Route path="/cookies" element={<PolitiqueCookies />} />
+        <Route path="/credits" element={<Credits />} />
+        
+        {/* Order Routes */}
+        <Route path="/order-success" element={<OrderSuccess />} />
+        
+        {/* Test Routes */}
+        <Route path="/test-email" element={<TestEmail />} />
+        
+        {/* 404 Route */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
