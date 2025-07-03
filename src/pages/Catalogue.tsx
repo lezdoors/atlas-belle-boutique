@@ -34,7 +34,7 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 89,
       originalPrice: 120,
-      image: "/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-premium.jpg",
       description: language === 'fr' ? "100% pure, pressée à froid des montagnes de l'Atlas" : "100% pure, cold-pressed from Atlas mountains",
       rating: 4.9,
       reviews: 127,
@@ -48,7 +48,7 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 35,
       originalPrice: null,
-      image: "/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/savon-noir-traditional.jpg",
       description: language === 'fr' ? "Gommage doux aux olives et eucalyptus" : "Gentle exfoliation with olives and eucalyptus",
       rating: 4.7,
       reviews: 89,
@@ -62,7 +62,7 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 42,
       originalPrice: null,
-      image: "/lovable-uploads/5a6e176e-a311-4e23-a48f-5439e70ecb3f.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-atlas-clay.jpg",
       description: language === 'fr' ? "Argile purifiante volcanique des montagnes" : "Volcanic purifying clay from mountains",
       rating: 4.8,
       reviews: 156,
@@ -76,7 +76,7 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 28,
       originalPrice: 35,
-      image: "/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/rose-water-damascena.jpg",
       description: language === 'fr' ? "Distillation artisanale de roses pures" : "Artisanal distillation of pure roses",
       rating: 4.6,
       reviews: 203,
@@ -90,7 +90,7 @@ const Catalogue = () => {
       category: 'Vaisselle',
       price: 125,
       originalPrice: null,
-      image: "/lovable-uploads/d4ad8eb5-ea3d-4931-ae8c-008b30d0e998.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-royal.jpg",
       description: language === 'fr' ? "Céramique artisanale peinte à la main" : "Hand-painted artisanal ceramics",
       rating: 4.9,
       reviews: 78,
@@ -104,7 +104,7 @@ const Catalogue = () => {
       category: 'Décoration',
       price: 45,
       originalPrice: null,
-      image: "/lovable-uploads/eeff32cc-6bc0-4e17-9da7-c206afcf5509.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/candle-amber-oud.jpg",
       description: language === 'fr' ? "Senteurs orientales authentiques" : "Authentic oriental fragrances",
       rating: 4.5,
       reviews: 92,
@@ -118,7 +118,7 @@ const Catalogue = () => {
       category: 'Cadeaux',
       price: 150,
       originalPrice: 200,
-      image: "/lovable-uploads/ba21e7d0-cbef-422b-8a7d-1e701b06df53.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-luxury.jpg",
       description: language === 'fr' ? "Collection complète de produits authentiques" : "Complete collection of authentic products",
       rating: 4.8,
       reviews: 145,
@@ -132,7 +132,7 @@ const Catalogue = () => {
       category: 'Décoration',
       price: 95,
       originalPrice: null,
-      image: "/lovable-uploads/6fde7854-c65c-40e6-8df6-8d9ca69c3fc8.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/lamp-berber.jpg",
       description: language === 'fr' ? "Métal ciselé avec motifs traditionnels" : "Chiseled metal with traditional patterns",
       rating: 4.7,
       reviews: 67,
@@ -187,13 +187,25 @@ const Catalogue = () => {
       <MaisonStyleHeaderNew />
       
       <div className="pt-32 w-full">
-        {/* Hero Section */}
-        <section className="section-padding bg-white">
-          <div className="container-refined text-center">
-            <h1 className="heading-display text-5xl lg:text-6xl mb-6 text-balance">
+        {/* Hero Section - matching homepage style */}
+        <section className="relative min-h-[60vh] flex items-center justify-center bg-white overflow-hidden w-full">
+          <div className="absolute inset-0 z-0">
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+              style={{
+                backgroundImage: `url('https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/moroccan-patterns-bg.jpg')`
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white/95"></div>
+          </div>
+
+          <div className="relative z-10 text-center w-full px-6 lg:px-12 py-20">
+            <h1 className="font-serif font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 animate-fade-in opacity-0 tracking-tight" 
+                style={{ lineHeight: '1.3', animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               {language === 'fr' ? 'Notre Collection' : 'Our Collection'}
             </h1>
-            <p className="body-text text-lg max-w-2xl mx-auto mb-12">
+            <p className="font-light text-base md:text-lg mb-12 animate-fade-in opacity-0 text-stone-600 leading-relaxed max-w-3xl mx-auto" 
+               style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
               {language === 'fr' 
                 ? 'Découvrez nos créations artisanales, chaque pièce raconte une histoire unique du Maroc authentique'
                 : 'Discover our artisanal creations, each piece tells a unique story of authentic Morocco'
@@ -202,21 +214,21 @@ const Catalogue = () => {
           </div>
         </section>
 
-        {/* Filters & Sort Section */}
-        <section className="py-8 bg-stone-50 border-t border-stone-100">
-          <div className="container-refined">
+        {/* Filters & Sort Section - fixed button visibility */}
+        <section className="py-12 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-              {/* Category Filters */}
+              {/* Category Filters - matching homepage button style */}
               <div className="flex flex-wrap justify-center lg:justify-start gap-3">
                 {categories.map((category) => (
                   <Button
                     key={category.id}
                     variant="ghost"
                     onClick={() => setSelectedCategory(category.id)}
-                    className={`px-6 py-2 rounded-full text-sm font-light transition-all duration-300 ${
+                    className={`px-6 py-3 rounded-full text-sm font-light transition-all duration-300 border ${
                       selectedCategory === category.id
-                        ? 'bg-stone-900 text-white hover:bg-stone-800'
-                        : 'bg-white text-stone-700 hover:bg-stone-100 border border-stone-200'
+                        ? 'bg-black text-white border-black hover:bg-black/90'
+                        : 'bg-white text-black hover:bg-gray-100 border-gray-200 hover:border-gray-300'
                     }`}
                   >
                     {category.name}
@@ -226,11 +238,11 @@ const Catalogue = () => {
 
               {/* Sort Dropdown */}
               <div className="flex items-center gap-4">
-                <span className="text-sm text-stone-600 font-light">
+                <span className="text-sm text-black/60 font-light">
                   {language === 'fr' ? 'Trier par:' : 'Sort by:'}
                 </span>
                 <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-48 bg-white border-stone-200">
+                  <SelectTrigger className="w-48 bg-white border-gray-200 text-black">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -253,44 +265,38 @@ const Catalogue = () => {
           </div>
         </section>
 
-        {/* Products Grid */}
-        <section className="section-padding bg-white">
-          <div className="container-refined">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Products Grid - matching homepage card style */}
+        <section className="py-24 lg:py-32 bg-white">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
               {sortedProducts.map((product) => (
                 <Card 
                   key={product.id} 
-                  className="group bg-white border-0 shadow-elegant rounded-lg overflow-hidden hover:shadow-luxury transition-all duration-300 hover:scale-[1.02]"
+                  className="group cursor-pointer border-0 bg-gray-50 hover:bg-white transition-all duration-500 hover:shadow-2xl hover:shadow-black/10 hover:-translate-y-2 overflow-hidden rounded-3xl"
                 >
-                  <div className="relative">
-                    {/* Product Image */}
-                    <div className="aspect-square overflow-hidden bg-stone-50">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
+                  <div className="aspect-square relative overflow-hidden">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
 
                     {/* Product Badges */}
-                    <div className="absolute top-4 right-4 flex flex-col gap-2">
-                      <Badge 
-                        variant="secondary" 
-                        className="bg-white/90 text-stone-800 text-xs px-2 py-1"
-                      >
+                    <div className="absolute top-6 left-6 flex flex-col gap-2">
+                      <Badge className="bg-black text-white rounded-full px-3 py-1 text-xs font-light">
                         {product.badge}
                       </Badge>
                       {product.originalPrice && (
-                        <Badge className="bg-red-100 text-red-800 text-xs px-2 py-1">
+                        <Badge className="bg-red-600 text-white rounded-full px-3 py-1 text-xs font-light">
                           {language === 'fr' ? 'Promo' : 'Sale'}
                         </Badge>
                       )}
                     </div>
 
                     {/* Stock Status */}
-                    <div className="absolute top-4 left-4">
+                    <div className="absolute top-6 right-6">
                       <Badge 
-                        className={`text-xs px-2 py-1 ${
+                        className={`text-xs px-3 py-1 rounded-full font-light ${
                           product.stockLevel === 'good' 
                             ? 'bg-green-100 text-green-800' 
                             : product.stockLevel === 'medium'
@@ -303,11 +309,11 @@ const Catalogue = () => {
                     </div>
 
                     {/* Quick Actions */}
-                    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
                       <Button
                         size="icon"
                         variant="ghost"
-                        className="bg-white/90 hover:bg-white text-stone-700 rounded-full h-8 w-8"
+                        className="bg-white hover:bg-gray-100 text-black rounded-full h-10 w-10"
                         onClick={() => toggleWishlist(product.id)}
                       >
                         <Heart 
@@ -317,69 +323,69 @@ const Catalogue = () => {
                       <Button
                         size="icon"
                         variant="ghost"
-                        className="bg-white/90 hover:bg-white text-stone-700 rounded-full h-8 w-8"
+                        className="bg-white hover:bg-gray-100 text-black rounded-full h-10 w-10"
                       >
                         <Eye className="h-4 w-4" />
                       </Button>
                     </div>
                   </div>
 
-                  <CardContent className="p-6">
+                  <div className="p-8">
                     {/* Rating */}
                     <div className="flex items-center gap-2 mb-3">
                       <div className="flex">
                         {[...Array(5)].map((_, i) => (
                           <Star 
                             key={i} 
-                            className={`h-3 w-3 ${i < Math.floor(product.rating) ? 'fill-amber-400 text-amber-400' : 'text-stone-300'}`} 
+                            className={`h-3 w-3 ${i < Math.floor(product.rating) ? 'fill-amber-400 text-amber-400' : 'text-gray-300'}`} 
                           />
                         ))}
                       </div>
-                      <span className="text-xs text-stone-600">
+                      <span className="text-xs text-black/60 font-light">
                         {product.rating} ({product.reviews})
                       </span>
                     </div>
 
-                    {/* Product Name */}
-                    <h3 className="heading-display text-lg font-normal text-stone-900 mb-2 line-clamp-2">
+                    {/* Product Name - matching homepage typography */}
+                    <h3 className="text-2xl font-light text-black mb-2 tracking-tight">
                       {product.name}
                     </h3>
 
                     {/* Description */}
-                    <p className="body-text text-sm mb-4 line-clamp-2">
+                    <p className="text-sm text-black/60 font-light mb-4 leading-relaxed">
                       {product.description}
                     </p>
 
                     {/* Price */}
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center justify-between mb-6">
                       <div className="flex items-center gap-2">
-                        <span className="text-xl font-light text-stone-900">
+                        <span className="text-lg font-light text-black">
                           {product.price}€
                         </span>
                         {product.originalPrice && (
-                          <span className="text-sm text-stone-500 line-through">
+                          <span className="text-sm text-black/40 line-through font-light">
                             {product.originalPrice}€
                           </span>
                         )}
                       </div>
                     </div>
 
-                    {/* Add to Cart Button */}
+                    {/* Add to Cart Button - matching homepage style */}
                     <Button
                       onClick={() => handleAddToCart(product)}
-                      className="w-full bg-stone-900 hover:bg-stone-800 text-white border-0 rounded-md py-2 font-light"
+                      className="w-full bg-black hover:bg-black/90 text-white border-0 rounded-full py-3 font-light tracking-wide transition-all duration-300"
                     >
                       <ShoppingCart className="h-4 w-4 mr-2" />
                       {language === 'fr' ? 'Ajouter au panier' : 'Add to cart'}
                     </Button>
-                  </CardContent>
+                  </div>
                 </Card>
               ))}
             </div>
 
             {/* Results Info */}
-            <div className="text-center mt-12 pt-8 border-t border-stone-100">
-              <p className="body-text">
+            <div className="text-center mt-16 pt-8 border-t border-gray-100">
+              <p className="text-lg font-light text-black/60">
                 {language === 'fr' 
                   ? `${sortedProducts.length} produit${sortedProducts.length > 1 ? 's' : ''} affiché${sortedProducts.length > 1 ? 's' : ''}`
                   : `${sortedProducts.length} product${sortedProducts.length > 1 ? 's' : ''} shown`
