@@ -85,6 +85,8 @@ const AppRoutes = () => {
         <Route path="/boutique" element={<Shop />} />
         <Route path="/shipping-returns" element={<ShippingReturns />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/shipping-return" element={<ShippingReturns />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/legal" element={<MentionsLegales />} />
         <Route path="/cgv" element={<CGV />} />
