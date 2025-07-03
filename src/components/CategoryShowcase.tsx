@@ -20,7 +20,7 @@ const categories = [
     id: 'textile',
     title: 'Textiles Marocains',
     cta: 'Découvrir les tissus',
-    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//rugs.jpg',
+    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//women%20face%20covered.jpg',
     link: '/boutique'
   },
   {
