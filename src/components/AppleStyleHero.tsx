@@ -50,9 +50,11 @@ const AppleStyleHero = () => {
           <Button
             size="lg"
             className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-4 text-base font-normal tracking-wide transition-all duration-300"
-            onClick={scrollToCategories}
+            asChild
           >
-            {language === 'fr' ? 'M\'informer' : 'Get Notified'}
+            <Link to="/a-propos">
+              {language === 'fr' ? 'M\'informer' : 'Get Notified'}
+            </Link>
           </Button>
           <Button
             size="lg"
@@ -60,7 +62,7 @@ const AppleStyleHero = () => {
             className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-12 py-4 text-base font-normal tracking-wide transition-all duration-300"
             asChild
           >
-            <Link to="/boutique">
+            <Link to="/catalogue">
               {language === 'fr' ? 'Aperçu Boutique' : 'Shop Preview'}
             </Link>
           </Button>

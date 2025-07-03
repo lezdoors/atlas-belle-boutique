@@ -132,8 +132,6 @@ const AppRoutes = () => {
         <Route path="/story" element={<Story />} />
         <Route path="/a-propos" element={<Story />} />
         <Route path="/notre-heritage" element={<NotreHeritage />} />
-        <Route path="/about" element={<Story />} />
-        <Route path="/histoire" element={<NotreHeritage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/ingredients" element={<Ingredients />} />
         <Route path="/ingredient/:id" element={<IngredientDetail />} />
@@ -149,15 +147,11 @@ const AppRoutes = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/shipping-returns" element={<ShippingReturns />} />
-        <Route path="/shipping-return" element={<ShippingReturns />} />
         
         {/* Legal Routes */}
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/privacy" element={<PrivacyPolicy />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/legal" element={<MentionsLegales />} />
-        <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/cgv" element={<CGV />} />
+        <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/confidentialite" element={<Confidentialite />} />
         <Route path="/cookies" element={<PolitiqueCookies />} />
         <Route path="/credits" element={<Credits />} />

@@ -26,8 +26,8 @@ const BottomNavigation = () => {
     {
       icon: ShoppingBag,
       label: language === 'fr' ? 'Panier' : 'Bag',
-      path: '/boutique',
-      isActive: location.pathname === '/boutique',
+      path: '/catalogue',
+      isActive: location.pathname === '/catalogue',
       badge: totalItems > 0 ? totalItems : null
     },
     {

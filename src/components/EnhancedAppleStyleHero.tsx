@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { ChevronRight, Play, Heart } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const EnhancedAppleStyleHero = () => {
   const { language } = useLanguage();
@@ -85,16 +86,22 @@ const EnhancedAppleStyleHero = () => {
             size="lg"
             onClick={scrollToProducts}
             className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-10 py-4 text-lg font-medium rounded-full transition-all duration-300 hover:scale-105 shadow-2xl shadow-amber-900/30 font-serif tracking-wide min-h-[56px] w-full sm:w-auto"
+            asChild
           >
-            {language === 'fr' ? 'M\'informer' : 'Notify Me'}
-            <ChevronRight className="ml-2 w-5 h-5" />
+            <Link to="/a-propos">
+              {language === 'fr' ? 'M\'informer' : 'Notify Me'}
+              <ChevronRight className="ml-2 w-5 h-5" />
+            </Link>
           </Button>
           <Button
             variant="outline"
             size="lg"
             className="bg-white/10 backdrop-blur-md text-white border-2 border-white/30 px-10 py-4 text-lg font-medium rounded-full hover:bg-white/20 hover:border-white/50 transition-all duration-300 font-serif tracking-wide min-h-[56px] w-full sm:w-auto hover:scale-105"
+            asChild
           >
-            {language === 'fr' ? 'Aperçu Boutique' : 'Shop Preview'}
+            <Link to="/catalogue">
+              {language === 'fr' ? 'Aperçu Boutique' : 'Shop Preview'}
+            </Link>
           </Button>
         </div>
 
