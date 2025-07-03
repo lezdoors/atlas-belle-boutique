@@ -1,7 +1,7 @@
 
 import React from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import BackToTop from '@/components/BackToTop';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -34,7 +34,7 @@ const Histoire = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-pearl-100 to-yellow-50">
-      <Header />
+      <MaisonStyleHeaderNew />
       
       <main className="pt-24">
         {/* Hero Banner */}
@@ -134,7 +134,7 @@ const Histoire = () => {
         </section>
       </main>
 
-      <Footer />
+      <ModernElegantFooter />
       <BackToTop />
     </div>
   );

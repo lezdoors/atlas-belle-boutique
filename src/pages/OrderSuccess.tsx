@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { CheckCircle, Package, Mail, ArrowLeft } from 'lucide-react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -81,7 +81,7 @@ const OrderSuccess = () => {
 
   return (
     <div className="min-h-screen bg-pearl-100">
-      <Header />
+      <MaisonStyleHeaderNew />
       
       <main className="container mx-auto px-4 py-16">
         <div className="max-w-2xl mx-auto">
@@ -214,7 +214,7 @@ const OrderSuccess = () => {
         </div>
       </main>
 
-      <Footer />
+      <ModernElegantFooter />
     </div>
   );
 };

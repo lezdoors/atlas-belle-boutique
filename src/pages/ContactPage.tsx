@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import BackToTop from '@/components/BackToTop';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent } from '@/components/ui/card';
@@ -65,7 +65,7 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-pearl-100">
-      <Header />
+      <MaisonStyleHeaderNew />
       
       <main className="pt-24 pb-16">
         {/* Hero Section */}
@@ -269,7 +269,7 @@ const ContactPage = () => {
         </section>
       </main>
 
-      <Footer />
+      <ModernElegantFooter />
       <BackToTop />
     </div>
   );

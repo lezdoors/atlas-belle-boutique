@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import BackToTop from '@/components/BackToTop';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -155,7 +155,7 @@ const Ingredients = () => {
 
   return (
     <div className="min-h-screen bg-pearl-100">
-      <Header />
+      <MaisonStyleHeaderNew />
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-beige-100 to-pearl-200 py-20">
@@ -353,7 +353,7 @@ const Ingredients = () => {
         </div>
       </section>
 
-      <Footer />
+      <ModernElegantFooter />
       <BackToTop />
     </div>
   );

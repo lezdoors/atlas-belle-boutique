@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import ProductCard from '@/components/ProductCard';
 import BackToTop from '@/components/BackToTop';
 import { Button } from '@/components/ui/button';
@@ -53,7 +53,7 @@ const MaSelection = () => {
 
   return (
     <div className="min-h-screen bg-pearl-100">
-      <Header />
+      <MaisonStyleHeaderNew />
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-beige-100 to-pearl-200 py-20">
@@ -199,7 +199,7 @@ const MaSelection = () => {
         </div>
       </section>
 
-      <Footer />
+      <ModernElegantFooter />
       <BackToTop />
     </div>
   );

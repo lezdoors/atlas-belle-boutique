@@ -1,7 +1,7 @@
 
 import React from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import BackToTop from '@/components/BackToTop';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Shield, Eye, Lock, Users } from 'lucide-react';
@@ -42,7 +42,7 @@ const PolitiqueConfidentialite = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <MaisonStyleHeaderNew />
       
       <main className="pt-24 pb-16">
         <section className="py-16 bg-gradient-to-br from-pearl-50 to-amber-50">
@@ -86,7 +86,7 @@ const PolitiqueConfidentialite = () => {
         </section>
       </main>
 
-      <Footer />
+      <ModernElegantFooter />
       <BackToTop />
     </div>
   );

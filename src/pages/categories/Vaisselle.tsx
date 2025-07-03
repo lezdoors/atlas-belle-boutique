@@ -1,6 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -101,7 +101,7 @@ const Vaisselle = () => {
 
   return (
     <div className="min-h-screen bg-stone-50">
-        <Header />
+        <MaisonStyleHeaderNew />
         
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-stone-100 to-stone-200 py-20 mt-16">
@@ -201,7 +201,7 @@ const Vaisselle = () => {
           </div>
         </section>
 
-      <Footer />
+      <ModernElegantFooter />
     </div>
   );
 };

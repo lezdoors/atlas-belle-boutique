@@ -1,6 +1,6 @@
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import BackToTop from '@/components/BackToTop';
 import WholesaleHero from '@/components/wholesale/WholesaleHero';
 import WholesaleBenefits from '@/components/wholesale/WholesaleBenefits';
@@ -9,7 +9,7 @@ import WholesaleForm from '@/components/wholesale/WholesaleForm';
 const Wholesale = () => {
   return (
     <div className="min-h-screen bg-pearl-100">
-      <Header />
+      <MaisonStyleHeaderNew />
       
       <main className="pt-24 pb-16">
         <WholesaleHero />
@@ -17,7 +17,7 @@ const Wholesale = () => {
         <WholesaleForm />
       </main>
 
-      <Footer />
+      <ModernElegantFooter />
       <BackToTop />
     </div>
   );

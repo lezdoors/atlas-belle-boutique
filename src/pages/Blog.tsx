@@ -1,8 +1,8 @@
 
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import SamraEnhancedChatbot from '@/components/SamraEnhancedChatbot';
 import FloatingCart from '@/components/FloatingCart';
 import BackToTop from '@/components/BackToTop';
@@ -112,7 +112,7 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-pearl-50">
-      <Header />
+      <MaisonStyleHeaderNew />
       
       <main className="pt-20">
         {/* Hero Section */}
@@ -262,7 +262,7 @@ const Blog = () => {
         </section>
       </main>
       
-      <Footer />
+      <ModernElegantFooter />
       <SamraEnhancedChatbot />
       <FloatingCart />
       <BackToTop />

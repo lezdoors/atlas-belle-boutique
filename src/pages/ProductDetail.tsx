@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import BackToTop from '@/components/BackToTop';
 import CheckoutForm from '@/components/CheckoutForm';
 import ProductImageGallery from '@/components/ProductImageGallery';
@@ -84,7 +84,7 @@ const ProductDetail = () => {
 
   return (
     <div className="min-h-screen bg-pearl-100">
-      <Header />
+      <MaisonStyleHeaderNew />
       
       {/* Breadcrumb */}
       <div className="container mx-auto px-4 py-6">
@@ -140,7 +140,7 @@ const ProductDetail = () => {
         </div>
       )}
 
-      <Footer />
+      <ModernElegantFooter />
       <BackToTop />
     </div>
   );

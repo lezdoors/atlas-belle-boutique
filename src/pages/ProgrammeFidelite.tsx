@@ -1,5 +1,5 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import BackToTop from '@/components/BackToTop';
 import LoyaltyHero from '@/components/loyalty/LoyaltyHero';
 import UserProgressSection from '@/components/loyalty/UserProgressSection';
@@ -16,7 +16,7 @@ const ProgrammeFidelite = () => {
 
   return (
     <div className="min-h-screen bg-pearl-100">
-      <Header />
+      <MaisonStyleHeaderNew />
       
       <LoyaltyHero />
       
@@ -37,7 +37,7 @@ const ProgrammeFidelite = () => {
 
       <CTASection />
 
-      <Footer />
+      <ModernElegantFooter />
       <BackToTop />
     </div>
   );

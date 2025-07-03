@@ -1,6 +1,6 @@
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import BackToTop from '@/components/BackToTop';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Sparkles, Droplets, Heart, Sun } from 'lucide-react';
@@ -70,7 +70,7 @@ const Rituels = () => {
 
   return (
     <div className="min-h-screen bg-pearl-100">
-      <Header />
+      <MaisonStyleHeaderNew />
       
       <main className="pt-24 pb-16">
         {/* Hero Section */}
@@ -224,7 +224,7 @@ const Rituels = () => {
         </section>
       </main>
 
-      <Footer />
+      <ModernElegantFooter />
       <BackToTop />
     </div>
   );
