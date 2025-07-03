@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Search, User, Menu, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t } from '@/utils/translations';
+import { Link } from 'react-router-dom';
 
 const TajineIcon = ({ className = "h-6 w-6" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -87,7 +88,7 @@ const MaisonStyleHeaderNew = () => {
                 <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <Search className="h-4 w-4" />
                 </button>
-                <a href="/login" className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
+                <a href="/auth" className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <User className="h-4 w-4" />
                 </a>
                 <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
@@ -153,9 +154,9 @@ const MaisonStyleHeaderNew = () => {
                     </a>
                   ))}
                   <div className="border-t border-stone-200 pt-6 px-4">
-                    <a href="/login" className="block text-base font-light text-stone-700 hover:text-stone-900 transition-colors py-2">
+                    <Link to="/auth" className="block text-base font-light text-stone-700 hover:text-stone-900 transition-colors py-2">
                       {t('header.account', language)}
-                    </a>
+                    </Link>
                     <button
                       onClick={toggleLanguage}
                       className="block text-base font-light text-stone-700 hover:text-stone-900 transition-colors py-2"

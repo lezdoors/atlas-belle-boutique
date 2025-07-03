@@ -2,24 +2,38 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Cadeaux = () => {
   const { language } = useLanguage();
+
+  useEffect(() => {
+    document.title = language === 'fr' 
+      ? 'Cadeaux Authentiques Marocains | Perle de l\'Atlas' 
+      : 'Authentic Moroccan Gifts | Perle de l\'Atlas';
+  }, [language]);
 
   const products = [
     {
       id: 1,
       name: language === 'fr' ? 'Coffret Cadeau Déluxe' : 'Deluxe Gift Set',
-      price: 'À partir de 350 MAD',
+      price: 'À partir de 450 MAD',
+      originalPrice: '600 MAD',
       image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//buttle-roses-inside.jpg',
-      description: language === 'fr' ? 'Coffret avec huiles et parfums' : 'Gift set with oils and perfumes'
+      description: language === 'fr' ? 'Coffret luxueux avec huiles d\'argan, eau de rose et savon noir traditionnel' : 'Luxury gift set with argan oils, rose water and traditional black soap',
+      rating: 4.9,
+      reviews: 145,
+      badge: 'bestseller'
     },
     {
       id: 2,
-      name: language === 'fr' ? 'Panier Artisanal' : 'Artisanal Basket',
-      price: 'À partir de 200 MAD',
+      name: language === 'fr' ? 'Panier Artisanal Berbère' : 'Berber Artisanal Basket',
+      price: 'À partir de 280 MAD',
       image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400',
-      description: language === 'fr' ? 'Panier tressé avec produits locaux' : 'Woven basket with local products'
+      description: language === 'fr' ? 'Panier tressé à la main avec sélection de produits locaux authentiques' : 'Hand-woven basket with selection of authentic local products',
+      rating: 4.7,
+      reviews: 89,
+      badge: 'limited'
     }
   ];
 
