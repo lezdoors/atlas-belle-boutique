@@ -29,11 +29,22 @@ const AppleStyleAbout = () => {
           </div>
           
           <div className="relative">
-            <img
-              src="/lovable-uploads/moroccan-architecture.jpg"
-              alt="Moroccan Architecture"
-              className="w-full h-96 lg:h-[500px] object-cover rounded-3xl shadow-2xl shadow-black/20"
-            />
+            <div className="w-full h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl shadow-black/20">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source 
+                  src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//hand%20in%20the%20sand.mp4" 
+                  type="video/mp4" 
+                />
+              </video>
+              {/* Subtle overlay for better text contrast if needed */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+            </div>
           </div>
         </div>
       </div>

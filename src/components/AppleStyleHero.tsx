@@ -10,9 +10,15 @@ const AppleStyleHero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden w-full">
-      {/* Subtle Background */}
+      {/* Subtle Background Image with Tint */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-stone-50 to-white"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+          style={{
+            backgroundImage: `url('https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//orange%20rose%20and%20bottle%20behind%20it.jpg')`
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white/90"></div>
       </div>
 
       {/* Content */}
