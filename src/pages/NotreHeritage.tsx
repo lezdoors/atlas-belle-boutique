@@ -1,49 +1,42 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
 import ModernElegantFooter from '@/components/ModernElegantFooter';
 import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Heart, Leaf, Users, Award, Mountain, Star } from 'lucide-react';
+import { Heart, Leaf, ShieldCheck, Award } from 'lucide-react';
 
 const NotreHeritage = () => {
   const { language } = useLanguage();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(console.error);
+    }
+  }, []);
 
   const values = [
     {
-      icon: Heart,
-      title: language === 'fr' ? 'Authenticité' : 'Authenticity',
-      description: language === 'fr' 
-        ? 'Chaque création respecte les traditions ancestrales transmises de génération en génération'
-        : 'Each creation respects ancestral traditions passed down from generation to generation'
+      icon: Leaf,
+      title: "100% naturel",
+      description: language === 'fr' ? 'Ingrédients purs des montagnes de l\'Atlas' : 'Pure ingredients from the Atlas mountains'
     },
     {
-      icon: Users,
-      title: language === 'fr' ? 'Artisanat' : 'Small-batch',
-      description: language === 'fr'
-        ? 'Productions limitées qui préservent la qualité et l\'unicité de chaque pièce'
-        : 'Limited productions that preserve the quality and uniqueness of each piece'
+      icon: Heart,
+      title: "Fait main au Maroc", 
+      description: language === 'fr' ? 'Artisanat traditionnel authentique' : 'Authentic traditional craftsmanship'
+    },
+    {
+      icon: ShieldCheck,
+      title: "Sans cruauté",
+      description: language === 'fr' ? 'Respectueux des animaux et de la nature' : 'Respectful of animals and nature'
     },
     {
       icon: Award,
-      title: language === 'fr' ? 'Fait Main' : 'Handmade',
-      description: language === 'fr'
-        ? 'Chaque objet naît des mains expertes d\'artisans maîtres de leur art'
-        : 'Each object is born from the expert hands of artisans who master their craft'
-    },
-    {
-      icon: Leaf,
-      title: language === 'fr' ? 'Biologique' : 'Organic',
-      description: language === 'fr'
-        ? 'Matériaux naturels et processus respectueux de l\'environnement'
-        : 'Natural materials and environmentally respectful processes'
-    },
-    {
-      icon: Star,
-      title: language === 'fr' ? 'Éthique' : 'Ethical',
-      description: language === 'fr'
-        ? 'Commerce équitable et soutien direct aux communautés artisanales'
-        : 'Fair trade and direct support to artisan communities'
+      title: "Certifié biologique",
+      description: language === 'fr' ? 'Certifications biologiques reconnues' : 'Recognized organic certifications'
     }
   ];
 
@@ -51,150 +44,154 @@ const NotreHeritage = () => {
     <div className="min-h-screen bg-white">
       <MaisonStyleHeaderNew />
       
-      {/* Hero Section */}
-      <section className="pt-20 pb-24 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-extralight text-black mb-8 tracking-tight">
-            {language === 'fr' ? 'Notre Héritage' : 'Our Heritage'}
+      {/* Hero Section with Video Background */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/videos/Riyad-entrance.mp4" type="video/mp4" />
+        </video>
+        
+        <div className="absolute inset-0 bg-black/40"></div>
+        
+        <div className="relative z-10 text-center text-white px-6 lg:px-8">
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-light mb-8 tracking-tight">
+            Notre Héritage
           </h1>
-          <p className="text-xl md:text-2xl font-light text-black/60 leading-relaxed max-w-3xl mx-auto">
-            {language === 'fr'
-              ? 'Au cœur des montagnes de l\'Atlas, où le soleil caresse des terres millénaires, naissent des créations qui portent l\'âme du Maroc. Chaque geste, chaque tradition, chaque savoir-faire raconte une histoire de beauté intemporelle.'
-              : 'In the heart of the Atlas Mountains, where the sun caresses thousand-year-old lands, creations are born that carry the soul of Morocco. Each gesture, each tradition, each craft tells a story of timeless beauty.'
-            }
+          <p className="text-xl md:text-2xl font-light leading-relaxed max-w-3xl mx-auto">
+            Un voyage entre traditions marocaines et élégance moderne.
           </p>
         </div>
       </section>
 
-      {/* Story Section */}
-      <section className="py-16">
+      {/* Section 1: Un Savoir-Faire Ancien */}
+      <section className="py-24 lg:py-32 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-extralight text-black mb-6 tracking-tight">
-                {language === 'fr' ? 'Une Histoire de Famille' : 'A Family Story'}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="animate-fade-in">
+              <h2 className="font-serif text-4xl md:text-5xl font-light text-black mb-8 tracking-tight">
+                Un Savoir-Faire Ancien
               </h2>
-              <p className="text-lg font-light text-black/70 leading-relaxed mb-6">
-                {language === 'fr'
-                  ? 'Perle de l\'Atlas est né de la rencontre entre deux mondes : l\'héritage marocain de nos fondateurs et leur vision moderne du partage culturel. Cette famille maroco-américaine a voulu créer un pont entre les traditions séculaires du Maroc et les amoureux de l\'artisanat authentique à travers le monde.'
-                  : 'Perle de l\'Atlas was born from the meeting of two worlds: the Moroccan heritage of our founders and their modern vision of cultural sharing. This Moroccan-American family wanted to create a bridge between Morocco\'s secular traditions and lovers of authentic craftsmanship around the world.'
-                }
-              </p>
               <p className="text-lg font-light text-black/70 leading-relaxed">
-                {language === 'fr'
-                  ? 'Chaque voyage au Maroc renforce notre conviction : ces trésors artisanaux méritent d\'être partagés, célébrés et préservés. C\'est ainsi qu\'est née notre mission de révéler au monde la beauté intemporelle de l\'artisanat marocain.'
-                  : 'Each trip to Morocco reinforces our conviction: these artisanal treasures deserve to be shared, celebrated and preserved. This is how our mission was born to reveal to the world the timeless beauty of Moroccan craftsmanship.'
-                }
+                Née au cœur de l'Atlas, Perle de l'Atlas puise son inspiration dans les secrets ancestraux transmis de génération en génération. Chaque fragrance, chaque élixir, raconte une histoire marocaine — celle des femmes, des terres, et du temps.
               </p>
             </div>
-            <div className="relative">
+            <div className="relative animate-fade-in">
               <img
-                src="/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png"
-                alt="Heritage"
-                className="w-full h-96 object-cover rounded-3xl shadow-2xl"
+                src="/lovable-uploads/moroccan-architecture.jpg"
+                alt="Moroccan Architecture"
+                className="w-full h-96 object-cover rounded-3xl shadow-luxury"
               />
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Values Grid */}
-          <div className="mb-20">
-            <h2 className="text-3xl md:text-4xl font-extralight text-black mb-12 text-center tracking-tight">
-              {language === 'fr' ? 'Nos Valeurs' : 'Our Values'}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {values.map((value, index) => (
-                <div key={index} className="bg-gray-50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300">
-                  <value.icon className="h-10 w-10 mx-auto mb-4 text-black/60" />
-                  <h3 className="text-xl font-light text-black mb-3">
-                    {value.title}
-                  </h3>
-                  <p className="text-black/60 font-light leading-relaxed">
-                    {value.description}
-                  </p>
-                </div>
-              ))}
+      {/* Section 2: Timeline Style */}
+      <section className="py-24 lg:py-32 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="relative lg:order-2 animate-fade-in">
+              <img
+                src="/lovable-uploads/coastal-natural-beauty.jpg"
+                alt="Moroccan Landscape"
+                className="w-full h-96 object-cover rounded-3xl shadow-luxury"
+              />
+            </div>
+            <div className="lg:order-1 animate-fade-in">
+              <div className="text-sm font-light text-black/60 mb-4 tracking-wide">
+                200 ans plus tard…
+              </div>
+              <p className="text-lg font-light text-black/70 leading-relaxed">
+                Nos racines plongent dans les vallées berbères et les traditions de beauté du désert. Aujourd'hui, nous honorons cet héritage en créant des produits qui lient l'âme du passé à la pureté contemporaine.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* From Atlas to You Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Section 3: Family & Legacy */}
+      <section className="py-24 lg:py-32 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Mountain className="h-12 w-12 mx-auto mb-6 text-black/60" />
-            <h2 className="text-3xl md:text-4xl font-extralight text-black mb-6 tracking-tight">
-              {language === 'fr' ? 'De l\'Atlas jusqu\'à chez Vous' : 'From the Atlas Mountains to You'}
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="font-serif text-4xl md:text-5xl font-light text-black mb-8 tracking-tight">
+              Toujours une histoire de famille
             </h2>
-            <p className="text-lg font-light text-black/60 leading-relaxed max-w-3xl mx-auto">
-              {language === 'fr'
-                ? 'Découvrez les visages et les histoires des artisans qui donnent vie à nos créations. Chaque main qui façonne, chaque geste qui crée, porte en lui des siècles de savoir-faire et de passion.'
-                : 'Discover the faces and stories of the artisans who bring our creations to life. Each hand that shapes, each gesture that creates, carries within it centuries of know-how and passion.'
-              }
+            <p className="text-lg font-light text-black/70 leading-relaxed max-w-4xl mx-auto">
+              Perle de l'Atlas est née d'une volonté familiale de préserver et célébrer l'artisanat marocain. Nos fondateurs perpétuent un héritage à travers des gestes simples mais précieux : distiller, infuser, composer.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 animate-fade-in">
             <div className="text-center">
-              <div className="aspect-square rounded-2xl overflow-hidden mb-6 shadow-lg">
+              <div className="aspect-square rounded-2xl overflow-hidden mb-6 shadow-refined">
                 <img
                   src="/lovable-uploads/6d0913b6-03ca-40b5-9002-ea188762b64f.png"
-                  alt="Artisan 1"
+                  alt="Founder"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h3 className="text-lg font-light text-black mb-2">Maître Hassan</h3>
+              <h3 className="text-xl font-light text-black mb-2">Yasmine Atlas</h3>
               <p className="text-black/60 font-light text-sm">
-                {language === 'fr' ? 'Potier traditionnel, Salé' : 'Traditional potter, Salé'}
+                Co-fondatrice
               </p>
             </div>
 
             <div className="text-center">
-              <div className="aspect-square rounded-2xl overflow-hidden mb-6 shadow-lg">
+              <div className="aspect-square rounded-2xl overflow-hidden mb-6 shadow-refined">
                 <img
                   src="/lovable-uploads/6fde7854-c65c-40e6-8df6-8d9ca69c3fc8.png"
-                  alt="Artisan 2"
+                  alt="Founder"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h3 className="text-lg font-light text-black mb-2">Aicha</h3>
+              <h3 className="text-xl font-light text-black mb-2">Karim Atlas</h3>
               <p className="text-black/60 font-light text-sm">
-                {language === 'fr' ? 'Tisseuse experte, Atlas' : 'Expert weaver, Atlas'}
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="aspect-square rounded-2xl overflow-hidden mb-6 shadow-lg">
-                <img
-                  src="/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png"
-                  alt="Artisan 3"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-lg font-light text-black mb-2">Mohammed</h3>
-              <p className="text-black/60 font-light text-sm">
-                {language === 'fr' ? 'Maître verrier, Fès' : 'Master glassblower, Fez'}
+                Co-fondateur
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-20 bg-black text-white">
+      {/* Section 4: Values Icons */}
+      <section className="py-24 lg:py-32 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {values.map((value, index) => (
+              <div key={index} className="text-center animate-fade-in">
+                <div className="w-16 h-16 mx-auto mb-6 bg-white rounded-full flex items-center justify-center shadow-elegant">
+                  <value.icon className="h-8 w-8 text-black/70" />
+                </div>
+                <h3 className="text-lg font-light text-black mb-3">
+                  {value.title}
+                </h3>
+                <p className="text-sm text-black/60 font-light leading-relaxed">
+                  {value.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer Call-to-Action */}
+      <section className="py-24 lg:py-32 bg-black text-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-extralight mb-6 tracking-tight">
-            {language === 'fr' ? 'Rejoignez Notre Histoire' : 'Join Our Story'}
+          <h2 className="font-serif text-3xl md:text-4xl font-light mb-8 tracking-tight">
+            Notre histoire ne fait que commencer…
           </h2>
-          <p className="text-xl font-light text-white/80 leading-relaxed mb-8 max-w-2xl mx-auto">
-            {language === 'fr'
-              ? 'Chaque création que vous choisissez soutient directement nos artisans partenaires et perpétue un héritage millénaire. Ensemble, célébrons la beauté de l\'artisanat marocain.'
-              : 'Each creation you choose directly supports our partner artisans and perpetuates a thousand-year-old heritage. Together, let\'s celebrate the beauty of Moroccan craftsmanship.'
-            }
-          </p>
-          <button className="bg-white text-black px-8 py-3 rounded-full font-light transition-all duration-300 hover:bg-white/90">
-            {language === 'fr' ? 'Découvrir nos Créations' : 'Discover our Creations'}
-          </button>
+          <Link 
+            to="/catalogue"
+            className="inline-block bg-white text-black px-8 py-4 rounded-full font-light transition-all duration-300 hover:bg-white/90 hover:scale-105"
+          >
+            Découvrir la collection →
+          </Link>
         </div>
       </section>
 
