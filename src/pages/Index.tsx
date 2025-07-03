@@ -4,11 +4,19 @@ import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
 import NewsletterTopBanner from '@/components/NewsletterTopBanner';
 import CountdownBanner from '@/components/CountdownBanner';
 import AppleStyleHero from '@/components/AppleStyleHero';
-import ThemedSections from '@/components/ThemedSections';
+import IngredientOriginMap from '@/components/IngredientOriginMap';
+import AppleStyleProductGrid from '@/components/AppleStyleProductGrid';
+import FeaturedCollections from '@/components/FeaturedCollections';
+import SpecialOffers from '@/components/SpecialOffers';
+import WrappedWithCare from '@/components/WrappedWithCare';
+import AppleStyleAbout from '@/components/AppleStyleAbout';
+import EarlyAccessSignup from '@/components/EarlyAccessSignup';
+import NewsletterSignup from '@/components/NewsletterSignup';
 import ModernElegantFooter from '@/components/ModernElegantFooter';
 import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
 import StickyTopBanner from '@/components/StickyTopBanner';
 import AppleCountdownBanner from '@/components/AppleCountdownBanner';
+import CategoryShowcase from '@/components/CategoryShowcase';
 
 const Index = () => {
   const [videoEnded, setVideoEnded] = useState(false);
@@ -41,8 +49,17 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Luxury Themed Sections */}
-        <ThemedSections />
+        {/* Interactive Map Section */}
+        <IngredientOriginMap />
+        
+        {/* Category Showcase Section */}
+        <CategoryShowcase />
+        
+        <AppleStyleProductGrid />
+        <FeaturedCollections />
+        <SpecialOffers />
+        <WrappedWithCare />
+        <AppleStyleAbout />
         <ModernElegantFooter />
         <SamraRefactoredChatbot videoEnded={videoEnded} />
       </div>
