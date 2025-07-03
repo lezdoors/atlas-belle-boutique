@@ -54,6 +54,27 @@ export type Database = {
         }
         Relationships: []
       }
+      categories: {
+        Row: {
+          id: string
+          name: string
+          name_en: string | null
+          name_fr: string | null
+        }
+        Insert: {
+          id?: string
+          name: string
+          name_en?: string | null
+          name_fr?: string | null
+        }
+        Update: {
+          id?: string
+          name?: string
+          name_en?: string | null
+          name_fr?: string | null
+        }
+        Relationships: []
+      }
       early_access_list: {
         Row: {
           created_at: string | null
@@ -248,6 +269,32 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      product_images: {
+        Row: {
+          id: string
+          image_url: string
+          product_id: string | null
+        }
+        Insert: {
+          id?: string
+          image_url: string
+          product_id?: string | null
+        }
+        Update: {
+          id?: string
+          image_url?: string
+          product_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_images_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       product_reviews: {
         Row: {
@@ -574,6 +621,7 @@ export type Database = {
           phone: string | null
           preferred_currency: string | null
           preferred_language: string | null
+          role: string | null
           updated_at: string | null
         }
         Insert: {
@@ -588,6 +636,7 @@ export type Database = {
           phone?: string | null
           preferred_currency?: string | null
           preferred_language?: string | null
+          role?: string | null
           updated_at?: string | null
         }
         Update: {
@@ -602,6 +651,7 @@ export type Database = {
           phone?: string | null
           preferred_currency?: string | null
           preferred_language?: string | null
+          role?: string | null
           updated_at?: string | null
         }
         Relationships: []

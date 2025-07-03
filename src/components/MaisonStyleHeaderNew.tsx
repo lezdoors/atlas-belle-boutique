@@ -5,6 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/hooks/useAuth';
 import { t } from '@/utils/translations';
 import { Link } from 'react-router-dom';
+import CatalogueMegaMenu from '@/components/CatalogueMegaMenu';
 
 const TajineIcon = ({ className = "h-6 w-6" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -53,7 +54,6 @@ const MaisonStyleHeaderNew = () => {
   }, [lastScrollY]);
 
   const navigation = [
-    { name: language === 'fr' ? 'Catalogue' : 'Catalogue', href: '/catalogue' },
     { name: language === 'fr' ? 'Notre histoire' : 'Our Story', href: '/notre-heritage' },
     { name: language === 'fr' ? 'À propos' : 'About', href: '/about' },
     { name: language === 'fr' ? 'Contact' : 'Contact', href: '/contact' },
@@ -126,6 +126,7 @@ const MaisonStyleHeaderNew = () => {
             <div className="hidden lg:block border-t border-stone-100">
               <nav className="py-4">
                 <div className="flex items-center justify-center space-x-12">
+                  <CatalogueMegaMenu />
                   {navigation.map((item) => (
                     <Link
                       key={item.name}
@@ -144,6 +145,13 @@ const MaisonStyleHeaderNew = () => {
             {isMobileMenuOpen && (
               <div className="lg:hidden border-t border-stone-200 bg-white">
                 <nav className="py-6 space-y-6">
+                  <Link
+                    to="/catalogue"
+                    className="block text-base font-light text-stone-700 hover:text-stone-900 transition-colors px-4 py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {language === 'fr' ? 'Catalogue' : 'Catalogue'}
+                  </Link>
                   {navigation.map((item) => (
                     <Link
                       key={item.name}

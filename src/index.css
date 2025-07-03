@@ -181,6 +181,27 @@
     }
   }
   
+  /* Mega Menu Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px) scale(0.95);
+    }
+    to {
+      transform: translateY(0) scale(1);
+    }
+  }
+  
   /* Editorial cards */
   .card-editorial {
     background: hsl(var(--card));
