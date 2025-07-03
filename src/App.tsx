@@ -58,6 +58,11 @@ import Ete from "./pages/collections/Ete";
 import Hiver from "./pages/collections/Hiver";
 import Printemps from "./pages/collections/Printemps";
 import Credits from "./pages/Credits";
+import HuileArgan from "./pages/products/HuileArgan";
+import SavonNoir from "./pages/products/SavonNoir";
+import Ghassoul from "./pages/products/Ghassoul";
+import VerreMarocain from "./pages/products/VerreMarocain";
+import TajineTraditionnel from "./pages/products/TajineTraditionnel";
 
 // Import enhanced styles
 import './styles/enhanced-colors.css';
@@ -108,6 +113,11 @@ const AppRoutes = () => {
         {/* Product Routes */}
         <Route path="/product/:slug" element={<ProductPage />} />
         <Route path="/product-detail/:id" element={<ProductDetail />} />
+        <Route path="/products/huile-argan" element={<HuileArgan />} />
+        <Route path="/products/savon-noir" element={<SavonNoir />} />
+        <Route path="/products/ghassoul" element={<Ghassoul />} />
+        <Route path="/products/verre-marocain" element={<VerreMarocain />} />
+        <Route path="/products/tajine-traditionnel" element={<TajineTraditionnel />} />
         
         {/* Shop Routes */}
         <Route path="/shop" element={<Shop />} />

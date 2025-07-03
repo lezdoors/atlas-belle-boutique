@@ -19,12 +19,59 @@ import AppleCountdownBanner from '@/components/AppleCountdownBanner';
 import CategoryShowcase from '@/components/CategoryShowcase';
 import MediaLogoBanner from '@/components/MediaLogoBanner';
 import CertificationBanner from '@/components/CertificationBanner';
+import SEOHead from '@/components/SEOHead';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Index = () => {
   const [videoEnded, setVideoEnded] = useState(false);
+  const { language } = useLanguage();
+
+  const seoContent = {
+    fr: {
+      title: "Rituels de Beauté Marocains & Art de Vivre Authentique",
+      description: "Découvrez Perle de l'Atlas : cosmétiques bio à l'huile d'argan, savon noir traditionnel, vaisselle artisanale marocaine et objets d'art. Livraison gratuite dès 149€.",
+      keywords: [
+        "huile d'argan bio",
+        "savon noir marocain", 
+        "cosmétiques naturels maroc",
+        "rituels beauté marocains",
+        "vaisselle artisanale maroc",
+        "tajine traditionnel",
+        "verre marocain soufflé",
+        "ghassoul argile",
+        "art de vivre marocain",
+        "décoration orientale",
+        "artisanat marocain authentique"
+      ]
+    },
+    en: {
+      title: "Moroccan Beauty Rituals & Authentic Art of Living",
+      description: "Discover Perle de l'Atlas: organic argan oil cosmetics, traditional black soap, Moroccan artisan tableware and art objects. Free shipping from €149.",
+      keywords: [
+        "organic argan oil",
+        "moroccan black soap",
+        "natural cosmetics morocco", 
+        "moroccan beauty rituals",
+        "moroccan artisan tableware",
+        "traditional tagine",
+        "moroccan blown glass",
+        "ghassoul clay",
+        "moroccan art of living",
+        "oriental decoration",
+        "authentic moroccan crafts"
+      ]
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white w-full">
+      <SEOHead
+        title={seoContent[language].title}
+        description={seoContent[language].description}
+        keywords={seoContent[language].keywords}
+        type="website"
+        schemaType="WebPage"
+      />
       {/* Main Header */}
       <MaisonStyleHeaderNew />
       

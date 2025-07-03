@@ -7,9 +7,43 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Home, Lightbulb, Palette, Heart, ShoppingCart, Sparkles } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
 
 const Decor = () => {
   const { language } = useLanguage();
+
+  const seoContent = {
+    fr: {
+      title: "Décoration Marocaine | Objets d'Art, Tapis Berbères & Éclairage Oriental",
+      description: "Transformez votre intérieur avec notre collection de décoration marocaine : lanternes artisanales, tapis berbères authentiques, objets d'art traditionnels.",
+      keywords: [
+        "décoration marocaine",
+        "objets d'art maroc",
+        "tapis berbère authentique",
+        "lanterne marocaine",
+        "éclairage oriental",
+        "artisanat décoratif maroc",
+        "mobilier marocain",
+        "décoration orientale",
+        "art marocain traditionnel"
+      ]
+    },
+    en: {
+      title: "Moroccan Decoration | Art Objects, Berber Rugs & Oriental Lighting",
+      description: "Transform your interior with our Moroccan decoration collection: artisan lanterns, authentic Berber rugs, traditional art objects.",
+      keywords: [
+        "moroccan decoration",
+        "moroccan art objects",
+        "authentic berber rug",
+        "moroccan lantern",
+        "oriental lighting",
+        "moroccan decorative crafts",
+        "moroccan furniture",
+        "oriental decoration",
+        "traditional moroccan art"
+      ]
+    }
+  };
 
   const categories = [
     {
@@ -96,6 +130,13 @@ const Decor = () => {
 
   return (
     <div className="min-h-screen bg-stone-50">
+      <SEOHead
+        title={seoContent[language].title}
+        description={seoContent[language].description}
+        keywords={seoContent[language].keywords}
+        type="website"
+        schemaType="WebPage"
+      />
       <MaisonStyleHeaderNew />
       
       <main className="pt-32 pb-16">
@@ -107,7 +148,7 @@ const Decor = () => {
                 {language === 'fr' ? 'Décoration' : 'Home Décor'}
               </Badge>
               <h1 className="font-serif text-5xl md:text-6xl font-light text-stone-800 mb-6">
-                {language === 'fr' ? 'Votre Maison, Votre Riad' : 'Your Home, Your Riad'}
+                {language === 'fr' ? 'Décoration Marocaine Authentique' : 'Authentic Moroccan Decoration'}
               </h1>
               <p className="text-xl text-stone-600 leading-relaxed max-w-2xl mx-auto mb-8">
                 {language === 'fr'

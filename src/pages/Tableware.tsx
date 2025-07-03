@@ -7,9 +7,43 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Utensils, Coffee, Flame, Star, Heart, ShoppingCart } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
 
 const Tableware = () => {
   const { language } = useLanguage();
+
+  const seoContent = {
+    fr: {
+      title: "Vaisselle Artisanale Marocaine | Tajines, Services à Thé & Céramique",
+      description: "Collection exclusive de vaisselle marocaine authentique : tajines en terre cuite, services à thé traditionnels, céramique de Fès. Art de la table marocain fait main.",
+      keywords: [
+        "tajine traditionnel maroc",
+        "service à thé marocain",
+        "vaisselle artisanale maroc",
+        "céramique de fès",
+        "art de la table oriental",
+        "plats marocains authentiques",
+        "zellige vaisselle",
+        "poterie berbère",
+        "artisanat culinaire maroc"
+      ]
+    },
+    en: {
+      title: "Moroccan Artisan Tableware | Tagines, Tea Services & Ceramics",
+      description: "Exclusive collection of authentic Moroccan tableware: terracotta tagines, traditional tea services, Fès ceramics. Handmade Moroccan table art.",
+      keywords: [
+        "traditional moroccan tagine",
+        "moroccan tea service", 
+        "moroccan artisan tableware",
+        "fez ceramics",
+        "oriental table art",
+        "authentic moroccan dishes",
+        "zellige tableware",
+        "berber pottery",
+        "moroccan culinary crafts"
+      ]
+    }
+  };
 
   const collections = [
     {
@@ -94,6 +128,13 @@ const Tableware = () => {
 
   return (
     <div className="min-h-screen bg-stone-50">
+      <SEOHead
+        title={seoContent[language].title}
+        description={seoContent[language].description}
+        keywords={seoContent[language].keywords}
+        type="website"
+        schemaType="WebPage"
+      />
       <MaisonStyleHeaderNew />
       
       <main className="pt-32 pb-16">
@@ -105,7 +146,7 @@ const Tableware = () => {
                 {language === 'fr' ? 'Art de la Table' : 'Tableware'}
               </Badge>
               <h1 className="font-serif text-5xl md:text-6xl font-light text-stone-800 mb-6">
-                {language === 'fr' ? 'L\'Art de Recevoir' : 'The Art of Hospitality'}
+                {language === 'fr' ? 'Vaisselle Artisanale Marocaine' : 'Moroccan Artisan Tableware'}
               </h1>
               <p className="text-xl text-stone-600 leading-relaxed max-w-2xl mx-auto mb-8">
                 {language === 'fr'
