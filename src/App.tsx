@@ -111,7 +111,7 @@ const AppRoutes = () => {
         
         {/* Shop Routes */}
         <Route path="/shop" element={<Shop />} />
-        <Route path="/boutique" element={<Shop />} />
+        <Route path="/boutique" element={<Boutique />} />
         <Route path="/catalogue" element={<Catalogue />} />
         <Route path="/wholesale" element={<Wholesale />} />
         
@@ -131,7 +131,7 @@ const AppRoutes = () => {
         
         {/* Content Routes */}
         <Route path="/story" element={<Story />} />
-        <Route path="/a-propos" element={<Story />} />
+        <Route path="/a-propos" element={<About />} />
         <Route path="/notre-heritage" element={<NotreHeritage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/ingredients" element={<Ingredients />} />
