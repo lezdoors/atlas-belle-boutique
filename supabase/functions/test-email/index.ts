@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { Resend } from "npm:resend@2.0.0";
+import { SMTPClient } from "https://deno.land/x/denomailer@1.6.0/mod.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -13,16 +13,15 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    console.log("Testing email configuration...");
+    console.log("Testing cPanel SMTP email configuration...");
     
-    // Check if we have the API key
-    const apiKey = Deno.env.get("RESEND_API_KEY");
-    if (!apiKey) {
-      throw new Error("RESEND_API_KEY not found in environment variables");
+    // Check if we have the EMAIL_PASSWORD
+    const emailPassword = Deno.env.get("EMAIL_PASSWORD");
+    if (!emailPassword) {
+      throw new Error("EMAIL_PASSWORD not found in environment variables");
     }
     
-    console.log("API key found, initializing Resend...");
-    const resend = new Resend(apiKey);
+    console.log("Email password found, initializing SMTP client...");
 
     const { email, testType = "basic" } = await req.json();
     
@@ -30,12 +29,25 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error("Email address is required");
     }
 
+    // Configure SMTP client based on cPanel settings
+    const client = new SMTPClient({
+      connection: {
+        hostname: "mail.atlasperle.com",
+        port: 465,
+        tls: true,
+        auth: {
+          username: "support@atlasperle.com",
+          password: emailPassword,
+        },
+      },
+    });
+
     let subject = "";
-    let html = "";
+    let htmlContent = "";
 
     if (testType === "luxury") {
       subject = "🌟 Test Email - Perle de l'Atlas";
-      html = `
+      htmlContent = `
         <div style="font-family: 'Georgia', serif; max-width: 600px; margin: 0 auto; padding: 20px; background: linear-gradient(135deg, #f8f6f3, #faf9f7); border-radius: 12px;">
           <div style="text-align: center; margin-bottom: 40px; padding: 30px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
             <h1 style="color: #8B4513; font-size: 32px; margin: 20px 0; font-weight: 300; letter-spacing: 1px;">
@@ -52,13 +64,13 @@ const handler = async (req: Request): Promise<Response> => {
             </p>
             
             <p style="font-size: 16px; line-height: 1.8; color: #4a4a4a; margin-bottom: 25px;">
-              Votre configuration email fonctionne parfaitement. Ce message confirme que tous les systèmes sont opérationnels pour Perle de l'Atlas.
+              Votre configuration email cPanel fonctionne parfaitement. Ce message confirme que tous les systèmes sont opérationnels pour Perle de l'Atlas.
             </p>
             
             <div style="background: linear-gradient(135deg, #D4AF37, #B8860B); padding: 3px; border-radius: 30px; margin: 40px 0;">
               <div style="background: white; border-radius: 27px; padding: 2px;">
                 <div style="background: linear-gradient(135deg, #D4AF37, #B8860B); color: white; padding: 15px 40px; border-radius: 25px; font-weight: 600; text-align: center; font-size: 16px; letter-spacing: 0.5px;">
-                  ✅ Email System Active
+                  ✅ cPanel SMTP Active
                 </div>
               </div>
             </div>
@@ -68,10 +80,10 @@ const handler = async (req: Request): Promise<Response> => {
                 🌟 Configuration Details:
               </p>
               <ul style="font-size: 14px; color: #666; line-height: 1.6; padding-left: 20px;">
-                <li>Service: Resend API</li>
-                <li>From Domain: Verified</li>
-                <li>CORS: Enabled</li>
-                <li>Templates: Multilingual Ready</li>
+                <li>Service: cPanel SMTP</li>
+                <li>Server: mail.atlasperle.com</li>
+                <li>Port: 465 (SSL)</li>
+                <li>From: support@atlasperle.com</li>
               </ul>
             </div>
           </div>
@@ -88,17 +100,21 @@ const handler = async (req: Request): Promise<Response> => {
       `;
     } else {
       // Basic test email
-      subject = "Email Test - Perle de l'Atlas";
-      html = `
+      subject = "Email Test - Perle de l'Atlas (cPanel SMTP)";
+      htmlContent = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h1 style="color: #2c2c2c;">Email Test Successful! ✅</h1>
-          <p>This is a test email from Perle de l'Atlas.</p>
+          <h1 style="color: #2c2c2c;">cPanel SMTP Test Successful! ✅</h1>
+          <p>This test email was sent successfully using your cPanel email configuration.</p>
+          <hr>
           <p><strong>Timestamp:</strong> ${new Date().toISOString()}</p>
-          <p><strong>Service:</strong> Resend API</p>
+          <p><strong>Service:</strong> cPanel SMTP</p>
+          <p><strong>Server:</strong> mail.atlasperle.com</p>
+          <p><strong>Port:</strong> 465 (SSL)</p>
+          <p><strong>From:</strong> support@atlasperle.com</p>
           <p><strong>Status:</strong> Configuration working correctly</p>
           <hr>
           <p style="color: #666; font-size: 12px;">
-            This email was sent to verify the email configuration for Perle de l'Atlas.
+            This email was sent to verify the cPanel email configuration for Perle de l'Atlas.
           </p>
         </div>
       `;
@@ -106,19 +122,22 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log(`Sending test email to: ${email}`);
     
-    const emailResponse = await resend.emails.send({
-      from: "Perle de l'Atlas <noreply@atlasperle.com>",
-      to: [email],
+    await client.send({
+      from: "Perle de l'Atlas <support@atlasperle.com>",
+      to: email,
       subject: subject,
-      html: html,
+      content: htmlContent,
+      html: htmlContent,
     });
 
-    console.log("Email sent successfully:", emailResponse);
+    await client.close();
+    console.log("Email sent successfully via cPanel SMTP");
 
     return new Response(JSON.stringify({ 
       success: true, 
-      message: "Test email sent successfully",
-      emailId: emailResponse.data?.id,
+      message: "Test email sent successfully via cPanel SMTP",
+      service: "cPanel SMTP",
+      server: "mail.atlasperle.com",
       timestamp: new Date().toISOString()
     }), {
       status: 200,
@@ -126,18 +145,21 @@ const handler = async (req: Request): Promise<Response> => {
     });
 
   } catch (error: any) {
-    console.error("Email test failed:", error);
+    console.error("cPanel SMTP test failed:", error);
     
     return new Response(JSON.stringify({ 
       success: false,
       error: error.message,
       timestamp: new Date().toISOString(),
-      details: "Check if RESEND_API_KEY is properly configured"
+      details: "Check if EMAIL_PASSWORD is properly configured for support@atlasperle.com",
+      service: "cPanel SMTP"
     }), {
       status: 500,
       headers: { "Content-Type": "application/json", ...corsHeaders },
     });
   }
 };
+
+serve(handler);
 
 serve(handler);
