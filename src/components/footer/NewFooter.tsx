@@ -126,10 +126,10 @@ const NewFooter = () => {
             <ul className="space-y-3">
               <li>
                 <Link 
-                  to="/shop" 
+                  to="/boutique" 
                   className="text-neutral-600 hover:text-neutral-800 transition-colors text-xs uppercase tracking-wider"
                 >
-                  {language === 'fr' ? 'Boutique' : 'Stores'}
+                  {language === 'fr' ? 'Boutique Atlas Perle' : 'Stores'}
                 </Link>
               </li>
             </ul>
@@ -159,7 +159,7 @@ const NewFooter = () => {
               </li>
               <li>
                 <Link 
-                  to="/shipping-return" 
+                  to="/shipping-returns" 
                   className="text-neutral-600 hover:text-neutral-800 transition-colors text-xs uppercase tracking-wider"
                 >
                   {language === 'fr' ? 'Livraison & Retours' : 'Shipping & Return'}
@@ -167,10 +167,10 @@ const NewFooter = () => {
               </li>
               <li>
                 <Link 
-                  to="/story" 
+                  to="/notre-heritage" 
                   className="text-neutral-600 hover:text-neutral-800 transition-colors text-xs uppercase tracking-wider"
                 >
-                  {language === 'fr' ? 'Les Amis de la Maison' : 'The Friends of the Maison'}
+                  {language === 'fr' ? 'Nos artisans' : 'The Friends of the Maison'}
                 </Link>
               </li>
             </ul>
@@ -184,7 +184,7 @@ const NewFooter = () => {
             <ul className="space-y-3">
               <li>
                 <Link 
-                  to="/terms" 
+                  to="/cgv" 
                   className="text-neutral-600 hover:text-neutral-800 transition-colors text-xs uppercase tracking-wider"
                 >
                   {language === 'fr' ? 'Conditions Générales' : 'Terms and Conditions'}
@@ -200,10 +200,10 @@ const NewFooter = () => {
               </li>
               <li>
                 <Link 
-                  to="/privacy" 
+                  to="/confidentialite" 
                   className="text-neutral-600 hover:text-neutral-800 transition-colors text-xs uppercase tracking-wider"
                 >
-                  {language === 'fr' ? 'Politique de Confidentialité' : 'Privacy Policy'}
+                  {language === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy'}
                 </Link>
               </li>
               <li>

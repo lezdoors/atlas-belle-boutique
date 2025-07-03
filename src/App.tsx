@@ -130,10 +130,10 @@ const AppRoutes = () => {
         
         {/* Content Routes */}
         <Route path="/story" element={<Story />} />
-        <Route path="/about" element={<About />} />
         <Route path="/a-propos" element={<Story />} />
         <Route path="/notre-heritage" element={<NotreHeritage />} />
-        <Route path="/histoire" element={<Histoire />} />
+        <Route path="/about" element={<Story />} />
+        <Route path="/histoire" element={<NotreHeritage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/ingredients" element={<Ingredients />} />
         <Route path="/ingredient/:id" element={<IngredientDetail />} />
