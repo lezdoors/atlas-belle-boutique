@@ -1,11 +1,11 @@
 
 import { useState, useEffect } from 'react';
-import AppleStyleHeader from '@/components/AppleStyleHeader';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
 import AppleStyleHero from '@/components/AppleStyleHero';
 import AppleStyleProductGrid from '@/components/AppleStyleProductGrid';
 import AppleStyleAbout from '@/components/AppleStyleAbout';
 import EarlyAccessSignup from '@/components/EarlyAccessSignup';
-import AppleStyleFooter from '@/components/AppleStyleFooter';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
 import StickyTopBanner from '@/components/StickyTopBanner';
 import AppleCountdownBanner from '@/components/AppleCountdownBanner';
@@ -18,12 +18,12 @@ const AppleStyleIndex = () => {
       <StickyTopBanner />
       <AppleCountdownBanner />
       <div className="pt-10">
-        <AppleStyleHeader />
+        <MaisonStyleHeaderNew />
         <AppleStyleHero />
         <AppleStyleProductGrid />
         <AppleStyleAbout />
         <EarlyAccessSignup />
-        <AppleStyleFooter />
+        <ModernElegantFooter />
         <SamraRefactoredChatbot videoEnded={videoEnded} />
       </div>
     </div>
