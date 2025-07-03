@@ -34,11 +34,11 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 89,
       originalPrice: 120,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-premium.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/huile-argan.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-premium-side.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-premium-detail.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-premium-use.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/huile-argan-side.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/huile-argan-detail.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/huile-argan-use.jpg"
       ],
       description: language === 'fr' ? "100% pure, pressée à froid des montagnes de l'Atlas" : "100% pure, cold-pressed from Atlas mountains",
       rating: 4.9,
@@ -53,10 +53,10 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 35,
       originalPrice: null,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/savon-noir-traditional.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/savon-noir.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/savon-noir-texture.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/savon-noir-ingredients.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/savon-noir-texture.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/savon-noir-ingredients.jpg"
       ],
       description: language === 'fr' ? "Gommage doux aux olives et eucalyptus" : "Gentle exfoliation with olives and eucalyptus",
       rating: 4.7,
@@ -71,11 +71,11 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 42,
       originalPrice: null,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-atlas-clay.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/ghassoul-atlas.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-powder.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-application.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-results.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/ghassoul-powder.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/ghassoul-application.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/ghassoul-results.jpg"
       ],
       description: language === 'fr' ? "Argile purifiante volcanique des montagnes" : "Volcanic purifying clay from mountains",
       rating: 4.8,
@@ -90,10 +90,10 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 28,
       originalPrice: 35,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/rose-water-damascena.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/eau-de-rose.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/rose-water-bottle.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/damascena-roses.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/rose-water-bottle.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/damascena-roses.jpg"
       ],
       description: language === 'fr' ? "Distillation artisanale de roses pures" : "Artisanal distillation of pure roses",
       rating: 4.6,
@@ -108,12 +108,12 @@ const Catalogue = () => {
       category: 'Vaisselle',
       price: 125,
       originalPrice: null,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-royal.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/service-the-royal.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-detail.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-set.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-ambient.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-craft.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/tea-service-detail.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/tea-service-set.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/tea-service-ambient.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/tea-service-craft.jpg"
       ],
       description: language === 'fr' ? "Céramique artisanale peinte à la main" : "Hand-painted artisanal ceramics",
       rating: 4.9,
@@ -128,10 +128,10 @@ const Catalogue = () => {
       category: 'Décoration',
       price: 45,
       originalPrice: null,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/candle-amber-oud.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/bougie-ambre-oud.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/candle-flame.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/candle-ambient.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/candle-flame.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/candle-ambient.jpg"
       ],
       description: language === 'fr' ? "Senteurs orientales authentiques" : "Authentic oriental fragrances",
       rating: 4.5,
@@ -146,11 +146,11 @@ const Catalogue = () => {
       category: 'Cadeaux',
       price: 150,
       originalPrice: 200,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-luxury.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/coffret-luxe.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-contents.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-packaging.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-ribbon.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/gift-set-contents.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/gift-set-packaging.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/gift-set-ribbon.jpg"
       ],
       description: language === 'fr' ? "Collection complète de produits authentiques" : "Complete collection of authentic products",
       rating: 4.8,
@@ -165,11 +165,11 @@ const Catalogue = () => {
       category: 'Décoration',
       price: 95,
       originalPrice: null,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/lamp-berber.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/lampe-berbere.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/lamp-berber-lit.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/lamp-berber-detail.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/lamp-berber-pattern.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/lamp-berber-lit.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/lamp-berber-detail.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/lamp-berber-pattern.jpg"
       ],
       description: language === 'fr' ? "Métal ciselé avec motifs traditionnels" : "Chiseled metal with traditional patterns",
       rating: 4.7,
