@@ -17,6 +17,7 @@ import SamraRefactoredChatbot from '@/components/SamraRefactoredChatbot';
 import StickyTopBanner from '@/components/StickyTopBanner';
 import AppleCountdownBanner from '@/components/AppleCountdownBanner';
 import CategoryShowcase from '@/components/CategoryShowcase';
+import MediaLogoBanner from '@/components/MediaLogoBanner';
 
 const Index = () => {
   const [videoEnded, setVideoEnded] = useState(false);
@@ -31,6 +32,9 @@ const Index = () => {
         <div className="w-full">
           <AppleStyleHero />
         </div>
+        
+        {/* Media Logo Banner */}
+        <MediaLogoBanner />
         
         {/* Clean Newsletter + Countdown Section */}
         <section id="banniere-infos" className="w-full bg-white py-16">
