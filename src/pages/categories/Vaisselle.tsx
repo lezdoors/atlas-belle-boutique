@@ -1,0 +1,86 @@
+import { useLanguage } from '@/contexts/LanguageContext';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { Link } from 'react-router-dom';
+
+const Vaisselle = () => {
+  const { language } = useLanguage();
+
+  const products = [
+    {
+      id: 1,
+      name: language === 'fr' ? 'Tajine Traditionnel' : 'Traditional Tajine',
+      price: 'À partir de 250 MAD',
+      image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//fakkhar-tajine-white.JPG',
+      description: language === 'fr' ? 'Tajine artisanal en terre cuite' : 'Handcrafted clay tajine'
+    },
+    {
+      id: 2,
+      name: language === 'fr' ? 'Verre Beldi' : 'Beldi Glass',
+      price: 'À partir de 80 MAD',
+      image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//beldi-glass-multicolor.JPG',
+      description: language === 'fr' ? 'Verre soufflé traditionnel' : 'Traditional blown glass'
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-stone-50">
+      <Header />
+      
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-stone-100 to-stone-200 py-20 mt-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto">
+            <h1 className="text-4xl lg:text-5xl font-serif font-bold text-stone-800 mb-6">
+              {language === 'fr' ? 'Vaisselle Artisanale' : 'Artisanal Tableware'}
+            </h1>
+            <p className="text-lg text-stone-600 mb-8">
+              {language === 'fr' 
+                ? 'Découvrez notre collection de vaisselle traditionnelle marocaine, façonnée par nos artisans dans le respect des traditions ancestrales.'
+                : 'Discover our collection of traditional Moroccan tableware, crafted by our artisans with respect for ancestral traditions.'
+              }
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product) => (
+              <div key={product.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-64 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-xl font-serif font-semibold text-stone-800 mb-2">
+                    {product.name}
+                  </h3>
+                  <p className="text-stone-600 mb-4">
+                    {product.description}
+                  </p>
+                  <p className="text-amber-600 font-medium mb-4">
+                    {product.price}
+                  </p>
+                  <Link
+                    to="/boutique"
+                    className="inline-block bg-stone-800 text-white px-6 py-2 rounded-lg hover:bg-stone-700 transition-colors"
+                  >
+                    {language === 'fr' ? 'Voir détails' : 'View details'}
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Vaisselle;

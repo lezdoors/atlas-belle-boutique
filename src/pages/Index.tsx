@@ -33,7 +33,7 @@ const Index = () => {
         </div>
         
         {/* Clean Newsletter + Countdown Section */}
-        <section className="w-full bg-white py-16">
+        <section id="banniere-infos" className="w-full bg-white py-16">
           <div className="w-full px-6 lg:px-12 xl:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Newsletter Section */}
@@ -53,7 +53,9 @@ const Index = () => {
         <IngredientOriginMap />
         
         {/* Category Showcase Section */}
-        <CategoryShowcase />
+        <div id="categories">
+          <CategoryShowcase />
+        </div>
         
         <AppleStyleProductGrid />
         <FeaturedCollections />

@@ -50,11 +50,11 @@ const MaisonStyleHeaderNew = () => {
   }, [lastScrollY]);
 
   const navigation = [
-    { name: t('navigation.shopAll', language), href: '/shop' },
-    { name: t('navigation.tableware', language), href: '/tableware' },
-    { name: t('navigation.homeDecor', language), href: '/decor' },
-    { name: t('navigation.gifts', language), href: '/gifts' },
-    { name: t('navigation.story', language), href: '/story' },
+    { name: t('navigation.shopAll', language), href: '/boutique' },
+    { name: t('navigation.tableware', language), href: '/categories/vaisselle' },
+    { name: t('navigation.homeDecor', language), href: '/categories/decoration' },
+    { name: t('navigation.gifts', language), href: '/categories/cadeaux' },
+    { name: t('navigation.story', language), href: '/a-propos' },
   ];
 
   return (

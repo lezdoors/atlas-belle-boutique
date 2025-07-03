@@ -4,9 +4,17 @@ import { ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t } from '@/utils/translations';
 import ProductCarousel from '@/components/heritage/ProductCarousel';
+import { Link } from 'react-router-dom';
 
 const AppleStyleHero = () => {
   const { language } = useLanguage();
+
+  const scrollToCategories = () => {
+    const categoriesSection = document.querySelector('#categories') || document.querySelector('#banniere-infos');
+    if (categoriesSection) {
+      categoriesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden w-full">
@@ -42,6 +50,7 @@ const AppleStyleHero = () => {
           <Button
             size="lg"
             className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-4 text-base font-normal tracking-wide transition-all duration-300"
+            onClick={scrollToCategories}
           >
             {language === 'fr' ? 'M\'informer' : 'Get Notified'}
           </Button>
@@ -49,8 +58,11 @@ const AppleStyleHero = () => {
             size="lg"
             variant="outline"
             className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-12 py-4 text-base font-normal tracking-wide transition-all duration-300"
+            asChild
           >
-            {language === 'fr' ? 'Aperçu Boutique' : 'Shop Preview'}
+            <Link to="/boutique">
+              {language === 'fr' ? 'Aperçu Boutique' : 'Shop Preview'}
+            </Link>
           </Button>
         </div>
 

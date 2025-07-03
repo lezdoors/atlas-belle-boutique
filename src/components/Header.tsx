@@ -38,8 +38,8 @@ const Header = () => {
         {/* Luxury Main Header */}
         <div className="w-full px-4 lg:px-8 py-3 lg:py-4">
           <div className="w-full flex items-center justify-between h-12 lg:h-16">
-            {/* Logo - Enhanced with luxury styling */}
-            <div className="flex items-center flex-shrink-0">
+            {/* Logo - Enhanced with luxury styling, positioned on far left for mobile */}
+            <div className="flex items-center flex-shrink-0 order-1 lg:order-none">
               <HeaderLogo />
             </div>
 
@@ -49,7 +49,7 @@ const Header = () => {
             </div>
 
             {/* Right Side Actions - Refined */}
-            <div className="flex items-center space-x-3 lg:space-x-4">
+            <div className="flex items-center space-x-3 lg:space-x-4 order-2 lg:order-none">
               {/* Desktop Language Dropdown */}
               <div className="hidden lg:block">
                 <LanguageDropdown />

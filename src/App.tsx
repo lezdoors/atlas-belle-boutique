@@ -29,6 +29,9 @@ import MentionsLegales from "./pages/MentionsLegales";
 import CGV from "./pages/CGV";
 import Confidentialite from "./pages/Confidentialite";
 import PolitiqueCookies from "./pages/PolitiqueCookies";
+import Vaisselle from "./pages/categories/Vaisselle";
+import Decoration from "./pages/categories/Decoration";
+import Cadeaux from "./pages/categories/Cadeaux";
 
 // Import enhanced styles
 import './styles/enhanced-colors.css';
@@ -87,6 +90,10 @@ const AppRoutes = () => {
         <Route path="/confidentialite" element={<Confidentialite />} />
         <Route path="/cookies" element={<PolitiqueCookies />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/categories/vaisselle" element={<Vaisselle />} />
+        <Route path="/categories/decoration" element={<Decoration />} />
+        <Route path="/categories/cadeaux" element={<Cadeaux />} />
+        <Route path="/a-propos" element={<Story />} />
       </Routes>
     </BrowserRouter>
   );
