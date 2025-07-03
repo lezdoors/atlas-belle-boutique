@@ -18,6 +18,7 @@ import StickyTopBanner from '@/components/StickyTopBanner';
 import AppleCountdownBanner from '@/components/AppleCountdownBanner';
 import CategoryShowcase from '@/components/CategoryShowcase';
 import MediaLogoBanner from '@/components/MediaLogoBanner';
+import CertificationBanner from '@/components/CertificationBanner';
 
 const Index = () => {
   const [videoEnded, setVideoEnded] = useState(false);
@@ -35,6 +36,9 @@ const Index = () => {
         
         {/* Media Logo Banner */}
         <MediaLogoBanner />
+        
+        {/* Certification Banner */}
+        <CertificationBanner />
         
         {/* Clean Newsletter + Countdown Section */}
         <section id="banniere-infos" className="w-full bg-white py-16">
