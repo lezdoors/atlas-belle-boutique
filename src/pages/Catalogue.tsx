@@ -35,6 +35,11 @@ const Catalogue = () => {
       price: 89,
       originalPrice: 120,
       image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-premium.jpg",
+      additionalImages: [
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-premium-side.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-premium-detail.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-premium-use.jpg"
+      ],
       description: language === 'fr' ? "100% pure, pressée à froid des montagnes de l'Atlas" : "100% pure, cold-pressed from Atlas mountains",
       rating: 4.9,
       reviews: 127,
@@ -49,6 +54,10 @@ const Catalogue = () => {
       price: 35,
       originalPrice: null,
       image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/savon-noir-traditional.jpg",
+      additionalImages: [
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/savon-noir-texture.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/savon-noir-ingredients.jpg"
+      ],
       description: language === 'fr' ? "Gommage doux aux olives et eucalyptus" : "Gentle exfoliation with olives and eucalyptus",
       rating: 4.7,
       reviews: 89,
@@ -63,6 +72,11 @@ const Catalogue = () => {
       price: 42,
       originalPrice: null,
       image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-atlas-clay.jpg",
+      additionalImages: [
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-powder.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-application.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-results.jpg"
+      ],
       description: language === 'fr' ? "Argile purifiante volcanique des montagnes" : "Volcanic purifying clay from mountains",
       rating: 4.8,
       reviews: 156,
@@ -77,6 +91,10 @@ const Catalogue = () => {
       price: 28,
       originalPrice: 35,
       image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/rose-water-damascena.jpg",
+      additionalImages: [
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/rose-water-bottle.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/damascena-roses.jpg"
+      ],
       description: language === 'fr' ? "Distillation artisanale de roses pures" : "Artisanal distillation of pure roses",
       rating: 4.6,
       reviews: 203,
@@ -91,6 +109,12 @@ const Catalogue = () => {
       price: 125,
       originalPrice: null,
       image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-royal.jpg",
+      additionalImages: [
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-detail.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-set.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-ambient.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-craft.jpg"
+      ],
       description: language === 'fr' ? "Céramique artisanale peinte à la main" : "Hand-painted artisanal ceramics",
       rating: 4.9,
       reviews: 78,
@@ -105,6 +129,10 @@ const Catalogue = () => {
       price: 45,
       originalPrice: null,
       image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/candle-amber-oud.jpg",
+      additionalImages: [
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/candle-flame.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/candle-ambient.jpg"
+      ],
       description: language === 'fr' ? "Senteurs orientales authentiques" : "Authentic oriental fragrances",
       rating: 4.5,
       reviews: 92,
@@ -119,6 +147,11 @@ const Catalogue = () => {
       price: 150,
       originalPrice: 200,
       image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-luxury.jpg",
+      additionalImages: [
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-contents.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-packaging.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-ribbon.jpg"
+      ],
       description: language === 'fr' ? "Collection complète de produits authentiques" : "Complete collection of authentic products",
       rating: 4.8,
       reviews: 145,
@@ -133,6 +166,11 @@ const Catalogue = () => {
       price: 95,
       originalPrice: null,
       image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/lamp-berber.jpg",
+      additionalImages: [
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/lamp-berber-lit.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/lamp-berber-detail.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/lamp-berber-pattern.jpg"
+      ],
       description: language === 'fr' ? "Métal ciselé avec motifs traditionnels" : "Chiseled metal with traditional patterns",
       rating: 4.7,
       reviews: 67,
@@ -202,13 +240,13 @@ const Catalogue = () => {
           <div className="relative z-10 text-center w-full px-6 lg:px-12 py-20">
             <h1 className="font-serif font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 animate-fade-in opacity-0 tracking-tight" 
                 style={{ lineHeight: '1.3', animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-              {language === 'fr' ? 'Notre Collection' : 'Our Collection'}
+              {language === 'fr' ? 'Découvrez nos créations' : 'Discover our creations'}
             </h1>
             <p className="font-light text-base md:text-lg mb-12 animate-fade-in opacity-0 text-stone-600 leading-relaxed max-w-3xl mx-auto" 
                style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
               {language === 'fr' 
-                ? 'Découvrez nos créations artisanales, chaque pièce raconte une histoire unique du Maroc authentique'
-                : 'Discover our artisanal creations, each piece tells a unique story of authentic Morocco'
+                ? 'Une collection exclusive de produits artisanaux marocains, créés avec passion et savoir-faire ancestral.'
+                : 'An exclusive collection of Moroccan artisanal products, created with passion and ancestral craftsmanship.'
               }
             </p>
           </div>
@@ -281,20 +319,8 @@ const Catalogue = () => {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
 
-                    {/* Product Badges */}
-                    <div className="absolute top-6 left-6 flex flex-col gap-2">
-                      <Badge className="bg-black text-white rounded-full px-3 py-1 text-xs font-light">
-                        {product.badge}
-                      </Badge>
-                      {product.originalPrice && (
-                        <Badge className="bg-red-600 text-white rounded-full px-3 py-1 text-xs font-light">
-                          {language === 'fr' ? 'Promo' : 'Sale'}
-                        </Badge>
-                      )}
-                    </div>
-
-                    {/* Stock Status */}
-                    <div className="absolute top-6 right-6">
+                    {/* Stock Status Badge - Top Left */}
+                    <div className="absolute top-6 left-6">
                       <Badge 
                         className={`text-xs px-3 py-1 rounded-full font-light ${
                           product.stockLevel === 'good' 
@@ -306,6 +332,18 @@ const Catalogue = () => {
                       >
                         {product.stock}
                       </Badge>
+                    </div>
+
+                    {/* Price Badge - Top Right */}
+                    <div className="absolute top-6 right-6 flex flex-col gap-2 items-end">
+                      <Badge className="bg-black text-white rounded-full px-3 py-1 text-xs font-light">
+                        {product.price}€
+                      </Badge>
+                      {product.originalPrice && (
+                        <Badge className="bg-red-600 text-white rounded-full px-3 py-1 text-xs font-light">
+                          {language === 'fr' ? 'Promo' : 'Sale'}
+                        </Badge>
+                      )}
                     </div>
 
                     {/* Quick Actions */}
@@ -352,23 +390,9 @@ const Catalogue = () => {
                     </h3>
 
                     {/* Description */}
-                    <p className="text-sm text-black/60 font-light mb-4 leading-relaxed">
+                    <p className="text-sm text-black/60 font-light mb-6 leading-relaxed">
                       {product.description}
                     </p>
-
-                    {/* Price */}
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg font-light text-black">
-                          {product.price}€
-                        </span>
-                        {product.originalPrice && (
-                          <span className="text-sm text-black/40 line-through font-light">
-                            {product.originalPrice}€
-                          </span>
-                        )}
-                      </div>
-                    </div>
 
                     {/* Add to Cart Button - matching homepage style */}
                     <Button
