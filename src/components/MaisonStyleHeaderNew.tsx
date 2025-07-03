@@ -53,11 +53,10 @@ const MaisonStyleHeaderNew = () => {
   }, [lastScrollY]);
 
   const navigation = [
-    { name: language === 'fr' ? 'Tout parcourir' : 'Browse All', href: '/catalogue' },
-    { name: language === 'fr' ? 'Vaisselle' : 'Tableware', href: '/categories/vaisselle' },
-    { name: language === 'fr' ? 'Décoration' : 'Decoration', href: '/categories/decoration' },
-    { name: language === 'fr' ? 'Cadeaux' : 'Gifts', href: '/categories/cadeaux' },
+    { name: language === 'fr' ? 'Catalogue' : 'Catalogue', href: '/catalogue' },
     { name: language === 'fr' ? 'Notre histoire' : 'Our Story', href: '/notre-heritage' },
+    { name: language === 'fr' ? 'À propos' : 'About', href: '/about' },
+    { name: language === 'fr' ? 'Contact' : 'Contact', href: '/contact' },
   ];
 
   return (

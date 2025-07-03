@@ -6,7 +6,9 @@ import BackToTop from '@/components/BackToTop';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart, Star } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ShoppingCart, Star, Heart, Eye } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { toast } from 'sonner';
 
@@ -14,120 +16,148 @@ const Catalogue = () => {
   const { language } = useLanguage();
   const { addToCart } = useCart();
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [sortBy, setSortBy] = useState('popularity');
+  const [wishlist, setWishlist] = useState<number[]>([]);
 
   const categories = [
-    { id: 'All', name: 'Tout' },
-    { id: 'Vaisselle', name: 'Vaisselle' },
-    { id: 'Décoration', name: 'Décoration' },
-    { id: 'Cadeaux', name: 'Cadeaux' },
-    { id: 'Beauté', name: 'Beauté' }
+    { id: 'All', name: language === 'fr' ? 'Tout' : 'All' },
+    { id: 'Beauté', name: language === 'fr' ? 'Beauté' : 'Beauty' },
+    { id: 'Vaisselle', name: language === 'fr' ? 'Vaisselle' : 'Tableware' },
+    { id: 'Décoration', name: language === 'fr' ? 'Décoration' : 'Decoration' },
+    { id: 'Cadeaux', name: language === 'fr' ? 'Cadeaux' : 'Gifts' }
   ];
 
   const products = [
     {
       id: 1,
-      name: language === 'fr' ? 'Huile d\'Argan Précieuse' : 'Precious Argan Oil',
+      name: language === 'fr' ? "Huile d'Argan Premium" : "Premium Argan Oil",
       category: 'Beauté',
-      price: 45,
-      image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=400&h=300',
-      description: language === 'fr' ? 'Huile pure des montagnes de l\'Atlas, pour une peau éclatante' : 'Pure oil from Atlas mountains, for radiant skin',
-      rating: 4.8,
-      stock: 'En stock',
-      stockLevel: 'good'
+      price: 89,
+      originalPrice: 120,
+      image: "/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png",
+      description: language === 'fr' ? "100% pure, pressée à froid des montagnes de l'Atlas" : "100% pure, cold-pressed from Atlas mountains",
+      rating: 4.9,
+      reviews: 127,
+      badge: language === 'fr' ? "Bestseller" : "Bestseller",
+      stockLevel: 'good',
+      stock: language === 'fr' ? 'En stock' : 'In stock'
     },
     {
       id: 2,
-      name: language === 'fr' ? 'Service à Thé Traditionnel' : 'Traditional Tea Service',
-      category: 'Vaisselle',
-      price: 125,
-      image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=400&h=300',
-      description: language === 'fr' ? 'Service à thé en céramique artisanale, décoré à la main' : 'Handcrafted ceramic tea service, hand-decorated',
-      rating: 4.9,
-      stock: 'En stock',
-      stockLevel: 'good'
+      name: language === 'fr' ? "Savon Noir Traditionnel" : "Traditional Black Soap",
+      category: 'Beauté',
+      price: 35,
+      originalPrice: null,
+      image: "/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png",
+      description: language === 'fr' ? "Gommage doux aux olives et eucalyptus" : "Gentle exfoliation with olives and eucalyptus",
+      rating: 4.7,
+      reviews: 89,
+      badge: language === 'fr' ? "Naturel" : "Natural",
+      stockLevel: 'good',
+      stock: language === 'fr' ? 'En stock' : 'In stock'
     },
     {
       id: 3,
-      name: language === 'fr' ? 'Bougie Ambre & Oud' : 'Amber & Oud Candle',
-      category: 'Décoration',
-      price: 35,
-      image: 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=400&h=300',
-      description: language === 'fr' ? 'Bougie parfumée aux senteurs orientales authentiques' : 'Scented candle with authentic oriental fragrances',
-      rating: 4.6,
-      stock: 'Bientôt épuisé',
-      stockLevel: 'low'
+      name: language === 'fr' ? "Ghassoul de l'Atlas" : "Atlas Ghassoul Clay",
+      category: 'Beauté',
+      price: 42,
+      originalPrice: null,
+      image: "/lovable-uploads/5a6e176e-a311-4e23-a48f-5439e70ecb3f.png",
+      description: language === 'fr' ? "Argile purifiante volcanique des montagnes" : "Volcanic purifying clay from mountains",
+      rating: 4.8,
+      reviews: 156,
+      badge: language === 'fr' ? "Nouveau" : "New",
+      stockLevel: 'medium',
+      stock: language === 'fr' ? 'Stock limité' : 'Limited stock'
     },
     {
       id: 4,
-      name: language === 'fr' ? 'Coffret Cadeau Argan' : 'Argan Gift Set',
-      category: 'Cadeaux',
-      price: 85,
-      image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=400&h=300',
-      description: language === 'fr' ? 'Coffret cadeau avec huile d\'argan et produits de soin naturels' : 'Gift set with argan oil and natural skincare products',
-      rating: 4.8,
-      stock: 'En stock',
-      stockLevel: 'good'
+      name: language === 'fr' ? "Eau de Rose Damascena" : "Damascena Rose Water",
+      category: 'Beauté',
+      price: 28,
+      originalPrice: 35,
+      image: "/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png",
+      description: language === 'fr' ? "Distillation artisanale de roses pures" : "Artisanal distillation of pure roses",
+      rating: 4.6,
+      reviews: 203,
+      badge: language === 'fr' ? "Bio" : "Organic",
+      stockLevel: 'good',
+      stock: language === 'fr' ? 'En stock' : 'In stock'
     },
     {
       id: 5,
-      name: language === 'fr' ? 'Parfum Rose de Damas' : 'Damascus Rose Perfume',
-      category: 'Beauté',
-      price: 95,
-      image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=400&h=300',
-      description: language === 'fr' ? 'Essence pure de roses cultivées dans la vallée du Dadès' : 'Pure essence of roses grown in Dadès valley',
+      name: language === 'fr' ? "Service à Thé Royal" : "Royal Tea Service",
+      category: 'Vaisselle',
+      price: 125,
+      originalPrice: null,
+      image: "/lovable-uploads/d4ad8eb5-ea3d-4931-ae8c-008b30d0e998.png",
+      description: language === 'fr' ? "Céramique artisanale peinte à la main" : "Hand-painted artisanal ceramics",
       rating: 4.9,
-      stock: 'En stock',
-      stockLevel: 'good'
+      reviews: 78,
+      badge: language === 'fr' ? "Artisanal" : "Artisanal",
+      stockLevel: 'good',
+      stock: language === 'fr' ? 'En stock' : 'In stock'
     },
     {
       id: 6,
-      name: language === 'fr' ? 'Plat Tajine Artisanal' : 'Artisanal Tagine Dish',
-      category: 'Vaisselle',
-      price: 75,
-      image: 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=400&h=300',
-      description: language === 'fr' ? 'Plat tajine traditionnel en terre cuite, fait à la main' : 'Traditional handmade clay tagine dish',
-      rating: 4.7,
-      stock: 'Stock limité',
-      stockLevel: 'medium'
+      name: language === 'fr' ? "Bougie Ambre & Oud" : "Amber & Oud Candle",
+      category: 'Décoration',
+      price: 45,
+      originalPrice: null,
+      image: "/lovable-uploads/eeff32cc-6bc0-4e17-9da7-c206afcf5509.png",
+      description: language === 'fr' ? "Senteurs orientales authentiques" : "Authentic oriental fragrances",
+      rating: 4.5,
+      reviews: 92,
+      badge: language === 'fr' ? "Exclusif" : "Exclusive",
+      stockLevel: 'low',
+      stock: language === 'fr' ? 'Bientôt épuisé' : 'Almost sold out'
     },
     {
       id: 7,
-      name: language === 'fr' ? 'Lampe Berbère Décorative' : 'Decorative Berber Lamp',
-      category: 'Décoration',
-      price: 120,
-      image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=400&h=300',
-      description: language === 'fr' ? 'Lampe traditionnelle en métal ciselé, motifs berbères authentiques' : 'Traditional chiseled metal lamp with authentic Berber patterns',
+      name: language === 'fr' ? "Coffret Cadeau Luxe" : "Luxury Gift Set",
+      category: 'Cadeaux',
+      price: 150,
+      originalPrice: 200,
+      image: "/lovable-uploads/ba21e7d0-cbef-422b-8a7d-1e701b06df53.png",
+      description: language === 'fr' ? "Collection complète de produits authentiques" : "Complete collection of authentic products",
       rating: 4.8,
-      stock: 'En stock',
-      stockLevel: 'good'
+      reviews: 145,
+      badge: language === 'fr' ? "Premium" : "Premium",
+      stockLevel: 'good',
+      stock: language === 'fr' ? 'En stock' : 'In stock'
     },
     {
       id: 8,
-      name: language === 'fr' ? 'Panier Cadeau Bien-être' : 'Wellness Gift Basket',
-      category: 'Cadeaux',
-      price: 150,
-      image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=400&h=300',
-      description: language === 'fr' ? 'Panier cadeau complet avec produits de bien-être marocains' : 'Complete gift basket with Moroccan wellness products',
-      rating: 4.9,
-      stock: 'En stock',
-      stockLevel: 'good'
-    },
-    {
-      id: 9,
-      name: language === 'fr' ? 'Savon Noir Traditionnel' : 'Traditional Black Soap',
-      category: 'Beauté',
-      price: 25,
-      image: 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=400&h=300',
-      description: language === 'fr' ? 'Savon artisanal aux olives noires, gommage doux' : 'Artisanal soap with black olives, gentle exfoliation',
+      name: language === 'fr' ? "Lampe Berbère" : "Berber Lamp",
+      category: 'Décoration',
+      price: 95,
+      originalPrice: null,
+      image: "/lovable-uploads/6fde7854-c65c-40e6-8df6-8d9ca69c3fc8.png",
+      description: language === 'fr' ? "Métal ciselé avec motifs traditionnels" : "Chiseled metal with traditional patterns",
       rating: 4.7,
-      stock: 'En stock',
-      stockLevel: 'good'
+      reviews: 67,
+      badge: language === 'fr' ? "Unique" : "Unique",
+      stockLevel: 'medium',
+      stock: language === 'fr' ? 'Stock limité' : 'Limited stock'
     }
   ];
 
   const filteredProducts = selectedCategory === 'All' 
     ? products 
     : products.filter(product => product.category === selectedCategory);
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case 'price-asc':
+        return a.price - b.price;
+      case 'price-desc':
+        return b.price - a.price;
+      case 'rating':
+        return b.rating - a.rating;
+      default:
+        return 0;
+    }
+  });
 
   const handleAddToCart = (product: any) => {
     addToCart({
@@ -144,153 +174,224 @@ const Catalogue = () => {
     );
   };
 
+  const toggleWishlist = (productId: number) => {
+    setWishlist(prev => 
+      prev.includes(productId) 
+        ? prev.filter(id => id !== productId)
+        : [...prev, productId]
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-pearl-100">
+    <div className="min-h-screen bg-white">
       <MaisonStyleHeaderNew />
       
-      <main className="pt-24 pb-16">
+      <div className="pt-32 w-full">
         {/* Hero Section */}
-        <section className="relative py-12 lg:py-16 bg-gradient-to-br from-pearl-50 via-beige-50 to-amber-50">
-          <div className="absolute inset-0 opacity-5" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23B7956D' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='m0 40l40-40h-40v40zm40 0v-40h-40l40 40z'/%3E%3C/g%3E%3C/svg%3E")`
-          }}></div>
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="font-serif font-bold text-4xl lg:text-5xl text-clay-800 mb-4 tracking-tight">
-                {language === 'fr' ? 'Découvrez nos créations' : 'Discover our creations'}
-              </h1>
-              <p className="font-serif text-lg text-clay-600 leading-relaxed">
+        <section className="section-padding bg-white">
+          <div className="container-refined text-center">
+            <h1 className="heading-display text-5xl lg:text-6xl mb-6 text-balance">
+              {language === 'fr' ? 'Notre Collection' : 'Our Collection'}
+            </h1>
+            <p className="body-text text-lg max-w-2xl mx-auto mb-12">
+              {language === 'fr' 
+                ? 'Découvrez nos créations artisanales, chaque pièce raconte une histoire unique du Maroc authentique'
+                : 'Discover our artisanal creations, each piece tells a unique story of authentic Morocco'
+              }
+            </p>
+          </div>
+        </section>
+
+        {/* Filters & Sort Section */}
+        <section className="py-8 bg-stone-50 border-t border-stone-100">
+          <div className="container-refined">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+              {/* Category Filters */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+                {categories.map((category) => (
+                  <Button
+                    key={category.id}
+                    variant="ghost"
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`px-6 py-2 rounded-full text-sm font-light transition-all duration-300 ${
+                      selectedCategory === category.id
+                        ? 'bg-stone-900 text-white hover:bg-stone-800'
+                        : 'bg-white text-stone-700 hover:bg-stone-100 border border-stone-200'
+                    }`}
+                  >
+                    {category.name}
+                  </Button>
+                ))}
+              </div>
+
+              {/* Sort Dropdown */}
+              <div className="flex items-center gap-4">
+                <span className="text-sm text-stone-600 font-light">
+                  {language === 'fr' ? 'Trier par:' : 'Sort by:'}
+                </span>
+                <Select value={sortBy} onValueChange={setSortBy}>
+                  <SelectTrigger className="w-48 bg-white border-stone-200">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="popularity">
+                      {language === 'fr' ? 'Popularité' : 'Popularity'}
+                    </SelectItem>
+                    <SelectItem value="price-asc">
+                      {language === 'fr' ? 'Prix croissant' : 'Price: Low to High'}
+                    </SelectItem>
+                    <SelectItem value="price-desc">
+                      {language === 'fr' ? 'Prix décroissant' : 'Price: High to Low'}
+                    </SelectItem>
+                    <SelectItem value="rating">
+                      {language === 'fr' ? 'Mieux notés' : 'Highest Rated'}
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Products Grid */}
+        <section className="section-padding bg-white">
+          <div className="container-refined">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {sortedProducts.map((product) => (
+                <Card 
+                  key={product.id} 
+                  className="group bg-white border-0 shadow-elegant rounded-lg overflow-hidden hover:shadow-luxury transition-all duration-300 hover:scale-[1.02]"
+                >
+                  <div className="relative">
+                    {/* Product Image */}
+                    <div className="aspect-square overflow-hidden bg-stone-50">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+
+                    {/* Product Badges */}
+                    <div className="absolute top-4 right-4 flex flex-col gap-2">
+                      <Badge 
+                        variant="secondary" 
+                        className="bg-white/90 text-stone-800 text-xs px-2 py-1"
+                      >
+                        {product.badge}
+                      </Badge>
+                      {product.originalPrice && (
+                        <Badge className="bg-red-100 text-red-800 text-xs px-2 py-1">
+                          {language === 'fr' ? 'Promo' : 'Sale'}
+                        </Badge>
+                      )}
+                    </div>
+
+                    {/* Stock Status */}
+                    <div className="absolute top-4 left-4">
+                      <Badge 
+                        className={`text-xs px-2 py-1 ${
+                          product.stockLevel === 'good' 
+                            ? 'bg-green-100 text-green-800' 
+                            : product.stockLevel === 'medium'
+                            ? 'bg-amber-100 text-amber-800'
+                            : 'bg-red-100 text-red-800'
+                        }`}
+                      >
+                        {product.stock}
+                      </Badge>
+                    </div>
+
+                    {/* Quick Actions */}
+                    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        className="bg-white/90 hover:bg-white text-stone-700 rounded-full h-8 w-8"
+                        onClick={() => toggleWishlist(product.id)}
+                      >
+                        <Heart 
+                          className={`h-4 w-4 ${wishlist.includes(product.id) ? 'fill-red-500 text-red-500' : ''}`} 
+                        />
+                      </Button>
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        className="bg-white/90 hover:bg-white text-stone-700 rounded-full h-8 w-8"
+                      >
+                        <Eye className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+
+                  <CardContent className="p-6">
+                    {/* Rating */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <Star 
+                            key={i} 
+                            className={`h-3 w-3 ${i < Math.floor(product.rating) ? 'fill-amber-400 text-amber-400' : 'text-stone-300'}`} 
+                          />
+                        ))}
+                      </div>
+                      <span className="text-xs text-stone-600">
+                        {product.rating} ({product.reviews})
+                      </span>
+                    </div>
+
+                    {/* Product Name */}
+                    <h3 className="heading-display text-lg font-normal text-stone-900 mb-2 line-clamp-2">
+                      {product.name}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="body-text text-sm mb-4 line-clamp-2">
+                      {product.description}
+                    </p>
+
+                    {/* Price */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xl font-light text-stone-900">
+                          {product.price}€
+                        </span>
+                        {product.originalPrice && (
+                          <span className="text-sm text-stone-500 line-through">
+                            {product.originalPrice}€
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Add to Cart Button */}
+                    <Button
+                      onClick={() => handleAddToCart(product)}
+                      className="w-full bg-stone-900 hover:bg-stone-800 text-white border-0 rounded-md py-2 font-light"
+                    >
+                      <ShoppingCart className="h-4 w-4 mr-2" />
+                      {language === 'fr' ? 'Ajouter au panier' : 'Add to cart'}
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {/* Results Info */}
+            <div className="text-center mt-12 pt-8 border-t border-stone-100">
+              <p className="body-text">
                 {language === 'fr' 
-                  ? 'Une collection exclusive de produits artisanaux marocains, créés avec passion et savoir-faire ancestral'
-                  : 'An exclusive collection of Moroccan artisanal products, created with passion and ancestral know-how'
+                  ? `${sortedProducts.length} produit${sortedProducts.length > 1 ? 's' : ''} affiché${sortedProducts.length > 1 ? 's' : ''}`
+                  : `${sortedProducts.length} product${sortedProducts.length > 1 ? 's' : ''} shown`
                 }
               </p>
             </div>
           </div>
         </section>
 
-        {/* Category Filters */}
-        <section className="py-12">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
-              {categories.map((category) => (
-                <Button
-                  key={category.id}
-                  variant={selectedCategory === category.id ? "default" : "outline"}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`px-8 py-3 rounded-full font-serif transition-all duration-300 border-2 ${
-                    selectedCategory === category.id
-                      ? 'bg-copper-600 hover:bg-copper-700 text-white border-copper-600'
-                      : 'bg-white hover:bg-copper-50 text-clay-700 border-copper-200 hover:border-copper-400'
-                  }`}
-                >
-                  {category.name}
-                </Button>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Products Grid */}
-        <section className="pb-16 bg-gradient-to-b from-pearl-50 to-pearl-100">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {filteredProducts.map((product) => (
-                <Card key={product.id} className="group bg-white/95 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] rounded-3xl overflow-hidden border-0 shadow-lg">
-                  <div className="relative overflow-hidden aspect-[4/3]">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    {/* Price Badge */}
-                    <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm text-clay-800 px-4 py-2 rounded-2xl text-sm font-bold shadow-lg">
-                      {product.price}€
-                    </div>
-
-                    {/* Stock Badge */}
-                    <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold ${
-                      product.stockLevel === 'good' 
-                        ? 'bg-green-100 text-green-700' 
-                        : product.stockLevel === 'medium'
-                        ? 'bg-orange-100 text-orange-700'
-                        : 'bg-red-100 text-red-700'
-                    }`}>
-                      {product.stock}
-                    </div>
-
-                    {/* Hover Action Buttons */}
-                    <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                      <div className="flex gap-2">
-                        <Button
-                          onClick={() => handleAddToCart(product)}
-                          className="flex-1 bg-copper-600 hover:bg-copper-700 text-white rounded-xl py-2 font-serif font-medium transition-all duration-300 shadow-lg"
-                        >
-                          <ShoppingCart className="h-4 w-4 mr-2" />
-                          {language === 'fr' ? 'Ajouter' : 'Add'}
-                        </Button>
-                        <Button
-                          variant="outline"
-                          className="flex-1 bg-white/95 hover:bg-white text-clay-700 border-white/50 rounded-xl py-2 font-serif font-medium transition-all duration-300 shadow-lg"
-                        >
-                          {language === 'fr' ? 'Découvrir' : 'Discover'}
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <CardContent className="p-6">
-                    {/* Rating */}
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center">
-                        {[...Array(5)].map((_, i) => (
-                          <Star 
-                            key={i} 
-                            className={`h-4 w-4 ${
-                              i < Math.floor(product.rating) 
-                                ? 'text-amber-400 fill-current' 
-                                : 'text-gray-300'
-                            }`} 
-                          />
-                        ))}
-                        <span className="text-sm text-clay-600 ml-2 font-medium">
-                          {product.rating}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Product Name */}
-                    <h3 className="font-serif font-semibold text-lg text-clay-800 mb-3 leading-tight line-clamp-2">
-                      {product.name}
-                    </h3>
-                    
-                    {/* Description */}
-                    <p className="font-serif text-clay-600 text-sm mb-4 leading-relaxed line-clamp-2">
-                      {product.description}
-                    </p>
-                    
-                    {/* Desktop Action Button */}
-                    <div className="block lg:hidden">
-                      <Button
-                        onClick={() => handleAddToCart(product)}
-                        className="w-full bg-copper-600 hover:bg-copper-700 text-white rounded-2xl py-3 font-serif font-medium transition-all duration-300 hover:scale-[1.02] shadow-md"
-                      >
-                        <ShoppingCart className="h-4 w-4 mr-2" />
-                        {language === 'fr' ? 'Ajouter au panier' : 'Add to cart'}
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <ModernElegantFooter />
-      <BackToTop />
+        <ModernElegantFooter />
+        <BackToTop />
+      </div>
     </div>
   );
 };
