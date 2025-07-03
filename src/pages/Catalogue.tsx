@@ -34,11 +34,11 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 89,
       originalPrice: 120,
-      image: "/lovable-uploads/015407c1-3e6c-4c44-ab5a-f07b64ef2e28.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-premium.jpg",
       additionalImages: [
-        "/lovable-uploads/067468dd-a766-407e-b2dc-50ccb8510454.png",
-        "/lovable-uploads/073dee32-d52c-4b0f-9910-d5d85832b4ef.png",
-        "/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-premium-side.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-premium-detail.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-premium-use.jpg"
       ],
       description: language === 'fr' ? "100% pure, pressée à froid des montagnes de l'Atlas" : "100% pure, cold-pressed from Atlas mountains",
       rating: 4.9,
@@ -53,10 +53,10 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 35,
       originalPrice: null,
-      image: "/lovable-uploads/17e659e7-d9cb-4996-9b8d-458208d6b68b.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/savon-noir-traditional.jpg",
       additionalImages: [
-        "/lovable-uploads/2649b5ab-37a7-4b14-ab73-9976ba61320a.png",
-        "/lovable-uploads/297c8b0f-3221-45a3-8488-e8e023e07fcc.png"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/savon-noir-texture.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/savon-noir-ingredients.jpg"
       ],
       description: language === 'fr' ? "Gommage doux aux olives et eucalyptus" : "Gentle exfoliation with olives and eucalyptus",
       rating: 4.7,
@@ -71,11 +71,11 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 42,
       originalPrice: null,
-      image: "/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-atlas-clay.jpg",
       additionalImages: [
-        "/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png",
-        "/lovable-uploads/4d22e63c-9766-4547-889d-0462b7de47e6.png",
-        "/lovable-uploads/5a6e176e-a311-4e23-a48f-5439e70ecb3f.png"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-powder.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-application.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-results.jpg"
       ],
       description: language === 'fr' ? "Argile purifiante volcanique des montagnes" : "Volcanic purifying clay from mountains",
       rating: 4.8,
@@ -90,10 +90,10 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 28,
       originalPrice: 35,
-      image: "/lovable-uploads/616bba28-fbf7-4dfb-bae7-e036ccd1e78b.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/rose-water-damascena.jpg",
       additionalImages: [
-        "/lovable-uploads/673f0b19-2270-4e9f-a2e5-59b15f441af5.png",
-        "/lovable-uploads/6d0913b6-03ca-40b5-9002-ea188762b64f.png"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/rose-water-bottle.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/damascena-roses.jpg"
       ],
       description: language === 'fr' ? "Distillation artisanale de roses pures" : "Artisanal distillation of pure roses",
       rating: 4.6,
@@ -108,12 +108,12 @@ const Catalogue = () => {
       category: 'Vaisselle',
       price: 125,
       originalPrice: null,
-      image: "/lovable-uploads/6fde7854-c65c-40e6-8df6-8d9ca69c3fc8.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-royal.jpg",
       additionalImages: [
-        "/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png",
-        "/lovable-uploads/78b2a27c-3352-460a-b4bb-78efaec79db3.png",
-        "/lovable-uploads/7a850627-5f60-438f-b6e5-5db742e324e8.png",
-        "/lovable-uploads/989a3976-efad-4a90-975e-144f506360bc.png"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-detail.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-set.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-ambient.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-craft.jpg"
       ],
       description: language === 'fr' ? "Céramique artisanale peinte à la main" : "Hand-painted artisanal ceramics",
       rating: 4.9,
@@ -128,10 +128,10 @@ const Catalogue = () => {
       category: 'Décoration',
       price: 45,
       originalPrice: null,
-      image: "/lovable-uploads/a1db6544-e27b-4b96-85f8-da0108248095.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/candle-amber-oud.jpg",
       additionalImages: [
-        "/lovable-uploads/b7aaf2ae-0eb0-43e2-b2a8-ea0f9b7feef5.png",
-        "/lovable-uploads/ba21e7d0-cbef-422b-8a7d-1e701b06df53.png"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/candle-flame.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/candle-ambient.jpg"
       ],
       description: language === 'fr' ? "Senteurs orientales authentiques" : "Authentic oriental fragrances",
       rating: 4.5,
@@ -146,11 +146,11 @@ const Catalogue = () => {
       category: 'Cadeaux',
       price: 150,
       originalPrice: 200,
-      image: "/lovable-uploads/d4ad8eb5-ea3d-4931-ae8c-008b30d0e998.png",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-luxury.jpg",
       additionalImages: [
-        "/lovable-uploads/eeff32cc-6bc0-4e17-9da7-c206afcf5509.png",
-        "/lovable-uploads/hero-image-atlas-landscape.jpg",
-        "/lovable-uploads/moroccan-architecture.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-contents.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-packaging.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-ribbon.jpg"
       ],
       description: language === 'fr' ? "Collection complète de produits authentiques" : "Complete collection of authentic products",
       rating: 4.8,
@@ -165,11 +165,11 @@ const Catalogue = () => {
       category: 'Décoration',
       price: 95,
       originalPrice: null,
-      image: "/lovable-uploads/coastal-natural-beauty.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/lamp-berber.jpg",
       additionalImages: [
-        "/lovable-uploads/perle-atlas-logo.png",
-        "/lovable-uploads/hero-image-atlas-landscape.jpg",
-        "/lovable-uploads/moroccan-architecture.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/lamp-berber-lit.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/lamp-berber-detail.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/lamp-berber-pattern.jpg"
       ],
       description: language === 'fr' ? "Métal ciselé avec motifs traditionnels" : "Chiseled metal with traditional patterns",
       rating: 4.7,
@@ -231,7 +231,7 @@ const Catalogue = () => {
             <div 
               className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
               style={{
-                backgroundImage: `url('/lovable-uploads/moroccan-architecture.jpg')`
+                backgroundImage: `url('https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/moroccan-patterns-bg.jpg')`
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white/95"></div>
