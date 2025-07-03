@@ -3,38 +3,45 @@ import { ArrowRight } from 'lucide-react';
 
 const categories = [
   {
-    id: 'textile',
-    title: 'Textile berbère',
-    cta: 'Découvrir les tissus',
-    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/Tente-light.jpg',
-    link: '/boutique'
-  },
-  {
-    id: 'parfum',
-    title: 'Parfum traditionnel',
-    cta: 'Explorer les parfums',
-    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/orange%20rose%20and%20bottle%20behind%20it.jpg',
-    link: '/boutique'
-  },
-  {
     id: 'tajines',
-    title: 'Tajines en faïence',
+    title: 'Tajines Artisanaux',
     cta: 'Voir les ustensiles',
-    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/fakkhar-tajine-white.JPG',
+    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//fakkhar-tajine-white.JPG',
     link: '/boutique'
   },
   {
     id: 'verres',
-    title: 'Verres artisanaux',
+    title: 'Verre Marocain',
     cta: 'Voir les verres',
-    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/fakhar-glass-white2.JPG',
+    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//beldi-glass-multicolor.JPG',
+    link: '/boutique'
+  },
+  {
+    id: 'textile',
+    title: 'Textiles Berbères',
+    cta: 'Découvrir les tissus',
+    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//rugs.jpg',
+    link: '/boutique'
+  },
+  {
+    id: 'parfum',
+    title: 'Parfums d\'Orient',
+    cta: 'Explorer les parfums',
+    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//buttle-roses-inside.jpg',
     link: '/boutique'
   },
   {
     id: 'beaute',
-    title: 'Beauté & Tradition',
+    title: 'Soins Naturels',
     cta: 'Découvrir les soins',
-    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/modern%20women%20Moroccan%20dress.jpg',
+    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//coffe%20grain%20oil%20bottle.jpg',
+    link: '/boutique'
+  },
+  {
+    id: 'argan',
+    title: 'Huile d\'argane premium',
+    cta: 'Découvrir l\'argan',
+    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//2%20bottles%20purple%20background.jpg',
     link: '/boutique'
   }
 ];
@@ -63,9 +70,9 @@ const CategoryShowcase = () => {
                 <CategoryBlock key={category.id} category={category} />
               ))}
             </div>
-            {/* Second Row: 2 items */}
-            <div className="grid grid-cols-2 gap-0">
-              {categories.slice(3, 5).map((category) => (
+            {/* Second Row: 3 items */}
+            <div className="grid grid-cols-3 gap-0">
+              {categories.slice(3, 6).map((category) => (
                 <CategoryBlock key={category.id} category={category} />
               ))}
             </div>
