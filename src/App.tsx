@@ -32,6 +32,7 @@ import PolitiqueCookies from "./pages/PolitiqueCookies";
 import Vaisselle from "./pages/categories/Vaisselle";
 import Decoration from "./pages/categories/Decoration";
 import Cadeaux from "./pages/categories/Cadeaux";
+import FAQ from "./pages/FAQ";
 
 // Import enhanced styles
 import './styles/enhanced-colors.css';
@@ -94,6 +95,8 @@ const AppRoutes = () => {
         <Route path="/categories/decoration" element={<Decoration />} />
         <Route path="/categories/cadeaux" element={<Cadeaux />} />
         <Route path="/a-propos" element={<Story />} />
+        <Route path="/mentions-legales" element={<MentionsLegales />} />
+        <Route path="/faq" element={<FAQ />} />
       </Routes>
     </BrowserRouter>
   );

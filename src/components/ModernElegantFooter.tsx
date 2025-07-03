@@ -76,7 +76,7 @@ const ModernElegantFooter = () => {
     ],
     [t('footer.sections.legal', language)]: [
       { name: t('footer.links.terms', language), href: '/cgv' },
-      { name: t('footer.links.legal', language), href: '/legal' },
+      { name: t('footer.links.legal', language), href: '/mentions-legales' },
       { name: t('footer.links.privacy', language), href: '/confidentialite' },
       { name: t('footer.links.cookies', language), href: '/cookies' }
     ],
