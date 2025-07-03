@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Search, User, Menu, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/hooks/useAuth';
 import { t } from '@/utils/translations';
 import { Link } from 'react-router-dom';
 
@@ -26,6 +27,7 @@ const MaisonStyleHeaderNew = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, toggleLanguage } = useLanguage();
+  const { user } = useAuth();
 
   useEffect(() => {
     const controlHeader = () => {
@@ -51,11 +53,11 @@ const MaisonStyleHeaderNew = () => {
   }, [lastScrollY]);
 
   const navigation = [
-    { name: t('navigation.shopAll', language), href: '/boutique' },
-    { name: t('navigation.tableware', language), href: '/categories/vaisselle' },
-    { name: t('navigation.homeDecor', language), href: '/categories/decoration' },
-    { name: t('navigation.gifts', language), href: '/categories/cadeaux' },
-    { name: t('navigation.story', language), href: '/a-propos' },
+    { name: language === 'fr' ? 'Tout parcourir' : 'Browse All', href: '/catalogue' },
+    { name: language === 'fr' ? 'Vaisselle' : 'Tableware', href: '/categories/vaisselle' },
+    { name: language === 'fr' ? 'Décoration' : 'Decoration', href: '/categories/decoration' },
+    { name: language === 'fr' ? 'Cadeaux' : 'Gifts', href: '/categories/cadeaux' },
+    { name: language === 'fr' ? 'Notre histoire' : 'Our Story', href: '/notre-heritage' },
   ];
 
   return (
@@ -88,7 +90,7 @@ const MaisonStyleHeaderNew = () => {
                 <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <Search className="h-4 w-4" />
                 </button>
-                <Link to="/auth" className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
+                <Link to={user ? "/dashboard" : "/auth"} className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <User className="h-4 w-4" />
                 </Link>
                 <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
@@ -154,8 +156,12 @@ const MaisonStyleHeaderNew = () => {
                     </Link>
                   ))}
                   <div className="border-t border-stone-200 pt-6 px-4">
-                    <Link to="/auth" className="block text-base font-light text-stone-700 hover:text-stone-900 transition-colors py-2">
-                      {t('header.account', language)}
+                    <Link 
+                      to={user ? "/dashboard" : "/auth"} 
+                      className="block text-base font-light text-stone-700 hover:text-stone-900 transition-colors py-2"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {language === 'fr' ? 'Compte' : 'Account'}
                     </Link>
                     <button
                       onClick={toggleLanguage}
