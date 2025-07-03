@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { MapPin } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import MapContainer from './MapContainer';
@@ -8,62 +8,139 @@ import RegionStats from './RegionStats';
 
 const IngredientOriginMap = () => {
   const { language } = useLanguage();
-  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
+  const [activeRegion, setActiveRegion] = useState<string | null>(null);
+  const mobileDetailsRef = useRef<HTMLDivElement>(null);
 
-  const regions = [
+  // Stable region data structure - prevents re-creation on language change
+  const regionsData = [
     {
       id: 'essaouira',
-      name: 'Essaouira',
       position: { top: '45%', left: '15%' },
-      ingredients: language === 'fr' 
-        ? ['Huile d\'argan', 'Sel de mer', 'Algues marines']
-        : ['Argan oil', 'Sea salt', 'Marine algae'],
-      description: language === 'fr'
-        ? 'Région côtière célèbre pour ses arganiers centenaires et ses coopératives féminines.'
-        : 'Coastal region famous for its century-old argan trees and women\'s cooperatives.',
-      climate: language === 'fr' ? 'Méditerranéen sec' : 'Dry Mediterranean',
-      harvest: language === 'fr' ? 'Juin - Août' : 'June - August'
+      name: {
+        fr: 'Essaouira',
+        en: 'Essaouira'
+      },
+      ingredients: {
+        fr: ['Huile d\'argan', 'Sel de mer', 'Algues marines'],
+        en: ['Argan oil', 'Sea salt', 'Marine algae']
+      },
+      description: {
+        fr: 'Région côtière célèbre pour ses arganiers centenaires et ses coopératives féminines.',
+        en: 'Coastal region famous for its century-old argan trees and women\'s cooperatives.'
+      },
+      climate: {
+        fr: 'Méditerranéen sec',
+        en: 'Dry Mediterranean'
+      },
+      harvest: {
+        fr: 'Juin - Août',
+        en: 'June - August'
+      }
     },
     {
       id: 'atlas',
-      name: language === 'fr' ? 'Montagnes de l\'Atlas' : 'Atlas Mountains',
       position: { top: '35%', left: '45%' },
-      ingredients: language === 'fr'
-        ? ['Argile rouge', 'Plantes de montagne', 'Miel de montagne']
-        : ['Red clay', 'Mountain plants', 'Mountain honey'],
-      description: language === 'fr'
-        ? 'Chaîne montagneuse riche en argiles thérapeutiques et plantes médicinales.'
-        : 'Mountain range rich in therapeutic clays and medicinal plants.',
-      climate: language === 'fr' ? 'Continental montagnard' : 'Continental mountain',
-      harvest: language === 'fr' ? 'Mai - Septembre' : 'May - September'
+      name: {
+        fr: 'Montagnes de l\'Atlas',
+        en: 'Atlas Mountains'
+      },
+      ingredients: {
+        fr: ['Argile rouge', 'Plantes de montagne', 'Miel de montagne'],
+        en: ['Red clay', 'Mountain plants', 'Mountain honey']
+      },
+      description: {
+        fr: 'Chaîne montagneuse riche en argiles thérapeutiques et plantes médicinales.',
+        en: 'Mountain range rich in therapeutic clays and medicinal plants.'
+      },
+      climate: {
+        fr: 'Continental montagnard',
+        en: 'Continental mountain'
+      },
+      harvest: {
+        fr: 'Mai - Septembre',
+        en: 'May - September'
+      }
     },
     {
       id: 'fes',
-      name: 'Fès',
       position: { top: '25%', left: '35%' },
-      ingredients: language === 'fr'
-        ? ['Rose de Damas', 'Oud', 'Épices rares']
-        : ['Damask rose', 'Oud', 'Rare spices'],
-      description: language === 'fr'
-        ? 'Capitale spirituelle connue pour ses parfums traditionnels et ses roses.'
-        : 'Spiritual capital known for its traditional perfumes and roses.',
-      climate: language === 'fr' ? 'Méditerranéen continental' : 'Continental Mediterranean',
-      harvest: language === 'fr' ? 'Avril - Juin' : 'April - June'
+      name: {
+        fr: 'Fès',
+        en: 'Fès'
+      },
+      ingredients: {
+        fr: ['Rose de Damas', 'Oud', 'Épices rares'],
+        en: ['Damask rose', 'Oud', 'Rare spices']
+      },
+      description: {
+        fr: 'Capitale spirituelle connue pour ses parfums traditionnels et ses roses.',
+        en: 'Spiritual capital known for its traditional perfumes and roses.'
+      },
+      climate: {
+        fr: 'Méditerranéen continental',
+        en: 'Continental Mediterranean'
+      },
+      harvest: {
+        fr: 'Avril - Juin',
+        en: 'April - June'
+      }
     },
     {
       id: 'marrakech',
-      name: 'Marrakech',
       position: { top: '50%', left: '35%' },
-      ingredients: language === 'fr'
-        ? ['Cactus de Barbarie', 'Henné', 'Huile d\'olive']
-        : ['Prickly pear cactus', 'Henna', 'Olive oil'],
-      description: language === 'fr'
-        ? 'Oasis du sud réputée pour ses cactus riches en antioxydants.'
-        : 'Southern oasis renowned for its antioxidant-rich cacti.',
-      climate: language === 'fr' ? 'Aride subtropical' : 'Subtropical arid',
-      harvest: language === 'fr' ? 'Juillet - Octobre' : 'July - October'
+      name: {
+        fr: 'Marrakech',
+        en: 'Marrakech'
+      },
+      ingredients: {
+        fr: ['Cactus de Barbarie', 'Henné', 'Huile d\'olive'],
+        en: ['Prickly pear cactus', 'Henna', 'Olive oil']
+      },
+      description: {
+        fr: 'Oasis du sud réputée pour ses cactus riches en antioxydants.',
+        en: 'Southern oasis renowned for its antioxidant-rich cacti.'
+      },
+      climate: {
+        fr: 'Aride subtropical',
+        en: 'Subtropical arid'
+      },
+      harvest: {
+        fr: 'Juillet - Octobre',
+        en: 'July - October'
+      }
     }
   ];
+
+  // Transform data for current language while maintaining stability
+  const regions = regionsData.map(region => ({
+    id: region.id,
+    name: region.name[language],
+    position: region.position,
+    ingredients: region.ingredients[language],
+    description: region.description[language],
+    climate: region.climate[language],
+    harvest: region.harvest[language]
+  }));
+
+  // Handle region selection with accordion-like behavior
+  const handleRegionSelect = (regionId: string) => {
+    setActiveRegion(current => current === regionId ? null : regionId);
+  };
+
+  // Scroll to mobile details when region is selected on mobile
+  useEffect(() => {
+    if (activeRegion && mobileDetailsRef.current) {
+      const isMobile = window.innerWidth < 1024; // lg breakpoint
+      if (isMobile) {
+        setTimeout(() => {
+          mobileDetailsRef.current?.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }, 100); // Small delay to let the content render
+      }
+    }
+  }, [activeRegion]);
 
   return (
     <section className="w-full py-20 bg-stone-50">
@@ -95,21 +172,33 @@ const IngredientOriginMap = () => {
           <div className="relative">
             <MapContainer
               regions={regions}
-              selectedRegion={selectedRegion}
-              onRegionSelect={setSelectedRegion}
+              selectedRegion={activeRegion}
+              onRegionSelect={handleRegionSelect}
             />
           </div>
 
-          {/* Region Details */}
-          <div className="space-y-6">
+          {/* Region Details - Desktop */}
+          <div className="hidden lg:block space-y-6">
             <RegionDetails
-              selectedRegion={selectedRegion}
+              selectedRegion={activeRegion}
               regions={regions}
+              onClose={() => setActiveRegion(null)}
             />
 
             {/* Quick Stats */}
             <RegionStats />
           </div>
+        </div>
+
+        {/* Mobile Region Details - Display below map on mobile */}
+        <div ref={mobileDetailsRef} className="lg:hidden mt-8">
+          {activeRegion && (
+            <RegionDetails
+              selectedRegion={activeRegion}
+              regions={regions}
+              onClose={() => setActiveRegion(null)}
+            />
+          )}
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 
-import { MapPin, Info } from 'lucide-react';
+import { MapPin, Info, X } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -16,9 +16,10 @@ interface Region {
 interface RegionDetailsProps {
   selectedRegion: string | null;
   regions: Region[];
+  onClose?: () => void;
 }
 
-const RegionDetails = ({ selectedRegion, regions }: RegionDetailsProps) => {
+const RegionDetails = ({ selectedRegion, regions, onClose }: RegionDetailsProps) => {
   const { language } = useLanguage();
 
   if (!selectedRegion) {
@@ -46,15 +47,25 @@ const RegionDetails = ({ selectedRegion, regions }: RegionDetailsProps) => {
   return (
     <div className="space-y-4">
       <Card 
-        key={selectedRegion} 
         className="bg-white/90 backdrop-blur-sm border-0 luxury-shadow rounded-2xl animate-fade-in"
       >
         <CardContent className="p-8">
-          <div className="flex items-center mb-4">
-            <MapPin className="h-5 w-5 text-copper-600 mr-2" />
-            <h3 className="font-display font-bold text-xl text-clay-800">
-              {region.name}
-            </h3>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center">
+              <MapPin className="h-5 w-5 text-copper-600 mr-2" />
+              <h3 className="font-display font-bold text-xl text-clay-800">
+                {region.name}
+              </h3>
+            </div>
+            {onClose && (
+              <button
+                onClick={onClose}
+                className="p-1 rounded-full hover:bg-stone-100 transition-colors duration-200"
+                aria-label={language === 'fr' ? 'Fermer' : 'Close'}
+              >
+                <X className="h-4 w-4 text-stone-600" />
+              </button>
+            )}
           </div>
 
           <p className="elegant-text text-clay-600 mb-6 leading-relaxed">
