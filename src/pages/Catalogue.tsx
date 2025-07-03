@@ -34,11 +34,10 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 89,
       originalPrice: 120,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/huile-argan.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-premium.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/huile-argan-side.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/huile-argan-detail.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/huile-argan-use.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-detail.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan-oil-bottle.jpg"
       ],
       description: language === 'fr' ? "100% pure, pressée à froid des montagnes de l'Atlas" : "100% pure, cold-pressed from Atlas mountains",
       rating: 4.9,
@@ -53,10 +52,10 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 35,
       originalPrice: null,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/savon-noir.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/black-soap-traditional.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/savon-noir-texture.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/savon-noir-ingredients.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/black-soap-texture.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/black-soap-ingredients.jpg"
       ],
       description: language === 'fr' ? "Gommage doux aux olives et eucalyptus" : "Gentle exfoliation with olives and eucalyptus",
       rating: 4.7,
@@ -71,11 +70,10 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 42,
       originalPrice: null,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/ghassoul-atlas.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-clay-atlas.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/ghassoul-powder.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/ghassoul-application.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/ghassoul-results.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-powder.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/ghassoul-application.jpg"
       ],
       description: language === 'fr' ? "Argile purifiante volcanique des montagnes" : "Volcanic purifying clay from mountains",
       rating: 4.8,
@@ -90,10 +88,10 @@ const Catalogue = () => {
       category: 'Beauté',
       price: 28,
       originalPrice: 35,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/eau-de-rose.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/rose-water-damascena.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/rose-water-bottle.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/damascena-roses.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/rose-water-bottle.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/damascena-roses.jpg"
       ],
       description: language === 'fr' ? "Distillation artisanale de roses pures" : "Artisanal distillation of pure roses",
       rating: 4.6,
@@ -108,12 +106,10 @@ const Catalogue = () => {
       category: 'Vaisselle',
       price: 125,
       originalPrice: null,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/service-the-royal.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-royal.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/tea-service-detail.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/tea-service-set.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/tea-service-ambient.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/tea-service-craft.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-detail.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/tea-service-set.jpg"
       ],
       description: language === 'fr' ? "Céramique artisanale peinte à la main" : "Hand-painted artisanal ceramics",
       rating: 4.9,
@@ -128,10 +124,10 @@ const Catalogue = () => {
       category: 'Décoration',
       price: 45,
       originalPrice: null,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/bougie-ambre-oud.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/candle-amber-oud.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/candle-flame.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/candle-ambient.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/candle-flame.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/candle-ambient.jpg"
       ],
       description: language === 'fr' ? "Senteurs orientales authentiques" : "Authentic oriental fragrances",
       rating: 4.5,
@@ -146,11 +142,10 @@ const Catalogue = () => {
       category: 'Cadeaux',
       price: 150,
       originalPrice: 200,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/coffret-luxe.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-luxury.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/gift-set-contents.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/gift-set-packaging.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/gift-set-ribbon.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-contents.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/gift-set-packaging.jpg"
       ],
       description: language === 'fr' ? "Collection complète de produits authentiques" : "Complete collection of authentic products",
       rating: 4.8,
@@ -165,11 +160,10 @@ const Catalogue = () => {
       category: 'Décoration',
       price: 95,
       originalPrice: null,
-      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/lampe-berbere.jpg",
+      image: "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/berber-lamp.jpg",
       additionalImages: [
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/lamp-berber-lit.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/lamp-berber-detail.jpg",
-        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/products/lamp-berber-pattern.jpg"
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/berber-lamp-lit.jpg",
+        "https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/berber-lamp-detail.jpg"
       ],
       description: language === 'fr' ? "Métal ciselé avec motifs traditionnels" : "Chiseled metal with traditional patterns",
       rating: 4.7,
@@ -303,21 +297,44 @@ const Catalogue = () => {
           </div>
         </section>
 
-        {/* Products Grid - matching homepage card style */}
         <section className="py-24 lg:py-32 bg-white">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-              {sortedProducts.map((product) => (
+              {sortedProducts.map((product, index) => (
                 <Card 
                   key={product.id} 
-                  className="group cursor-pointer border-0 bg-gray-50 hover:bg-white transition-all duration-500 hover:shadow-2xl hover:shadow-black/10 hover:-translate-y-2 overflow-hidden rounded-3xl"
+                  className="group cursor-pointer border-0 bg-stone-50 hover:bg-white transition-all duration-500 hover:shadow-2xl hover:shadow-black/10 hover:-translate-y-2 overflow-hidden rounded-3xl"
+                  style={{
+                    animationDelay: `${index * 0.1}s`,
+                    animationFillMode: 'forwards'
+                  }}
                 >
                   <div className="aspect-square relative overflow-hidden">
                     <img
                       src={product.image}
                       alt={product.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      onError={(e) => {
+                        e.currentTarget.src = product.additionalImages?.[0] || 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/placeholder-product.jpg';
+                      }}
                     />
+
+                    {/* Hover overlay with additional images */}
+                    {product.additionalImages && product.additionalImages.length > 0 && (
+                      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <div className="flex gap-2 w-full">
+                          {product.additionalImages.slice(0, 3).map((img, imgIndex) => (
+                            <div key={imgIndex} className="w-12 h-12 rounded-lg overflow-hidden bg-white/20 backdrop-blur-sm">
+                              <img
+                                src={img}
+                                alt={`${product.name} ${imgIndex + 1}`}
+                                className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
 
                     {/* Stock Status Badge - Top Left */}
                     <div className="absolute top-6 left-6">
@@ -394,13 +411,12 @@ const Catalogue = () => {
                       {product.description}
                     </p>
 
-                    {/* Add to Cart Button - matching homepage style */}
                     <Button
                       onClick={() => handleAddToCart(product)}
-                      className="w-full bg-black hover:bg-black/90 text-white border-0 rounded-full py-3 font-light tracking-wide transition-all duration-300"
+                      className="bg-stone-800 hover:bg-stone-900 text-white rounded-full px-6 py-2 text-sm font-light transition-all duration-300 hover:scale-105"
                     >
                       <ShoppingCart className="h-4 w-4 mr-2" />
-                      {language === 'fr' ? 'Ajouter au panier' : 'Add to cart'}
+                      {language === 'fr' ? 'Ajouter' : 'Add to cart'}
                     </Button>
                   </div>
                 </Card>
