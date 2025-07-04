@@ -80,9 +80,9 @@ const About = () => {
                 </div>
                 <div className="relative">
                   <img 
-                    src="https://images.unsplash.com/photo-1466442929976-97f336a657be?auto=format&fit=crop&w=800&q=80"
-                    alt="Moroccan architecture"
-                    className="rounded-lg luxury-shadow w-full h-96 object-cover"
+                    src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//women%20face%20covered.jpg"
+                    alt={language === 'fr' ? 'Femme marocaine traditionnelle' : 'Traditional Moroccan woman'}
+                    className="rounded-lg shadow-lg w-full h-96 object-cover"
                   />
                 </div>
               </div>
@@ -190,20 +190,17 @@ const About = () => {
         </section>
 
         {/* Founder Story Section */}
-        <section className="py-20 bg-stone-50">
+        <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div className="order-2 lg:order-1">
                   <div className="relative">
                     <img 
-                      src="/lovable-uploads/founder-portrait.jpg"
-                      alt={language === 'fr' ? 'Portrait de la fondatrice' : 'Founder portrait'}
-                      className="rounded-lg shadow-luxury w-full h-96 object-cover"
+                      src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Tente-light.jpg"
+                      alt={language === 'fr' ? 'Tente traditionnelle marocaine' : 'Traditional Moroccan tent'}
+                      className="rounded-lg shadow-lg w-full h-96 object-cover"
                     />
-                    <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-stone-800 rounded-full flex items-center justify-center">
-                      <Award className="h-8 w-8 text-white" />
-                    </div>
                   </div>
                 </div>
                 <div className="order-1 lg:order-2">

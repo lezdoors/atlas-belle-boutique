@@ -45,6 +45,15 @@ const NotreHeritage = () => {
         </div>
       </section>
 
+      {/* Heritage Content Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <p className="text-lg font-light text-stone-700 leading-relaxed">
+            Notre héritage est un tissage vivant de traditions, d'histoires et d'artisanat transmis à travers les générations. À travers Perle de l'Atlas, nous célébrons cet héritage en le rendant accessible au monde entier, avec respect, passion et fierté.
+          </p>
+        </div>
+      </section>
+
       {/* Quotes Section */}
       <section className="py-24 lg:py-32 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
