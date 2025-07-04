@@ -167,10 +167,10 @@ const NewFooter = () => {
               </li>
               <li>
                 <Link 
-                  to="/notre-heritage" 
+                  to="/nos-artisans" 
                   className="text-neutral-600 hover:text-neutral-800 transition-colors text-xs uppercase tracking-wider"
                 >
-                  {language === 'fr' ? 'Nos artisans' : 'The Friends of the Maison'}
+                  {language === 'fr' ? 'Nos artisans' : 'Our Artisans'}
                 </Link>
               </li>
             </ul>

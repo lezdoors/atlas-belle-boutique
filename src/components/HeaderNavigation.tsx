@@ -26,7 +26,11 @@ const HeaderNavigation = () => {
       label: language === 'fr' ? 'Accueil' : 'Home' 
     },
     { 
-      href: '/heritage', 
+      href: '/a-propos', 
+      label: language === 'fr' ? 'À Propos' : 'About' 
+    },
+    { 
+      href: '/notre-heritage', 
       label: language === 'fr' ? 'Notre Héritage' : 'Our Heritage' 
     },
     { 

@@ -58,6 +58,7 @@ import Ete from "./pages/collections/Ete";
 import Hiver from "./pages/collections/Hiver";
 import Printemps from "./pages/collections/Printemps";
 import Credits from "./pages/Credits";
+import NosArtisans from "./pages/NosArtisans";
 import HuileArgan from "./pages/products/HuileArgan";
 import SavonNoir from "./pages/products/SavonNoir";
 import Ghassoul from "./pages/products/Ghassoul";
@@ -140,6 +141,7 @@ const AppRoutes = () => {
         <Route path="/story" element={<Story />} />
         <Route path="/a-propos" element={<About />} />
         <Route path="/notre-heritage" element={<NotreHeritage />} />
+        <Route path="/nos-artisans" element={<NosArtisans />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/ingredients" element={<Ingredients />} />
         <Route path="/ingredient/:id" element={<IngredientDetail />} />

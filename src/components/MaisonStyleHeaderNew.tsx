@@ -55,7 +55,7 @@ const MaisonStyleHeaderNew = () => {
 
   const navigation = [
     { name: language === 'fr' ? 'Notre Héritage' : 'Our Heritage', href: '/notre-heritage' },
-    { name: language === 'fr' ? 'À propos' : 'About', href: '/about' },
+    { name: language === 'fr' ? 'À propos' : 'About', href: '/a-propos' },
     { name: language === 'fr' ? 'Contact' : 'Contact', href: '/contact' },
   ];
 

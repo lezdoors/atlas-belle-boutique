@@ -20,11 +20,11 @@ const AppleStyleHeader = () => {
     },
     { 
       name: language === 'fr' ? 'Notre Héritage' : 'Our Heritage', 
-      href: language === 'fr' ? '/notre-heritage' : '/our-heritage'
+      href: '/notre-heritage'
     },
     { 
       name: language === 'fr' ? 'À Propos' : 'About', 
-      href: '/about' 
+      href: '/a-propos' 
     },
     { 
       name: 'Contact', 

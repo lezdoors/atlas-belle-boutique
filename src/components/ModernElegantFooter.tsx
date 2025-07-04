@@ -64,13 +64,13 @@ const ModernElegantFooter = () => {
 
   const footerLinks = {
     [t('footer.sections.ourHouse', language)]: [
-      { name: t('footer.links.about', language), href: '/about' },
-      { name: t('footer.links.artisans', language), href: '/artisans' },
+      { name: t('footer.links.about', language), href: '/a-propos' },
+      { name: t('footer.links.artisans', language), href: '/nos-artisans' },
       { name: t('footer.links.shop', language), href: '/boutique' }
     ],
     [t('footer.sections.customerService', language)]: [
       { name: t('footer.links.faq', language), href: '/faq' },
-      { name: t('footer.links.tracking', language), href: '/tracking' },
+      { name: t('footer.links.tracking', language), href: '/login' },
       { name: t('footer.links.shippingReturns', language), href: '/shipping-returns' },
       { name: t('footer.links.contact', language), href: '/contact' }
     ],

@@ -64,7 +64,7 @@ const AppleStyleFooter = () => {
                 </a>
               </li>
               <li>
-                <a href="/about" className="text-white/70 hover:text-white font-light transition-colors">
+                <a href="/a-propos" className="text-white/70 hover:text-white font-light transition-colors">
                   {language === 'fr' ? 'À Propos' : 'About'}
                 </a>
               </li>
