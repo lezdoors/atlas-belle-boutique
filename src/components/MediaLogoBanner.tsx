@@ -35,6 +35,9 @@ const MediaLogoBanner = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header Text */}
         <div className="text-center mb-12">
+          <h3 className="text-2xl font-serif font-light text-stone-800 mb-4">
+            {language === 'fr' ? 'Ils Parlent de Nous' : 'They Talk About Us'}
+          </h3>
           <p className="text-sm font-light text-stone-500 tracking-wide uppercase">
             {language === 'fr' ? 'Vu dans les médias' : 'As seen in'}
           </p>

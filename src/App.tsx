@@ -96,9 +96,6 @@ const AppRoutes = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="/original" element={<Index />} />
-        <Route path="/enhanced" element={<EnhancedAppleStyleIndex />} />
-        <Route path="/apple-style" element={<EnhancedAppleStyleIndex />} />
         <Route path="/login" element={<Login />} />
         <Route path="/auth" element={<Auth />} />
         <Route 
