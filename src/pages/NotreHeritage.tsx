@@ -70,37 +70,244 @@ const NotreHeritage = () => {
         </div>
       </section>
 
-      {/* Heritage Content Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <p className="font-serif text-xl md:text-2xl font-light text-stone-700 leading-relaxed">
-            Notre héritage est un tissage vivant de traditions, d'histoires et d'artisanat transmis à travers les générations. À travers Perle de l'Atlas, nous célébrons cet héritage en le rendant accessible au monde entier, avec respect, passion et fierté.
-          </p>
-        </div>
-      </section>
-
-      {/* Quotes Section */}
-      <section className="py-20 bg-stone-50">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <div className="space-y-8">
-            <blockquote className="font-serif text-xl md:text-2xl italic text-stone-700 leading-relaxed">
-              "Comme un verre de thé à la menthe au lever du jour — c'est toute une mémoire marocaine que je retrouve dans chaque parfum."
+      {/* Storytelling Block */}
+      <section className="py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <blockquote className="font-serif text-3xl md:text-4xl font-light text-stone-800 leading-relaxed mb-8 italic">
+              "Dans chaque geste de nos artisans résonne l'écho des siècles passés, 
+              où la botanique et l'art de vivre se rencontrent dans l'harmonie parfaite."
             </blockquote>
-            <blockquote className="font-serif text-xl md:text-2xl italic text-stone-700 leading-relaxed">
-              "Chaque flacon est un peu comme un tajine qui mijote lentement — il révèle des secrets d'antan, couche par couche."
-            </blockquote>
-            <cite className="text-sm text-stone-500 font-light tracking-wide">
-              — Perle de l'Atlas
-            </cite>
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mb-8"></div>
+          </div>
+          
+          <div className="prose prose-lg max-w-none text-center font-serif text-stone-700">
+            <p className="text-xl leading-relaxed mb-8">
+              Depuis des générations, dans les vallées de l'Atlas et les jardins secrets de Fès, 
+              une tradition se perpétue. Les maîtres parfumeurs berbères, gardiens d'un savoir ancestral, 
+              transmettent leurs secrets de mère en fille, de maître à apprenti.
+            </p>
+            <p className="text-lg leading-relaxed mb-8 text-stone-600">
+              Cette tradition millénaire trouve ses racines dans la rencontre entre les botanistes andalous 
+              et les herboristes berbères, créant une alchimie unique où la science botanique européenne 
+              épouse la sagesse traditionnelle marocaine.
+            </p>
+            <p className="text-lg leading-relaxed text-stone-600">
+              Aujourd'hui, nous honorons cet héritage en préservant ces techniques séculaires, 
+              tout en les adaptant aux aspirations contemporaines d'authenticité et de qualité.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Botanical Legacy Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-          <p className="font-serif text-lg font-light text-stone-700 leading-relaxed">
-            Louis Marie Aubert du Petit-Thouars, pionnier de la botanique française, a exploré Madagascar, La Réunion et l'île Maurice durant son exil révolutionnaire. Il y découvrit plus de 2000 espèces végétales avant de rentrer en France, où il fut élu à l'Académie des Sciences. Son héritage inspire aujourd'hui notre démarche — entre science botanique et art de vivre marocain.
+      {/* Timeline Section */}
+      <section className="py-24 bg-stone-50">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="font-serif text-4xl md:text-5xl font-light text-stone-800 mb-6">
+              Les Racines de Notre Héritage
+            </h2>
+            <div className="w-24 h-px bg-gradient-to-r from-transparent via-indigo-600 to-transparent mx-auto"></div>
+          </div>
+          
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-gradient-to-b from-amber-600 via-indigo-600 to-amber-600 opacity-30"></div>
+            
+            <div className="space-y-16">
+              {/* Timeline Item 1 */}
+              <div className="flex items-center justify-between">
+                <div className="w-5/12 text-right pr-8">
+                  <h3 className="font-serif text-2xl font-medium text-stone-800 mb-4">XIe Siècle</h3>
+                  <h4 className="font-serif text-xl text-indigo-700 mb-3">Médecine Berbère Traditionnelle</h4>
+                  <p className="text-stone-600 leading-relaxed">
+                    Les guérisseurs berbères développent l'art de l'extraction d'huiles essentielles 
+                    dans les montagnes de l'Atlas, créant les premières formules thérapeutiques.
+                  </p>
+                </div>
+                <div className="w-2/12 flex justify-center">
+                  <div className="w-4 h-4 bg-amber-600 rounded-full border-4 border-white shadow-lg"></div>
+                </div>
+                <div className="w-5/12"></div>
+              </div>
+
+              {/* Timeline Item 2 */}
+              <div className="flex items-center justify-between">
+                <div className="w-5/12"></div>
+                <div className="w-2/12 flex justify-center">
+                  <div className="w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-lg"></div>
+                </div>
+                <div className="w-5/12 pl-8">
+                  <h3 className="font-serif text-2xl font-medium text-stone-800 mb-4">XIIe-XVe Siècles</h3>
+                  <h4 className="font-serif text-xl text-indigo-700 mb-3">L'Âge d'Or de la Parfumerie Andalouse</h4>
+                  <p className="text-stone-600 leading-relaxed">
+                    Les parfumeurs d'Al-Andalus perfectionnent les techniques de distillation, 
+                    créant des fragrances sophistiquées à base de rose, d'oud et de jasmin.
+                  </p>
+                </div>
+              </div>
+
+              {/* Timeline Item 3 */}
+              <div className="flex items-center justify-between">
+                <div className="w-5/12 text-right pr-8">
+                  <h3 className="font-serif text-2xl font-medium text-stone-800 mb-4">XVIe-XVIIe Siècles</h3>
+                  <h4 className="font-serif text-xl text-indigo-700 mb-3">Renaissance de l'Artisanat Marocain</h4>
+                  <p className="text-stone-600 leading-relaxed">
+                    Les dynasties Saadienne et Alaouite encouragent le développement des arts décoratifs 
+                    et de la parfumerie, établissant les ateliers de Fès et Meknès.
+                  </p>
+                </div>
+                <div className="w-2/12 flex justify-center">
+                  <div className="w-4 h-4 bg-amber-600 rounded-full border-4 border-white shadow-lg"></div>
+                </div>
+                <div className="w-5/12"></div>
+              </div>
+
+              {/* Timeline Item 4 */}
+              <div className="flex items-center justify-between">
+                <div className="w-5/12"></div>
+                <div className="w-2/12 flex justify-center">
+                  <div className="w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-lg"></div>
+                </div>
+                <div className="w-5/12 pl-8">
+                  <h3 className="font-serif text-2xl font-medium text-stone-800 mb-4">XXIe Siècle</h3>
+                  <h4 className="font-serif text-xl text-indigo-700 mb-3">Renaissance Contemporaine</h4>
+                  <p className="text-stone-600 leading-relaxed">
+                    Une nouvelle génération d'artisans perpétue la tradition tout en l'adaptant 
+                    aux standards internationaux de qualité et de durabilité.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Visual Grid - Zellij Inspired */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="font-serif text-4xl md:text-5xl font-light text-stone-800 mb-6">
+              Les Trésors de Notre Terre
+            </h2>
+            <p className="font-serif text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed">
+              Chaque ingrédient raconte l'histoire d'un terroir, d'un savoir-faire, d'une tradition préservée
+            </p>
+            <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mt-8"></div>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {/* Argan */}
+            <div className="group relative">
+              <div className="aspect-square bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="w-16 h-16 bg-amber-600 rounded-full mb-4 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+                </div>
+                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Argan</h3>
+                <p className="text-sm text-stone-600">L'or liquide de l'Atlas</p>
+              </div>
+            </div>
+
+            {/* Rose */}
+            <div className="group relative">
+              <div className="aspect-square bg-gradient-to-br from-rose-100 to-rose-200 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="w-16 h-16 bg-rose-500 rounded-full mb-4 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+                </div>
+                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Rose</h3>
+                <p className="text-sm text-stone-600">La reine des jardins de Kelâa</p>
+              </div>
+            </div>
+
+            {/* Oud */}
+            <div className="group relative">
+              <div className="aspect-square bg-gradient-to-br from-amber-900/20 to-amber-800/30 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="w-16 h-16 bg-amber-800 rounded-full mb-4 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+                </div>
+                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Oud</h3>
+                <p className="text-sm text-stone-600">Le bois sacré d'Orient</p>
+              </div>
+            </div>
+
+            {/* Atlas Mountains */}
+            <div className="group relative">
+              <div className="aspect-square bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="w-16 h-16 bg-indigo-600 rounded-full mb-4 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+                </div>
+                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Atlas</h3>
+                <p className="text-sm text-stone-600">Les montagnes éternelles</p>
+              </div>
+            </div>
+
+            {/* Jasmin */}
+            <div className="group relative">
+              <div className="aspect-square bg-gradient-to-br from-green-100 to-green-200 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="w-16 h-16 bg-green-600 rounded-full mb-4 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+                </div>
+                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Jasmin</h3>
+                <p className="text-sm text-stone-600">La fleur de la nuit</p>
+              </div>
+            </div>
+
+            {/* Cèdre */}
+            <div className="group relative">
+              <div className="aspect-square bg-gradient-to-br from-teal-100 to-teal-200 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="w-16 h-16 bg-teal-600 rounded-full mb-4 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+                </div>
+                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Cèdre</h3>
+                <p className="text-sm text-stone-600">Le gardien des forêts</p>
+              </div>
+            </div>
+
+            {/* Safran */}
+            <div className="group relative">
+              <div className="aspect-square bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="w-16 h-16 bg-orange-600 rounded-full mb-4 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+                </div>
+                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Safran</h3>
+                <p className="text-sm text-stone-600">L'épice précieuse de Taliouine</p>
+              </div>
+            </div>
+
+            {/* Menthe */}
+            <div className="group relative">
+              <div className="aspect-square bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="w-16 h-16 bg-emerald-600 rounded-full mb-4 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+                </div>
+                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Menthe</h3>
+                <p className="text-sm text-stone-600">La fraîcheur des jardins</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Closing Heritage Statement */}
+      <section className="py-24 bg-stone-50">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <div className="mb-12">
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-stone-800 mb-8">
+              Un Héritage Vivant
+            </h2>
+            <div className="w-20 h-px bg-gradient-to-r from-transparent via-indigo-600 to-transparent mx-auto mb-8"></div>
+          </div>
+          
+          <blockquote className="font-serif text-2xl md:text-3xl font-light text-stone-700 leading-relaxed mb-8 italic">
+            "Nous ne préservons pas seulement des recettes ou des techniques, 
+            nous transmettons une âme, un art de vivre, une philosophie de beauté 
+            qui transcende les époques."
+          </blockquote>
+          
+          <p className="font-serif text-lg text-stone-600 leading-relaxed max-w-3xl mx-auto">
+            Chaque création porte en elle cette richesse culturelle millénaire, 
+            cette passion pour l'excellence artisanale, cette quête perpétuelle 
+            de l'harmonie entre tradition et modernité.
           </p>
         </div>
       </section>
