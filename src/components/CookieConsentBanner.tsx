@@ -71,7 +71,13 @@ const CookieConsentBanner = () => {
                 {currentContent.title}
               </h3>
               <p className="text-sm text-stone-600 leading-relaxed max-w-2xl">
-                {currentContent.description}
+                {currentContent.description}{' '}
+                <a
+                  href="/cookies"
+                  className="text-stone-500 hover:text-stone-700 transition-colors duration-300 underline underline-offset-2 whitespace-nowrap"
+                >
+                  {currentContent.learnMore}
+                </a>
               </p>
             </div>
 
@@ -101,16 +107,6 @@ const CookieConsentBanner = () => {
                 <X className="h-4 w-4" />
               </Button>
             </div>
-          </div>
-          
-          {/* Learn more link */}
-          <div className="mt-4 text-center md:text-left">
-            <a
-              href="/cookies"
-              className="text-xs text-stone-500 hover:text-stone-700 transition-colors duration-300 underline underline-offset-2"
-            >
-              {currentContent.learnMore}
-            </a>
           </div>
         </div>
       </div>

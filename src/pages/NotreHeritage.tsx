@@ -183,106 +183,232 @@ const NotreHeritage = () => {
         </div>
       </section>
 
-      {/* Visual Grid - Refined Heritage Ingredients */}
-      <section className="py-24 bg-stone-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+      {/* Secrets de la Terre - Luxury Ingredient Showcase */}
+      <section className="py-32 bg-gradient-to-b from-stone-50 to-white relative overflow-hidden">
+        {/* Background texture */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 bg-repeat" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b8860b' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          }}></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
           <div className="text-center mb-20">
-            <h2 className="font-serif text-4xl md:text-5xl font-light text-stone-800 mb-6">
-              Les Trésors de Notre Terre
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-amber-100 to-amber-200 mb-8">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500 to-amber-600"></div>
+            </div>
+            <h2 className="font-serif text-5xl md:text-6xl font-light text-stone-800 mb-8 tracking-tight">
+              Secrets de la Terre
             </h2>
-            <p className="font-serif text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed">
-              Chaque ingrédient raconte l'histoire d'un terroir, d'un savoir-faire, d'une tradition préservée
+            <p className="font-serif text-xl text-stone-600 max-w-4xl mx-auto leading-relaxed">
+              Chaque essence révèle l'âme d'un terroir, chaque extraction dévoile des siècles de sagesse botanique. 
+              Découvrez les trésors précieux qui composent nos créations d'exception.
             </p>
-            <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mt-8"></div>
+            <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mt-12"></div>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {/* Argan */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Argan - L'Or Liquide */}
             <div className="group relative">
-              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
-                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-amber-400/20 to-amber-600/20 border-2 border-amber-400/30">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-amber-600"></div>
+              <div className="aspect-[3/4] bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 hover:-translate-y-3 border border-stone-100">
+                <div className="relative h-2/3 overflow-hidden">
+                  <img 
+                    src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/argan%20tree.jpg"
+                    alt="Arganier ancestral"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                  <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-amber-500 to-amber-600"></div>
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Argan</h3>
-                <p className="text-sm text-stone-500 font-light">L'or liquide de l'Atlas</p>
+                <div className="p-8 h-1/3 flex flex-col justify-center">
+                  <h3 className="font-serif text-2xl font-medium text-stone-800 mb-2">Argan</h3>
+                  <p className="text-sm text-stone-600 font-light mb-3">L'or liquide de l'Atlas</p>
+                  <p className="text-xs text-stone-500 leading-relaxed">
+                    Pressé à froid dans les coopératives féminines du Sud marocain
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Rose */}
+            {/* Rose - La Reine de Kelâa */}
             <div className="group relative">
-              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
-                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-rose-400/20 to-rose-600/20 border-2 border-rose-400/30">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-500 to-rose-600"></div>
+              <div className="aspect-[3/4] bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 hover:-translate-y-3 border border-stone-100">
+                <div className="relative h-2/3 overflow-hidden">
+                  <img 
+                    src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/pink%20flower.jpg"
+                    alt="Rose de Damas"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                  <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-rose-500 to-rose-600"></div>
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Rose</h3>
-                <p className="text-sm text-stone-500 font-light">La reine des jardins de Kelâa</p>
+                <div className="p-8 h-1/3 flex flex-col justify-center">
+                  <h3 className="font-serif text-2xl font-medium text-stone-800 mb-2">Rose</h3>
+                  <p className="text-sm text-stone-600 font-light mb-3">La reine des jardins de Kelâa</p>
+                  <p className="text-xs text-stone-500 leading-relaxed">
+                    Cueillie à l'aube pour préserver sa délicate essence florale
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Oud */}
+            {/* Cèdre - Le Gardien des Forêts */}
             <div className="group relative">
-              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
-                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-amber-800/20 to-amber-900/20 border-2 border-amber-800/30">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-800 to-amber-900"></div>
+              <div className="aspect-[3/4] bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 hover:-translate-y-3 border border-stone-100">
+                <div className="relative h-2/3 overflow-hidden">
+                  <img 
+                    src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/cedar-wood.jpg"
+                    alt="Cèdre de l'Atlas"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                  <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-teal-500 to-teal-600"></div>
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Oud</h3>
-                <p className="text-sm text-stone-500 font-light">Le bois sacré d'Orient</p>
+                <div className="p-8 h-1/3 flex flex-col justify-center">
+                  <h3 className="font-serif text-2xl font-medium text-stone-800 mb-2">Cèdre</h3>
+                  <p className="text-sm text-stone-600 font-light mb-3">Le gardien des forêts</p>
+                  <p className="text-xs text-stone-500 leading-relaxed">
+                    Distillé selon les méthodes ancestrales des maîtres parfumeurs
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Atlas */}
+            {/* Atlas - Les Montagnes Éternelles */}
             <div className="group relative">
-              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
-                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-indigo-400/20 to-indigo-600/20 border-2 border-indigo-400/30">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-600"></div>
+              <div className="aspect-[3/4] bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 hover:-translate-y-3 border border-stone-100">
+                <div className="relative h-2/3 overflow-hidden">
+                  <img 
+                    src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/Atlas%20Mountains.jpg"
+                    alt="Montagnes de l'Atlas"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                  <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-600"></div>
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Atlas</h3>
-                <p className="text-sm text-stone-500 font-light">Les montagnes éternelles</p>
+                <div className="p-8 h-1/3 flex flex-col justify-center">
+                  <h3 className="font-serif text-2xl font-medium text-stone-800 mb-2">Atlas</h3>
+                  <p className="text-sm text-stone-600 font-light mb-3">Les montagnes éternelles</p>
+                  <p className="text-xs text-stone-500 leading-relaxed">
+                    Source pure des eaux cristallines et des plantes sauvages
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Jasmin */}
+            {/* Jasmin - La Fleur de la Nuit */}
             <div className="group relative">
-              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
-                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-emerald-400/20 to-emerald-600/20 border-2 border-emerald-400/30">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600"></div>
+              <div className="aspect-[3/4] bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 hover:-translate-y-3 border border-stone-100">
+                <div className="relative h-2/3 overflow-hidden">
+                  <img 
+                    src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/Jasmin.jpg"
+                    alt="Fleurs de jasmin"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                  <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600"></div>
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Jasmin</h3>
-                <p className="text-sm text-stone-500 font-light">La fleur de la nuit</p>
+                <div className="p-8 h-1/3 flex flex-col justify-center">
+                  <h3 className="font-serif text-2xl font-medium text-stone-800 mb-2">Jasmin</h3>
+                  <p className="text-sm text-stone-600 font-light mb-3">La fleur de la nuit</p>
+                  <p className="text-xs text-stone-500 leading-relaxed">
+                    Capturée au cœur de la nuit pour sa fragrance envoûtante
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Cèdre */}
+            {/* Oud - Le Bois Sacré */}
             <div className="group relative">
-              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
-                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-teal-400/20 to-teal-600/20 border-2 border-teal-400/30">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-teal-600"></div>
+              <div className="aspect-[3/4] bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 hover:-translate-y-3 border border-stone-100">
+                <div className="relative h-2/3 overflow-hidden">
+                  <img 
+                    src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/Oud%20wood.jpg"
+                    alt="Bois d'Oud"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                  <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-amber-800 to-amber-900"></div>
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Cèdre</h3>
-                <p className="text-sm text-stone-500 font-light">Le gardien des forêts</p>
+                <div className="p-8 h-1/3 flex flex-col justify-center">
+                  <h3 className="font-serif text-2xl font-medium text-stone-800 mb-2">Oud</h3>
+                  <p className="text-sm text-stone-600 font-light mb-3">Le bois sacré d'Orient</p>
+                  <p className="text-xs text-stone-500 leading-relaxed">
+                    Précieux comme l'or, vénéré depuis des millénaires
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Safran */}
+            {/* Safran - L'Épice Précieuse */}
             <div className="group relative">
-              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
-                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-orange-400/20 to-orange-600/20 border-2 border-orange-400/30">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-orange-600"></div>
+              <div className="aspect-[3/4] bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 hover:-translate-y-3 border border-stone-100">
+                <div className="relative h-2/3 overflow-hidden">
+                  <img 
+                    src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/Safran.jpg"
+                    alt="Safran de Taliouine"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                  <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-orange-500 to-orange-600"></div>
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Safran</h3>
-                <p className="text-sm text-stone-500 font-light">L'épice précieuse de Taliouine</p>
+                <div className="p-8 h-1/3 flex flex-col justify-center">
+                  <h3 className="font-serif text-2xl font-medium text-stone-800 mb-2">Safran</h3>
+                  <p className="text-sm text-stone-600 font-light mb-3">L'épice précieuse de Taliouine</p>
+                  <p className="text-xs text-stone-500 leading-relaxed">
+                    Récolté à la main, stigmate par stigmate, au petit matin
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Menthe */}
+            {/* Menthe - La Fraîcheur des Jardins */}
             <div className="group relative">
-              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
-                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-green-400/20 to-green-600/20 border-2 border-green-400/30">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-green-600"></div>
+              <div className="aspect-[3/4] bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 hover:-translate-y-3 border border-stone-100">
+                <div className="relative h-2/3 overflow-hidden">
+                  <img 
+                    src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/mint%20leaves.jpg"
+                    alt="Menthe fraîche"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                  <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-green-500 to-green-600"></div>
+                  </div>
                 </div>
-                <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Menthe</h3>
-                <p className="text-sm text-stone-500 font-light">La fraîcheur des jardins</p>
+                <div className="p-8 h-1/3 flex flex-col justify-center">
+                  <h3 className="font-serif text-2xl font-medium text-stone-800 mb-2">Menthe</h3>
+                  <p className="text-sm text-stone-600 font-light mb-3">La fraîcheur des jardins</p>
+                  <p className="text-xs text-stone-500 leading-relaxed">
+                    Cultivée dans les jardins secrets de Fès depuis des siècles
+                  </p>
+                </div>
               </div>
+            </div>
+          </div>
+
+          {/* Closing Statement */}
+          <div className="text-center mt-20">
+            <div className="max-w-3xl mx-auto">
+              <p className="font-serif text-lg text-stone-600 leading-relaxed italic">
+                "Chaque ingrédient est une promesse, chaque essence une révélation. 
+                Nous ne créons pas simplement des parfums, nous révélons l'âme de la terre marocaine."
+              </p>
+              <div className="w-16 h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mt-8"></div>
             </div>
           </div>
         </div>
