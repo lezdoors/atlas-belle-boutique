@@ -183,9 +183,9 @@ const NotreHeritage = () => {
         </div>
       </section>
 
-      {/* Visual Grid - Zellij Inspired */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* Visual Grid - Refined Heritage Ingredients */}
+      <section className="py-24 bg-stone-50">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="font-serif text-4xl md:text-5xl font-light text-stone-800 mb-6">
               Les Trésors de Notre Terre
@@ -196,92 +196,92 @@ const NotreHeritage = () => {
             <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-600 to-transparent mx-auto mt-8"></div>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {/* Argan */}
             <div className="group relative">
-              <div className="aspect-square bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                <div className="w-16 h-16 bg-amber-600 rounded-full mb-4 flex items-center justify-center">
-                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
+                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-amber-400/20 to-amber-600/20 border-2 border-amber-400/30">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-amber-600"></div>
                 </div>
                 <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Argan</h3>
-                <p className="text-sm text-stone-600">L'or liquide de l'Atlas</p>
+                <p className="text-sm text-stone-500 font-light">L'or liquide de l'Atlas</p>
               </div>
             </div>
 
             {/* Rose */}
             <div className="group relative">
-              <div className="aspect-square bg-gradient-to-br from-rose-100 to-rose-200 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                <div className="w-16 h-16 bg-rose-500 rounded-full mb-4 flex items-center justify-center">
-                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
+                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-rose-400/20 to-rose-600/20 border-2 border-rose-400/30">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-500 to-rose-600"></div>
                 </div>
                 <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Rose</h3>
-                <p className="text-sm text-stone-600">La reine des jardins de Kelâa</p>
+                <p className="text-sm text-stone-500 font-light">La reine des jardins de Kelâa</p>
               </div>
             </div>
 
             {/* Oud */}
             <div className="group relative">
-              <div className="aspect-square bg-gradient-to-br from-amber-900/20 to-amber-800/30 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                <div className="w-16 h-16 bg-amber-800 rounded-full mb-4 flex items-center justify-center">
-                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
+                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-amber-800/20 to-amber-900/20 border-2 border-amber-800/30">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-800 to-amber-900"></div>
                 </div>
                 <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Oud</h3>
-                <p className="text-sm text-stone-600">Le bois sacré d'Orient</p>
+                <p className="text-sm text-stone-500 font-light">Le bois sacré d'Orient</p>
               </div>
             </div>
 
-            {/* Atlas Mountains */}
+            {/* Atlas */}
             <div className="group relative">
-              <div className="aspect-square bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                <div className="w-16 h-16 bg-indigo-600 rounded-full mb-4 flex items-center justify-center">
-                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
+                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-indigo-400/20 to-indigo-600/20 border-2 border-indigo-400/30">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-600"></div>
                 </div>
                 <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Atlas</h3>
-                <p className="text-sm text-stone-600">Les montagnes éternelles</p>
+                <p className="text-sm text-stone-500 font-light">Les montagnes éternelles</p>
               </div>
             </div>
 
             {/* Jasmin */}
             <div className="group relative">
-              <div className="aspect-square bg-gradient-to-br from-green-100 to-green-200 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                <div className="w-16 h-16 bg-green-600 rounded-full mb-4 flex items-center justify-center">
-                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
+                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-emerald-400/20 to-emerald-600/20 border-2 border-emerald-400/30">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600"></div>
                 </div>
                 <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Jasmin</h3>
-                <p className="text-sm text-stone-600">La fleur de la nuit</p>
+                <p className="text-sm text-stone-500 font-light">La fleur de la nuit</p>
               </div>
             </div>
 
             {/* Cèdre */}
             <div className="group relative">
-              <div className="aspect-square bg-gradient-to-br from-teal-100 to-teal-200 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                <div className="w-16 h-16 bg-teal-600 rounded-full mb-4 flex items-center justify-center">
-                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
+                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-teal-400/20 to-teal-600/20 border-2 border-teal-400/30">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-teal-600"></div>
                 </div>
                 <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Cèdre</h3>
-                <p className="text-sm text-stone-600">Le gardien des forêts</p>
+                <p className="text-sm text-stone-500 font-light">Le gardien des forêts</p>
               </div>
             </div>
 
             {/* Safran */}
             <div className="group relative">
-              <div className="aspect-square bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                <div className="w-16 h-16 bg-orange-600 rounded-full mb-4 flex items-center justify-center">
-                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
+                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-orange-400/20 to-orange-600/20 border-2 border-orange-400/30">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-orange-600"></div>
                 </div>
                 <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Safran</h3>
-                <p className="text-sm text-stone-600">L'épice précieuse de Taliouine</p>
+                <p className="text-sm text-stone-500 font-light">L'épice précieuse de Taliouine</p>
               </div>
             </div>
 
             {/* Menthe */}
             <div className="group relative">
-              <div className="aspect-square bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                <div className="w-16 h-16 bg-emerald-600 rounded-full mb-4 flex items-center justify-center">
-                  <div className="w-8 h-8 bg-white rounded-full opacity-80"></div>
+              <div className="aspect-[4/5] bg-white rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-stone-200/50">
+                <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center bg-gradient-to-br from-green-400/20 to-green-600/20 border-2 border-green-400/30">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-green-600"></div>
                 </div>
                 <h3 className="font-serif text-xl font-medium text-stone-800 mb-2">Menthe</h3>
-                <p className="text-sm text-stone-600">La fraîcheur des jardins</p>
+                <p className="text-sm text-stone-500 font-light">La fraîcheur des jardins</p>
               </div>
             </div>
           </div>
