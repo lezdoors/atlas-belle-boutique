@@ -19,32 +19,32 @@ const AppleStyleProductGrid = () => {
   const products: Product[] = [
     {
       id: 1,
-      name: language === 'fr' ? 'Tagine de Service Artisanal' : 'Tagine de Service Artisanal',
-      subtitle: language === 'fr' ? 'Tajine artisanal de service des artisans de Fès' : 'Handcrafted serving tagine from Fez artisans',
-      price: language === 'fr' ? 'À partir de $89' : 'From $89',
+      name: language === 'fr' ? 'Tagines Artisanaux' : 'Tagines Artisanaux',
+      subtitle: language === 'fr' ? 'Tagines artisanaux de service et de cuisson' : 'Handcrafted serving and cooking tagines',
+      price: language === 'fr' ? 'À partir de $67' : 'Starting at $67',
       image: '/lovable-uploads/297c8b0f-3221-45a3-8488-e8e023e07fcc.png',
       isNew: true
     },
     {
       id: 2,
-      name: language === 'fr' ? 'Service à Thé Traditionnel' : 'Service à Thé Traditionnel',
-      subtitle: language === 'fr' ? 'Verres à thé marocains authentiques, parfaits pour les cérémonies' : 'Authentic Moroccan tea glasses, perfect for ceremonies',
-      price: language === 'fr' ? 'À partir de $65' : 'From $65',
+      name: language === 'fr' ? 'Verres à Thé Traditionnels' : 'Verres à Thé Traditionnels',
+      subtitle: language === 'fr' ? 'Collections authentiques de verres à thé marocains' : 'Authentic Moroccan tea glass collections',
+      price: language === 'fr' ? 'À partir de $42' : 'Starting at $42',
       image: '/lovable-uploads/4d22e63c-9766-4547-889d-0462b7de47e6.png'
     },
     {
       id: 3,
-      name: language === 'fr' ? 'Collection Bols Céramique' : 'Collection Bols Céramique',
-      subtitle: language === 'fr' ? 'Bols élégants pour un service moderne' : 'Elegant bowls for modern entertaining',
-      price: language === 'fr' ? 'À partir de $45' : 'From $45',
+      name: language === 'fr' ? 'Céramiques de Table' : 'Céramiques de Table',
+      subtitle: language === 'fr' ? 'Bols, assiettes et pièces de service élégants' : 'Elegant bowls, plates, and serving pieces',
+      price: language === 'fr' ? 'À partir de $38' : 'Starting at $38',
       image: '/lovable-uploads/78b2a27c-3352-460a-b4bb-78efaec79db3.png',
       isComingSoon: true
     },
     {
       id: 4,
-      name: language === 'fr' ? 'Verres à Thé Dorés Premium' : 'Verres à Thé Dorés Premium',
-      subtitle: language === 'fr' ? 'Verres à thé dorés, collection de luxe' : 'Gold-rimmed tea glasses, luxury collection',
-      price: language === 'fr' ? 'À partir de $35' : 'From $35',
+      name: language === 'fr' ? 'Collections Signature' : 'Collections Signature',
+      subtitle: language === 'fr' ? 'Designs exclusifs Maison Chapuis' : 'Exclusive Maison Chapuis designs',
+      price: language === 'fr' ? 'À partir de $125' : 'Starting at $125',
       image: '/lovable-uploads/6d0913b6-03ca-40b5-9002-ea188762b64f.png'
     }
   ];

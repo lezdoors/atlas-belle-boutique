@@ -66,7 +66,7 @@ const AppleStyleHero = () => {
             asChild
           >
             <Link to="/notre-heritage">
-              Discover Collection
+              View Collection
             </Link>
           </Button>
         </div>
@@ -75,19 +75,19 @@ const AppleStyleHero = () => {
         <div className="flex flex-wrap justify-center gap-8 mb-20 fade-in-up">
           <div className="flex items-center gap-3">
             <div className="w-1.5 h-1.5 bg-stone-400 rounded-full"></div>
-            <span className="text-sm text-refined font-light">100% Bio Certifié</span>
+            <span className="text-sm text-refined font-light">Handcrafted in Morocco</span>
           </div>
           <div className="flex items-center gap-3">
             <div className="w-1.5 h-1.5 bg-stone-400 rounded-full"></div>
-            <span className="text-sm text-refined font-light">Artisanat Lent</span>
+            <span className="text-sm text-refined font-light">Traditional Techniques</span>
           </div>
           <div className="flex items-center gap-3">
             <div className="w-1.5 h-1.5 bg-stone-400 rounded-full"></div>
-            <span className="text-sm text-refined font-light">Expédié du Maroc</span>
+            <span className="text-sm text-refined font-light">Free US Shipping</span>
           </div>
           <div className="flex items-center gap-3">
             <div className="w-1.5 h-1.5 bg-stone-400 rounded-full"></div>
-            <span className="text-sm text-refined font-light">Sans Cruauté</span>
+            <span className="text-sm text-refined font-light">Artisan Direct</span>
           </div>
         </div>
 

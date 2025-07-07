@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Search, User, Menu, X } from 'lucide-react';
+import { Search, User, Menu, X, ShoppingBag } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/hooks/useAuth';
+import { useCart } from '@/contexts/CartContext';
 import { t } from '@/utils/translations';
 import { Link } from 'react-router-dom';
 import CatalogueMegaMenu from '@/components/CatalogueMegaMenu';
@@ -30,6 +31,7 @@ const MaisonStyleHeaderNew = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, toggleLanguage } = useLanguage();
   const { user } = useAuth();
+  const { totalItems } = useCart();
 
   useEffect(() => {
     const controlHeader = () => {
@@ -117,6 +119,14 @@ const MaisonStyleHeaderNew = () => {
                 <Link to={user ? "/dashboard" : "/auth"} className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <User className="h-4 w-4" />
                 </Link>
+                <Link to="/checkout" className="p-2 text-stone-600 hover:text-stone-900 transition-colors relative">
+                  <ShoppingBag className="h-4 w-4" />
+                  {totalItems > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-stone-800 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                      {totalItems}
+                    </span>
+                  )}
+                </Link>
                 <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <TajineIcon className="h-5 w-5" />
                 </button>
@@ -133,6 +143,14 @@ const MaisonStyleHeaderNew = () => {
                 <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <Search className="h-4 w-4" />
                 </button>
+                <Link to="/checkout" className="p-2 text-stone-600 hover:text-stone-900 transition-colors relative">
+                  <ShoppingBag className="h-4 w-4" />
+                  {totalItems > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-stone-800 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                      {totalItems}
+                    </span>
+                  )}
+                </Link>
                 <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <TajineIcon className="h-5 w-5" />
                 </button>
