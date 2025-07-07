@@ -50,13 +50,14 @@ const AppleStyleProductGrid = () => {
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-white">
+    <section className="py-32 lg:py-40 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-black mb-6 tracking-tight">
+        <div className="text-center mb-24">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-black mb-8 tracking-tight font-serif">
             {language === 'fr' ? 'Collections' : 'Collections'}
           </h2>
-          <p className="text-xl font-light text-black/60 max-w-2xl mx-auto leading-relaxed">
+          <div className="w-24 h-px bg-stone-300 mx-auto mb-8"></div>
+          <p className="text-xl md:text-2xl font-light text-stone-500 max-w-3xl mx-auto leading-relaxed tracking-wide">
             {language === 'fr'
               ? 'Artisanat authentique du Maroc'
               : 'Authentic Moroccan craftsmanship'

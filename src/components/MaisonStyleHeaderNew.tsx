@@ -57,8 +57,25 @@ const MaisonStyleHeaderNew = () => {
   }, [lastScrollY]);
 
   const navigation = [
-    { name: language === 'fr' ? 'Notre Héritage' : 'Our Heritage', href: '/notre-heritage' },
-    { name: language === 'fr' ? 'À propos' : 'About', href: '/a-propos' },
+    { 
+      name: language === 'fr' ? 'Céramiques' : 'Ceramics', 
+      href: '/categories/ceramiques',
+      dropdown: [
+        { name: language === 'fr' ? 'Tagines' : 'Tagines', href: '/categories/tagines' },
+        { name: language === 'fr' ? 'Verres à Thé' : 'Tea Glasses', href: '/categories/tea-glasses' },
+        { name: language === 'fr' ? 'Bols & Plats' : 'Bowls & Plates', href: '/categories/bowls-plates' }
+      ]
+    },
+    { 
+      name: language === 'fr' ? 'Collections' : 'Collections', 
+      href: '/collections',
+      dropdown: [
+        { name: language === 'fr' ? 'Signature' : 'Signature', href: '/collections/signature' },
+        { name: language === 'fr' ? 'Nouveautés' : 'New Arrivals', href: '/collections/new-arrivals' },
+        { name: language === 'fr' ? 'Coffrets Cadeaux' : 'Gift Sets', href: '/collections/gift-sets' }
+      ]
+    },
+    { name: language === 'fr' ? 'Notre Histoire' : 'Our Story', href: '/notre-heritage' },
     { name: language === 'fr' ? 'Contact' : 'Contact', href: '/contact' },
   ];
 
@@ -88,17 +105,34 @@ const MaisonStyleHeaderNew = () => {
           {/* Navigation Section */}
           <div className="flex items-center justify-between h-16">
             {/* Left - Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
-              <CatalogueMegaMenu />
+            <div className="hidden lg:flex items-center space-x-10">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="text-sm font-light text-stone-700 hover:text-stone-900 transition-colors tracking-wide relative group"
-                >
-                  {item.name}
-                  <span className="absolute bottom-0 left-0 w-full h-px bg-stone-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </Link>
+                <div key={item.name} className="relative group">
+                  <Link
+                    to={item.href}
+                    className="text-sm font-light text-stone-700 hover:text-stone-900 transition-all duration-300 tracking-[0.02em] py-2 relative group"
+                  >
+                    {item.name}
+                    <span className="absolute bottom-0 left-0 w-full h-px bg-stone-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                  </Link>
+                  
+                  {/* Dropdown Menu */}
+                  {item.dropdown && (
+                    <div className="absolute top-full left-0 mt-1 w-56 bg-white border border-stone-100 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                      <div className="py-2">
+                        {item.dropdown.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.name}
+                            to={dropdownItem.href}
+                            className="block px-4 py-3 text-sm font-light text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition-all duration-200 tracking-wide"
+                          >
+                            {dropdownItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
 
@@ -167,25 +201,34 @@ const MaisonStyleHeaderNew = () => {
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
               <div className="lg:hidden border-t border-stone-200 bg-white">
-                <nav className="py-6 space-y-6">
-                  <Link
-                    to="/catalogue"
-                    className="block text-base font-light text-stone-700 hover:text-stone-900 transition-colors px-4 py-2"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {language === 'fr' ? 'Catalogue' : 'Catalogue'}
-                  </Link>
+                <nav className="py-8 space-y-6">
                   {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className="block text-base font-light text-stone-700 hover:text-stone-900 transition-colors px-4 py-2"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
+                    <div key={item.name} className="px-4">
+                      <Link
+                        to={item.href}
+                        className="block text-lg font-light text-stone-700 hover:text-stone-900 transition-colors py-3 tracking-wide"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                      {/* Mobile Dropdown Items */}
+                      {item.dropdown && (
+                        <div className="ml-4 mt-2 space-y-2 border-l border-stone-200 pl-4">
+                          {item.dropdown.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.name}
+                              to={dropdownItem.href}
+                              className="block text-base font-light text-stone-600 hover:text-stone-900 transition-colors py-2"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              {dropdownItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   ))}
-                  <div className="border-t border-stone-200 pt-6 px-4">
+                  <div className="border-t border-stone-200 pt-6 px-4 space-y-4">
                     <Link 
                       to={user ? "/dashboard" : "/auth"} 
                       className="block text-base font-light text-stone-700 hover:text-stone-900 transition-colors py-2"
@@ -194,10 +237,13 @@ const MaisonStyleHeaderNew = () => {
                       {language === 'fr' ? 'Compte' : 'Account'}
                     </Link>
                     <button
-                      onClick={toggleLanguage}
+                      onClick={() => {
+                        toggleLanguage();
+                        setIsMobileMenuOpen(false);
+                      }}
                       className="block text-base font-light text-stone-700 hover:text-stone-900 transition-colors py-2"
                     >
-                      {t('header.language', language)}
+                      {language === 'fr' ? 'English' : 'Français'}
                     </button>
                   </div>
                 </nav>

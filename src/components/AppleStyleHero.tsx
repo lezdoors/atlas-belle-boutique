@@ -30,29 +30,49 @@ const AppleStyleHero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center w-full px-6 lg:px-12 py-32">
-        <div className="w-full">
+      <div className="relative z-10 text-center w-full px-6 lg:px-12 py-40 lg:py-48">
+        <div className="w-full max-w-5xl mx-auto">
 
-        {/* Brand Name */}
-        <h1 className="font-serif font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 animate-fade-in opacity-0 tracking-tight" style={{ lineHeight: '1.3', animationDelay: '0.2s', animationFillMode: 'forwards' }}>
+        {/* Brand Name - Luxury Typography */}
+        <h1 className="font-serif font-light text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-foreground mb-8 animate-fade-in opacity-0 tracking-[0.02em]" 
+            style={{ 
+              lineHeight: '0.9', 
+              animationDelay: '0.2s', 
+              animationFillMode: 'forwards',
+              fontFamily: 'var(--font-display)'
+            }}>
           Maison Chapuis
         </h1>
         
-        {/* Subheading */}
-        <h2 className="font-serif text-xl md:text-2xl text-stone-700 mb-6 animate-fade-in opacity-0" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}>
-          L'Art de Vivre Français Meets Moroccan Tradition
+        {/* Elegant Divider */}
+        <div className="w-24 h-px bg-stone-300 mx-auto mb-8 animate-fade-in opacity-0" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}></div>
+        
+        {/* Subheading - Refined Typography */}
+        <h2 className="font-serif font-light text-xl md:text-2xl lg:text-3xl text-stone-600 mb-12 animate-fade-in opacity-0 leading-relaxed tracking-wide max-w-4xl mx-auto" 
+            style={{ 
+              animationDelay: '0.4s', 
+              animationFillMode: 'forwards',
+              lineHeight: '1.4'
+            }}>
+          L'Art de Vivre Français<br />
+          <span className="text-stone-500 text-lg md:text-xl lg:text-2xl">Meets Moroccan Tradition</span>
         </h2>
         
-        {/* Description */}
-        <p className="font-light text-base md:text-lg mb-12 animate-fade-in opacity-0 text-stone-600 leading-relaxed" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
-          Handcrafted ceramics and tagine glasses, curated with French sophistication for discerning American homes
+        {/* Description - Enhanced Spacing */}
+        <p className="font-light text-lg md:text-xl mb-16 animate-fade-in opacity-0 text-stone-500 leading-relaxed max-w-3xl mx-auto" 
+           style={{ 
+             animationDelay: '0.5s', 
+             animationFillMode: 'forwards',
+             letterSpacing: '0.01em'
+           }}>
+          Handcrafted ceramics and traditional tagines, curated with French sophistication for discerning American homes
         </p>
 
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+        {/* Luxury Buttons */}
+        <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20 animate-fade-in opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
           <Button
             size="lg"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-4 text-base font-normal tracking-wide transition-all duration-300"
+            className="bg-stone-900 text-white hover:bg-stone-800 px-16 py-6 text-lg font-light tracking-[0.05em] transition-all duration-500 rounded-none border-none shadow-none hover:shadow-lg hover:shadow-stone-900/20"
             asChild
           >
             <Link to="/catalogue">
@@ -62,7 +82,7 @@ const AppleStyleHero = () => {
           <Button
             size="lg"
             variant="outline"
-            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-12 py-4 text-base font-normal tracking-wide transition-all duration-300"
+            className="border-2 border-stone-300 text-stone-700 hover:bg-stone-50 hover:border-stone-400 px-16 py-6 text-lg font-light tracking-[0.05em] transition-all duration-500 rounded-none shadow-none hover:shadow-lg hover:shadow-stone-200/50"
             asChild
           >
             <Link to="/notre-heritage">
@@ -71,23 +91,23 @@ const AppleStyleHero = () => {
           </Button>
         </div>
 
-        {/* Clean Feature Badges */}
-        <div className="flex flex-wrap justify-center gap-8 mb-20 fade-in-up">
-          <div className="flex items-center gap-3">
-            <div className="w-1.5 h-1.5 bg-stone-400 rounded-full"></div>
-            <span className="text-sm text-refined font-light">Handcrafted in Morocco</span>
+        {/* Refined Feature Badges */}
+        <div className="flex flex-wrap justify-center gap-12 mb-24 fade-in-up">
+          <div className="flex items-center gap-4">
+            <div className="w-2 h-2 bg-stone-300 rounded-full"></div>
+            <span className="text-base text-stone-500 font-light tracking-wide">Handcrafted in Morocco</span>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="w-1.5 h-1.5 bg-stone-400 rounded-full"></div>
-            <span className="text-sm text-refined font-light">Traditional Techniques</span>
+          <div className="flex items-center gap-4">
+            <div className="w-2 h-2 bg-stone-300 rounded-full"></div>
+            <span className="text-base text-stone-500 font-light tracking-wide">Traditional Techniques</span>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="w-1.5 h-1.5 bg-stone-400 rounded-full"></div>
-            <span className="text-sm text-refined font-light">Free US Shipping</span>
+          <div className="flex items-center gap-4">
+            <div className="w-2 h-2 bg-stone-300 rounded-full"></div>
+            <span className="text-base text-stone-500 font-light tracking-wide">Free US Shipping</span>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="w-1.5 h-1.5 bg-stone-400 rounded-full"></div>
-            <span className="text-sm text-refined font-light">Artisan Direct</span>
+          <div className="flex items-center gap-4">
+            <div className="w-2 h-2 bg-stone-300 rounded-full"></div>
+            <span className="text-base text-stone-500 font-light tracking-wide">Artisan Direct</span>
           </div>
         </div>
 
