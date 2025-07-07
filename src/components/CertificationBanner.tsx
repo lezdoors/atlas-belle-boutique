@@ -31,20 +31,20 @@ const CertificationBanner = () => {
   ];
 
   return (
-    <section className="w-full bg-stone-800 py-8 lg:py-12">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+    <section className="w-full bg-stone-800 py-12 lg:py-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h3 className="text-white/90 text-sm font-light tracking-wider uppercase mb-2">
+        <div className="text-center mb-12">
+          <h2 className="text-white/90 text-sm font-medium tracking-[0.2em] uppercase mb-3">
             {language === 'fr' ? 'Nos Certifications' : 'Our Certifications'}
-          </h3>
-          <p className="text-white/70 text-xs font-light">
+          </h2>
+          <p className="text-white/70 text-sm font-light max-w-2xl mx-auto">
             {language === 'fr' ? 'Qualité et authenticité garanties' : 'Quality and authenticity guaranteed'}
           </p>
         </div>
 
         {/* Certifications Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-center justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 items-center justify-items-center max-w-4xl mx-auto">
           {certifications.map((cert, index) => (
             <div
               key={cert.name}
