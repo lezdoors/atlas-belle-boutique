@@ -52,27 +52,53 @@ const MediaLogoBanner = () => {
           </p>
         </div>
 
-        {/* Logos Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12 items-center justify-items-center">
-          {mediaLogos.map((logo, index) => (
-            <div
-              key={logo.name}
-              className="group flex items-center justify-center px-4 py-2 transition-all duration-300"
-              style={{
-                animationDelay: `${index * 0.1}s`,
-                animationFillMode: 'forwards'
-              }}
-              aria-label={logo.ariaLabel}
-              role="img"
-            >
-              <img
-                src={logo.url}
-                alt={logo.name}
-                className="max-h-10 w-auto filter grayscale transition-all duration-300 group-hover:filter-none"
-                loading="lazy"
-              />
-            </div>
-          ))}
+        {/* Logos Grid - Two Rows */}
+        <div className="space-y-8">
+          {/* Row 1: First 3 logos */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-center justify-items-center">
+            {mediaLogos.slice(0, 3).map((logo, index) => (
+              <div
+                key={logo.name}
+                className="group flex items-center justify-center px-6 py-4 transition-all duration-300"
+                style={{
+                  animationDelay: `${index * 0.1}s`,
+                  animationFillMode: 'forwards'
+                }}
+                aria-label={logo.ariaLabel}
+                role="img"
+              >
+                <img
+                  src={logo.url}
+                  alt={logo.name}
+                  className="max-h-12 w-auto filter grayscale transition-all duration-300 group-hover:filter-none"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Row 2: Last 3 logos */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-center justify-items-center">
+            {mediaLogos.slice(3, 6).map((logo, index) => (
+              <div
+                key={logo.name}
+                className="group flex items-center justify-center px-6 py-4 transition-all duration-300"
+                style={{
+                  animationDelay: `${(index + 3) * 0.1}s`,
+                  animationFillMode: 'forwards'
+                }}
+                aria-label={logo.ariaLabel}
+                role="img"
+              >
+                <img
+                  src={logo.url}
+                  alt={logo.name}
+                  className="max-h-12 w-auto filter grayscale transition-all duration-300 group-hover:filter-none"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Subtle decoration line */}
