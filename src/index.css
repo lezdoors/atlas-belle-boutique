@@ -13,6 +13,7 @@
 @import './styles/enhanced-typography.css';
 @import './styles/enhanced-animations.css';
 @import './styles/mobile-enhancements.css';
+@import './styles/mobile-optimization.css';
 
 /* Tailwind CSS imports */
 @tailwind base;

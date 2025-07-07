@@ -22,6 +22,9 @@ export interface Product {
   artisan_story?: string;
   sustainability_badges: string[];
   seasonal_availability: string[];
+  created_at?: string;
+  updated_at?: string;
+  is_active?: boolean;
 }
 
 export const useProducts = (featured?: boolean, category?: string) => {

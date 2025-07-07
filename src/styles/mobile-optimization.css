@@ -1,0 +1,278 @@
+/* Mobile-First Responsive Design System */
+
+/* Touch-friendly base styles */
+@layer base {
+  /* Optimize touch targets */
+  button, a, input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Smooth scrolling for mobile */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent zoom on input focus */
+  input, select, textarea {
+    font-size: 16px;
+  }
+  
+  /* Mobile-specific typography */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* Performance optimizations */
+@layer utilities {
+  /* Lazy loading placeholder */
+  .lazy-image {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+  
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  /* Hardware acceleration */
+  .hw-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  /* Touch feedback */
+  .touch-feedback {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .touch-feedback::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+  }
+  
+  .touch-feedback:active::before {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Mobile navigation enhancements */
+@layer components {
+  .mobile-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-white border-t border-stone-200 z-50;
+    @apply flex items-center justify-around py-2 safe-area-pb;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mobile-nav-item {
+    @apply flex flex-col items-center justify-center p-2 min-w-[60px];
+    @apply text-stone-600 hover:text-copper-600 transition-colors;
+  }
+  
+  .mobile-nav-item.active {
+    @apply text-copper-600;
+  }
+  
+  /* Mobile product grid */
+  .mobile-product-grid {
+    @apply grid gap-4 p-4;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+  
+  /* Mobile search bar */
+  .mobile-search {
+    @apply relative w-full;
+  }
+  
+  .mobile-search input {
+    @apply w-full pl-10 pr-4 py-3 rounded-full;
+    @apply border-stone-200 focus:border-copper-400 focus:ring-copper-400;
+    @apply bg-white placeholder-stone-400;
+  }
+  
+  /* Mobile filter panel */
+  .mobile-filter-panel {
+    @apply fixed inset-y-0 right-0 w-full max-w-sm bg-white;
+    @apply transform transition-transform duration-300 ease-in-out z-50;
+  }
+  
+  .mobile-filter-panel.closed {
+    @apply translate-x-full;
+  }
+  
+  /* Mobile cart */
+  .mobile-cart-item {
+    @apply flex items-center space-x-3 p-4 bg-white border-b border-stone-100;
+  }
+  
+  .mobile-cart-image {
+    @apply w-16 h-16 rounded-lg object-cover bg-stone-100;
+  }
+  
+  /* Swipe gestures */
+  .swipeable {
+    touch-action: pan-y;
+    user-select: none;
+  }
+  
+  .swipe-indicator {
+    @apply absolute bottom-2 left-1/2 transform -translate-x-1/2;
+    @apply flex space-x-1;
+  }
+  
+  .swipe-dot {
+    @apply w-2 h-2 rounded-full bg-white/50 transition-all duration-200;
+  }
+  
+  .swipe-dot.active {
+    @apply bg-white;
+  }
+}
+
+/* Responsive breakpoints */
+@media (max-width: 640px) {
+  /* Header adjustments */
+  .desktop-nav {
+    @apply hidden;
+  }
+  
+  .mobile-nav {
+    @apply flex;
+  }
+  
+  /* Typography scaling */
+  .hero-title {
+    @apply text-2xl leading-tight;
+  }
+  
+  .section-title {
+    @apply text-xl;
+  }
+  
+  /* Spacing adjustments */
+  .container {
+    @apply px-4;
+  }
+  
+  .section-padding {
+    @apply py-8;
+  }
+  
+  /* Form optimizations */
+  .form-field {
+    @apply mb-4;
+  }
+  
+  .form-input {
+    @apply w-full p-4 text-base;
+  }
+  
+  /* Button optimizations */
+  .btn {
+    @apply px-6 py-3 text-base min-h-[48px];
+  }
+  
+  .btn-small {
+    @apply px-4 py-2 text-sm min-h-[40px];
+  }
+}
+
+/* Ultra-small screens */
+@media (max-width: 380px) {
+  .mobile-product-grid {
+    grid-template-columns: 1fr 1fr;
+    @apply gap-3;
+  }
+  
+  .mobile-nav-item {
+    @apply text-xs min-w-[50px];
+  }
+  
+  .hero-title {
+    @apply text-xl;
+  }
+}
+
+/* Landscape mode optimizations */
+@media (max-height: 500px) and (orientation: landscape) {
+  .mobile-nav {
+    @apply py-1;
+  }
+  
+  .mobile-nav-item {
+    @apply p-1;
+  }
+  
+  .hero-section {
+    @apply h-screen;
+  }
+}
+
+/* Safe area support for notched devices */
+@supports (padding: max(0px)) {
+  .safe-area-pt {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+  
+  .safe-area-pb {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  
+  .safe-area-pl {
+    padding-left: max(1rem, env(safe-area-inset-left));
+  }
+  
+  .safe-area-pr {
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-scroll {
+  will-change: scroll-position;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .border-stone-200 {
+    @apply border-stone-400;
+  }
+  
+  .text-stone-600 {
+    @apply text-stone-800;
+  }
+  
+  .bg-stone-50 {
+    @apply bg-stone-100;
+  }
+}
