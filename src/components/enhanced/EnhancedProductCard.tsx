@@ -27,14 +27,18 @@ const EnhancedProductCard = ({ product, onQuickView }: EnhancedProductCardProps)
   const currency = language === 'fr' ? '€' : '$';
 
   const handleAddToCart = () => {
-    const cartItem = {
-      id: parseInt(product.id),
-      name: productName,
-      priceMAD: product.price_eur * 10.5, // Convert to MAD
-      image: product.images[0] || '/placeholder.svg'
+    const productForCart = {
+      id: product.id.toString(),
+      name_fr: productName,
+      name_en: productName,
+      price: product.price_eur,
+      images: product.images || ['/placeholder.svg'],
+      category: 'accessories' as const,
+      in_stock: true,
+      created_at: new Date().toISOString()
     };
     
-    addToCart(cartItem);
+    addToCart(productForCart);
     toast.success(
       language === 'fr' 
         ? `${productName} ajouté au panier` 

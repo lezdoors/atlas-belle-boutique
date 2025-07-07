@@ -15,15 +15,19 @@ const FragranceProductCard = ({ product }: FragranceProductCardProps) => {
   const { language } = useLanguage();
 
   const handleQuickShop = () => {
-    // Convert FragranceProduct to CartItem format
-    const cartItem = {
-      id: product.id,
-      name: product.name,
-      priceMAD: product.price * 10.5, // Convert euros to MAD (approximate rate)
-      image: product.image
+    // Convert FragranceProduct to Product format
+    const productForCart = {
+      id: product.id.toString(),
+      name_fr: product.name,
+      name_en: product.name,
+      price: product.price,
+      images: [product.image],
+      category: 'accessories' as const,
+      in_stock: true,
+      created_at: new Date().toISOString()
     };
     
-    addToCart(cartItem);
+    addToCart(productForCart);
     toast.success(
       language === 'fr' 
         ? `${product.name} ajouté au panier` 

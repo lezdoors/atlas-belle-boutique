@@ -24,14 +24,18 @@ const MobileProductCard = ({ product }: MobileProductCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
 
   const handleQuickShop = () => {
-    const cartItem = {
-      id: product.id,
-      name: product.name,
-      priceMAD: product.price * 10.5,
-      image: product.image
+    const productForCart = {
+      id: product.id.toString(),
+      name_fr: product.name,
+      name_en: product.name,
+      price: product.price,
+      images: [product.image],
+      category: 'accessories' as const,
+      in_stock: true,
+      created_at: new Date().toISOString()
     };
     
-    addToCart(cartItem);
+    addToCart(productForCart);
     toast.success(
       language === 'fr' 
         ? `${product.name} ajouté au panier` 

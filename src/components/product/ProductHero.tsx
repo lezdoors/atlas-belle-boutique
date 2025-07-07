@@ -16,12 +16,17 @@ const ProductHero: React.FC<ProductHeroProps> = ({ product }) => {
     // Extract numeric value from price string (e.g., "89€" -> 89)
     const numericPrice = parseInt(product.price.replace(/[^0-9]/g, ''), 10);
     
-    addToCart({
-      id: parseInt(product.id.split('-')[0]) || 1, // Convert string id to number
-      name: product.name,
-      priceMAD: numericPrice,
-      image: product.image
-    }, quantity);
+    const productForCart = {
+      id: product.id.toString(),
+      name_fr: product.name,
+      name_en: product.name,
+      price: numericPrice,
+      images: [product.image],
+      category: 'accessories' as const,
+      in_stock: true,
+      created_at: new Date().toISOString()
+    };
+    addToCart(productForCart, quantity);
   };
 
   return (

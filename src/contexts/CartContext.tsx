@@ -19,6 +19,7 @@ interface CartState {
   tax: number;
   shipping: number;
   total: number;
+  isCartOpen: boolean;
 }
 
 type CartAction =
@@ -27,13 +28,20 @@ type CartAction =
   | { type: 'ADD_ITEM'; payload: CartItem }
   | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
   | { type: 'REMOVE_ITEM'; payload: string }
-  | { type: 'CLEAR_CART' };
+  | { type: 'CLEAR_CART' }
+  | { type: 'TOGGLE_CART' }
+  | { type: 'OPEN_CART' }
+  | { type: 'CLOSE_CART' };
 
 interface CartContextType extends CartState {
   addToCart: (product: Product, quantity?: number) => Promise<void>;
   updateQuantity: (id: string, quantity: number) => Promise<void>;
   removeFromCart: (id: string) => Promise<void>;
   clearCart: () => Promise<void>;
+  totalPrice: number;
+  isCartOpen: boolean;
+  openCart: () => void;
+  closeCart: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -126,6 +134,15 @@ function cartReducer(state: CartState, action: CartAction): CartState {
         total: 0
       };
     
+    case 'OPEN_CART':
+      return { ...state, isCartOpen: true };
+    
+    case 'CLOSE_CART':
+      return { ...state, isCartOpen: false };
+    
+    case 'TOGGLE_CART':
+      return { ...state, isCartOpen: !state.isCartOpen };
+    
     default:
       return state;
   }
@@ -148,7 +165,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     subtotal: 0,
     tax: 0,
     shipping: 0,
-    total: 0
+    total: 0,
+    isCartOpen: false
   });
 
   const sessionId = generateSessionId();
@@ -339,13 +357,24 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const openCart = () => {
+    dispatch({ type: 'OPEN_CART' });
+  };
+
+  const closeCart = () => {
+    dispatch({ type: 'CLOSE_CART' });
+  };
+
   return (
     <CartContext.Provider value={{
       ...state,
       addToCart,
       updateQuantity,
       removeFromCart,
-      clearCart
+      clearCart,
+      totalPrice: state.total,
+      openCart,
+      closeCart
     }}>
       {children}
     </CartContext.Provider>

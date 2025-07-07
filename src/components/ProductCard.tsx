@@ -68,12 +68,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   const handleAddToCart = () => {
-    addToCart({
-      id: product.id,
-      name: product.name,
-      priceMAD: product.priceMAD,
-      image: authenticImage
-    });
+    const productForCart = {
+      id: product.id.toString(),
+      name_fr: product.name,
+      name_en: product.name,
+      price: product.priceMAD,
+      images: [authenticImage],
+      category: 'accessories' as const,
+      in_stock: true,
+      created_at: new Date().toISOString()
+    };
+    addToCart(productForCart);
   };
 
   const saveForLaterItem = {

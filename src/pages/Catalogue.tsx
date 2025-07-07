@@ -192,12 +192,17 @@ const Catalogue = () => {
   });
 
   const handleAddToCart = (product: any) => {
-    addToCart({
-      id: product.id,
-      name: product.name,
-      priceMAD: product.price * 10.5,
-      image: product.image
-    });
+    const productForCart = {
+      id: product.id.toString(),
+      name_fr: product.name,
+      name_en: product.name,
+      price: product.price,
+      images: [product.image],
+      category: 'accessories' as const,
+      in_stock: true,
+      created_at: new Date().toISOString()
+    };
+    addToCart(productForCart);
     
     toast.success(
       language === 'fr' 

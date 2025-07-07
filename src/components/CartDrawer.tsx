@@ -150,23 +150,21 @@ const CartDrawer = () => {
               <div className="flex-1 overflow-y-auto px-6 py-4">
                 <div className="space-y-4">
                   {items.map((item) => (
-                    <div key={`${item.id}-${item.variant}-${item.size}`} className="flex items-start space-x-4 p-4 border border-stone-200 rounded-lg hover:shadow-sm transition-shadow">
+                    <div key={item.id} className="flex items-start space-x-4 p-4 border border-stone-200 rounded-lg hover:shadow-sm transition-shadow">
                       <img
-                        src={item.image}
-                        alt={item.name}
+                        src={item.product.images?.[0] || '/placeholder.svg'}
+                        alt={item.product.name_fr}
                         className="w-16 h-16 object-cover rounded-md"
                       />
                       <div className="flex-1 min-w-0">
                         <h4 className="font-medium text-stone-800 text-sm line-clamp-2 mb-1">
-                          {item.name}
+                          {item.product.name_fr}
                         </h4>
-                        {(item.variant || item.size) && (
-                          <p className="text-xs text-stone-500 mb-2">
-                            {item.variant} {item.size && `• ${item.size}`}
-                          </p>
-                        )}
+                        <p className="text-xs text-stone-500 mb-2">
+                          {item.product.name_en}
+                        </p>
                         <p className="text-stone-800 font-medium text-sm mb-3">
-                          {convertAndFormat(item.priceMAD, currency)}
+                          {convertAndFormat(item.product.price, currency)}
                         </p>
                         
                         {/* Quantity Controls */}

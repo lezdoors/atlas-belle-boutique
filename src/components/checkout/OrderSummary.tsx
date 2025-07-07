@@ -24,24 +24,22 @@ const OrderSummary = () => {
       
       <div className="space-y-4 mb-6">
         {items.map((item) => (
-          <div key={`${item.id}-${item.size}`} className="flex items-center space-x-4">
+          <div key={item.id} className="flex items-center space-x-4">
             <img
-              src={item.image}
-              alt={item.name}
+              src={item.product.images?.[0] || '/placeholder.svg'}
+              alt={item.product.name_fr}
               className="w-16 h-16 object-cover rounded-lg"
             />
             <div className="flex-1">
-              <h4 className="font-medium text-clay-800">{item.name}</h4>
-              {item.size && (
-                <p className="text-sm text-clay-600">{item.size}</p>
-              )}
+              <h4 className="font-medium text-clay-800">{item.product.name_fr}</h4>
+              <p className="text-sm text-clay-600">{item.product.name_en}</p>
               <p className="text-sm text-clay-600">
                 {language === 'fr' ? 'Qté' : 'Qty'}: {item.quantity}
               </p>
             </div>
             <div className="text-right">
               <p className="font-semibold text-copper-600">
-                {convertAndFormat(item.priceMAD * item.quantity, currency)}
+                {convertAndFormat(item.product.price * item.quantity, currency)}
               </p>
             </div>
           </div>
