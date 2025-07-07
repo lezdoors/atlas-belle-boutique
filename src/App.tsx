@@ -22,8 +22,10 @@ import Tableware from "./pages/Tableware";
 import Decor from "./pages/Decor";
 import Gifts from "./pages/Gifts";
 import Story from "./pages/Story";
-import ShippingReturns from "./pages/ShippingReturns";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
+import ShippingReturns from "./pages/legal/ShippingReturns";
+import TermsOfService from "./pages/legal/TermsOfService";
+import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
+import CareInstructions from "./pages/legal/CareInstructions";
 import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
 import MentionsLegales from "./pages/MentionsLegales";
@@ -165,6 +167,16 @@ const AppRoutes = () => {
         <Route path="/confidentialite" element={<Confidentialite />} />
         <Route path="/cookies" element={<PolitiqueCookies />} />
         <Route path="/credits" element={<Credits />} />
+        
+        
+        {/* Product Routes */}
+        <Route path="/product/:id" element={<ProductDetail />} />
+        
+        {/* Legal Routes - New Maison Chapuis */}
+        <Route path="/shipping-returns" element={<ShippingReturns />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/care-instructions" element={<CareInstructions />} />
         
         {/* Order Routes */}
         <Route path="/order-success" element={<OrderSuccess />} />
