@@ -52,6 +52,10 @@ const CertificationBanner = () => {
                   src={cert.logo}
                   alt={cert.fullName}
                   className="h-16 lg:h-20 w-auto filter brightness-0 invert opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                  onError={(e) => {
+                    console.log(`Failed to load logo: ${cert.logo}`);
+                    e.currentTarget.style.display = 'none';
+                  }}
                 />
               </div>
 
