@@ -193,21 +193,15 @@ const AppRoutes = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <LanguageProvider>
-        <CartProvider>
-          <TooltipProvider>
-            <SecurityConfig />
-            <Toaster />
-            <Sonner />
-            <AppRoutes />
-            <CartDrawer />
-            <CookieConsentBanner />
-            <Analytics />
-          </TooltipProvider>
-        </CartProvider>
-      </LanguageProvider>
-    </AuthProvider>
+    <TooltipProvider>
+      <SecurityConfig />
+      <Toaster />
+      <Sonner />
+      <AppRoutes />
+      <CartDrawer />
+      <CookieConsentBanner />
+      <Analytics />
+    </TooltipProvider>
   </QueryClientProvider>
 );
 
