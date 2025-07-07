@@ -14,8 +14,8 @@ export const translations = {
   // Header translations
   header: {
     freeShipping: { 
-      fr: 'Livraison gratuite pour les commandes de plus de 150€ (Expédié du Maroc)', 
-      en: 'Free Shipping for U.S. Orders Over $150 (Shipped from Morocco)' 
+      fr: 'Livraison gratuite pour les commandes de plus de $125 (Expédié vers les États-Unis)', 
+      en: 'Free shipping on orders over $125 (Ships to USA)' 
     },
     account: { fr: 'Compte', en: 'Account' },
     language: { fr: 'Français', en: 'English' },
@@ -35,8 +35,8 @@ export const translations = {
       en: 'See our privacy policy' 
     },
     copyright: { 
-      fr: '© 2025 Perle de l\'Atlas — Tous droits réservés', 
-      en: '© 2025 Perle de l\'Atlas — All rights reserved' 
+      fr: '© 2025 Maison Chapuis — Tous droits réservés', 
+      en: '© 2025 Maison Chapuis — All rights reserved' 
     },
     sections: {
       ourHouse: { fr: 'Notre Maison', en: 'Our House' },

@@ -6,6 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 interface Product {
   id: number;
   name: string;
+  subtitle: string;
   price: string;
   image: string;
   isNew?: boolean;
@@ -18,29 +19,33 @@ const AppleStyleProductGrid = () => {
   const products: Product[] = [
     {
       id: 1,
-      name: language === 'fr' ? 'Luminaires Artisanaux' : 'Artisanal Lighting',
-      price: 'À partir de 2,500 MAD',
-      image: 'https://gjmakezifpaglzzvuoid.supabase.co/storage/v1/object/public/pictures//moroccan-lighting.jpg',
+      name: language === 'fr' ? 'Tagine de Service Artisanal' : 'Tagine de Service Artisanal',
+      subtitle: language === 'fr' ? 'Tajine artisanal de service des artisans de Fès' : 'Handcrafted serving tagine from Fez artisans',
+      price: language === 'fr' ? 'À partir de $89' : 'From $89',
+      image: '/lovable-uploads/297c8b0f-3221-45a3-8488-e8e023e07fcc.png',
       isNew: true
     },
     {
       id: 2,
-      name: language === 'fr' ? 'Mobilier Traditionnel' : 'Traditional Furniture',
-      price: 'À partir de 4,000 MAD',
-      image: '/lovable-uploads/673f0b19-2270-4e9f-a2e5-59b15f441af5.png'
+      name: language === 'fr' ? 'Service à Thé Traditionnel' : 'Service à Thé Traditionnel',
+      subtitle: language === 'fr' ? 'Verres à thé marocains authentiques, parfaits pour les cérémonies' : 'Authentic Moroccan tea glasses, perfect for ceremonies',
+      price: language === 'fr' ? 'À partir de $65' : 'From $65',
+      image: '/lovable-uploads/4d22e63c-9766-4547-889d-0462b7de47e6.png'
     },
     {
       id: 3,
-      name: language === 'fr' ? 'Décoration Berbère' : 'Berber Decoration',
-      price: 'À partir de 800 MAD',
-      image: '/lovable-uploads/616bba28-fbf7-4dfb-bae7-e036ccd1e78b.png',
+      name: language === 'fr' ? 'Collection Bols Céramique' : 'Collection Bols Céramique',
+      subtitle: language === 'fr' ? 'Bols élégants pour un service moderne' : 'Elegant bowls for modern entertaining',
+      price: language === 'fr' ? 'À partir de $45' : 'From $45',
+      image: '/lovable-uploads/78b2a27c-3352-460a-b4bb-78efaec79db3.png',
       isComingSoon: true
     },
     {
       id: 4,
-      name: language === 'fr' ? 'Textiles Marocains' : 'Moroccan Textiles',
-      price: 'À partir de 350 MAD',
-      image: '/lovable-uploads/5a6e176e-a311-4e23-a48f-5439e70ecb3f.png'
+      name: language === 'fr' ? 'Verres à Thé Dorés Premium' : 'Verres à Thé Dorés Premium',
+      subtitle: language === 'fr' ? 'Verres à thé dorés, collection de luxe' : 'Gold-rimmed tea glasses, luxury collection',
+      price: language === 'fr' ? 'À partir de $35' : 'From $35',
+      image: '/lovable-uploads/6d0913b6-03ca-40b5-9002-ea188762b64f.png'
     }
   ];
 
@@ -91,6 +96,9 @@ const AppleStyleProductGrid = () => {
                 <h3 className="text-2xl font-light text-black mb-2 tracking-tight">
                   {product.name}
                 </h3>
+                <p className="text-sm font-light text-black/60 mb-3">
+                  {product.subtitle}
+                </p>
                 <p className="text-lg font-light text-black/60">
                   {product.price}
                 </p>

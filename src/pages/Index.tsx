@@ -28,37 +28,35 @@ const Index = () => {
 
   const seoContent = {
     fr: {
-      title: "Rituels de Beauté Marocains & Art de Vivre Authentique",
-      description: "Découvrez Perle de l'Atlas : cosmétiques bio à l'huile d'argan, savon noir traditionnel, vaisselle artisanale marocaine et objets d'art. Livraison gratuite dès 149€.",
+      title: "Artisanat Marocain Authentique & Céramiques Traditionnelles",
+      description: "Découvrez Maison Chapuis : vaisselle artisanale marocaine, tagines traditionnels, service à thé authentique et objets d'art. Livraison gratuite dès $125.",
       keywords: [
-        "huile d'argan bio",
-        "savon noir marocain", 
-        "cosmétiques naturels maroc",
-        "rituels beauté marocains",
         "vaisselle artisanale maroc",
-        "tajine traditionnel",
+        "tagine traditionnel",
+        "service à thé marocain",
+        "céramique artisanale",
         "verre marocain soufflé",
-        "ghassoul argile",
         "art de vivre marocain",
         "décoration orientale",
-        "artisanat marocain authentique"
+        "artisanat marocain authentique",
+        "bols céramique",
+        "plateaux métal ciselé"
       ]
     },
     en: {
-      title: "Moroccan Beauty Rituals & Authentic Art of Living",
-      description: "Discover Perle de l'Atlas: organic argan oil cosmetics, traditional black soap, Moroccan artisan tableware and art objects. Free shipping from €149.",
+      title: "Authentic Moroccan Crafts & Traditional Ceramics",
+      description: "Discover Maison Chapuis: Moroccan artisan tableware, traditional tagines, authentic tea service and art objects. Free shipping from $125.",
       keywords: [
-        "organic argan oil",
-        "moroccan black soap",
-        "natural cosmetics morocco", 
-        "moroccan beauty rituals",
         "moroccan artisan tableware",
         "traditional tagine",
+        "moroccan tea service", 
+        "artisan ceramics",
         "moroccan blown glass",
-        "ghassoul clay",
         "moroccan art of living",
         "oriental decoration",
-        "authentic moroccan crafts"
+        "authentic moroccan crafts",
+        "ceramic bowls",
+        "carved metal trays"
       ]
     }
   };
@@ -104,9 +102,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Interactive Map Section */}
-        <IngredientOriginMap />
-        
         {/* Category Showcase Section */}
         <div id="categories">
           <CategoryShowcase />

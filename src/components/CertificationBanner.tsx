@@ -20,13 +20,6 @@ const CertificationBanner = () => {
       fullName: 'International Housewares Association',
       ariaLabel: language === 'fr' ? 'Certifié par International Housewares Association' : 'Certified by International Housewares Association',
       tooltip: language === 'fr' ? 'Membre certifié de l\'International Housewares Association' : 'Certified member of the International Housewares Association'
-    },
-    {
-      name: 'OneCert',
-      logo: onecertLogo,
-      fullName: 'OneCert Certified Organic',
-      ariaLabel: language === 'fr' ? 'Certifié biologique par OneCert' : 'Certified Organic by OneCert',
-      tooltip: language === 'fr' ? 'Produits certifiés biologiques par OneCert' : 'Organic products certified by OneCert'
     }
   ];
 
@@ -44,7 +37,7 @@ const CertificationBanner = () => {
         </div>
 
         {/* Certifications Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 items-center justify-items-center max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center justify-items-center max-w-3xl mx-auto">
           {certifications.map((cert, index) => (
             <div
               key={cert.name}
