@@ -15,12 +15,13 @@ const TajineIcon = ({ className = "h-6 w-6" }: { className?: string }) => (
   </svg>
 );
 
-const PerleAtlasLogo = ({ className = "h-8" }: { className?: string }) => (
-  <img 
-    src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Perle%20(Website)-4.png"
-    alt="Maison Chapuis"
-    className={className}
-  />
+const MaisonChapuisLogo = ({ className = "h-8" }: { className?: string }) => (
+  <div className={`${className} flex items-center`}>
+    <h1 className="text-2xl lg:text-3xl font-serif tracking-wider text-stone-800 font-light">
+      <span className="italic">Maison</span>
+      <span className="ml-2 font-medium">Chapuis</span>
+    </h1>
+  </div>
 );
 
 const MaisonStyleHeaderNew = () => {
@@ -74,18 +75,42 @@ const MaisonStyleHeaderNew = () => {
           isVisible ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
-        <div className="w-full px-6 lg:px-12">
-          <div className="flex items-center justify-between h-20">
-              
-              {/* Left side - Logo */}
-              <div className="flex items-center flex-1">
-                <Link to="/" className="flex items-center">
-                  <PerleAtlasLogo className="h-24 text-stone-800 hover:text-stone-600 transition-colors" />
-                </Link>
-              </div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          {/* Logo Section */}
+          <div className="flex items-center justify-center h-20 border-b border-stone-100">
+            <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
+              <MaisonChapuisLogo className="h-12" />
+            </Link>
+          </div>
 
-              {/* Right side - Desktop Actions */}
-              <div className="hidden lg:flex items-center justify-end space-x-6">
+          {/* Navigation Section */}
+          <div className="flex items-center justify-between h-16">
+            {/* Left - Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-8">
+              <CatalogueMegaMenu />
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="text-sm font-light text-stone-700 hover:text-stone-900 transition-colors tracking-wide relative group"
+                >
+                  {item.name}
+                  <span className="absolute bottom-0 left-0 w-full h-px bg-stone-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                </Link>
+              ))}
+            </div>
+
+            {/* Center - Mobile Logo (shown on mobile) */}
+            <div className="lg:hidden flex-1">
+              <Link to="/" className="flex items-center justify-center">
+                <MaisonChapuisLogo className="h-8" />
+              </Link>
+            </div>
+
+            {/* Right - Actions */}
+            <div className="flex items-center space-x-4">
+              {/* Desktop Actions */}
+              <div className="hidden lg:flex items-center space-x-4">
                 <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <Search className="h-4 w-4" />
                 </button>
@@ -95,8 +120,6 @@ const MaisonStyleHeaderNew = () => {
                 <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <TajineIcon className="h-5 w-5" />
                 </button>
-                
-                {/* Language Toggle */}
                 <button
                   onClick={toggleLanguage}
                   className="text-xs text-stone-600 hover:text-stone-900 transition-colors px-2 py-1 border border-stone-200 rounded"
@@ -105,8 +128,8 @@ const MaisonStyleHeaderNew = () => {
                 </button>
               </div>
 
-              {/* Mobile Menu Button and Actions */}
-              <div className="flex lg:hidden items-center space-x-3">
+              {/* Mobile Actions */}
+              <div className="flex lg:hidden items-center space-x-2">
                 <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                   <Search className="h-4 w-4" />
                 </button>
@@ -121,25 +144,7 @@ const MaisonStyleHeaderNew = () => {
                 </button>
               </div>
             </div>
-
-            {/* Desktop Navigation - Below Logo */}
-            <div className="hidden lg:block border-t border-stone-100">
-              <nav className="py-4">
-                <div className="flex items-center justify-center space-x-12">
-                  <CatalogueMegaMenu />
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className="text-sm font-light text-stone-700 hover:text-stone-900 transition-colors tracking-wide relative group"
-                    >
-                      {item.name}
-                      <span className="absolute bottom-0 left-0 w-full h-px bg-stone-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                    </Link>
-                  ))}
-                </div>
-              </nav>
-            </div>
+          </div>
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
