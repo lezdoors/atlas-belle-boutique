@@ -5,7 +5,8 @@ import NewsletterTopBanner from '@/components/NewsletterTopBanner';
 import CountdownBanner from '@/components/CountdownBanner';
 import AppleStyleHero from '@/components/AppleStyleHero';
 import IngredientOriginMap from '@/components/IngredientOriginMap';
-import AppleStyleProductGrid from '@/components/AppleStyleProductGrid';
+import SignatureCollections from '@/components/SignatureCollections';
+import ArtDeVivreSection from '@/components/ArtDeVivreSection';
 import FeaturedCollections from '@/components/FeaturedCollections';
 import SpecialOffers from '@/components/SpecialOffers';
 import WrappedWithCare from '@/components/WrappedWithCare';
@@ -102,12 +103,16 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Art de Vivre Section */}
+        <ArtDeVivreSection />
+
         {/* Category Showcase Section */}
         <div id="categories">
           <CategoryShowcase />
         </div>
         
-        <AppleStyleProductGrid />
+        {/* Signature Collections */}
+        <SignatureCollections />
         <FeaturedCollections />
         <SpecialOffers />
         <WrappedWithCare />
