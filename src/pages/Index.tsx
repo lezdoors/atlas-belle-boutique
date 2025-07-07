@@ -33,8 +33,8 @@ const Index = () => {
 
   const seoContent = {
     fr: {
-      title: "Artisanat Marocain Authentique & Céramiques Traditionnelles",
-      description: "Découvrez Maison Chapuis : vaisselle artisanale marocaine, tagines traditionnels, service à thé authentique et objets d'art. Livraison gratuite dès $125.",
+      title: "Maison Chapuis | French-Curated Moroccan Luxury",
+      description: "Ceramics, tagines, and artisan homeware crafted in Morocco and curated with Parisian elegance. Free US shipping available.",
       keywords: [
         "vaisselle artisanale maroc",
         "tagine traditionnel",
@@ -49,8 +49,8 @@ const Index = () => {
       ]
     },
     en: {
-      title: "Authentic Moroccan Crafts & Traditional Ceramics",
-      description: "Discover Maison Chapuis: Moroccan artisan tableware, traditional tagines, authentic tea service and art objects. Free shipping from $125.",
+      title: "Maison Chapuis | French-Curated Moroccan Luxury",
+      description: "Ceramics, tagines, and artisan homeware crafted in Morocco and curated with Parisian elegance. Free US shipping available.",
       keywords: [
         "moroccan artisan tableware",
         "traditional tagine",
@@ -111,7 +111,7 @@ const Index = () => {
         <ArtDeVivreSection />
 
         {/* Category Showcase Section */}
-        <div id="categories">
+        <div id="categories" className="scroll-smooth">
           <CategoryShowcase />
         </div>
         

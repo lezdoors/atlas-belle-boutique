@@ -18,9 +18,9 @@ const categories = [
   },
   {
     id: 'textile',
-    title: 'Textiles Marocains',
-    cta: 'Découvrir les tissus',
-    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//women%20face%20covered.jpg',
+    title: 'Céramique Artisanale',
+    cta: 'Découvrir les céramiques',
+    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//fakkhar-tajine-white.JPG',
     link: '/boutique'
   },
   {
@@ -48,10 +48,10 @@ const categories = [
 
 const CategoryShowcase = () => {
   return (
-    <section className="w-full py-16 md:py-24 bg-stone-50">
+    <section className="w-full py-12 md:py-20 bg-stone-50">
       <div className="w-full">
         {/* Section Header */}
-        <div className="container-refined mb-12 md:mb-16">
+        <div className="container-refined mb-8 md:mb-12">
           <h2 className="heading-display text-3xl md:text-4xl lg:text-5xl text-center text-stone-800 mb-4">
             Nos Collections
           </h2>

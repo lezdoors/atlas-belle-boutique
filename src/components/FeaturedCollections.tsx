@@ -37,7 +37,7 @@ const FeaturedCollections = () => {
     {
       id: 'parfums',
       name: language === 'fr' ? 'Parfums d\'Orient' : 'Oriental Fragrances',
-      image: 'https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=800&q=80',
+      image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//tagine3.jpg.webp',
       description: language === 'fr' ? 'Essence du Maroc' : 'Essence of Morocco',
       link: '/catalog/fragrances'
     }
