@@ -6,32 +6,32 @@ const MediaLogoBanner = () => {
   const mediaLogos = [
     { 
       name: 'Artisan Vogue',
-      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//artisan-vogue-.png',
+      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/artisan-vogue-.png',
       ariaLabel: language === 'fr' ? 'Vu dans Artisan Vogue' : 'As seen in Artisan Vogue'
     },
     { 
       name: 'Forbes Morocco',
-      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//forbe-morocco.png.webp',
+      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/forbe-morocco.png.webp',
       ariaLabel: language === 'fr' ? 'Vu dans Forbes Morocco' : 'As seen in Forbes Morocco'
     },
     { 
+      name: 'Wall Street Journal',
+      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/kisspng-the-wall-street-journal-newspaper-wsj-magazine-5afaba4c23f5b8.7339908015263811321473.jpg',
+      ariaLabel: language === 'fr' ? 'Vu dans Wall Street Journal' : 'As seen in Wall Street Journal'
+    },
+    { 
       name: 'Epicurious',
-      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//epicurious-logo.png',
+      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/epicurious-logo.png',
       ariaLabel: language === 'fr' ? 'Vu dans Epicurious' : 'As seen in Epicurious'
     },
     { 
       name: 'Real Simple',
-      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//real-simple-logo.png',
+      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/real-simple-logo.png',
       ariaLabel: language === 'fr' ? 'Vu dans Real Simple' : 'As seen in Real Simple'
     },
     { 
-      name: 'Wall Street Journal',
-      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//kisspng-the-wall-street-journal-newspaper-wsj-magazine-5afaba4c23f5b8.7339908015263811321473.jpg',
-      ariaLabel: language === 'fr' ? 'Vu dans Wall Street Journal' : 'As seen in Wall Street Journal'
-    },
-    { 
       name: 'Morocco World News',
-      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Morocco_World_News_Logo.svg.png',
+      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media/Morocco_World_News_Logo.svg.png',
       ariaLabel: language === 'fr' ? 'Vu dans Morocco World News' : 'As seen in Morocco World News'
     }
   ];
