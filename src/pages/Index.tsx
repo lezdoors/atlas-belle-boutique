@@ -34,7 +34,7 @@ const Index = () => {
   const seoContent = {
     fr: {
       title: "Maison Chapuis | French-Curated Moroccan Luxury",
-      description: "Ceramics, tagines, and artisan homeware crafted in Morocco and curated with Parisian elegance. Free US shipping available.",
+      description: "Handcrafted ceramics, tagines, and glasses from Morocco — curated with French elegance. Authentic, artisan-crafted. Free US shipping.",
       keywords: [
         "vaisselle artisanale maroc",
         "tagine traditionnel",
@@ -50,7 +50,7 @@ const Index = () => {
     },
     en: {
       title: "Maison Chapuis | French-Curated Moroccan Luxury",
-      description: "Ceramics, tagines, and artisan homeware crafted in Morocco and curated with Parisian elegance. Free US shipping available.",
+      description: "Handcrafted ceramics, tagines, and glasses from Morocco — curated with French elegance. Authentic, artisan-crafted. Free US shipping.",
       keywords: [
         "moroccan artisan tableware",
         "traditional tagine",

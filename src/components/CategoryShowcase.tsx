@@ -31,16 +31,16 @@ const categories = [
     link: '/boutique'
   },
   {
-    id: 'parfum',
-    title: 'Parfums d\'Orient',
-    cta: 'Explorer les parfums',
-    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//buttle-roses-inside.jpg',
+    id: 'verres-marocains',
+    title: 'Verres Marocains',
+    cta: 'Couleurs Authentiques',
+    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//beldi-glass-multicolor.JPG',
     link: '/boutique'
   },
   {
-    id: 'beaute',
-    title: 'Soins Naturels',
-    cta: 'Découvrir les soins',
+    id: 'elegance',
+    title: 'Élégance Authentique',
+    cta: 'Découvrir l\'élégance',
     image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//coffe%20grain%20oil%20bottle.jpg',
     link: '/boutique'
   }

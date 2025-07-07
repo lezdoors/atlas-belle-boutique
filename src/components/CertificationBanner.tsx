@@ -1,7 +1,4 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import sfaLogo from '@/assets/sfa-logo.png';
-import ihaLogo from '@/assets/iha-logo.png';
-import onecertLogo from '@/assets/onecert-logo.png';
 
 const CertificationBanner = () => {
   const { language } = useLanguage();
@@ -9,16 +6,16 @@ const CertificationBanner = () => {
   const certifications = [
     {
       name: 'SFA',
-      logo: sfaLogo,
+      logo: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//sfa-logo-BDuGdPTR.png',
       fullName: 'Specialty Food Association',
-      ariaLabel: language === 'fr' ? 'Certifié par Specialty Food Association' : 'Certified by Specialty Food Association',
+      ariaLabel: language === 'fr' ? 'Certifié par SFA' : 'Certified by SFA',
       tooltip: language === 'fr' ? 'Membre certifié de la Specialty Food Association' : 'Certified member of the Specialty Food Association'
     },
     {
       name: 'IHA',
-      logo: ihaLogo,
+      logo: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//iha-logo-Bbj3z1sT.png',
       fullName: 'International Housewares Association',
-      ariaLabel: language === 'fr' ? 'Certifié par International Housewares Association' : 'Certified by International Housewares Association',
+      ariaLabel: language === 'fr' ? 'Certifié par IHA' : 'Certified by IHA',
       tooltip: language === 'fr' ? 'Membre certifié de l\'International Housewares Association' : 'Certified member of the International Housewares Association'
     }
   ];
