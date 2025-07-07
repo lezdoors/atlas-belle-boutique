@@ -123,7 +123,8 @@ const AppleStyleProductGrid = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        {/* 2x2 French Luxury Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 max-w-6xl mx-auto">
           {products.map((product) => (
             <Card
               key={product.id}

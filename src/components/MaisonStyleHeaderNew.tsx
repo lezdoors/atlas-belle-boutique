@@ -95,7 +95,7 @@ const MaisonStyleHeaderNew = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          {/* Logo Section */}
+          {/* Logo Section - Centered */}
           <div className="flex items-center justify-center h-20 border-b border-stone-100">
             <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
               <MaisonChapuisLogo className="h-12" />
@@ -136,65 +136,46 @@ const MaisonStyleHeaderNew = () => {
               ))}
             </div>
 
-            {/* Center - Mobile Logo (shown on mobile) */}
+            {/* Center - Mobile Logo */}
             <div className="lg:hidden flex-1">
               <Link to="/" className="flex items-center justify-center">
                 <MaisonChapuisLogo className="h-8" />
               </Link>
             </div>
 
-            {/* Right - Actions */}
-            <div className="flex items-center space-x-4">
-              {/* Desktop Actions */}
-              <div className="hidden lg:flex items-center space-x-4">
-                <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
-                  <Search className="h-4 w-4" />
-                </button>
-                <Link to={user ? "/dashboard" : "/auth"} className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
-                  <User className="h-4 w-4" />
-                </Link>
-                <Link to="/checkout" className="p-2 text-stone-600 hover:text-stone-900 transition-colors relative">
-                  <ShoppingBag className="h-4 w-4" />
-                  {totalItems > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-stone-800 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                      {totalItems}
-                    </span>
-                  )}
-                </Link>
-                <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
-                  <TajineIcon className="h-5 w-5" />
-                </button>
-                <button
-                  onClick={toggleLanguage}
-                  className="text-xs text-stone-600 hover:text-stone-900 transition-colors px-2 py-1 border border-stone-200 rounded"
-                >
-                  {language === 'fr' ? 'EN' : 'FR'}
-                </button>
-              </div>
+            {/* Right - Action Icons (Single Cart) */}
+            <div className="flex items-center space-x-6">
+              <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
+                <Search className="h-5 w-5" />
+              </button>
+              
+              <Link to={user ? "/dashboard" : "/auth"} className="hidden lg:block p-2 text-stone-600 hover:text-stone-900 transition-colors">
+                <User className="h-5 w-5" />
+              </Link>
+              
+              <Link to="/checkout" className="p-2 text-stone-600 hover:text-stone-900 transition-colors relative">
+                <ShoppingBag className="h-5 w-5" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-stone-800 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {totalItems}
+                  </span>
+                )}
+              </Link>
 
-              {/* Mobile Actions */}
-              <div className="flex lg:hidden items-center space-x-2">
-                <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
-                  <Search className="h-4 w-4" />
-                </button>
-                <Link to="/checkout" className="p-2 text-stone-600 hover:text-stone-900 transition-colors relative">
-                  <ShoppingBag className="h-4 w-4" />
-                  {totalItems > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-stone-800 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                      {totalItems}
-                    </span>
-                  )}
-                </Link>
-                <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
-                  <TajineIcon className="h-5 w-5" />
-                </button>
-                <button
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="p-2 text-stone-600 hover:text-stone-900 transition-colors"
-                >
-                  {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-                </button>
-              </div>
+              <button
+                onClick={toggleLanguage}
+                className="hidden lg:block text-xs text-stone-600 hover:text-stone-900 transition-colors px-3 py-1 border border-stone-200 rounded-full"
+              >
+                {language === 'fr' ? 'EN' : 'FR'}
+              </button>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden p-2 text-stone-600 hover:text-stone-900 transition-colors"
+              >
+                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
             </div>
           </div>
 
