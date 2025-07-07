@@ -75,7 +75,7 @@ const AppleStyleHero = () => {
             className="bg-stone-900 text-white hover:bg-stone-800 px-16 py-6 text-lg font-light tracking-[0.05em] transition-all duration-500 rounded-none border-none shadow-none hover:shadow-lg hover:shadow-stone-900/20"
             asChild
           >
-            <Link to="/catalogue">
+            <Link to="/categories/ceramiques">
               Shop Ceramics
             </Link>
           </Button>
@@ -85,7 +85,7 @@ const AppleStyleHero = () => {
             className="border-2 border-stone-300 text-stone-700 hover:bg-stone-50 hover:border-stone-400 px-16 py-6 text-lg font-light tracking-[0.05em] transition-all duration-500 rounded-none shadow-none hover:shadow-lg hover:shadow-stone-200/50"
             asChild
           >
-            <Link to="/notre-heritage">
+            <Link to="/collections">
               View Collection
             </Link>
           </Button>
