@@ -33,16 +33,19 @@ const AppleStyleHero = () => {
       <div className="relative z-10 text-center w-full px-6 lg:px-12 py-32">
         <div className="w-full">
 
-        {/* Headline */}
-        <h1 className="font-serif font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 animate-fade-in opacity-0 tracking-tight" style={{ lineHeight: '1.3', animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-          {language === 'fr' ? 'Une Invitation à l\'Art de Vivre Marocain' : 'An Invitation to the Moroccan Art of Living'}
+        {/* Brand Name */}
+        <h1 className="font-serif font-bold text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 animate-fade-in opacity-0 tracking-tight" style={{ lineHeight: '1.3', animationDelay: '0.2s', animationFillMode: 'forwards' }}>
+          Maison Chapuis
         </h1>
         
-        {/* Subheadline */}
+        {/* Subheading */}
+        <h2 className="font-serif text-xl md:text-2xl text-stone-700 mb-6 animate-fade-in opacity-0" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}>
+          L'Art de Vivre Français Meets Moroccan Tradition
+        </h2>
+        
+        {/* Description */}
         <p className="font-light text-base md:text-lg mb-12 animate-fade-in opacity-0 text-stone-600 leading-relaxed" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
-          {language === 'fr' 
-            ? 'De la vaisselle artisanale aux décorations empreintes d\'âme, découvrez l\'élégance intemporelle née dans l\'Atlas.'
-            : 'From handcrafted tableware to soulful décor, discover timeless elegance born in the Atlas.'}
+          Handcrafted ceramics and tagine glasses, curated with French sophistication for discerning American homes
         </p>
 
         {/* Buttons */}
@@ -52,8 +55,8 @@ const AppleStyleHero = () => {
             className="bg-primary text-primary-foreground hover:bg-primary/90 px-12 py-4 text-base font-normal tracking-wide transition-all duration-300"
             asChild
           >
-            <Link to="/a-propos">
-              {language === 'fr' ? 'M\'informer' : 'Get Notified'}
+            <Link to="/catalogue">
+              Shop Ceramics
             </Link>
           </Button>
           <Button
@@ -62,8 +65,8 @@ const AppleStyleHero = () => {
             className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-12 py-4 text-base font-normal tracking-wide transition-all duration-300"
             asChild
           >
-            <Link to="/catalogue">
-              {language === 'fr' ? 'Aperçu Boutique' : 'Shop Preview'}
+            <Link to="/notre-heritage">
+              Discover Collection
             </Link>
           </Button>
         </div>
