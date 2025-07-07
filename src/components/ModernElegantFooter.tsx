@@ -157,11 +157,9 @@ const ModernElegantFooter = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Logo */}
             <div className="order-2 md:order-1">
-              <img
-                src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Perle%20(Website)-4.png"
-                alt="Maison Chapuis"
-                className="h-8 w-auto opacity-60"
-              />
+              <span className="text-lg font-serif font-light tracking-tight text-stone-600">
+                Maison Chapuis
+              </span>
             </div>
 
             {/* Copyright */}

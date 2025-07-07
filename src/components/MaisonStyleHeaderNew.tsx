@@ -95,55 +95,50 @@ const MaisonStyleHeaderNew = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          {/* Logo Section - Centered */}
-          <div className="flex items-center justify-center h-20 border-b border-stone-100">
-            <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
-              <MaisonChapuisLogo className="h-12" />
-            </Link>
-          </div>
 
           {/* Navigation Section */}
           <div className="flex items-center justify-between h-16">
-            {/* Left - Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-10">
-              {navigation.map((item) => (
-                <div key={item.name} className="relative group">
-                  <Link
-                    to={item.href}
-                    className="text-sm font-light text-stone-700 hover:text-stone-900 transition-all duration-300 tracking-[0.02em] py-2 relative group"
-                  >
-                    {item.name}
-                    <span className="absolute bottom-0 left-0 w-full h-px bg-stone-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                  </Link>
-                  
-                  {/* Dropdown Menu */}
-                  {item.dropdown && (
-                    <div className="absolute top-full left-0 mt-1 w-56 bg-white border border-stone-100 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                      <div className="py-2">
-                        {item.dropdown.map((dropdownItem) => (
-                          <Link
-                            key={dropdownItem.name}
-                            to={dropdownItem.href}
-                            className="block px-4 py-3 text-sm font-light text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition-all duration-200 tracking-wide"
-                          >
-                            {dropdownItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Center - Mobile Logo */}
-            <div className="lg:hidden flex-1">
-              <Link to="/" className="flex items-center justify-center">
+            {/* Left - Logo and Desktop Navigation */}
+            <div className="flex items-center space-x-12">
+              {/* Logo - Always visible on left */}
+              <Link to="/" className="flex items-center">
                 <MaisonChapuisLogo className="h-8" />
               </Link>
+              
+              {/* Desktop Navigation */}
+              <div className="hidden lg:flex items-center space-x-10">
+                {navigation.map((item) => (
+                  <div key={item.name} className="relative group">
+                    <Link
+                      to={item.href}
+                      className="text-sm font-light text-stone-700 hover:text-stone-900 transition-all duration-300 tracking-[0.02em] py-2 relative group"
+                    >
+                      {item.name}
+                      <span className="absolute bottom-0 left-0 w-full h-px bg-stone-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    </Link>
+                    
+                    {/* Dropdown Menu */}
+                    {item.dropdown && (
+                      <div className="absolute top-full left-0 mt-1 w-56 bg-white border border-stone-100 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                        <div className="py-2">
+                          {item.dropdown.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.name}
+                              to={dropdownItem.href}
+                              className="block px-4 py-3 text-sm font-light text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition-all duration-200 tracking-wide"
+                            >
+                              {dropdownItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Right - Action Icons (Single Cart) */}
+            {/* Right - Action Icons */}
             <div className="flex items-center space-x-6">
               <button className="p-2 text-stone-600 hover:text-stone-900 transition-colors">
                 <Search className="h-5 w-5" />
