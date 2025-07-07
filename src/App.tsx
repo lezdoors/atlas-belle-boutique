@@ -45,6 +45,7 @@ import NotFound from "./pages/NotFound";
 import Wholesale from "./pages/Wholesale";
 import OrderSuccess from "./pages/OrderSuccess";
 import ProductDetail from "./pages/ProductDetail";
+import Checkout from "./pages/Checkout";
 import Ingredients from "./pages/Ingredients";
 import IngredientDetail from "./pages/IngredientDetail";
 import Regions from "./pages/Regions";
@@ -178,7 +179,8 @@ const AppRoutes = () => {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/care-instructions" element={<CareInstructions />} />
         
-        {/* Order Routes */}
+        {/* Checkout & Order Routes */}
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-success" element={<OrderSuccess />} />
         
         {/* Test Routes */}

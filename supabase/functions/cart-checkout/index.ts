@@ -8,16 +8,21 @@ const corsHeaders = {
 };
 
 interface CartItem {
-  id: number;
-  name: string;
-  priceMAD: number;
-  quantity: number;
-  variant?: string;
-  size?: string;
+  id: string;
+  name_fr: string;
+  name_en: string;
+  price: number;
+  images: string[];
+  category: string;
+  in_stock: boolean;
+  created_at: string;
 }
 
 interface CartCheckoutRequest {
-  items: CartItem[];
+  items: Array<{
+    product: CartItem;
+    quantity: number;
+  }>;
   currency: 'EUR' | 'USD';
   customerInfo: {
     name: string;
@@ -108,23 +113,52 @@ serve(async (req) => {
     }
 
     // Create line items for Stripe
-    const lineItems = items.map(item => ({
-      price_data: {
-        currency: currency.toLowerCase(),
-        product_data: { 
-          name: item.variant || item.size ? `${item.name} (${[item.variant, item.size].filter(Boolean).join(', ')})` : item.name,
-          description: `Produit artisanal du Maroc - ${item.name}`
+    let totalAmount = 0;
+    const lineItems = items.map(item => {
+      const priceInCurrency = currency === 'EUR' 
+        ? Math.round(item.product.price * 0.093 * 100) // Convert MAD to EUR cents
+        : Math.round(item.product.price * 0.099 * 100); // Convert MAD to USD cents
+
+      totalAmount += priceInCurrency * item.quantity;
+
+      return {
+        price_data: {
+          currency: currency.toLowerCase(),
+          product_data: {
+            name: item.product.name_fr,
+            description: `Produit artisanal marocain - ${item.product.name_en}`,
+            images: item.product.images?.length > 0 ? [item.product.images[0]] : undefined,
+            metadata: {
+              category: item.product.category,
+              product_id: item.product.id
+            }
+          },
+          unit_amount: priceInCurrency,
         },
-        unit_amount: Math.round(item.priceMAD * exchangeRate * 100), // Convert to cents
-      },
-      quantity: item.quantity,
-    }));
+        quantity: item.quantity,
+      };
+    });
 
-    // Calculate total for order record
-    const totalMAD = items.reduce((sum, item) => sum + item.priceMAD * item.quantity, 0);
-    const totalConverted = Math.round(totalMAD * exchangeRate * 100);
+    // Add shipping cost
+    const shippingCost = currency === 'EUR' 
+      ? (totalAmount >= 10000 ? 0 : 890) // Free shipping over €100, otherwise €8.90
+      : (totalAmount >= 10700 ? 0 : 950); // Free shipping over $107, otherwise $9.50
 
-    console.log(`Total: ${totalMAD} MAD = ${totalConverted/100} ${currency}`);
+    if (shippingCost > 0) {
+      lineItems.push({
+        price_data: {
+          currency: currency.toLowerCase(),
+          product_data: {
+            name: "Livraison / Shipping",
+            description: "Frais de livraison standard"
+          },
+          unit_amount: shippingCost,
+        },
+        quantity: 1,
+      });
+    }
+
+    console.log(`Total: ${totalAmount/100} ${currency} (including ${shippingCost > 0 ? 'shipping' : 'free shipping'})`);
 
     // Create checkout session
     const session = await stripe.checkout.sessions.create({
@@ -133,38 +167,43 @@ serve(async (req) => {
       line_items: lineItems,
       mode: "payment",
       success_url: `${req.headers.get("origin")}/order-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.get("origin")}/checkout?status=cancelled`,
+      cancel_url: `${req.headers.get("origin")}/checkout?cancelled=true`,
+      automatic_tax: {
+        enabled: false,
+      },
+      shipping_address_collection: {
+        allowed_countries: ['FR', 'US', 'CA', 'GB', 'DE', 'ES', 'IT', 'BE', 'NL', 'MA'],
+      },
       metadata: {
         user_id: user.id,
         customer_name: sanitizedCustomerInfo.name,
         customer_phone: sanitizedCustomerInfo.phone || '',
         shipping_address: sanitizedCustomerInfo.shippingAddress || '',
-        item_count: items.length.toString(),
-      },
-      shipping_address_collection: {
-        allowed_countries: ['MA', 'FR', 'ES', 'DE', 'IT', 'US', 'CA'],
-      },
+        currency: currency,
+        item_count: items.length.toString()
+      }
     });
 
     console.log(`Stripe session created: ${session.id}`);
 
-    // Create order record in database
+    // Insert order into Supabase
+    const orderItems = items.map(item => ({
+      product_id: item.product.id,
+      quantity: item.quantity,
+      price_at_time: item.product.price
+    }));
+
     const { data: orderData, error: insertError } = await supabaseClient
-      .from("enhanced_orders")
+      .from("maison_orders")
       .insert({
-        user_id: user.id,
-        order_number: `PA-${Date.now()}`,
-        total_amount_eur: currency === 'EUR' ? totalConverted / 100 : totalMAD * 0.093,
-        total_amount_usd: currency === 'USD' ? totalConverted / 100 : totalMAD * 0.099,
-        currency: currency,
-        payment_status: 'pending',
-        stripe_session_id: session.id,
+        customer_name: sanitizedCustomerInfo.name,
+        customer_email: sanitizedCustomerInfo.email,
         shipping_address: {
-          name: sanitizedCustomerInfo.name,
-          email: sanitizedCustomerInfo.email,
-          phone: sanitizedCustomerInfo.phone,
           address: sanitizedCustomerInfo.shippingAddress,
-        }
+          phone: sanitizedCustomerInfo.phone
+        },
+        total: (totalAmount + shippingCost) / 100, // Convert back to main currency units
+        status: 'pending',
       })
       .select()
       .single();
@@ -174,7 +213,22 @@ serve(async (req) => {
       throw new Error(`Failed to create order: ${insertError.message}`);
     }
 
-    console.log(`Order created with ID: ${orderData.id}`);
+    // Insert order items
+    const orderItemsWithOrderId = orderItems.map(item => ({
+      ...item,
+      order_id: orderData.id
+    }));
+
+    const { error: itemsError } = await supabaseClient
+      .from("maison_order_items")
+      .insert(orderItemsWithOrderId);
+
+    if (itemsError) {
+      console.error("Error inserting order items:", itemsError);
+      // Don't fail the checkout, but log the error
+    }
+
+    console.log("Order created successfully:", orderData.id);
 
     return new Response(JSON.stringify({ 
       url: session.url,
