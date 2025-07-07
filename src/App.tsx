@@ -169,8 +169,8 @@ const AppRoutes = () => {
         <Route path="/credits" element={<Credits />} />
         
         
-        {/* Product Routes */}
-        <Route path="/product/:id" element={<ProductDetail />} />
+        {/* Premium Product Routes */}
+        <Route path="/product/:productId" element={<ProductDetail />} />
         
         {/* Legal Routes - New Maison Chapuis */}
         <Route path="/shipping-returns" element={<ShippingReturns />} />

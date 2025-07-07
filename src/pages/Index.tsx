@@ -20,6 +20,10 @@ import AppleCountdownBanner from '@/components/AppleCountdownBanner';
 import CategoryShowcase from '@/components/CategoryShowcase';
 import MediaLogoBanner from '@/components/MediaLogoBanner';
 import CertificationBanner from '@/components/CertificationBanner';
+import TrustBadges from '@/components/trust/TrustBadges';
+import PremiumPositioningSection from '@/components/product/PremiumPositioningSection';
+import CeramicTestimonials from '@/components/testimonials/CeramicTestimonials';
+import MobileBottomNav from '@/components/mobile/MobileBottomNav';
 import SEOHead from '@/components/SEOHead';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -113,12 +117,25 @@ const Index = () => {
         
         {/* Signature Collections */}
         <SignatureCollections />
+        
+        {/* Trust & Authority */}
+        <TrustBadges />
+        
+        {/* Premium Positioning */}
+        <PremiumPositioningSection />
+        
+        {/* Customer Testimonials */}
+        <CeramicTestimonials />
+        
         <FeaturedCollections />
         <SpecialOffers />
         <WrappedWithCare />
         <AppleStyleAbout />
         <ModernElegantFooter />
         <SamraRefactoredChatbot videoEnded={videoEnded} />
+        
+        {/* Mobile Bottom Navigation */}
+        <MobileBottomNav />
       </div>
       
       {/* Keep existing banners for backwards compatibility */}
