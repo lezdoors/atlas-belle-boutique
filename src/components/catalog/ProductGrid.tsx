@@ -9,11 +9,10 @@ import { Filter } from 'lucide-react';
 interface ProductGridProps {
   products: Product[];
   isLoading?: boolean;
-  onAddToCart: (productId: string) => void;
   onQuickView: (product: Product) => void;
 }
 
-const ProductGrid = ({ products, isLoading = false, onAddToCart, onQuickView }: ProductGridProps) => {
+const ProductGrid = ({ products, isLoading = false, onQuickView }: ProductGridProps) => {
   const [filters, setFilters] = useState<ProductFilters>({
     category: '',
     sortBy: 'newest',
@@ -172,7 +171,6 @@ const ProductGrid = ({ products, isLoading = false, onAddToCart, onQuickView }: 
             <ProductCard
               key={product.id}
               product={product}
-              onAddToCart={onAddToCart}
               onQuickView={onQuickView}
             />
           ))}

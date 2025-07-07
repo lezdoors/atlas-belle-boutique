@@ -1,11 +1,11 @@
 import CeramicsCatalog from '@/components/catalog/CeramicsCatalog';
-import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import MaisonChapuisHeader from '@/components/navigation/MaisonChapuisHeader';
 import ModernElegantFooter from '@/components/ModernElegantFooter';
 
 const CeramicsCatalogPage = () => {
   return (
     <div className="min-h-screen bg-white">
-      <MaisonStyleHeaderNew />
+      <MaisonChapuisHeader />
       <CeramicsCatalog />
       <ModernElegantFooter />
     </div>

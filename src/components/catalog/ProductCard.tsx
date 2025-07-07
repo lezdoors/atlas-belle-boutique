@@ -2,17 +2,18 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Product } from '@/types/product';
+import { useCart } from '@/contexts/CartContext';
 import { ShoppingCart, Eye } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
-  onAddToCart: (productId: string) => void;
   onQuickView: (product: Product) => void;
 }
 
-const ProductCard = ({ product, onAddToCart, onQuickView }: ProductCardProps) => {
+const ProductCard = ({ product, onQuickView }: ProductCardProps) => {
   const [imageError, setImageError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const { addToCart } = useCart();
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -100,7 +101,7 @@ const ProductCard = ({ product, onAddToCart, onQuickView }: ProductCardProps) =>
           </div>
           
           <Button
-            onClick={() => onAddToCart(product.id)}
+            onClick={() => addToCart(product)}
             disabled={!product.in_stock}
             className="bg-stone-900 text-white hover:bg-stone-800 transition-all duration-300 group-hover:scale-105"
             size="sm"

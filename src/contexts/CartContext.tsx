@@ -1,145 +1,361 @@
-
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useToast } from '@/hooks/use-toast';
-import { useLanguage } from '@/contexts/LanguageContext';
+import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
+import { Product } from '@/types/product';
 
 export interface CartItem {
-  id: number;
-  name: string;
-  priceMAD: number;
-  image: string;
+  id: string;
+  product_id: string;
+  product: Product;
   quantity: number;
-  variant?: string;
-  size?: string;
+  session_id: string;
 }
 
-interface CartContextType {
+interface CartState {
   items: CartItem[];
+  isLoading: boolean;
   totalItems: number;
-  totalPrice: number;
-  addToCart: (product: Omit<CartItem, 'quantity'>, quantity?: number) => void;
-  removeFromCart: (productId: number) => void;
-  updateQuantity: (productId: number, quantity: number) => void;
-  clearCart: () => void;
-  isCartOpen: boolean;
-  openCart: () => void;
-  closeCart: () => void;
+  subtotal: number;
+  tax: number;
+  shipping: number;
+  total: number;
+}
+
+type CartAction =
+  | { type: 'SET_LOADING'; payload: boolean }
+  | { type: 'SET_ITEMS'; payload: CartItem[] }
+  | { type: 'ADD_ITEM'; payload: CartItem }
+  | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
+  | { type: 'REMOVE_ITEM'; payload: string }
+  | { type: 'CLEAR_CART' };
+
+interface CartContextType extends CartState {
+  addToCart: (product: Product, quantity?: number) => Promise<void>;
+  updateQuantity: (id: string, quantity: number) => Promise<void>;
+  removeFromCart: (id: string) => Promise<void>;
+  clearCart: () => Promise<void>;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [items, setItems] = useState<CartItem[]>([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const { toast } = useToast();
-  const { language } = useLanguage();
+// Tax and shipping configuration
+const TAX_RATE = 0.08; // 8% US average
+const FREE_SHIPPING_THRESHOLD = 125;
+const STANDARD_SHIPPING = 12;
+const EXPRESS_SHIPPING = 25;
 
-  // Load cart from localStorage on mount
-  useEffect(() => {
-    const savedCart = localStorage.getItem('perle-atlas-cart');
-    if (savedCart) {
-      setItems(JSON.parse(savedCart));
-    }
-  }, []);
-
-  // Save cart to localStorage whenever items change
-  useEffect(() => {
-    localStorage.setItem('perle-atlas-cart', JSON.stringify(items));
-  }, [items]);
-
+function calculateCartTotals(items: CartItem[]) {
+  const subtotal = items.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+  const tax = subtotal * TAX_RATE;
+  const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : STANDARD_SHIPPING;
+  const total = subtotal + tax + shipping;
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce((sum, item) => sum + item.priceMAD * item.quantity, 0);
 
-  const addToCart = (product: Omit<CartItem, 'quantity'>, quantity = 1) => {
-    setItems(prev => {
-      const existingItem = prev.find(item => 
-        item.id === product.id && 
-        item.variant === product.variant && 
-        item.size === product.size
-      );
+  return { subtotal, tax, shipping, total, totalItems };
+}
 
+function cartReducer(state: CartState, action: CartAction): CartState {
+  switch (action.type) {
+    case 'SET_LOADING':
+      return { ...state, isLoading: action.payload };
+    
+    case 'SET_ITEMS': {
+      const totals = calculateCartTotals(action.payload);
+      return {
+        ...state,
+        items: action.payload,
+        ...totals
+      };
+    }
+    
+    case 'ADD_ITEM': {
+      const existingItem = state.items.find(item => item.product_id === action.payload.product_id);
+      let newItems;
+      
       if (existingItem) {
-        toast({
-          title: language === 'fr' ? 'Produit ajouté' : 'Product added',
-          description: language === 'fr' 
-            ? 'Quantité mise à jour dans le panier'
-            : 'Quantity updated in cart'
-        });
-        return prev.map(item =>
-          item.id === product.id && 
-          item.variant === product.variant && 
-          item.size === product.size
-            ? { ...item, quantity: item.quantity + quantity }
+        newItems = state.items.map(item =>
+          item.product_id === action.payload.product_id
+            ? { ...item, quantity: item.quantity + action.payload.quantity }
             : item
         );
       } else {
-        toast({
-          title: language === 'fr' ? 'Produit ajouté' : 'Product added',
-          description: language === 'fr' 
-            ? 'Produit ajouté au panier avec succès'
-            : 'Product added to cart successfully'
-        });
-        return [...prev, { ...product, quantity }];
+        newItems = [...state.items, action.payload];
       }
-    });
-  };
-
-  const removeFromCart = (productId: number) => {
-    setItems(prev => prev.filter(item => item.id !== productId));
-    toast({
-      title: language === 'fr' ? 'Produit retiré' : 'Product removed',
-      description: language === 'fr' 
-        ? 'Produit retiré du panier'
-        : 'Product removed from cart'
-    });
-  };
-
-  const updateQuantity = (productId: number, quantity: number) => {
-    if (quantity <= 0) {
-      removeFromCart(productId);
-      return;
+      
+      const totals = calculateCartTotals(newItems);
+      return {
+        ...state,
+        items: newItems,
+        ...totals
+      };
     }
+    
+    case 'UPDATE_QUANTITY': {
+      const newItems = state.items.map(item =>
+        item.id === action.payload.id
+          ? { ...item, quantity: action.payload.quantity }
+          : item
+      ).filter(item => item.quantity > 0);
+      
+      const totals = calculateCartTotals(newItems);
+      return {
+        ...state,
+        items: newItems,
+        ...totals
+      };
+    }
+    
+    case 'REMOVE_ITEM': {
+      const newItems = state.items.filter(item => item.id !== action.payload);
+      const totals = calculateCartTotals(newItems);
+      return {
+        ...state,
+        items: newItems,
+        ...totals
+      };
+    }
+    
+    case 'CLEAR_CART':
+      return {
+        ...state,
+        items: [],
+        totalItems: 0,
+        subtotal: 0,
+        tax: 0,
+        shipping: 0,
+        total: 0
+      };
+    
+    default:
+      return state;
+  }
+}
 
-    setItems(prev => prev.map(item =>
-      item.id === productId ? { ...item, quantity } : item
-    ));
+function generateSessionId(): string {
+  const stored = localStorage.getItem('cart_session_id');
+  if (stored) return stored;
+  
+  const newId = 'session_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+  localStorage.setItem('cart_session_id', newId);
+  return newId;
+}
+
+export function CartProvider({ children }: { children: ReactNode }) {
+  const [state, dispatch] = useReducer(cartReducer, {
+    items: [],
+    isLoading: false,
+    totalItems: 0,
+    subtotal: 0,
+    tax: 0,
+    shipping: 0,
+    total: 0
+  });
+
+  const sessionId = generateSessionId();
+
+  // Load cart from Supabase on mount
+  useEffect(() => {
+    loadCart();
+  }, []);
+
+  // Sync to localStorage whenever cart changes
+  useEffect(() => {
+    localStorage.setItem('cart_items', JSON.stringify(state.items));
+  }, [state.items]);
+
+  const loadCart = async () => {
+    try {
+      dispatch({ type: 'SET_LOADING', payload: true });
+
+      // First try to load from localStorage for immediate display
+      const localCart = localStorage.getItem('cart_items');
+      if (localCart) {
+        const items = JSON.parse(localCart);
+        if (items.length > 0) {
+          dispatch({ type: 'SET_ITEMS', payload: items });
+        }
+      }
+
+      // Then sync with Supabase
+      const { data: cartItems, error } = await supabase
+        .from('cart_items')
+        .select(`
+          id,
+          product_id,
+          quantity,
+          session_id,
+          products (
+            id,
+            name_fr,
+            name_en,
+            price,
+            images,
+            category,
+            in_stock
+          )
+        `)
+        .eq('session_id', sessionId);
+
+      if (error) throw error;
+
+      const formattedItems: CartItem[] = cartItems?.map(item => ({
+        id: item.id,
+        product_id: item.product_id,
+        product: item.products as any,
+        quantity: item.quantity,
+        session_id: item.session_id
+      })) || [];
+
+      dispatch({ type: 'SET_ITEMS', payload: formattedItems });
+
+    } catch (error) {
+      console.error('Error loading cart:', error);
+      toast.error('Erreur lors du chargement du panier');
+    } finally {
+      dispatch({ type: 'SET_LOADING', payload: false });
+    }
   };
 
-  const clearCart = () => {
-    setItems([]);
-    toast({
-      title: language === 'fr' ? 'Panier vidé' : 'Cart cleared',
-      description: language === 'fr' 
-        ? 'Tous les produits ont été retirés'
-        : 'All products have been removed'
-    });
+  const addToCart = async (product: Product, quantity = 1) => {
+    try {
+      if (!product.in_stock) {
+        toast.error('Produit non disponible');
+        return;
+      }
+
+      // Check if item already exists in Supabase
+      const { data: existingItem } = await supabase
+        .from('cart_items')
+        .select('*')
+        .eq('session_id', sessionId)
+        .eq('product_id', product.id)
+        .single();
+
+      if (existingItem) {
+        // Update existing item
+        const newQuantity = existingItem.quantity + quantity;
+        const { error } = await supabase
+          .from('cart_items')
+          .update({ quantity: newQuantity })
+          .eq('id', existingItem.id);
+
+        if (error) throw error;
+
+        dispatch({ 
+          type: 'UPDATE_QUANTITY', 
+          payload: { id: existingItem.id, quantity: newQuantity } 
+        });
+      } else {
+        // Add new item
+        const { data: newItem, error } = await supabase
+          .from('cart_items')
+          .insert({
+            session_id: sessionId,
+            product_id: product.id,
+            quantity
+          })
+          .select()
+          .single();
+
+        if (error) throw error;
+
+        const cartItem: CartItem = {
+          id: newItem.id,
+          product_id: product.id,
+          product,
+          quantity,
+          session_id: sessionId
+        };
+
+        dispatch({ type: 'ADD_ITEM', payload: cartItem });
+      }
+
+      toast.success(`${product.name_fr} ajouté au panier`, {
+        description: `Quantité: ${quantity}`,
+      });
+
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      toast.error('Erreur lors de l\'ajout au panier');
+    }
   };
 
-  const openCart = () => setIsCartOpen(true);
-  const closeCart = () => setIsCartOpen(false);
+  const updateQuantity = async (id: string, quantity: number) => {
+    try {
+      if (quantity <= 0) {
+        await removeFromCart(id);
+        return;
+      }
+
+      const { error } = await supabase
+        .from('cart_items')
+        .update({ quantity })
+        .eq('id', id);
+
+      if (error) throw error;
+
+      dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } });
+
+    } catch (error) {
+      console.error('Error updating quantity:', error);
+      toast.error('Erreur lors de la mise à jour');
+    }
+  };
+
+  const removeFromCart = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from('cart_items')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+
+      dispatch({ type: 'REMOVE_ITEM', payload: id });
+      toast.success('Produit retiré du panier');
+
+    } catch (error) {
+      console.error('Error removing from cart:', error);
+      toast.error('Erreur lors de la suppression');
+    }
+  };
+
+  const clearCart = async () => {
+    try {
+      const { error } = await supabase
+        .from('cart_items')
+        .delete()
+        .eq('session_id', sessionId);
+
+      if (error) throw error;
+
+      dispatch({ type: 'CLEAR_CART' });
+      localStorage.removeItem('cart_items');
+      toast.success('Panier vidé');
+
+    } catch (error) {
+      console.error('Error clearing cart:', error);
+      toast.error('Erreur lors de la suppression');
+    }
+  };
 
   return (
     <CartContext.Provider value={{
-      items,
-      totalItems,
-      totalPrice,
+      ...state,
       addToCart,
-      removeFromCart,
       updateQuantity,
-      clearCart,
-      isCartOpen,
-      openCart,
-      closeCart
+      removeFromCart,
+      clearCart
     }}>
       {children}
     </CartContext.Provider>
   );
-};
+}
 
-export const useCart = () => {
+export function useCart() {
   const context = useContext(CartContext);
   if (context === undefined) {
     throw new Error('useCart must be used within a CartProvider');
   }
   return context;
-};
+}

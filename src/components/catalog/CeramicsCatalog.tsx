@@ -7,16 +7,6 @@ import { Product } from '@/types/product';
 const CeramicsCatalog = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleAddToCart = (productId: string) => {
-    const product = ceramicsProducts.find(p => p.id === productId);
-    if (product) {
-      // Here you would typically call your cart API
-      toast.success(`${product.name_fr} ajouté au panier`, {
-        description: 'Continuez vos achats ou consultez votre panier',
-      });
-    }
-  };
-
   const handleQuickView = (product: Product) => {
     // Here you would typically open a modal with product details
     toast.info(`Aperçu rapide: ${product.name_fr}`, {
@@ -29,7 +19,6 @@ const CeramicsCatalog = () => {
       <ProductGrid
         products={ceramicsProducts}
         isLoading={isLoading}
-        onAddToCart={handleAddToCart}
         onQuickView={handleQuickView}
       />
     </div>
