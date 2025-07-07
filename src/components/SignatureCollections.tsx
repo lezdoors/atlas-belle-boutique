@@ -11,7 +11,7 @@ const SignatureCollections = () => {
       name: "Tagine Signature Chapuis",
       subtitle: "Handcrafted Serving Tagine",
       price: "$89",
-      image: '/lovable-uploads/297c8b0f-3221-45a3-8488-e8e023e07fcc.png',
+      image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//tagine3.jpg.webp',
       href: '/product/tagine-signature'
     },
     {
@@ -19,7 +19,7 @@ const SignatureCollections = () => {
       name: "Service à Thé Royal",
       subtitle: "Premium Tea Glass Collection",
       price: "$125",
-      image: '/lovable-uploads/4d22e63c-9766-4547-889d-0462b7de47e6.png',
+      image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//fakhar-glass-white1.JPG',
       href: '/product/service-the-royal'
     },
     {
@@ -27,7 +27,7 @@ const SignatureCollections = () => {
       name: "Bols Collection Moderne",
       subtitle: "Contemporary Ceramic Bowls",
       price: "$65",
-      image: '/lovable-uploads/78b2a27c-3352-460a-b4bb-78efaec79db3.png',
+      image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//ceramic-making.jpg',
       href: '/product/bols-collection'
     },
     {
@@ -35,7 +35,7 @@ const SignatureCollections = () => {
       name: "Céramiques d'Exception",
       subtitle: "Exclusive Artisan Pieces",
       price: "$150",
-      image: '/lovable-uploads/6d0913b6-03ca-40b5-9002-ea188762b64f.png',
+      image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//women%20making%20clay%20pots.jpg',
       href: '/product/ceramiques-exception'
     }
   ];

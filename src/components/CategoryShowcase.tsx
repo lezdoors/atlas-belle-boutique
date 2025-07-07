@@ -13,7 +13,7 @@ const categories = [
     id: 'verres',
     title: 'Verre Marocain',
     cta: 'Voir les verres',
-    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//beldi-glass-multicolor.JPG',
+    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//fakhar-glass-white1.JPG',
     link: '/boutique'
   },
   {

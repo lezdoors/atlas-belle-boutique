@@ -9,14 +9,14 @@ const FeaturedCollections = () => {
     {
       id: 'tajines',
       name: language === 'fr' ? 'Tajines Artisanaux' : 'Handcrafted Tajines',
-      image: '/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png',
+      image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//fakkhar-tajine-white.JPG',
       description: language === 'fr' ? 'L\'art culinaire marocain' : 'The art of Moroccan cuisine',
       link: '/product/tajine-artisanal'
     },
     {
       id: 'verre',
       name: language === 'fr' ? 'Verre Marocain' : 'Moroccan Glassware',
-      image: '/lovable-uploads/0e8aa0f1-02db-49c9-962e-3153840ac9ba.png',
+      image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//fakhar-glass-white1.JPG',
       description: language === 'fr' ? 'Élégance cristalline' : 'Crystal elegance',
       link: '/product/verre-marocain'
     },
