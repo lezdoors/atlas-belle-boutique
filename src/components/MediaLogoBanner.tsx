@@ -5,28 +5,34 @@ const MediaLogoBanner = () => {
 
   const mediaLogos = [
     { 
-      name: 'Vogue', 
-      ariaLabel: language === 'fr' ? 'Vu dans Vogue' : 'As seen in Vogue'
+      name: 'Artisan Vogue',
+      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//artisan-vogue-.png',
+      ariaLabel: language === 'fr' ? 'Vu dans Artisan Vogue' : 'As seen in Artisan Vogue'
     },
     { 
-      name: 'Forbes', 
-      ariaLabel: language === 'fr' ? 'Vu dans Forbes' : 'As seen in Forbes'
+      name: 'Forbes Morocco',
+      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//forbe-morocco.png.webp',
+      ariaLabel: language === 'fr' ? 'Vu dans Forbes Morocco' : 'As seen in Forbes Morocco'
     },
     { 
-      name: 'WSJ', 
-      ariaLabel: language === 'fr' ? 'Vu dans Wall Street Journal' : 'As seen in Wall Street Journal'
-    },
-    { 
-      name: 'epicurious', 
+      name: 'Epicurious',
+      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//epicurious-logo.png',
       ariaLabel: language === 'fr' ? 'Vu dans Epicurious' : 'As seen in Epicurious'
     },
     { 
-      name: 'FOOD&WINE', 
-      ariaLabel: language === 'fr' ? 'Vu dans Food & Wine' : 'As seen in Food & Wine'
+      name: 'Real Simple',
+      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//real-simple-logo.png',
+      ariaLabel: language === 'fr' ? 'Vu dans Real Simple' : 'As seen in Real Simple'
     },
     { 
-      name: 'REAL SIMPLE', 
-      ariaLabel: language === 'fr' ? 'Vu dans Real Simple' : 'As seen in Real Simple'
+      name: 'Wall Street Journal',
+      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//kisspng-the-wall-street-journal-newspaper-wsj-magazine-5afaba4c23f5b8.7339908015263811321473.jpg',
+      ariaLabel: language === 'fr' ? 'Vu dans Wall Street Journal' : 'As seen in Wall Street Journal'
+    },
+    { 
+      name: 'Morocco World News',
+      url: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Morocco_World_News_Logo.svg.png',
+      ariaLabel: language === 'fr' ? 'Vu dans Morocco World News' : 'As seen in Morocco World News'
     }
   ];
 
@@ -36,10 +42,13 @@ const MediaLogoBanner = () => {
         {/* Header Text */}
         <div className="text-center mb-12">
           <h3 className="text-2xl font-serif font-light text-stone-800 mb-4">
-            {language === 'fr' ? 'Ils Parlent de Nous' : 'They Talk About Us'}
+            {language === 'fr' ? 'Ils Parlent de Nous' : 'As Seen In'}
           </h3>
-          <p className="text-sm font-light text-stone-500 tracking-wide uppercase">
-            {language === 'fr' ? 'Vu dans les médias' : 'As seen in'}
+          <p className="text-sm font-light text-stone-600 max-w-2xl mx-auto">
+            {language === 'fr' 
+              ? 'Notre travail a été remarqué par des médias de renom à travers le monde.' 
+              : 'Our work has been featured in acclaimed media worldwide.'
+            }
           </p>
         </div>
 
@@ -48,7 +57,7 @@ const MediaLogoBanner = () => {
           {mediaLogos.map((logo, index) => (
             <div
               key={logo.name}
-              className="group flex items-center justify-center h-12 lg:h-16 transition-all duration-300 hover:scale-105 hover:opacity-70"
+              className="group flex items-center justify-center px-4 py-2 transition-all duration-300"
               style={{
                 animationDelay: `${index * 0.1}s`,
                 animationFillMode: 'forwards'
@@ -56,18 +65,12 @@ const MediaLogoBanner = () => {
               aria-label={logo.ariaLabel}
               role="img"
             >
-              <span 
-                className={`text-stone-700 font-light tracking-wide transition-all duration-300 group-hover:text-stone-900 ${
-                  logo.name === 'VOGUE' ? 'text-xl lg:text-2xl font-serif' :
-                  logo.name === 'Forbes' ? 'text-lg lg:text-xl font-serif' :
-                  logo.name === 'WSJ' ? 'text-base lg:text-lg font-bold tracking-wider' :
-                  logo.name === 'epicurious' ? 'text-lg lg:text-xl font-light italic' :
-                  logo.name === 'FOOD&WINE' ? 'text-sm lg:text-base font-bold tracking-wider' :
-                  'text-sm lg:text-base font-medium tracking-wide'
-                }`}
-              >
-                {logo.name}
-              </span>
+              <img
+                src={logo.url}
+                alt={logo.name}
+                className="max-h-10 w-auto filter grayscale transition-all duration-300 group-hover:filter-none"
+                loading="lazy"
+              />
             </div>
           ))}
         </div>
