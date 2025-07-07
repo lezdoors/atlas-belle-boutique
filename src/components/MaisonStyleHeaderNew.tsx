@@ -18,7 +18,7 @@ const TajineIcon = ({ className = "h-6 w-6" }: { className?: string }) => (
 const PerleAtlasLogo = ({ className = "h-8" }: { className?: string }) => (
   <img 
     src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Perle%20(Website)-4.png"
-    alt="Perle de l'Atlas"
+    alt="Maison Chapuis"
     className={className}
   />
 );

@@ -159,7 +159,7 @@ const ModernElegantFooter = () => {
             <div className="order-2 md:order-1">
               <img
                 src="https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//Perle%20(Website)-4.png"
-                alt="Perle de l'Atlas"
+                alt="Maison Chapuis"
                 className="h-8 w-auto opacity-60"
               />
             </div>

@@ -36,7 +36,7 @@ const AppleStyleFooter = () => {
                 </div>
               </div>
               <span className="text-lg font-extralight tracking-tight">
-                Perle de l'Atlas
+                Maison Chapuis
               </span>
             </div>
             <p className="text-white/70 font-light leading-relaxed max-w-md">
@@ -83,7 +83,7 @@ const AppleStyleFooter = () => {
             </h3>
             <div className="space-y-4">
               <p className="text-white/70 font-light">
-                support@atlasperle.com
+                contact@maisonchapuis.com
               </p>
               <div className="flex space-x-4">
                 <a href="#" className="text-white/70 hover:text-white transition-colors">
@@ -92,7 +92,7 @@ const AppleStyleFooter = () => {
                 <a href="#" className="text-white/70 hover:text-white transition-colors">
                   <Youtube className="h-5 w-5" />
                 </a>
-                <a href="mailto:support@atlasperle.com" className="text-white/70 hover:text-white transition-colors">
+                <a href="mailto:contact@maisonchapuis.com" className="text-white/70 hover:text-white transition-colors">
                   <Mail className="h-5 w-5" />
                 </a>
               </div>
@@ -121,7 +121,7 @@ const AppleStyleFooter = () => {
             <div className="flex items-center space-x-6">
               <LanguageDropdown />
               <p className="text-xs text-white/50">
-                © 2024 Perle de l'Atlas. {language === 'fr' ? 'Tous droits réservés' : 'All rights reserved'}.
+                © 2024 Maison Chapuis. {language === 'fr' ? 'Tous droits réservés' : 'All rights reserved'}.
               </p>
             </div>
           </div>
