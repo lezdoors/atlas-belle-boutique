@@ -29,42 +29,38 @@ const AuthenticiteGarantie = () => {
   ];
 
   return (
-    <section className="w-full bg-stone-800 py-12 lg:py-16">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="w-full bg-stone-800 py-8 sm:py-12 lg:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-white/90 text-sm font-medium tracking-[0.2em] uppercase mb-3">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-white/90 text-xs sm:text-sm font-medium tracking-[0.2em] uppercase mb-3">
             {language === 'fr' ? 'Authenticité Garantie' : 'Authenticity Guaranteed'}
           </h2>
-          <p className="text-white/70 text-sm font-light max-w-2xl mx-auto">
+          <p className="text-white/70 text-sm sm:text-base font-light max-w-2xl mx-auto leading-relaxed px-4">
             {language === 'fr' ? 'Un engagement envers l\'artisanat authentique' : 'A commitment to authentic craftsmanship'}
           </p>
         </div>
 
         {/* Guarantees Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-start max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 items-start max-w-5xl mx-auto">
           {guarantees.map((guarantee, index) => (
             <div
               key={index}
-              className="group relative flex flex-col items-center text-center transition-all duration-300 hover:scale-105"
-              style={{
-                animationDelay: `${index * 0.2}s`,
-                animationFillMode: 'forwards'
-              }}
+              className="group relative flex flex-col items-center text-center transition-all duration-300 hover:scale-105 px-4"
             >
               {/* Icon */}
-              <div className="relative mb-6">
-                <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-colors duration-300">
-                  <guarantee.icon className="h-8 w-8 text-white/90 group-hover:text-white transition-colors duration-300" />
+              <div className="relative mb-4 sm:mb-6">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-colors duration-300">
+                  <guarantee.icon className="h-6 w-6 sm:h-8 sm:w-8 text-white/90 group-hover:text-white transition-colors duration-300" />
                 </div>
               </div>
 
               {/* Content */}
               <div className="text-white/80 group-hover:text-white transition-colors duration-300">
-                <h3 className="font-medium text-lg tracking-wide mb-3">
+                <h3 className="font-medium text-base sm:text-lg tracking-wide mb-2 sm:mb-3">
                   {language === 'fr' ? guarantee.titleFr : guarantee.titleEn}
                 </h3>
-                <p className="text-sm font-light text-white/60 group-hover:text-white/80 transition-colors duration-300 leading-relaxed">
+                <p className="text-xs sm:text-sm font-light text-white/60 group-hover:text-white/80 transition-colors duration-300 leading-relaxed">
                   {language === 'fr' ? guarantee.descriptionFr : guarantee.descriptionEn}
                 </p>
               </div>
@@ -73,8 +69,8 @@ const AuthenticiteGarantie = () => {
         </div>
 
         {/* Bottom decorative line */}
-        <div className="flex justify-center mt-8">
-          <div className="w-32 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+        <div className="flex justify-center mt-6 sm:mt-8">
+          <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
         </div>
       </div>
     </section>

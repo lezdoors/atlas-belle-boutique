@@ -30,13 +30,13 @@ const AppleStyleHero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center w-full px-6 lg:px-12 py-40 lg:py-48">
+      <div className="relative z-10 text-center w-full px-4 sm:px-6 lg:px-12 py-20 sm:py-32 lg:py-48">
         <div className="w-full max-w-5xl mx-auto">
 
-        {/* Brand Name - Luxury Typography */}
-        <h1 className="font-serif font-light text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-foreground mb-8 animate-fade-in opacity-0 tracking-[0.02em]" 
+        {/* Brand Name - Mobile Optimized Typography */}
+        <h1 className="font-serif font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-foreground mb-6 sm:mb-8 animate-fade-in opacity-0 tracking-tight sm:tracking-[0.02em]" 
             style={{ 
-              lineHeight: '0.9', 
+              lineHeight: '1.1', 
               animationDelay: '0.2s', 
               animationFillMode: 'forwards',
               fontFamily: 'var(--font-display)'
@@ -45,74 +45,77 @@ const AppleStyleHero = () => {
         </h1>
         
         {/* Elegant Divider */}
-        <div className="w-24 h-px bg-stone-300 mx-auto mb-8 animate-fade-in opacity-0" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}></div>
+        <div className="w-16 sm:w-24 h-px bg-stone-300 mx-auto mb-6 sm:mb-8 animate-fade-in opacity-0" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}></div>
         
-        {/* Subheading - Refined Typography */}
-        <h2 className="font-serif font-light text-xl md:text-2xl lg:text-3xl text-stone-600 mb-12 animate-fade-in opacity-0 leading-relaxed tracking-wide max-w-4xl mx-auto" 
+        {/* Subheading - Mobile Optimized */}
+        <h2 className="font-serif font-light text-lg sm:text-xl md:text-2xl lg:text-3xl text-stone-700 mb-8 sm:mb-12 animate-fade-in opacity-0 leading-relaxed tracking-wide max-w-4xl mx-auto" 
             style={{ 
               animationDelay: '0.4s', 
               animationFillMode: 'forwards',
               lineHeight: '1.4'
             }}>
-          L'Art de Vivre Français<br />
-          <span className="text-stone-500 text-lg md:text-xl lg:text-2xl">Meets Moroccan Tradition</span>
+          <span className="block sm:inline">L'Art de Vivre Français</span>
+          <br className="block sm:hidden" />
+          <span className="text-stone-500 text-base sm:text-lg md:text-xl lg:text-2xl block sm:inline mt-2 sm:mt-0">Meets Moroccan Tradition</span>
         </h2>
         
-        {/* Description - Enhanced Spacing */}
-        <p className="font-light text-lg md:text-xl mb-16 animate-fade-in opacity-0 text-stone-500 leading-relaxed max-w-3xl mx-auto" 
+        {/* Description - Simplified for Mobile */}
+        <p className="font-light text-base sm:text-lg md:text-xl mb-10 sm:mb-16 animate-fade-in opacity-0 text-stone-600 leading-relaxed max-w-2xl mx-auto px-2" 
            style={{ 
              animationDelay: '0.5s', 
              animationFillMode: 'forwards',
              letterSpacing: '0.01em'
            }}>
-          Handcrafted ceramics and traditional tagines, curated with French sophistication for discerning American homes
+          Artisan ceramics and tagines, curated with French elegance
         </p>
 
-        {/* Luxury Buttons */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20 animate-fade-in opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+        {/* Simplified Buttons for Mobile */}
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12 sm:mb-20 animate-fade-in opacity-0 px-4" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
           <Button
             size="lg"
-            className="bg-stone-900 text-white hover:bg-stone-800 px-16 py-6 text-lg font-light tracking-[0.05em] transition-all duration-500 rounded-none border-none shadow-none hover:shadow-lg hover:shadow-stone-900/20"
+            className="bg-stone-900 text-white hover:bg-stone-800 px-8 sm:px-12 py-4 sm:py-6 text-base sm:text-lg font-light tracking-wide transition-all duration-500 rounded-sm border-none shadow-none hover:shadow-lg hover:shadow-stone-900/20 w-full sm:w-auto"
             asChild
           >
             <Link to="/categories/ceramiques">
-              Shop Ceramics
+              {language === 'fr' ? 'Découvrir' : 'Shop Now'}
             </Link>
           </Button>
           <Button
             size="lg"
             variant="outline"
-            className="border-2 border-stone-300 text-stone-700 hover:bg-stone-50 hover:border-stone-400 px-16 py-6 text-lg font-light tracking-[0.05em] transition-all duration-500 rounded-none shadow-none hover:shadow-lg hover:shadow-stone-200/50"
+            className="border-2 border-stone-300 text-stone-700 hover:bg-stone-50 hover:border-stone-400 px-8 sm:px-12 py-4 sm:py-6 text-base sm:text-lg font-light tracking-wide transition-all duration-500 rounded-sm shadow-none hover:shadow-lg hover:shadow-stone-200/50 w-full sm:w-auto"
             asChild
           >
             <Link to="/collections">
-              View Collection
+              {language === 'fr' ? 'Collections' : 'View Collection'}
             </Link>
           </Button>
         </div>
 
-        {/* Refined Feature Badges */}
-        <div className="flex flex-wrap justify-center gap-12 mb-24 fade-in-up">
-          <div className="flex items-center gap-4">
-            <div className="w-2 h-2 bg-stone-300 rounded-full"></div>
-            <span className="text-base text-stone-500 font-light tracking-wide">Handcrafted in Morocco</span>
+        {/* Simplified Feature Badges - Mobile Optimized */}
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-4 sm:gap-8 mb-16 sm:mb-24 fade-in-up px-4">
+          <div className="flex items-center gap-2 sm:gap-3 text-center sm:text-left">
+            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-stone-400 rounded-full flex-shrink-0"></div>
+            <span className="text-xs sm:text-sm text-stone-600 font-light">Handcrafted</span>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="w-2 h-2 bg-stone-300 rounded-full"></div>
-            <span className="text-base text-stone-500 font-light tracking-wide">Traditional Techniques</span>
+          <div className="flex items-center gap-2 sm:gap-3 text-center sm:text-left">
+            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-stone-400 rounded-full flex-shrink-0"></div>
+            <span className="text-xs sm:text-sm text-stone-600 font-light">Authentic</span>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="w-2 h-2 bg-stone-300 rounded-full"></div>
-            <span className="text-base text-stone-500 font-light tracking-wide">Free US Shipping</span>
+          <div className="flex items-center gap-2 sm:gap-3 text-center sm:text-left">
+            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-stone-400 rounded-full flex-shrink-0"></div>
+            <span className="text-xs sm:text-sm text-stone-600 font-light">Free Shipping</span>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="w-2 h-2 bg-stone-300 rounded-full"></div>
-            <span className="text-base text-stone-500 font-light tracking-wide">Artisan Direct</span>
+          <div className="flex items-center gap-2 sm:gap-3 text-center sm:text-left">
+            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-stone-400 rounded-full flex-shrink-0"></div>
+            <span className="text-xs sm:text-sm text-stone-600 font-light">Artisan Direct</span>
           </div>
         </div>
 
-        {/* Product Showcase Carousel */}
-        <ProductCarousel />
+        {/* Product Showcase Carousel - Hidden on small mobile */}
+        <div className="hidden sm:block">
+          <ProductCarousel />
+        </div>
         </div>
       </div>
 

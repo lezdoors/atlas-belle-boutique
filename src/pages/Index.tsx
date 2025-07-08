@@ -79,21 +79,27 @@ const Index = () => {
       {/* Main Header */}
       <MaisonStyleHeaderNew />
       
-      <div className="pt-32 w-full">
+      <div className="pt-20 sm:pt-32 w-full">
         {/* Full-width Hero Section */}
         <div className="w-full">
           <AppleStyleHero />
         </div>
         
-        {/* Media Logo Banner - Removed as requested */}
-        
         {/* Authenticité Garantie Banner */}
         <AuthenticiteGarantie />
         
-        {/* Clean Newsletter + Collection Preview Section */}
-        <section id="banniere-infos" className="w-full bg-white py-16">
-          <div className="w-full px-6 lg:px-12 xl:px-16">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Category Showcase Section - Priority Content */}
+        <div id="categories" className="scroll-smooth">
+          <CategoryShowcase />
+        </div>
+        
+        {/* Signature Collections */}
+        <SignatureCollections />
+        
+        {/* Newsletter + Collection Preview Section */}
+        <section id="banniere-infos" className="w-full bg-stone-50 py-12 sm:py-16">
+          <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Newsletter Section */}
               <div>
                 <NewsletterTopBanner />
@@ -107,30 +113,16 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Art de Vivre Section */}
-        <ArtDeVivreSection />
-
-        {/* Category Showcase Section */}
-        <div id="categories" className="scroll-smooth">
-          <CategoryShowcase />
-        </div>
-        
-        {/* Signature Collections */}
-        <SignatureCollections />
-        
-        {/* Trust & Authority */}
-        <TrustBadges />
-        
-        {/* Notre Savoir-Faire */}
+        {/* Notre Savoir-Faire - Core Value Proposition */}
         <NotreSavoirFaire />
         
         {/* Customer Testimonials */}
         <CeramicTestimonials />
         
-        <FeaturedCollections />
-        <SpecialOffers />
-        <WrappedWithCare />
-        <AppleStyleAbout />
+        {/* Trust & Authority - Essential for conversion */}
+        <TrustBadges />
+        
+        {/* Footer */}
         <ModernElegantFooter />
         <SamraRefactoredChatbot videoEnded={videoEnded} />
         

@@ -48,15 +48,15 @@ const categories = [
 
 const CategoryShowcase = () => {
   return (
-    <section className="w-full py-12 md:py-20 bg-stone-50">
+    <section className="w-full py-8 sm:py-12 md:py-20 bg-stone-50">
       <div className="w-full">
         {/* Section Header */}
-        <div className="container-refined mb-8 md:mb-12">
-          <h2 className="heading-display text-3xl md:text-4xl lg:text-5xl text-center text-stone-800 mb-4">
+        <div className="container-refined mb-6 sm:mb-8 md:mb-12">
+          <h2 className="heading-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center text-stone-800 mb-3 sm:mb-4 leading-tight">
             Nos Collections
           </h2>
-          <p className="body-text text-center text-stone-600 max-w-2xl mx-auto">
-            Découvrez l'artisanat marocain authentique à travers nos collections soigneusement sélectionnées
+          <p className="body-text text-center text-stone-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed px-4">
+            Découvrez l'artisanat marocain authentique
           </p>
         </div>
 
@@ -120,17 +120,17 @@ const CategoryBlock = ({ category }: { category: typeof categories[0] }) => {
       </div>
 
       {/* Content */}
-      <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 lg:p-10">
+      <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 md:p-8 lg:p-10">
         <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-          <h3 className="heading-display text-white text-xl md:text-2xl lg:text-3xl mb-3 md:mb-4">
+          <h3 className="heading-display text-white text-lg sm:text-xl md:text-2xl lg:text-3xl mb-2 sm:mb-3 md:mb-4 leading-tight">
             {category.title}
           </h3>
           
           <div className="flex items-center text-white/90 group-hover:text-white transition-colors duration-300">
-            <span className="body-text text-sm md:text-base font-medium">
+            <span className="body-text text-xs sm:text-sm md:text-base font-medium">
               {category.cta}
             </span>
-            <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 transform group-hover:translate-x-1 transition-transform duration-300" />
+            <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 transform group-hover:translate-x-1 transition-transform duration-300" />
           </div>
         </div>
 
