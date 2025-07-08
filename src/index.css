@@ -21,10 +21,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Maison Louis Marie-inspired design system */
+/* Maison Chapuis-inspired design system */
 @layer base {
   :root {
-    /* Neutral color palette - Maison Louis Marie style */
+    /* Neutral color palette - Maison Chapuis style */
     --background: 0 0% 100%;
     --foreground: 0 0% 15%;
     --card: 0 0% 98%;
@@ -147,7 +147,7 @@
   }
 }
 
-/* Maison Louis Marie-inspired utilities */
+/* Maison Chapuis-inspired utilities */
 @layer utilities {
   .text-balance {
     text-wrap: balance;

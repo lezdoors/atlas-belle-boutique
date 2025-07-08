@@ -87,8 +87,8 @@ const CartDrawer = () => {
                 </h4>
                 <p className="text-sm text-stone-600 leading-relaxed mb-4">
                   {language === 'fr' 
-                    ? 'Rejoignez notre communauté d\'amateurs d\'artisanat authentique et découvrez les secrets de beauté transmis depuis des générations dans l\'Atlas marocain.'
-                    : 'Join our community of authentic craft enthusiasts and discover the beauty secrets passed down for generations in the Moroccan Atlas.'
+                    ? 'Rejoignez notre communauté d\'amateurs d\'artisanat authentique et découvrez les traditions céramiques transmises depuis des générations dans l\'Atlas marocain.'
+                    : 'Join our community of authentic craft enthusiasts and discover the ceramic traditions passed down for generations in the Moroccan Atlas.'
                   }
                 </p>
                 <Link 

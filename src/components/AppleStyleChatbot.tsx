@@ -30,7 +30,7 @@ const AppleStyleChatbot = () => {
           <div className="p-6 border-b border-black/5">
             <h3 className="text-lg font-light text-black">Samra</h3>
             <p className="text-sm font-light text-black/60">
-              {language === 'fr' ? 'Conseillère beauté' : 'Beauty consultant'}
+              {language === 'fr' ? 'Conseillère artisanat' : 'Craft consultant'}
             </p>
           </div>
 

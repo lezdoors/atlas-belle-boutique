@@ -130,8 +130,8 @@ const EnhancedNewsletterModal = ({
       toast({
         title: language === 'fr' ? 'Inscription réussie !' : 'Successfully subscribed!',
         description: language === 'fr' 
-          ? 'Bienvenue dans la famille Perle d\'Atlas. Vous recevrez bientôt nos secrets de beauté.'
-          : 'Welcome to the Perle d\'Atlas family. You will soon receive our beauty secrets.'
+          ? 'Bienvenue dans la famille Perle d\'Atlas. Vous recevrez bientôt nos traditions artisanales.'
+          : 'Welcome to the Perle d\'Atlas family. You will soon receive our artisan traditions.'
       });
 
       // Mark modal as shown for this session
@@ -181,8 +181,8 @@ const EnhancedNewsletterModal = ({
               </h2>
               <p className="text-pearl-100 text-sm opacity-90">
                 {language === 'fr' 
-                  ? 'Découvrez nos rituels de beauté ancestraux et nos nouveautés exclusives'
-                  : 'Discover our ancestral beauty rituals and exclusive new products'
+                  ? 'Découvrez nos traditions céramiques ancestrales et nos nouveautés exclusives'
+                  : 'Discover our ancestral ceramic traditions and exclusive new products'
                 }
               </p>
             </div>
@@ -243,8 +243,8 @@ const EnhancedNewsletterModal = ({
                   
                   <p className="text-xs text-clay-600 text-center leading-relaxed">
                     {language === 'fr' 
-                      ? 'Rejoignez plus de 10,000 passionnés de beauté naturelle. Recevez nos conseils exclusifs, découvertes saisonnières et offres privilégiées.'
-                      : 'Join over 10,000 natural beauty enthusiasts. Receive our exclusive tips, seasonal discoveries and special offers.'
+                    ? 'Rejoignez plus de 10,000 passionnés d\'artisanat authentique. Recevez nos conseils exclusifs, découvertes saisonnières et offres privilégiées.'
+                      : 'Join over 10,000 authentic craft enthusiasts. Receive our exclusive tips, seasonal discoveries and special offers.'
                     }
                   </p>
                 </div>
@@ -283,8 +283,8 @@ const EnhancedNewsletterModal = ({
                   </h3>
                   <p className="text-clay-600">
                     {language === 'fr' 
-                      ? 'Vous recevrez bientôt votre premier guide des rituels de beauté marocains.'
-                      : 'You will soon receive your first guide to Moroccan beauty rituals.'
+                      ? 'Vous recevrez bientôt votre premier guide des traditions céramiques marocaines.'
+                      : 'You will soon receive your first guide to Moroccan ceramic traditions.'
                     }
                   </p>
                 </div>

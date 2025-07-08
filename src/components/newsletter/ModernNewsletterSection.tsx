@@ -124,7 +124,7 @@ const ModernNewsletterSection = () => {
 
             {/* Title */}
             <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-6 tracking-tight">
-              {language === 'fr' ? 'Recevez nos secrets de beauté et d\'artisanat' : 'Receive our beauty and craftsmanship secrets'}
+              {language === 'fr' ? 'Recevez nos traditions céramiques et d\'artisanat' : 'Receive our ceramic and craftsmanship traditions'}
             </h2>
 
             {/* Subtitle */}
@@ -178,8 +178,8 @@ const ModernNewsletterSection = () => {
                   </div>
                   <p className="text-green-800 font-medium text-lg">
                     {language === 'fr' 
-                      ? '🌿 Merci ! Vous avez été ajouté à notre newsletter. Restez à l\'écoute pour nos secrets de beauté !'
-                      : '🌿 Thank you! You\'ve been added to our newsletter. Stay tuned for our beauty secrets!'
+                      ? '🌿 Merci ! Vous avez été ajouté à notre newsletter. Restez à l\'écoute pour nos traditions artisanales !'
+                      : '🌿 Thank you! You\'ve been added to our newsletter. Stay tuned for our artisan traditions!'
                     }
                   </p>
                 </div>

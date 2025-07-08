@@ -34,8 +34,8 @@ const FourSeasons = () => {
           </h2>
           <p className="elegant-text text-xl text-clay-600 max-w-3xl mx-auto">
             {language === 'fr' 
-              ? 'Chaque saison révèle ses propres secrets de beauté, inspirés des cycles naturels du Maroc'
-              : 'Each season reveals its own beauty secrets, inspired by the natural cycles of Morocco'
+              ? 'Chaque saison révèle ses propres techniques artisanales, inspirées des cycles naturels du Maroc'
+              : 'Each season reveals its own artisan techniques, inspired by the natural cycles of Morocco'
             }
           </p>
         </div>

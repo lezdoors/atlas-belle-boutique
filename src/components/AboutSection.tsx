@@ -80,8 +80,8 @@ const AboutSection = () => {
               
               <p className="elegant-text text-clay-600 text-lg leading-relaxed">
                 {language === 'fr'
-                  ? 'Née au cœur des montagnes de l\'Atlas, notre marque puise dans la richesse des traditions marocaines pour créer des produits de beauté d\'exception. Chaque création raconte l\'histoire millénaire des femmes berbères et de leurs secrets de beauté transmis de génération en génération.'
-                  : 'Born in the heart of the Atlas Mountains, our brand draws from the richness of Moroccan traditions to create exceptional beauty products. Each creation tells the millennial story of Berber women and their beauty secrets passed down through generations.'
+                  ? 'Née au cœur des montagnes de l\'Atlas, notre marque puise dans la richesse des traditions marocaines pour créer des céramiques et de la vaisselle d\'exception. Chaque création raconte l\'histoire millénaire des artisans berbères et de leurs savoir-faire transmis de génération en génération.'
+                  : 'Born in the heart of the Atlas Mountains, our brand draws from the richness of Moroccan traditions to create exceptional ceramics and tableware. Each creation tells the millennial story of Berber artisans and their craftsmanship passed down through generations.'
                 }
               </p>
             </div>

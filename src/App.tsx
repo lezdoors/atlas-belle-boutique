@@ -11,6 +11,8 @@ import { useAuth } from "@/hooks/useAuth";
 import SecurityConfig from "@/components/security/SecurityConfig";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
 import CartDrawer from "@/components/CartDrawer";
+import PerformanceOptimizer from "@/components/PerformanceOptimizer";
+import ErrorBoundary from "@/components/security/ErrorBoundary";
 import { Analytics } from "@vercel/analytics/react";
 import EnhancedAppleStyleIndex from "./pages/EnhancedAppleStyleIndex";
 import Index from "./pages/Index";
@@ -194,13 +196,16 @@ const AppRoutes = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <SecurityConfig />
-      <Toaster />
-      <Sonner />
-      <AppRoutes />
-      <CartDrawer />
-      <CookieConsentBanner />
-      <Analytics />
+      <ErrorBoundary>
+        <SecurityConfig />
+        <PerformanceOptimizer />
+        <Toaster />
+        <Sonner />
+        <AppRoutes />
+        <CartDrawer />
+        <CookieConsentBanner />
+        <Analytics />
+      </ErrorBoundary>
     </TooltipProvider>
   </QueryClientProvider>
 );
