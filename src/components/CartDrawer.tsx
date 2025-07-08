@@ -135,7 +135,7 @@ const CartDrawer = () => {
               <div className="mt-auto pt-8">
                 <div className="text-center">
                   <div className="font-script text-2xl text-stone-600 mb-2" style={{ fontFamily: 'Dancing Script, cursive' }}>
-                    Perle d'Atlas
+                    Maison Chapuis
                   </div>
                   <p className="text-xs text-stone-500 uppercase tracking-wider">
                     {language === 'fr' ? 'Artisanat Authentique' : 'Authentic Craftsmanship'}

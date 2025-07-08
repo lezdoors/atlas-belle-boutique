@@ -19,9 +19,10 @@ import StickyTopBanner from '@/components/StickyTopBanner';
 import AppleCountdownBanner from '@/components/AppleCountdownBanner';
 import CategoryShowcase from '@/components/CategoryShowcase';
 import MediaLogoBanner from '@/components/MediaLogoBanner';
-import CertificationBanner from '@/components/CertificationBanner';
+import AuthenticiteGarantie from '@/components/AuthenticiteGarantie';
 import TrustBadges from '@/components/trust/TrustBadges';
-import PremiumPositioningSection from '@/components/product/PremiumPositioningSection';
+import NotreSavoirFaire from '@/components/NotreSavoirFaire';
+import CollectionPreview from '@/components/CollectionPreview';
 import CeramicTestimonials from '@/components/testimonials/CeramicTestimonials';
 import MobileBottomNav from '@/components/mobile/MobileBottomNav';
 import SEOHead from '@/components/SEOHead';
@@ -84,13 +85,12 @@ const Index = () => {
           <AppleStyleHero />
         </div>
         
-        {/* Media Logo Banner */}
-        <MediaLogoBanner />
+        {/* Media Logo Banner - Removed as requested */}
         
-        {/* Certification Banner */}
-        <CertificationBanner />
+        {/* Authenticité Garantie Banner */}
+        <AuthenticiteGarantie />
         
-        {/* Clean Newsletter + Countdown Section */}
+        {/* Clean Newsletter + Collection Preview Section */}
         <section id="banniere-infos" className="w-full bg-white py-16">
           <div className="w-full px-6 lg:px-12 xl:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -99,9 +99,9 @@ const Index = () => {
                 <NewsletterTopBanner />
               </div>
               
-              {/* Countdown Section */}
+              {/* Collection Preview Section */}
               <div>
-                <CountdownBanner />
+                <CollectionPreview />
               </div>
             </div>
           </div>
@@ -121,8 +121,8 @@ const Index = () => {
         {/* Trust & Authority */}
         <TrustBadges />
         
-        {/* Premium Positioning */}
-        <PremiumPositioningSection />
+        {/* Notre Savoir-Faire */}
+        <NotreSavoirFaire />
         
         {/* Customer Testimonials */}
         <CeramicTestimonials />

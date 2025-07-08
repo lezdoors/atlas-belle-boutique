@@ -45,12 +45,8 @@ const TestimonialCard = ({ testimonial, index = 0 }: TestimonialCardProps) => {
 
         {/* Customer Info */}
         <div className="flex items-center">
-          <div className="w-14 h-14 rounded-full overflow-hidden luxury-shadow mr-4 group-hover:scale-105 transition-transform duration-300">
-            <img 
-              src={testimonial.image} 
-              alt={testimonial.name}
-              className="w-full h-full object-cover"
-            />
+          <div className="w-14 h-14 rounded-full mr-4 group-hover:scale-105 transition-transform duration-300 flex items-center justify-center text-white font-medium text-lg copper-gradient">
+            {testimonial.name.split(' ').map(word => word[0]).join('').toUpperCase()}
           </div>
           <div>
             <h4 className="font-display font-semibold text-clay-800 mb-1 text-lg">

@@ -55,7 +55,7 @@ const ContactPage = () => {
   };
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = '+33663068980';
+    const phoneNumber = '+33142365478';
     const message = encodeURIComponent('Bonjour! Je souhaite obtenir plus d\'informations sur vos produits Perle d\'Atlas.');
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
@@ -227,7 +227,7 @@ const ContactPage = () => {
                           <h4 className="font-serif font-medium text-clay-800 mb-1">
                             {language === 'fr' ? 'Téléphone' : 'Phone'}
                           </h4>
-                          <p className="text-clay-600">+33 6 63 06 89 80</p>
+                          <p className="text-clay-600">+33 1 42 36 54 78</p>
                         </div>
                       </div>
 

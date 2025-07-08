@@ -85,7 +85,7 @@ const SEOOptimizer = ({
           },
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+33-6-63-06-89-80",
+            "telephone": "+33-1-42-36-54-78",
             "contactType": "customer service",
             "availableLanguage": ["fr", "en"]
           },

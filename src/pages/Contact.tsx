@@ -11,7 +11,7 @@ const Contact = () => {
   const { language } = useLanguage();
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = '+33663068980';
+    const phoneNumber = '+33142365478';
     const message = encodeURIComponent('Bonjour! Je souhaite obtenir plus d\'informations sur vos produits Perle d\'Atlas.');
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
@@ -22,7 +22,7 @@ const Contact = () => {
       icon: <MessageCircle className="h-6 w-6" />,
       title: 'WhatsApp',
       description: language === 'fr' ? 'Réponse rapide' : 'Quick response',
-      contact: '+33 6 63 06 89 80',
+      contact: '+33 1 42 36 54 78',
       action: handleWhatsAppClick,
       primary: true
     },
@@ -37,8 +37,8 @@ const Contact = () => {
       icon: <Phone className="h-6 w-6" />,
       title: language === 'fr' ? 'Téléphone' : 'Phone',
       description: language === 'fr' ? 'Consultation personnalisée' : 'Personal consultation',
-      contact: '+33 6 63 06 89 80',
-      action: () => window.location.href = 'tel:+33663068980'
+      contact: '+33 1 42 36 54 78',
+      action: () => window.location.href = 'tel:+33142365478'
     }
   ];
 
