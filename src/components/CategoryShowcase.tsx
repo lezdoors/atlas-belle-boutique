@@ -6,7 +6,7 @@ const categories = [
     id: 'tajines',
     title: 'Tajines Artisanaux',
     cta: 'Voir les ustensiles',
-    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//fakkhar-tajine-white.JPG',
+    image: 'https://yiqvfmspqdrdlaqedlfv.supabase.co/storage/v1/object/public/media//tagine-glassy_4.jpg.webp',
     link: '/boutique'
   },
   {
