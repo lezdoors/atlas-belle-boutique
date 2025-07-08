@@ -1,0 +1,2 @@
+-- Create send_newsletter_welcome_email edge function for SMTP emails
+-- This will be implemented as an edge function with the SMTP configuration
