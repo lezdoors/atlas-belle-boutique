@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getProducts } from './productData';
 import ProductCarouselCard from './ProductCarouselCard';
+import EnhancedMobileCarousel from '@/components/mobile/EnhancedMobileCarousel';
 
 const ProductCarousel = () => {
   const { language } = useLanguage();
@@ -46,21 +47,21 @@ const ProductCarousel = () => {
     <div className="relative w-full max-w-6xl mx-auto">
       {/* Carousel Container */}
       <div className="relative overflow-hidden rounded-2xl bg-black/20 backdrop-blur-sm border border-white/10 p-6">
-        {/* Navigation Arrows */}
+        {/* Enhanced Navigation Arrows - Larger touch targets for mobile */}
         <button
           onClick={prevSlide}
-          className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-3 md:p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 hover:scale-110 touch-target min-h-[48px] min-w-[48px] md:min-h-[40px] md:min-w-[40px]"
           aria-label={language === 'fr' ? 'Produit précédent' : 'Previous product'}
         >
-          <ChevronLeft className="w-6 h-6 text-white" />
+          <ChevronLeft className="w-6 h-6 md:w-5 md:h-5 text-white" />
         </button>
         
         <button
           onClick={nextSlide}
-          className="absolute right-2 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 hover:scale-110"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-20 p-3 md:p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 hover:scale-110 touch-target min-h-[48px] min-w-[48px] md:min-h-[40px] md:min-w-[40px]"
           aria-label={language === 'fr' ? 'Produit suivant' : 'Next product'}
         >
-          <ChevronRight className="w-6 h-6 text-white" />
+          <ChevronRight className="w-6 h-6 md:w-5 md:h-5 text-white" />
         </button>
 
         {/* Products Grid */}
@@ -70,19 +71,25 @@ const ProductCarousel = () => {
           ))}
         </div>
 
-        {/* Dots Indicator */}
-        <div className="flex justify-center mt-6 space-x-2">
+        {/* Enhanced Dots Indicator - Larger touch targets */}
+        <div className="flex justify-center mt-6 space-x-3 md:space-x-2">
           {products.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              className={`rounded-full transition-all duration-300 touch-target min-h-[44px] min-w-[44px] md:min-h-[32px] md:min-w-[32px] flex items-center justify-center ${
                 index === currentIndex 
-                  ? 'bg-white w-6' 
-                  : 'bg-white/40 hover:bg-white/60'
+                  ? 'bg-white/20 backdrop-blur-sm' 
+                  : 'bg-white/10 hover:bg-white/15 backdrop-blur-sm'
               }`}
               aria-label={`${language === 'fr' ? 'Aller au produit' : 'Go to product'} ${index + 1}`}
-            />
+            >
+              <div className={`rounded-full transition-all duration-300 ${
+                index === currentIndex 
+                  ? 'bg-white w-6 h-3 md:w-4 md:h-2' 
+                  : 'bg-white/60 hover:bg-white/80 w-3 h-3 md:w-2 md:h-2'
+              }`} />
+            </button>
           ))}
         </div>
       </div>

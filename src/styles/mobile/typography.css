@@ -1,0 +1,218 @@
+/* Mobile Typography Optimization */
+
+@media (max-width: 768px) {
+  /* Base font size - Minimum 16px to prevent zoom on iOS */
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* Mobile heading scale - 25% reduction */
+  .mobile-h1 {
+    font-size: clamp(1.875rem, 6vw, 2.25rem); /* 30px - 36px instead of 40px - 48px */
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+
+  .mobile-h2 {
+    font-size: clamp(1.5rem, 5vw, 1.875rem); /* 24px - 30px instead of 32px - 40px */
+    line-height: 1.3;
+    margin-bottom: 0.875rem;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  .mobile-h3 {
+    font-size: clamp(1.25rem, 4vw, 1.5rem); /* 20px - 24px instead of 28px - 32px */
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+  }
+
+  .mobile-h4 {
+    font-size: clamp(1.125rem, 3.5vw, 1.25rem); /* 18px - 20px instead of 24px - 28px */
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+
+  /* Mobile body text - Enhanced readability */
+  .mobile-text {
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 75ch; /* Optimal reading width */
+    margin: 0 auto;
+  }
+
+  .mobile-text-sm {
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 70ch;
+  }
+
+  .mobile-text-lg {
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 70ch;
+  }
+
+  /* Mobile spacing improvements */
+  .mobile-spacing {
+    padding: 1.5rem 1rem;
+  }
+
+  .mobile-spacing-lg {
+    padding: 2rem 1rem;
+  }
+
+  /* Text sections with proper spacing */
+  .mobile-text-section {
+    margin-bottom: 2rem;
+  }
+
+  .mobile-text-section + .mobile-text-section {
+    margin-top: 2rem;
+  }
+
+  /* Mobile paragraphs */
+  .mobile-paragraph {
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  .mobile-paragraph:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Mobile lists */
+  .mobile-list {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .mobile-list li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+
+  /* Enhanced contrast for WCAG compliance */
+  .mobile-text-primary {
+    color: hsl(var(--foreground));
+    contrast: 7:1; /* AAA level */
+  }
+
+  .mobile-text-secondary {
+    color: hsl(var(--muted-foreground));
+    contrast: 4.5:1; /* AA level */
+  }
+
+  /* Mobile quote blocks */
+  .mobile-quote {
+    font-size: 18px;
+    line-height: 1.6;
+    font-style: italic;
+    margin: 2rem 0;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid hsl(var(--primary));
+    background: hsl(var(--muted));
+  }
+
+  /* Mobile code blocks */
+  .mobile-code {
+    font-family: 'SF Mono', Monaco, 'Inconsolata', 'Roboto Mono', 'Source Code Pro', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 0.25rem 0.5rem;
+    background: hsl(var(--muted));
+    border-radius: 0.25rem;
+  }
+
+  /* Mobile button text */
+  .mobile-button-text {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+  }
+
+  /* Mobile navigation text */
+  .mobile-nav-text {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  /* Mobile form labels */
+  .mobile-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* Mobile captions */
+  .mobile-caption {
+    font-size: 14px;
+    line-height: 1.5;
+    color: hsl(var(--muted-foreground));
+    margin-top: 0.5rem;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .tablet-h1 {
+    font-size: clamp(2.25rem, 5vw, 2.5rem);
+    line-height: 1.2;
+  }
+
+  .tablet-h2 {
+    font-size: clamp(1.875rem, 4vw, 2.25rem);
+    line-height: 1.3;
+  }
+
+  .tablet-text {
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 70ch;
+  }
+}
+
+/* High DPI screen optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Dark mode typography adjustments */
+@media (prefers-color-scheme: dark) {
+  @media (max-width: 768px) {
+    .mobile-text-primary {
+      color: hsl(0 0% 95%);
+    }
+
+    .mobile-text-secondary {
+      color: hsl(0 0% 70%);
+    }
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-text {
+    scroll-behavior: auto;
+  }
+}

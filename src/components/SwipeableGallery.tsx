@@ -28,6 +28,10 @@ const SwipeableGallery: React.FC<SwipeableGalleryProps> = ({
 
   const onTouchMove = (e: React.TouchEvent) => {
     setTouchEnd(e.targetTouches[0].clientX);
+    // Prevent default scroll behavior for horizontal swipes on iOS Safari
+    if (touchStart && Math.abs(e.targetTouches[0].clientX - touchStart) > 10) {
+      e.preventDefault();
+    }
   };
 
   const onTouchEnd = () => {
@@ -79,6 +83,7 @@ const SwipeableGallery: React.FC<SwipeableGalleryProps> = ({
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
+        style={{ touchAction: 'pan-y pinch-zoom' }}
       >
         <div
           className="flex transition-transform duration-300 ease-out h-full"
@@ -104,38 +109,45 @@ const SwipeableGallery: React.FC<SwipeableGalleryProps> = ({
             <Button
               variant="ghost"
               size="icon"
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full h-8 w-8 z-30 shadow-lg pointer-events-auto"
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full h-12 w-12 md:h-10 md:w-10 z-30 shadow-lg pointer-events-auto touch-target"
               onClick={goToPrevious}
               type="button"
             >
-              <ChevronLeft className="h-4 w-4 text-clay-700" />
+              <ChevronLeft className="h-6 w-6 md:h-5 md:w-5 text-clay-700" />
             </Button>
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full h-8 w-8 z-30 shadow-lg pointer-events-auto"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full h-12 w-12 md:h-10 md:w-10 z-30 shadow-lg pointer-events-auto touch-target"
               onClick={goToNext}
               type="button"
             >
-              <ChevronRight className="h-4 w-4 text-clay-700" />
+              <ChevronRight className="h-6 w-6 md:h-5 md:w-5 text-clay-700" />
             </Button>
           </>
         )}
 
-        {/* Indicators - Only show if more than 1 image */}
+        {/* Enhanced Indicators - Larger touch targets for mobile */}
         {images.length > 1 && (
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20 bg-black/20 backdrop-blur-sm rounded-full px-3 py-2">
             {images.map((_, index) => (
               <button
                 key={index}
                 type="button"
-                className={`w-2 h-2 rounded-full transition-all duration-300 pointer-events-auto ${
+                className={`transition-all duration-300 pointer-events-auto touch-target min-h-[44px] min-w-[44px] md:min-h-[32px] md:min-w-[32px] flex items-center justify-center rounded-full ${
                   index === currentIndex 
-                    ? 'bg-white w-6' 
-                    : 'bg-white/60 hover:bg-white/80'
+                    ? 'bg-white/20' 
+                    : 'bg-transparent hover:bg-white/10'
                 }`}
                 onClick={(e) => goToSlide(index, e)}
-              />
+                aria-label={`Go to image ${index + 1}`}
+              >
+                <div className={`rounded-full transition-all duration-300 ${
+                  index === currentIndex 
+                    ? 'bg-white w-6 h-3 md:w-4 md:h-2' 
+                    : 'bg-white/60 hover:bg-white/80 w-3 h-3 md:w-2 md:h-2'
+                }`} />
+              </button>
             ))}
           </div>
         )}
