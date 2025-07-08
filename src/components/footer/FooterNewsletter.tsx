@@ -68,8 +68,8 @@ const FooterNewsletter = () => {
           toast({
             title: language === 'fr' ? 'Déjà inscrit' : 'Already subscribed',
             description: language === 'fr' 
-              ? 'Cette adresse e-mail est déjà inscrite à notre newsletter.'
-              : 'This email address is already subscribed to our newsletter.',
+              ? 'Vous êtes déjà inscrit(e).'
+              : 'You are already subscribed.',
             variant: 'destructive',
           });
           setIsSubmitting(false);
@@ -93,11 +93,11 @@ const FooterNewsletter = () => {
         console.error('Error saving user data:', userError);
       }
 
-      // Send welcome email
-      const { error: emailError } = await supabase.functions.invoke('send-welcome-email', {
+      // Send welcome email via SMTP
+      const { error: emailError } = await supabase.functions.invoke('send-newsletter-welcome-smtp', {
         body: {
           email: email,
-          fullName: firstName,
+          firstName: firstName,
           language: language
         }
       });
@@ -111,8 +111,8 @@ const FooterNewsletter = () => {
       toast({
         title: language === 'fr' ? 'Inscription réussie !' : 'Successfully subscribed!',
         description: language === 'fr' 
-          ? 'Merci de vous être inscrit à notre newsletter. Vous recevrez bientôt un email de bienvenue.'
-          : 'Thank you for subscribing to our newsletter. You will receive a welcome email shortly.',
+          ? 'Merci ! Vous êtes bien inscrit(e).'
+          : 'Thank you! You are now subscribed.',
       });
 
       setFirstName('');
@@ -153,12 +153,12 @@ const FooterNewsletter = () => {
     <div className="bg-sand-700/50 rounded-lg p-6 border border-sand-600">
       <div className="mb-4">
         <h4 className="text-lg font-serif font-semibold text-amber-400 mb-2">
-          {language === 'fr' ? 'Secrets d\'Atlas' : 'Atlas Secrets'}
+          {language === 'fr' ? 'Bienvenue dans notre univers' : 'Welcome to our world'}
         </h4>
         <p className="text-sand-300 text-sm leading-relaxed">
           {language === 'fr' 
-            ? 'Découvrez en avant-première nos nouvelles collections et rituels de beauté ancestraux.'
-            : 'Discover our new collections and ancestral beauty rituals in advance.'
+            ? 'Découvrez en avant-première nos nouvelles collections d\'artisanat franco-marocain.'
+            : 'Discover our new French-Moroccan artisan collections in advance.'
           }
         </p>
       </div>

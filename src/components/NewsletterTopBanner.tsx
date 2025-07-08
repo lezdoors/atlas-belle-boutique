@@ -18,20 +18,37 @@ const NewsletterTopBanner = () => {
 
     setIsSubmitting(true);
     try {
-      const { error } = await supabase
+      // Store subscription in newsletter_subscribers table
+      const { error: subscriptionError } = await supabase
         .from('newsletter_subscribers')
         .insert([{ email }]);
 
-      if (error) {
-        if (error.code === '23505') {
-          toast.error(language === 'fr' ? 'Cette adresse email est déjà inscrite' : 'This email is already subscribed');
-        } else {
-          throw error;
+      if (subscriptionError) {
+        if (subscriptionError.code === '23505') { // Unique constraint violation
+          toast.error(language === 'fr' ? 'Vous êtes déjà inscrit(e).' : 'You are already subscribed.');
+          setEmail('');
+          setIsSubmitting(false);
+          return;
         }
-      } else {
-        toast.success(language === 'fr' ? 'Merci pour votre inscription !' : 'Thank you for subscribing!');
-        setEmail('');
+        throw subscriptionError;
       }
+
+      // Send welcome email via SMTP
+      const { error: emailError } = await supabase.functions.invoke('send-newsletter-welcome-smtp', {
+        body: {
+          email: email,
+          firstName: email.split('@')[0], // Use email prefix as fallback name
+          language: language
+        }
+      });
+
+      if (emailError) {
+        console.error('Error sending welcome email:', emailError);
+        // Don't throw error here - subscription is saved, just email failed
+      }
+
+      toast.success(language === 'fr' ? 'Merci ! Vous êtes bien inscrit(e).' : 'Thank you! You are now subscribed.');
+      setEmail('');
     } catch (error) {
       console.error('Newsletter subscription error:', error);
       toast.error(language === 'fr' ? 'Une erreur est survenue' : 'An error occurred');

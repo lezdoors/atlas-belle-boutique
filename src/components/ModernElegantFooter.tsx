@@ -40,20 +40,38 @@ const ModernElegantFooter = () => {
     try {
       // Record the rate limit attempt
       await ServerSideRateLimiter.recordAttempt(RateLimiters.NEWSLETTER_SIGNUP.action);
-      const { error } = await supabase
+      
+      // Store subscription in newsletter_subscribers table
+      const { error: subscriptionError } = await supabase
         .from('newsletter_subscribers')
         .insert([{ email: sanitizedEmail }]);
 
-      if (error) {
-        if (error.code === '23505') { // Unique violation
-          toast.error('Cette adresse email est déjà inscrite à notre newsletter');
-        } else {
-          throw error;
+      if (subscriptionError) {
+        if (subscriptionError.code === '23505') { // Unique constraint violation
+          toast.error('Vous êtes déjà inscrit(e).');
+          setEmail('');
+          setIsSubmitting(false);
+          return;
         }
-      } else {
-        toast.success('Merci pour votre inscription !');
-        setEmail('');
+        throw subscriptionError;
       }
+
+      // Send welcome email via SMTP
+      const { error: emailError } = await supabase.functions.invoke('send-newsletter-welcome-smtp', {
+        body: {
+          email: sanitizedEmail,
+          firstName: sanitizedEmail.split('@')[0], // Use email prefix as fallback name
+          language: 'fr'
+        }
+      });
+
+      if (emailError) {
+        console.error('Error sending welcome email:', emailError);
+        // Don't throw error here - subscription is saved, just email failed
+      }
+
+      toast.success('Merci ! Vous êtes bien inscrit(e).');
+      setEmail('');
     } catch (error) {
       console.error('Newsletter subscription error:', error);
       toast.error('Une erreur est survenue. Veuillez réessayer.');

@@ -68,13 +68,12 @@ const ModernNewsletterSection = () => {
         }
       });
 
-      // Send welcome email
-      const { error: emailError } = await supabase.functions.invoke('send-welcome-email', {
+      // Send welcome email via SMTP
+      const { error: emailError } = await supabase.functions.invoke('send-newsletter-welcome-smtp', {
         body: {
           email: email,
-          fullName: email.split('@')[0], // Use email prefix as fallback name
-          language: language,
-          type: 'newsletter'
+          firstName: email.split('@')[0], // Use email prefix as fallback name
+          language: language
         }
       });
 
