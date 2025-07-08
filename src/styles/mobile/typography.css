@@ -109,13 +109,11 @@
 
   /* Enhanced contrast for WCAG compliance */
   .mobile-text-primary {
-    color: hsl(var(--foreground));
-    contrast: 7:1; /* AAA level */
+    color: hsl(var(--foreground)); /* AAA level contrast - 7:1 */
   }
 
   .mobile-text-secondary {
-    color: hsl(var(--muted-foreground));
-    contrast: 4.5:1; /* AA level */
+    color: hsl(var(--muted-foreground)); /* AA level contrast - 4.5:1 */
   }
 
   /* Mobile quote blocks */
