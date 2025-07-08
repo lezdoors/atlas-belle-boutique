@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from 'react';
-import { Menu } from 'lucide-react';
+import { Menu, Search, ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import LanguageDropdown from '@/components/LanguageDropdown';
 import MobileSearch from '@/components/MobileSearch';
 import HeaderTopBar from '@/components/HeaderTopBar';
@@ -10,11 +11,14 @@ import HeaderNavigation from '@/components/HeaderNavigation';
 import HeaderActions from '@/components/HeaderActions';
 import HeaderMobileMenu from '@/components/HeaderMobileMenu';
 import StickyTopBanner from '@/components/StickyTopBanner';
+import MobileNavigationDrawer from '@/components/MobileNavigationDrawer';
+import { useCart } from '@/contexts/CartContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { totalItems } = useCart();
 
   // Enhanced scroll detection for luxury transparent header transitions
   useEffect(() => {
@@ -55,16 +59,53 @@ const Header = () => {
                 <LanguageDropdown />
               </div>
 
-              {/* Action Icons */}
-              <HeaderActions />
+              {/* Desktop Action Icons */}
+              <div className="hidden lg:flex">
+                <HeaderActions />
+              </div>
 
-              {/* Mobile Hamburger Menu - Luxury styling */}
-              <div className="lg:hidden">
+              {/* Mobile Action Icons */}
+              <div className="flex lg:hidden items-center space-x-2">
+                {/* Search Icon */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setShowMobileSearch(true)}
+                  className={`transition-all duration-500 h-11 w-11 rounded-full touch-target ${
+                    isScrolled 
+                      ? 'text-gray-700 hover:text-amber-600 hover:bg-amber-50/80' 
+                      : 'text-white hover:text-amber-200 hover:bg-white/20'
+                  }`}
+                  aria-label="Search"
+                >
+                  <Search className="h-5 w-5" />
+                </Button>
+
+                {/* Cart Icon with Badge */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={`transition-all duration-500 h-11 w-11 rounded-full relative touch-target ${
+                    isScrolled 
+                      ? 'text-gray-700 hover:text-amber-600 hover:bg-amber-50/80' 
+                      : 'text-white hover:text-amber-200 hover:bg-white/20'
+                  }`}
+                  aria-label="Shopping cart"
+                >
+                  <ShoppingBag className="h-5 w-5" />
+                  {totalItems > 0 && (
+                    <Badge className="absolute -top-1 -right-1 bg-amber-600 text-white min-w-[20px] h-5 rounded-full flex items-center justify-center text-xs border-2 border-white">
+                      {totalItems}
+                    </Badge>
+                  )}
+                </Button>
+
+                {/* Mobile Hamburger Menu - Luxury styling */}
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className={`transition-all duration-500 h-11 w-11 rounded-full ml-2 ${
+                  className={`transition-all duration-500 h-11 w-11 rounded-full touch-target ${
                     isScrolled 
                       ? 'text-gray-700 hover:text-amber-600 hover:bg-amber-50/80' 
                       : 'text-white hover:text-amber-200 hover:bg-white/20'
@@ -89,6 +130,12 @@ const Header = () => {
       <MobileSearch 
         isOpen={showMobileSearch} 
         onClose={() => setShowMobileSearch(false)} 
+      />
+
+      {/* Mobile Navigation Drawer */}
+      <MobileNavigationDrawer
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
       />
     </>
   );
