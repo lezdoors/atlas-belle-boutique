@@ -10,8 +10,28 @@ import { Tables } from '@/integrations/supabase/types';
 
 type DatabaseProduct = Tables<'products'>;
 
+// Flexible product interface that can handle both old and new formats
+interface FlexibleProduct {
+  id: string | number;
+  name_fr?: string;
+  name_en?: string;
+  name?: string; // fallback for old format
+  price_eur?: number;
+  price?: number; // fallback for old format
+  priceMAD?: number; // fallback for MAD currency
+  images?: string[] | any;
+  image?: string; // fallback for single image
+  category?: string;
+  origin_region?: string | null;
+  region?: string; // fallback
+  artisan_story?: string | null;
+  material?: string | null;
+  stock_quantity?: number | null;
+  in_stock?: boolean;
+}
+
 interface ProductCardProps {
-  product: DatabaseProduct;
+  product: FlexibleProduct;
   className?: string;
 }
 
@@ -21,13 +41,26 @@ const ProductCard = ({ product, className = "" }: ProductCardProps) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const productName = language === 'fr' ? product.name_fr : product.name_en;
-  const images = Array.isArray(product.images) ? product.images as string[] : [];
+  // Handle different naming conventions
+  const productName = product.name_fr || product.name_en || product.name || 'Product';
+  const productPrice = product.price_eur || product.price || product.priceMAD || 0;
+  
+  // Handle different image formats
+  let images: string[] = [];
+  if (Array.isArray(product.images)) {
+    images = product.images;
+  } else if (product.image) {
+    images = [product.image];
+  } else if (product.images && typeof product.images === 'string') {
+    images = [product.images];
+  }
+  
   const primaryImage = images[0] || '/placeholder.svg';
   const secondaryImage = images[1] || primaryImage;
 
   const getRegionBadge = (region?: string | null) => {
-    if (!region) return null;
+    const regionName = region || product.region;
+    if (!regionName) return null;
     
     const regionMap: { [key: string]: { name: string; color: string } } = {
       'fes': { name: 'Fès', color: 'bg-moroccan-blue text-white' },
@@ -35,7 +68,7 @@ const ProductCard = ({ product, className = "" }: ProductCardProps) => {
       'sale': { name: 'Salé', color: 'bg-moroccan-sand text-moroccan-blue' }
     };
 
-    const regionInfo = regionMap[region.toLowerCase()] || { name: region, color: 'bg-stone-200 text-stone-800' };
+    const regionInfo = regionMap[regionName.toLowerCase()] || { name: regionName, color: 'bg-stone-200 text-stone-800' };
     
     return (
       <Badge className={`text-xs font-light ${regionInfo.color} absolute top-3 left-3 z-10`}>
@@ -46,15 +79,15 @@ const ProductCard = ({ product, className = "" }: ProductCardProps) => {
 
   const handleAddToCart = async () => {
     await addToCart({
-      id: product.id,
-      name_fr: product.name_fr,
-      name_en: product.name_en,
-      price: product.price_eur,
+      id: String(product.id),
+      name_fr: product.name_fr || product.name || '',
+      name_en: product.name_en || product.name || '',
+      price: productPrice,
       images: images,
-      category: product.category as any,
-      in_stock: (product.stock_quantity || 0) > 0,
-      created_at: product.created_at || '',
-      featured: product.featured || false
+      category: (product.category as any) || 'accessories',
+      in_stock: product.in_stock !== false && (product.stock_quantity || 0) > 0,
+      created_at: new Date().toISOString(),
+      featured: false
     }, 1);
 
     toast({
@@ -138,7 +171,7 @@ const ProductCard = ({ product, className = "" }: ProductCardProps) => {
         {/* Price with Luxury Styling */}
         <div className="flex items-center justify-between mb-4">
           <span className="text-xl font-light text-moroccan-blue">
-            {product.price_eur.toFixed(2)}€
+            {productPrice.toFixed(2)}€
           </span>
           
           {/* Rating Stars (placeholder) */}
@@ -161,9 +194,9 @@ const ProductCard = ({ product, className = "" }: ProductCardProps) => {
         <Button
           onClick={handleAddToCart}
           className="w-full bg-moroccan-blue text-white hover:bg-moroccan-blue/90 transition-all duration-300 font-light tracking-wide rounded-lg"
-          disabled={(product.stock_quantity || 0) === 0}
+          disabled={(product.stock_quantity || 0) === 0 || product.in_stock === false}
         >
-          {(product.stock_quantity || 0) === 0 
+          {((product.stock_quantity || 0) === 0 || product.in_stock === false)
             ? (language === 'fr' ? 'Rupture de stock' : 'Out of Stock')
             : (language === 'fr' ? 'Ajouter au panier' : 'Add to Cart')
           }
