@@ -76,6 +76,7 @@ import ArtisanRegions from "./pages/artisans/ArtisanRegions";
 import ArtisanCooperatives from "./pages/artisans/ArtisanCooperatives";
 import NewArrivals from "./pages/collections/NewArrivals";
 import GiftSets from "./pages/collections/GiftSets";
+import Products from "./pages/Products";
 
 // Import enhanced styles
 import './styles/enhanced-colors.css';
@@ -130,6 +131,7 @@ const AppRoutes = () => {
         <Route path="/products/tajine-traditionnel" element={<TajineTraditionnel />} />
         
         {/* Shop Routes */}
+        <Route path="/products" element={<Products />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/boutique" element={<Boutique />} />
         <Route path="/catalogue" element={<Catalogue />} />
