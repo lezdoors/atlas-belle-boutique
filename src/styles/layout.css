@@ -1,0 +1,59 @@
+/* Layout and Spacing Utilities */
+@layer utilities {
+  /* Editorial spacing */
+  .section-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .container-refined {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /* Editorial shadows */
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+  
+  .shadow-refined {
+    box-shadow: var(--shadow-refined);
+  }
+  
+  .shadow-luxury {
+    box-shadow: var(--shadow-luxury);
+  }
+
+  /* Editorial cards */
+  .card-editorial {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow-elegant);
+  }
+
+  /* Mobile-specific layout adjustments */
+  @media (max-width: 768px) {
+    .section {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+    
+    /* Better mobile button sizing */
+    .button-mobile {
+      min-height: 44px; /* iOS accessibility standard */
+      padding: 0.75rem 1.5rem;
+      font-size: 16px;
+    }
+    
+    /* Enhanced mobile contrast for text */
+    .text-contrast-mobile {
+      color: hsl(var(--foreground));
+      font-weight: 500;
+    }
+  }
+}
