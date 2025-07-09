@@ -77,6 +77,7 @@ import ArtisanCooperatives from "./pages/artisans/ArtisanCooperatives";
 import NewArrivals from "./pages/collections/NewArrivals";
 import GiftSets from "./pages/collections/GiftSets";
 import Products from "./pages/Products";
+import LuxuryProductDetail from "./components/LuxuryProductDetail";
 
 // Import enhanced styles
 import './styles/enhanced-colors.css';
@@ -196,6 +197,7 @@ const AppRoutes = () => {
         
         
         {/* Premium Product Routes */}
+        <Route path="/produit/:id" element={<LuxuryProductDetail />} />
         <Route path="/product/:productId" element={<ProductDetail />} />
         
         {/* Legal Routes - New Maison Chapuis */}
@@ -220,16 +222,22 @@ const AppRoutes = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <ErrorBoundary>
-        <SecurityConfig />
-        <PerformanceOptimizer />
-        <Toaster />
-        <Sonner />
-        <AppRoutes />
-        <CartDrawer />
-        <CookieConsentBanner />
-        <Analytics />
-      </ErrorBoundary>
+      <LanguageProvider>
+        <AuthProvider>
+          <CartProvider>
+            <ErrorBoundary>
+              <SecurityConfig />
+              <PerformanceOptimizer />
+              <Toaster />
+              <Sonner />
+              <AppRoutes />
+              <CartDrawer />
+              <CookieConsentBanner />
+              <Analytics />
+            </ErrorBoundary>
+          </CartProvider>
+        </AuthProvider>
+      </LanguageProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
