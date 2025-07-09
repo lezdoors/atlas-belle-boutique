@@ -17,6 +17,7 @@ import { Analytics } from "@vercel/analytics/react";
 import EnhancedAppleStyleIndex from "./pages/EnhancedAppleStyleIndex";
 import Index from "./pages/Index";
 import ProductPage from "./pages/ProductPage";
+import ProductDetailLuxury from "./pages/ProductDetailLuxury";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Shop from "./pages/Shop";
@@ -69,6 +70,12 @@ import SavonNoir from "./pages/products/SavonNoir";
 import Ghassoul from "./pages/products/Ghassoul";
 import VerreMarocain from "./pages/products/VerreMarocain";
 import TajineTraditionnel from "./pages/products/TajineTraditionnel";
+import Ceramiques from "./pages/categories/Ceramiques";
+import Verrerie from "./pages/categories/Verrerie";
+import ArtisanRegions from "./pages/artisans/ArtisanRegions";
+import ArtisanCooperatives from "./pages/artisans/ArtisanCooperatives";
+import NewArrivals from "./pages/collections/NewArrivals";
+import GiftSets from "./pages/collections/GiftSets";
 
 // Import enhanced styles
 import './styles/enhanced-colors.css';
@@ -114,7 +121,8 @@ const AppRoutes = () => {
         
         {/* Product Routes */}
         <Route path="/product/:slug" element={<ProductPage />} />
-        <Route path="/product-detail/:id" element={<ProductDetail />} />
+        <Route path="/product/:id" element={<ProductDetailLuxury />} />
+        <Route path="/product-detail/:id" element={<ProductDetailLuxury />} />
         <Route path="/products/huile-argan" element={<HuileArgan />} />
         <Route path="/products/savon-noir" element={<SavonNoir />} />
         <Route path="/products/ghassoul" element={<Ghassoul />} />
@@ -128,6 +136,20 @@ const AppRoutes = () => {
         <Route path="/wholesale" element={<Wholesale />} />
         
         {/* Category Routes */}
+        <Route path="/categories/ceramiques" element={<Ceramiques />} />
+        <Route path="/categories/verrerie" element={<Verrerie />} />
+        <Route path="/categories/tagines" element={<Tableware />} />
+        <Route path="/categories/assiettes" element={<Tableware />} />
+        <Route path="/categories/bols" element={<Tableware />} />
+        <Route path="/categories/verres-the" element={<Verrerie />} />
+        <Route path="/categories/carafes" element={<Verrerie />} />
+        <Route path="/categories/lanternes" element={<Verrerie />} />
+        <Route path="/categories/art-de-la-table" element={<Tableware />} />
+        <Route path="/categories/services" element={<Tableware />} />
+        <Route path="/artisans/regions" element={<ArtisanRegions />} />
+        <Route path="/artisans/cooperatives" element={<ArtisanCooperatives />} />
+        <Route path="/collections/nouveautes" element={<NewArrivals />} />
+        <Route path="/collections/coffrets" element={<GiftSets />} />
         <Route path="/tableware" element={<Tableware />} />
         <Route path="/decor" element={<Decor />} />
         <Route path="/gifts" element={<Gifts />} />

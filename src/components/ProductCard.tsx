@@ -1,119 +1,175 @@
-
-import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Heart, ShoppingBag, Star } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
-import ProductCardImage from '@/components/product/ProductCardImage';
-import ProductCardInfo from '@/components/product/ProductCardInfo';
-import ProductCardPricing from '@/components/product/ProductCardPricing';
+import { toast } from '@/hooks/use-toast';
+import { Tables } from '@/integrations/supabase/types';
 
-interface Product {
-  id: number;
-  name: string;
-  priceMAD: number;
-  originalPriceMAD?: number;
-  image: string;
-  rating: number;
-  reviews: number;
-  badge: { type: 'new' | 'bestseller' | 'limited' | 'discount'; discount?: number };
-  description: string;
-  longDescription?: string;
-  ingredients?: string[];
-  skinType?: string[];
-  region?: string;
-}
+type DatabaseProduct = Tables<'products'>;
 
 interface ProductCardProps {
-  product: Product;
+  product: DatabaseProduct;
+  className?: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard = ({ product, className = "" }: ProductCardProps) => {
   const { language } = useLanguage();
   const { addToCart } = useCart();
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
-  // Ensure authentic product images
-  const getAuthenticImage = (originalImage: string) => {
-    const imageMap: { [key: string]: string } = {
-      'photo-1465146344425-f00d5f5c8f07': '/lovable-uploads/754f1a74-0a9c-4277-8cff-2105a643bcf8.png',
-      'photo-1482881497185-d4a9ddbe4151': '/lovable-uploads/2a2a9ecb-4fac-47ae-a550-649b0b123f47.png',
-      'photo-1500673922987-e212871fec22': '/lovable-uploads/5a6e176e-a311-4e23-a48f-5439e70ecb3f.png',
-      'photo-1506744038136-46273834b3fb': '/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png',
-      'photo-1469474968028-56623f02e42e': '/lovable-uploads/d4ad8eb5-ea3d-4931-ae8c-008b30d0e998.png'
+  const productName = language === 'fr' ? product.name_fr : product.name_en;
+  const images = Array.isArray(product.images) ? product.images as string[] : [];
+  const primaryImage = images[0] || '/placeholder.svg';
+  const secondaryImage = images[1] || primaryImage;
+
+  const getRegionBadge = (region?: string | null) => {
+    if (!region) return null;
+    
+    const regionMap: { [key: string]: { name: string; color: string } } = {
+      'fes': { name: 'Fès', color: 'bg-moroccan-blue text-white' },
+      'safi': { name: 'Safi', color: 'bg-moroccan-rose-gold text-moroccan-blue' },
+      'sale': { name: 'Salé', color: 'bg-moroccan-sand text-moroccan-blue' }
     };
 
-    for (const [stockId, authenticImage] of Object.entries(imageMap)) {
-      if (originalImage.includes(stockId)) {
-        return authenticImage;
-      }
-    }
-    return originalImage;
+    const regionInfo = regionMap[region.toLowerCase()] || { name: region, color: 'bg-stone-200 text-stone-800' };
+    
+    return (
+      <Badge className={`text-xs font-light ${regionInfo.color} absolute top-3 left-3 z-10`}>
+        {regionInfo.name}
+      </Badge>
+    );
   };
 
-  const authenticImage = getAuthenticImage(product.image);
-  const productImages = [authenticImage, authenticImage, authenticImage];
+  const handleAddToCart = async () => {
+    await addToCart({
+      id: product.id,
+      name_fr: product.name_fr,
+      name_en: product.name_en,
+      price: product.price_eur,
+      images: images,
+      category: product.category as any,
+      in_stock: (product.stock_quantity || 0) > 0,
+      created_at: product.created_at || '',
+      featured: product.featured || false
+    }, 1);
 
-  const enhancedProduct = {
-    ...product,
-    image: authenticImage,
-    longDescription: product.longDescription || (language === 'fr' 
-      ? 'Création artisanale authentique du Maroc, élaborée selon les traditions ancestrales pour révéler votre beauté naturelle.'
-      : 'Authentic artisanal creation from Morocco, crafted according to ancestral traditions to reveal your natural beauty.'),
-    ingredients: product.ingredients || (language === 'fr' 
-      ? ['Huile d\'argan', 'Beurre de karité', 'Essence de rose'] 
-      : ['Argan oil', 'Shea butter', 'Rose essence']),
-    skinType: product.skinType || (language === 'fr' 
-      ? ['Tous types de peau'] 
-      : ['All skin types']),
-    region: product.region || 'Atlas Mountains'
-  };
-
-  const handleAddToCart = () => {
-    const productForCart = {
-      id: product.id.toString(),
-      name_fr: product.name,
-      name_en: product.name,
-      price: product.priceMAD,
-      images: [authenticImage],
-      category: 'accessories' as const,
-      in_stock: true,
-      created_at: new Date().toISOString()
-    };
-    addToCart(productForCart);
-  };
-
-  const saveForLaterItem = {
-    id: product.id,
-    name: product.name,
-    price: product.priceMAD,
-    image: authenticImage
+    toast({
+      title: language === 'fr' ? 'Ajouté au panier' : 'Added to cart',
+      description: `${productName} ${language === 'fr' ? 'a été ajouté à votre panier' : 'has been added to your cart'}`
+    });
   };
 
   return (
-    <Card className="group hover-sophisticate bg-white/95 backdrop-blur-sm border-0 luxury-shadow h-full flex flex-col overflow-hidden rounded-3xl transition-all duration-500">
-      <CardContent className="p-0 flex flex-col h-full">
-        <ProductCardImage
-          productImages={productImages}
-          productName={product.name}
-          productId={product.id}
-          badge={product.badge}
-          enhancedProduct={enhancedProduct}
-          saveForLaterItem={saveForLaterItem}
-          onAddToCart={handleAddToCart}
-        />
+    <div 
+      className={`group relative bg-white rounded-lg overflow-hidden shadow-elegant hover:shadow-luxury transition-all duration-500 ${className}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Product Image Container with Hover Effect */}
+      <div className="relative aspect-square overflow-hidden">
+        {getRegionBadge(product.origin_region)}
+        
+        {/* Authenticity Badge */}
+        <Badge className="absolute top-3 right-3 z-10 bg-white/90 text-moroccan-blue text-xs font-light">
+          Fait main
+        </Badge>
 
-        <ProductCardInfo
-          productName={product.name}
-          description={product.description}
-          rating={product.rating}
-          reviews={product.reviews}
-        />
+        {/* Image with Zoom Effect */}
+        <div className="relative w-full h-full">
+          <img
+            src={primaryImage}
+            alt={productName}
+            className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
+              isHovered ? 'scale-110 opacity-0' : 'scale-100 opacity-100'
+            }`}
+            onLoad={() => setIsImageLoaded(true)}
+          />
+          <img
+            src={secondaryImage}
+            alt={productName}
+            className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
+              isHovered ? 'scale-110 opacity-100' : 'scale-100 opacity-0'
+            }`}
+          />
+        </div>
 
-        <ProductCardPricing
-          priceMAD={product.priceMAD}
-          originalPriceMAD={product.originalPriceMAD}
-        />
-      </CardContent>
-    </Card>
+        {/* Hover Overlay */}
+        <div className={`absolute inset-0 bg-black/20 transition-opacity duration-300 ${
+          isHovered ? 'opacity-100' : 'opacity-0'
+        }`}>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-3">
+            <Button
+              size="sm"
+              className="bg-white/90 text-moroccan-blue hover:bg-white hover:scale-105 transition-all duration-300 rounded-full p-3 shadow-lg"
+            >
+              <Heart className="h-4 w-4" />
+            </Button>
+            <Button
+              size="sm"
+              onClick={handleAddToCart}
+              className="bg-moroccan-rose-gold text-moroccan-blue hover:bg-moroccan-rose-gold/90 hover:scale-105 transition-all duration-300 rounded-full p-3 shadow-lg"
+            >
+              <ShoppingBag className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Product Information */}
+      <div className="p-6">
+        {/* Product Name */}
+        <Link to={`/product/${product.id}`}>
+          <h3 className="font-serif text-lg font-medium text-moroccan-blue mb-2 hover:text-moroccan-blue/80 transition-colors">
+            {productName}
+          </h3>
+        </Link>
+
+        {/* Material & Category */}
+        {product.material && (
+          <p className="text-sm text-stone-600 mb-2 font-light">
+            {product.material}
+          </p>
+        )}
+
+        {/* Price with Luxury Styling */}
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-xl font-light text-moroccan-blue">
+            {product.price_eur.toFixed(2)}€
+          </span>
+          
+          {/* Rating Stars (placeholder) */}
+          <div className="flex items-center gap-1">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="h-3 w-3 fill-moroccan-sand text-moroccan-sand" />
+            ))}
+            <span className="text-xs text-stone-500 ml-1">(12)</span>
+          </div>
+        </div>
+
+        {/* Artisan Story Preview */}
+        {product.artisan_story && (
+          <p className="text-xs text-stone-500 line-clamp-2 mb-3 font-light italic">
+            "{product.artisan_story.substring(0, 80)}..."
+          </p>
+        )}
+
+        {/* Add to Cart Button */}
+        <Button
+          onClick={handleAddToCart}
+          className="w-full bg-moroccan-blue text-white hover:bg-moroccan-blue/90 transition-all duration-300 font-light tracking-wide rounded-lg"
+          disabled={(product.stock_quantity || 0) === 0}
+        >
+          {(product.stock_quantity || 0) === 0 
+            ? (language === 'fr' ? 'Rupture de stock' : 'Out of Stock')
+            : (language === 'fr' ? 'Ajouter au panier' : 'Add to Cart')
+          }
+        </Button>
+      </div>
+    </div>
   );
 };
 

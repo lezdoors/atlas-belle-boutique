@@ -62,21 +62,43 @@ const MaisonStyleHeaderNew = () => {
       href: '/categories/ceramiques',
       dropdown: [
         { name: language === 'fr' ? 'Tagines' : 'Tagines', href: '/categories/tagines' },
-        { name: language === 'fr' ? 'Verres à Thé' : 'Tea Glasses', href: '/categories/tea-glasses' },
-        { name: language === 'fr' ? 'Bols & Plats' : 'Bowls & Plates', href: '/categories/bowls-plates' }
+        { name: language === 'fr' ? 'Assiettes' : 'Plates', href: '/categories/assiettes' },
+        { name: language === 'fr' ? 'Bols' : 'Bowls', href: '/categories/bols' }
+      ]
+    },
+    { 
+      name: language === 'fr' ? 'Verrerie' : 'Glassware', 
+      href: '/categories/verrerie',
+      dropdown: [
+        { name: language === 'fr' ? 'Verres à thé' : 'Tea Glasses', href: '/categories/verres-the' },
+        { name: language === 'fr' ? 'Carafes' : 'Carafes', href: '/categories/carafes' },
+        { name: language === 'fr' ? 'Lanternes' : 'Lanterns', href: '/categories/lanternes' }
+      ]
+    },
+    { 
+      name: language === 'fr' ? 'Art de la Table' : 'Tableware', 
+      href: '/categories/art-de-la-table',
+      dropdown: [
+        { name: language === 'fr' ? 'Services' : 'Sets', href: '/categories/services' },
+        { name: language === 'fr' ? 'Collections' : 'Collections', href: '/collections' }
+      ]
+    },
+    { 
+      name: language === 'fr' ? 'Nos Artisans' : 'Our Artisans', 
+      href: '/nos-artisans',
+      dropdown: [
+        { name: language === 'fr' ? 'Régions' : 'Regions', href: '/artisans/regions' },
+        { name: language === 'fr' ? 'Coopératives' : 'Cooperatives', href: '/artisans/cooperatives' }
       ]
     },
     { 
       name: language === 'fr' ? 'Collections' : 'Collections', 
       href: '/collections',
       dropdown: [
-        { name: language === 'fr' ? 'Signature' : 'Signature', href: '/collections/signature' },
-        { name: language === 'fr' ? 'Nouveautés' : 'New Arrivals', href: '/collections/new-arrivals' },
-        { name: language === 'fr' ? 'Coffrets Cadeaux' : 'Gift Sets', href: '/collections/gift-sets' }
+        { name: language === 'fr' ? 'Nouveautés' : 'New Arrivals', href: '/collections/nouveautes' },
+        { name: language === 'fr' ? 'Coffrets' : 'Gift Sets', href: '/collections/coffrets' }
       ]
-    },
-    { name: language === 'fr' ? 'Notre Histoire' : 'Our Story', href: '/notre-heritage' },
-    { name: language === 'fr' ? 'Contact' : 'Contact', href: '/contact' },
+    }
   ];
 
   return (
