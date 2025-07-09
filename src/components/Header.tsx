@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Menu, Search, ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -11,7 +12,7 @@ import HeaderNavigation from '@/components/HeaderNavigation';
 import HeaderActions from '@/components/HeaderActions';
 import HeaderMobileMenu from '@/components/HeaderMobileMenu';
 import StickyTopBanner from '@/components/StickyTopBanner';
-import MobileNavigationDrawer from '@/components/MobileNavigationDrawer';
+import LuxuryMobileMenu from '@/components/navigation/LuxuryMobileMenu';
 import { useCart } from '@/contexts/CartContext';
 
 const Header = () => {
@@ -112,18 +113,22 @@ const Header = () => {
                   }`}
                   aria-label="Toggle menu"
                 >
-                  <Menu className="h-5 w-5" />
+                  <motion.div
+                    animate={{ rotate: isMenuOpen ? 90 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Menu className="h-5 w-5" />
+                  </motion.div>
                 </Button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <HeaderMobileMenu 
-          isMenuOpen={isMenuOpen}
-          setIsMenuOpen={setIsMenuOpen}
-        />
+        {/* Luxury Mobile Menu */}
+        <div className="lg:hidden">
+          <div id="luxury-mobile-menu-placeholder" />
+        </div>
       </header>
 
       {/* Mobile Search Modal */}
@@ -132,8 +137,8 @@ const Header = () => {
         onClose={() => setShowMobileSearch(false)} 
       />
 
-      {/* Mobile Navigation Drawer */}
-      <MobileNavigationDrawer
+      {/* Luxury Mobile Navigation */}
+      <LuxuryMobileMenu
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
       />
