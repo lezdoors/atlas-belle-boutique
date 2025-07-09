@@ -46,17 +46,27 @@
     --ring: 0 0% 15%;
     --radius: 0.5rem;
     
-    /* Brand colors - refined natural tones */
-    --stone-50: 30 14% 97%;
-    --stone-100: 30 14% 95%;
-    --stone-200: 30 12% 89%;
-    --stone-300: 30 10% 82%;
-    --stone-400: 30 8% 70%;
-    --stone-500: 30 6% 58%;
-    --stone-600: 30 5% 46%;
-    --stone-700: 30 4% 35%;
-    --stone-800: 30 3% 25%;
-    --stone-900: 30 3% 15%;
+    /* Moroccan-inspired brand colors */
+    --moroccan-blue: 211 61% 23%;        /* Deep blue #1B365D */
+    --moroccan-rose-gold: 20 42% 76%;    /* Rose gold #E8B4A0 */
+    --moroccan-sand: 48 60% 85%;         /* Sand #F4E4BC */
+    
+    /* Updated stone palette with Moroccan warmth */
+    --stone-50: 48 60% 97%;
+    --stone-100: 48 45% 94%;
+    --stone-200: 48 35% 88%;
+    --stone-300: 48 25% 80%;
+    --stone-400: 30 15% 70%;
+    --stone-500: 25 12% 58%;
+    --stone-600: 20 10% 46%;
+    --stone-700: 211 30% 35%;
+    --stone-800: 211 40% 25%;
+    --stone-900: 211 50% 15%;
+    
+    /* Moroccan color system */
+    --primary: var(--moroccan-blue);
+    --accent: var(--moroccan-rose-gold);
+    --moroccan-warm: var(--moroccan-sand);
     
     /* Elegant shadows and effects */
     --shadow-elegant: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);

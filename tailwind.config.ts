@@ -65,6 +65,12 @@ const config: Config = {
           800: "hsl(var(--stone-800))",
           900: "hsl(var(--stone-900))",
         },
+        moroccan: {
+          blue: "hsl(var(--moroccan-blue))",
+          "rose-gold": "hsl(var(--moroccan-rose-gold))",
+          sand: "hsl(var(--moroccan-sand))",
+          warm: "hsl(var(--moroccan-warm))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

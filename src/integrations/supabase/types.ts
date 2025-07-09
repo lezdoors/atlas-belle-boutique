@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_analytics: {
+        Row: {
+          created_at: string | null
+          date: string
+          id: string
+          low_stock_products: number | null
+          pending_reviews: number | null
+          total_orders: number | null
+          total_products: number | null
+          total_revenue: number | null
+          total_users: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          date?: string
+          id?: string
+          low_stock_products?: number | null
+          pending_reviews?: number | null
+          total_orders?: number | null
+          total_products?: number | null
+          total_revenue?: number | null
+          total_users?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          date?: string
+          id?: string
+          low_stock_products?: number | null
+          pending_reviews?: number | null
+          total_orders?: number | null
+          total_products?: number | null
+          total_revenue?: number | null
+          total_users?: number | null
+        }
+        Relationships: []
+      }
       artisans: {
         Row: {
           created_at: string | null
@@ -461,7 +497,9 @@ export type Database = {
       products: {
         Row: {
           artisan_story: string | null
+          care_instructions: string | null
           category: string
+          cooperative_region: string | null
           created_at: string | null
           description_en: string | null
           description_fr: string | null
@@ -470,6 +508,7 @@ export type Database = {
           images: Json | null
           ingredients: Json | null
           is_active: boolean | null
+          material: string | null
           min_stock_level: number | null
           name_en: string
           name_fr: string
@@ -489,7 +528,9 @@ export type Database = {
         }
         Insert: {
           artisan_story?: string | null
+          care_instructions?: string | null
           category: string
+          cooperative_region?: string | null
           created_at?: string | null
           description_en?: string | null
           description_fr?: string | null
@@ -498,6 +539,7 @@ export type Database = {
           images?: Json | null
           ingredients?: Json | null
           is_active?: boolean | null
+          material?: string | null
           min_stock_level?: number | null
           name_en: string
           name_fr: string
@@ -517,7 +559,9 @@ export type Database = {
         }
         Update: {
           artisan_story?: string | null
+          care_instructions?: string | null
           category?: string
+          cooperative_region?: string | null
           created_at?: string | null
           description_en?: string | null
           description_fr?: string | null
@@ -526,6 +570,7 @@ export type Database = {
           images?: Json | null
           ingredients?: Json | null
           is_active?: boolean | null
+          material?: string | null
           min_stock_level?: number | null
           name_en?: string
           name_fr?: string
@@ -773,6 +818,7 @@ export type Database = {
           first_name: string
           id: string
           last_login_at: string | null
+          role: Database["public"]["Enums"]["user_role"] | null
           signup_method: string | null
           updated_at: string
           user_id: string | null
@@ -784,6 +830,7 @@ export type Database = {
           first_name: string
           id?: string
           last_login_at?: string | null
+          role?: Database["public"]["Enums"]["user_role"] | null
           signup_method?: string | null
           updated_at?: string
           user_id?: string | null
@@ -795,6 +842,7 @@ export type Database = {
           first_name?: string
           id?: string
           last_login_at?: string | null
+          role?: Database["public"]["Enums"]["user_role"] | null
           signup_method?: string | null
           updated_at?: string
           user_id?: string | null
@@ -881,9 +929,17 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: string
       }
+      is_admin: {
+        Args: { user_id: string }
+        Returns: boolean
+      }
+      refresh_admin_analytics: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
     }
     Enums: {
-      [_ in never]: never
+      user_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1010,6 +1066,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      user_role: ["admin", "user"],
+    },
   },
 } as const
