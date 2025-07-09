@@ -172,6 +172,48 @@
   h2 {
     font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 1.25rem;
+}
+
+/* Luxury Magazine-Style Utilities */
+@layer utilities {
+  .bg-radial-gradient {
+    background: radial-gradient(circle at center, var(--tw-gradient-stops));
+  }
+  
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+  
+  /* Cinematic animations */
+  @keyframes elegant-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  @keyframes gentle-float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-10px) rotate(1deg);
+    }
+    66% {
+      transform: translateY(5px) rotate(-1deg);
+    }
+  }
+  
+  .animate-elegant-fade-in {
+    animation: elegant-fade-in 1.2s ease-out;
+  }
+  
+  .animate-gentle-float {
+    animation: gentle-float 8s ease-in-out infinite;
   }
   
   h3 {
