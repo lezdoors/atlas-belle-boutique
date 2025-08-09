@@ -35,7 +35,7 @@ const SEOHead = ({
 }: SEOHeadProps) => {
   const { language } = useLanguage();
   const currentUrl = url || `${window.location.origin}${window.location.pathname}`;
-  const fullTitle = `${title} | Maison Chapuis`;
+  const fullTitle = `${title} | Perle de l’Atlas`;
   const imageUrl = `${window.location.origin}${image}`;
 
   useEffect(() => {
@@ -56,14 +56,14 @@ const SEOHead = ({
       { property: 'og:image', content: imageUrl },
       { property: 'og:url', content: currentUrl },
       { property: 'og:type', content: type },
-      { property: 'og:site_name', content: "Maison Chapuis" },
+      { property: 'og:site_name', content: "Perle de l’Atlas" },
       { property: 'og:locale', content: language === 'fr' ? 'fr_FR' : 'en_US' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: fullTitle },
       { name: 'twitter:description', content: description },
       { name: 'twitter:image', content: imageUrl },
       { name: 'twitter:site', content: '@perledeatlas' },
-      { name: 'author', content: "Maison Chapuis" },
+      { name: 'author', content: "Perle de l’Atlas" },
       { name: 'theme-color', content: '#B8860B' }
     ];
 
@@ -87,6 +87,22 @@ const SEOHead = ({
       document.head.appendChild(canonical);
     }
     canonical.setAttribute('href', currentUrl);
+
+    // Add hreflang alternates (EN/FR)
+    document.querySelectorAll('link[rel="alternate"][data-seo="true"]').forEach(l => l.remove());
+    const alternates = [
+      { hreflang: 'x-default', href: currentUrl },
+      { hreflang: 'en', href: currentUrl },
+      { hreflang: 'fr', href: currentUrl }
+    ];
+    alternates.forEach(a => {
+      const link = document.createElement('link');
+      link.setAttribute('rel', 'alternate');
+      link.setAttribute('hreflang', a.hreflang);
+      link.setAttribute('href', a.href);
+      link.setAttribute('data-seo', 'true');
+      document.head.appendChild(link);
+    });
 
     // Create structured data
     const structuredData: any = {
@@ -122,7 +138,7 @@ const SEOHead = ({
     // Add organization context
     structuredData.publisher = {
       "@type": "Organization",
-      "name": "Maison Chapuis",
+      "name": "Perle de l’Atlas",
       "logo": {
         "@type": "ImageObject",
         "url": `${window.location.origin}/lovable-uploads/perle-atlas-logo.png`

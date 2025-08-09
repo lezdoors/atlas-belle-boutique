@@ -61,8 +61,8 @@ export const getTestimonials = (language: 'fr' | 'en'): Testimonial[] => [
     image: '/lovable-uploads/78b2a27c-3352-460a-b4bb-78efaec79db3.png',
     rating: 5,
     text: language === 'fr'
-      ? 'Livraison rapide, emballage soigné. Maison Chapuis = qualité !'
-      : 'Fast delivery, careful packaging. Maison Chapuis = quality!',
+      ? 'Livraison rapide, emballage soigné. Perle de l’Atlas = qualité !'
+      : 'Fast delivery, careful packaging. Perle de l’Atlas = quality!',
     product: language === 'fr' ? 'Plateau Ciselé' : 'Engraved Tray'
   }
 ];

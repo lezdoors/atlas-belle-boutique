@@ -78,8 +78,8 @@ const PremiumShippingTracker = ({ orderStatus = 'crafting' }: { orderStatus?: st
         </h3>
         <p className="text-stone-600 font-light leading-relaxed">
           {language === 'fr'
-            ? 'Chaque pièce Maison Chapuis suit un parcours de création unique, de l\'atelier marocain à votre table.'
-            : 'Each Maison Chapuis piece follows a unique creation journey, from the Moroccan workshop to your table.'
+            ? 'Chaque pièce Perle de l’Atlas suit un parcours de création unique, de l\'atelier marocain à votre table.'
+            : 'Each Perle de l’Atlas piece follows a unique creation journey, from the Moroccan workshop to your table.'
           }
         </p>
       </div>

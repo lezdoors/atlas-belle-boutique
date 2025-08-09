@@ -10,10 +10,10 @@ const FooterBottom = () => {
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-sand-400">
           <div className="mb-4 md:mb-0 flex items-center">
             <span className="text-lg font-serif font-light tracking-tight">
-              Maison Chapuis
+              Perle de l’Atlas
             </span>
             <span className="ml-3">
-              © 2024 Maison Chapuis. {language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}
+              © 2024 Perle de l’Atlas. {language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}
             </span>
           </div>
           <div className="flex space-x-6">

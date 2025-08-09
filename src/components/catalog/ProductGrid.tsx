@@ -104,7 +104,7 @@ const ProductGrid = ({ products, isLoading = false, onQuickView }: ProductGridPr
       {/* Header */}
       <div className="mb-12 text-center">
         <h1 className="font-serif text-4xl md:text-5xl text-stone-900 mb-4">
-          Collection Maison Chapuis
+          Collection Perle de l’Atlas
         </h1>
         <p className="text-stone-600 font-light text-lg max-w-2xl mx-auto">
           Découvrez notre collection exclusive de céramiques artisanales, 

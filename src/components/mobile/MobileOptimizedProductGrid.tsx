@@ -82,7 +82,7 @@ const MobileOptimizedProductGrid = () => {
     {
       id: 4,
       name: language === 'fr' ? 'Collections Signature' : 'Collections Signature',
-      subtitle: language === 'fr' ? 'Designs exclusifs Maison Chapuis' : 'Exclusive Maison Chapuis designs',
+      subtitle: language === 'fr' ? 'Designs exclusifs Perle de l’Atlas' : 'Exclusive Perle de l’Atlas designs',
       price: language === 'fr' ? 'À partir de $125' : 'Starting at $125',
       numericPrice: 125,
       image: '/lovable-uploads/6d0913b6-03ca-40b5-9002-ea188762b64f.png',

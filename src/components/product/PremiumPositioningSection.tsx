@@ -59,7 +59,7 @@ const PremiumPositioningSection = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="font-serif text-4xl lg:text-5xl text-stone-900 mb-6">
-            {language === 'fr' ? 'Pourquoi Choisir Maison Chapuis' : 'Why Choose Maison Chapuis'}
+            {language === 'fr' ? 'Pourquoi Choisir Perle de l’Atlas' : 'Why Choose Perle de l’Atlas'}
           </h2>
           <p className="text-xl text-stone-600 font-light max-w-3xl mx-auto leading-relaxed">
             {language === 'fr'
@@ -89,7 +89,7 @@ const PremiumPositioningSection = () => {
         {/* Comparison Table */}
         <div className="bg-stone-50 rounded-2xl p-8 border border-stone-200">
           <h3 className="font-serif text-2xl text-stone-900 text-center mb-12">
-            {language === 'fr' ? 'Maison Chapuis vs. Alternatives' : 'Maison Chapuis vs. Alternatives'}
+            {language === 'fr' ? 'Perle de l’Atlas vs. Alternatives' : 'Perle de l’Atlas vs. Alternatives'}
           </h3>
           
           <div className="overflow-x-auto">

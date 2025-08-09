@@ -24,7 +24,7 @@ const HeroContent = ({ onScrollToProducts }: HeroContentProps) => {
       {/* Cinematic Brand Title */}
       <div className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
         <h1 className="font-serif font-light text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-tight text-white mb-6 drop-shadow-2xl tracking-tight">
-          Maison Chapuis
+          Perle de l’Atlas
         </h1>
         <p className="font-serif text-xl sm:text-2xl lg:text-3xl text-moroccan-sand font-light tracking-wider leading-relaxed">
           {language === 'fr' ? 'L\'Art de Vivre Marocain' : 'The Moroccan Art of Living'}

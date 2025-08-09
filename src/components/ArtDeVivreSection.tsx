@@ -30,8 +30,8 @@ const ArtDeVivreSection = () => {
               <div className="space-y-6 text-stone-700 leading-relaxed">
                 <p className="text-lg lg:text-xl font-light">
                   {language === 'fr' 
-                    ? "Chez Maison Chapuis, chaque pièce raconte une histoire. Nos céramiques marocaines, sélectionnées avec le raffinement français, transforment vos moments quotidiens en rituels d'exception."
-                    : "At Maison Chapuis, each piece tells a story. Our Moroccan ceramics, selected with French refinement, transform your daily moments into exceptional rituals."
+                    ? "Chez Perle de l’Atlas, chaque pièce raconte une histoire. Nos céramiques marocaines, sélectionnées avec le raffinement français, transforment vos moments quotidiens en rituels d'exception."
+                    : "At Perle de l’Atlas, each piece tells a story. Our Moroccan ceramics, selected with French refinement, transform your daily moments into exceptional rituals."
                   }
                 </p>
 

@@ -41,7 +41,9 @@ const AppleStyleHero = () => {
               animationFillMode: 'forwards',
               fontFamily: 'var(--font-display)'
             }}>
-          Maison Chapuis
+          {language === 'fr' 
+            ? "Perle de l’Atlas — L’élégance marocaine, façonnée pour l’art de vivre moderne." 
+            : "Perle de l’Atlas — Moroccan elegance, handcrafted for modern living."}
         </h1>
         
         {/* Elegant Divider */}
@@ -54,9 +56,9 @@ const AppleStyleHero = () => {
               animationFillMode: 'forwards',
               lineHeight: '1.4'
             }}>
-          <span className="block sm:inline">L'Art de Vivre Français</span>
+          <span className="block sm:inline">{language === 'fr' ? "Perle de l’Atlas" : "Perle de l’Atlas"}</span>
           <br className="block sm:hidden" />
-          <span className="text-stone-500 text-base sm:text-lg md:text-xl lg:text-2xl block sm:inline mt-2 sm:mt-0">Meets Moroccan Tradition</span>
+          <span className="text-stone-500 text-base sm:text-lg md:text-xl lg:text-2xl block sm:inline mt-2 sm:mt-0">{language === 'fr' ? "Céramiques, verrerie et arts de la table" : "Ceramics, glassware and table arts"}</span>
         </h2>
         
         {/* Description - Simplified for Mobile */}
@@ -66,11 +68,11 @@ const AppleStyleHero = () => {
              animationFillMode: 'forwards',
              letterSpacing: '0.01em'
            }}>
-          Artisan ceramics and tagines, curated with French elegance
+          {language === 'fr' ? 'Séries limitées • Fabrication responsable' : 'Small-batch • Responsibly made'}
         </p>
 
         {/* Simplified Buttons for Mobile */}
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12 sm:mb-20 animate-fade-in opacity-0 px-4" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-3 sm:mb-6 animate-fade-in opacity-0 px-4" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
           <Button
             size="lg"
             className="bg-stone-900 text-white hover:bg-stone-800 px-8 sm:px-12 py-4 sm:py-6 text-base sm:text-lg font-light tracking-wide transition-all duration-500 rounded-sm border-none shadow-none hover:shadow-lg hover:shadow-stone-900/20 w-full sm:w-auto"
@@ -91,6 +93,10 @@ const AppleStyleHero = () => {
             </Link>
           </Button>
         </div>
+        {/* Microcopy under main CTA */}
+        <p className="text-sm text-stone-600 mb-12 sm:mb-20 animate-fade-in opacity-0" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
+          {language === 'fr' ? 'Paiement sécurisé • Livraison internationale' : 'Secure checkout • Worldwide shipping'}
+        </p>
 
         {/* Simplified Feature Badges - Mobile Optimized */}
         <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-4 sm:gap-8 mb-16 sm:mb-24 fade-in-up px-4">

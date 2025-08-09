@@ -75,7 +75,7 @@ const MobileOptimizedHeader = ({
             <Link to="/" className="flex-shrink-0">
               <img 
                 src="/lovable-uploads/perle-atlas-logo.png"
-                alt="Maison Chapuis"
+                alt="Perle de l’Atlas"
                 className="h-8 w-auto"
               />
             </Link>

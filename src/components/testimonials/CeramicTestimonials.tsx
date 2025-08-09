@@ -77,8 +77,8 @@ const CeramicTestimonials = () => {
           </h2>
           <p className="text-xl text-stone-600 font-light max-w-3xl mx-auto leading-relaxed">
             {language === 'fr'
-              ? 'Découvrez pourquoi nos clients américains font confiance à Maison Chapuis pour leurs plus belles pièces'
-              : 'Discover why our American customers trust Maison Chapuis for their finest pieces'
+              ? 'Découvrez pourquoi nos clients américains font confiance à Perle de l’Atlas pour leurs plus belles pièces'
+              : 'Discover why our American customers trust Perle de l’Atlas for their finest pieces'
             }
           </p>
         </div>
@@ -177,8 +177,8 @@ const CeramicTestimonials = () => {
           </h3>
           <p className="text-stone-600 font-light mb-8 max-w-2xl mx-auto">
             {language === 'fr'
-              ? 'Partagez votre expérience Maison Chapuis et inspirez d\'autres amateurs d\'art de vivre authentique.'
-              : 'Share your Maison Chapuis experience and inspire other lovers of authentic art of living.'
+              ? 'Partagez votre expérience Perle de l’Atlas et inspirez d\'autres amateurs d\'art de vivre authentique.'
+              : 'Share your Perle de l’Atlas experience and inspire other lovers of authentic art of living.'
             }
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">

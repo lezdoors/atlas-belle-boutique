@@ -48,7 +48,7 @@ const AppleStyleHeader = () => {
                   </div>
                 </div>
                 <span className="text-xl font-extralight text-black tracking-tight">
-                  Maison Chapuis
+                  Perle de l’Atlas
                 </span>
               </div>
             </a>

@@ -64,8 +64,8 @@ const TrustBadges = () => {
           </h2>
           <p className="text-stone-600 font-light max-w-2xl mx-auto">
             {language === 'fr'
-              ? 'Chaque pièce Maison Chapuis est accompagnée de garanties qui reflètent notre engagement envers l\'excellence artisanale.'
-              : 'Every Maison Chapuis piece comes with guarantees that reflect our commitment to artisanal excellence.'
+              ? 'Chaque pièce Perle de l’Atlas est accompagnée de garanties qui reflètent notre engagement envers l\'excellence artisanale.'
+              : 'Every Perle de l’Atlas piece comes with guarantees that reflect our commitment to artisanal excellence.'
             }
           </p>
         </div>

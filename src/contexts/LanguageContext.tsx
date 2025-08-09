@@ -47,6 +47,14 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     localStorage.setItem('perle-atlas-currency', currency);
   }, [currency]);
 
+  // Keep <html lang> in sync with selected language for SEO/a11y
+  useEffect(() => {
+    const lang = language === 'fr' ? 'fr' : 'en';
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('lang', lang);
+    }
+  }, [language]);
+
   return (
     <LanguageContext.Provider value={{
       language,

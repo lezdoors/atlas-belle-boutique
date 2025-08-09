@@ -176,7 +176,7 @@ const ModernElegantFooter = () => {
             {/* Logo */}
             <div className="order-2 md:order-1">
               <span className="text-lg font-serif font-light tracking-tight text-stone-600">
-                Maison Chapuis
+                Perle de l’Atlas
               </span>
             </div>
 

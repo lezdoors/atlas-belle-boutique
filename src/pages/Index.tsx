@@ -34,8 +34,8 @@ const Index = () => {
 
   const seoContent = {
     fr: {
-      title: "Maison Chapuis | French-Curated Moroccan Luxury",
-      description: "Handcrafted ceramics, tagines, and glasses from Morocco — curated with French elegance. Authentic, artisan-crafted. Free US shipping.",
+      title: "Perle de l’Atlas — Moroccan Elegance",
+      description: "Perle de l’Atlas marie l’artisanat marocain et l’élégance moderne — céramiques, verrerie et arts de la table. Séries limitées, fabrication responsable.",
       keywords: [
         "vaisselle artisanale maroc",
         "tagine traditionnel",
@@ -50,8 +50,8 @@ const Index = () => {
       ]
     },
     en: {
-      title: "Maison Chapuis | French-Curated Moroccan Luxury",
-      description: "Handcrafted ceramics, tagines, and glasses from Morocco — curated with French elegance. Authentic, artisan-crafted. Free US shipping.",
+      title: "Perle de l’Atlas — Moroccan Elegance",
+      description: "Perle de l’Atlas crafts Moroccan elegance for modern living—handmade ceramics, glassware, and home accents. Small-batch, responsibly made.",
       keywords: [
         "moroccan artisan tableware",
         "traditional tagine",

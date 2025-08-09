@@ -9,18 +9,9 @@ const StickyTopBanner = () => {
 
   if (!isVisible) return null;
 
-  const getThresholdText = () => {
-    if (currency === 'EUR') {
-      return '€139';
-    } else if (currency === 'USD') {
-      return '$149';
-    }
-    return '$149';
-  };
-
   const bannerText = language === 'fr' 
-    ? `Livraison gratuite dès ${getThresholdText()} – Livraison internationale express`
-    : `Free shipping from ${getThresholdText()} – Express international delivery`;
+    ? 'Livraison offerte sur commandes éligibles • Collections saisonnières limitées'
+    : 'Free shipping on qualifying orders • Limited seasonal drops';
 
   const handleClose = () => {
     setIsVisible(false);

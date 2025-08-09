@@ -91,7 +91,7 @@ const MaisonChapuisHeader = () => {
                       </div>
                     </div>
                     <span className="text-xl font-serif font-light text-stone-900 tracking-tight">
-                      Maison Chapuis
+                      Perle de l’Atlas
                     </span>
                   </div>
                 </Link>
