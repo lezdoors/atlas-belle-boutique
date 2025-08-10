@@ -35,8 +35,8 @@ export const translations = {
       en: 'See our privacy policy' 
     },
     copyright: { 
-      fr: '© 2025 Maison Chapuis — Tous droits réservés', 
-      en: '© 2025 Maison Chapuis — All rights reserved' 
+      fr: '© 2025 Perle de l’Atlas — Tous droits réservés', 
+      en: '© 2025 Perle de l’Atlas — All rights reserved' 
     },
     sections: {
       ourHouse: { fr: 'Notre Maison', en: 'Our House' },

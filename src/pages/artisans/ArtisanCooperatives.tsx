@@ -17,8 +17,8 @@ const ArtisanCooperatives = () => {
           </h1>
           <p className="text-lg text-stone-600 text-center max-w-3xl mx-auto">
             {language === 'fr' 
-              ? 'Rencontrez les coopératives artisanales partenaires de Maison Chapuis.'
-              : 'Meet the artisan cooperatives that partner with Maison Chapuis.'
+              ? 'Rencontrez les coopératives artisanales partenaires de Perle de l’Atlas.'
+              : 'Meet the artisan cooperatives that partner with Perle de l’Atlas.'
             }
           </p>
         </div>

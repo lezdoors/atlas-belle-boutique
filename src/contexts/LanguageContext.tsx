@@ -27,16 +27,28 @@ interface LanguageProviderProps {
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>(() => {
-    const saved = localStorage.getItem('perle-atlas-language');
-    return (saved as Language) || 'fr';
+    try {
+      if (typeof window !== 'undefined') {
+        const savedNew = localStorage.getItem('app_lang');
+        const savedOld = localStorage.getItem('perle-atlas-language');
+        return ((savedNew || savedOld) as Language) || 'en';
+      }
+    } catch {}
+    return 'en';
   });
 
   const currency: Currency = language === 'fr' ? 'EUR' : 'USD';
 
-  const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    localStorage.setItem('perle-atlas-language', lang);
-  };
+const setLanguage = (lang: Language) => {
+  setLanguageState(lang);
+  try {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('app_lang', lang);
+      // Backward compatibility
+      localStorage.setItem('perle-atlas-language', lang);
+    }
+  } catch {}
+};
 
   const toggleLanguage = () => {
     const newLang = language === 'fr' ? 'en' : 'fr';

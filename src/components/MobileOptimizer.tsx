@@ -17,7 +17,7 @@ const MobileOptimizer = () => {
       { name: 'mobile-web-app-capable', content: 'yes' },
       { name: 'apple-mobile-web-app-capable', content: 'yes' },
       { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
-      { name: 'apple-mobile-web-app-title', content: "Maison Chapuis" },
+      { name: 'apple-mobile-web-app-title', content: 'Perle de l’Atlas' },
       { name: 'theme-color', content: '#B8860B' },
       { name: 'msapplication-TileColor', content: '#B8860B' },
       { name: 'msapplication-navbutton-color', content: '#B8860B' }

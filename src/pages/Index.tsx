@@ -79,7 +79,7 @@ const Index = () => {
       {/* Main Header */}
       <MaisonStyleHeaderNew />
       
-      <div className="pt-20 sm:pt-32 w-full">
+      <div className="pt-16 sm:pt-24 w-full">
         {/* Full-width Hero Section */}
         <div className="w-full">
           <AppleStyleHero />

@@ -30,8 +30,8 @@ const TermsOfService = () => {
               </h2>
               <p className="text-stone-600 leading-relaxed">
                 {language === 'fr' 
-                  ? 'En accédant et en utilisant le site web de Maison Chapuis, vous acceptez d\'être lié par les présentes conditions de service et toutes les lois et réglementations applicables.'
-                  : 'By accessing and using the Maison Chapuis website, you agree to be bound by these terms of service and all applicable laws and regulations.'
+                  ? 'En accédant et en utilisant le site web de Perle de l’Atlas, vous acceptez d\'être lié par les présentes conditions de service et toutes les lois et réglementations applicables.'
+                  : 'By accessing and using the Perle de l’Atlas website, you agree to be bound by these terms of service and all applicable laws and regulations.'
                 }
               </p>
             </section>
@@ -98,8 +98,8 @@ const TermsOfService = () => {
               </h2>
               <p className="text-stone-600 leading-relaxed">
                 {language === 'fr' 
-                  ? 'Tout le contenu de ce site web, y compris les textes, images, logos et design, est la propriété de Maison Chapuis et est protégé par les lois sur le droit d\'auteur.'
-                  : 'All content on this website, including text, images, logos, and design, is the property of Maison Chapuis and is protected by copyright laws.'
+                  ? 'Tout le contenu de ce site web, y compris les textes, images, logos et design, est la propriété de Perle de l’Atlas et est protégé par les lois sur le droit d\'auteur.'
+                  : 'All content on this website, including text, images, logos, and design, is the property of Perle de l’Atlas and is protected by copyright laws.'
                 }
               </p>
             </section>
@@ -110,8 +110,8 @@ const TermsOfService = () => {
               </h2>
               <p className="text-stone-600 leading-relaxed">
                 {language === 'fr' 
-                  ? 'Maison Chapuis ne sera pas responsable des dommages indirects, accessoires ou consécutifs résultant de l\'utilisation de notre site web ou de nos produits.'
-                  : 'Maison Chapuis shall not be liable for any indirect, incidental, or consequential damages resulting from the use of our website or products.'
+                  ? 'Perle de l’Atlas ne sera pas responsable des dommages indirects, accessoires ou consécutifs résultant de l\'utilisation de notre site web ou de nos produits.'
+                  : 'Perle de l’Atlas shall not be liable for any indirect, incidental, or consequential damages resulting from the use of our website or products.'
                 }
               </p>
             </section>
@@ -151,7 +151,7 @@ const TermsOfService = () => {
                 }
               </p>
               <div className="bg-stone-50 p-6 rounded-lg">
-                <p className="text-stone-900 font-medium">Maison Chapuis</p>
+                <p className="text-stone-900 font-medium">Perle de l’Atlas</p>
                 <p className="text-stone-600">Email: legal@maisonchapuis.com</p>
                 <p className="text-stone-600">Phone: 1-800-CHAPUIS (1-800-242-7847)</p>
                 <p className="text-stone-600">Address: 123 Madison Avenue, New York, NY 10016</p>

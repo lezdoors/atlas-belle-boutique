@@ -32,7 +32,7 @@ export const ceramicsCollections = [
   {
     id: 'collections-signature',
     title: 'Collections Signature',
-    subtitle: 'Exclusive Maison Chapuis designs',
+    subtitle: 'Exclusive Perle de l’Atlas designs',
     startingPrice: 125,
     image: '/lovable-uploads/397b8d88-7594-4433-8004-050f047a13b6.png',
     description: 'Discover our exclusive signature pieces, where traditional Moroccan artistry meets contemporary design sensibilities. Limited edition collections curated especially for discerning collectors.',

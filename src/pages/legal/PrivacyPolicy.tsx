@@ -150,7 +150,7 @@ const PrivacyPolicy = () => {
                 }
               </p>
               <div className="bg-stone-50 p-6 rounded-lg">
-                <p className="text-stone-900 font-medium">Maison Chapuis - Privacy Officer</p>
+                <p className="text-stone-900 font-medium">Perle de l’Atlas - Privacy Officer</p>
                 <p className="text-stone-600">Email: privacy@maisonchapuis.com</p>
                 <p className="text-stone-600">Phone: 1-800-CHAPUIS (1-800-242-7847)</p>
                 <p className="text-stone-600">Address: 123 Madison Avenue, New York, NY 10016</p>

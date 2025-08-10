@@ -16,11 +16,11 @@ const TajineIcon = ({ className = "h-6 w-6" }: { className?: string }) => (
   </svg>
 );
 
-const MaisonChapuisLogo = ({ className = "h-8" }: { className?: string }) => (
+const PerleAtlasWordmark = ({ className = "h-8" }: { className?: string }) => (
   <div className={`${className} flex items-center`}>
-    <h1 className="text-2xl lg:text-3xl font-serif tracking-wider text-stone-800 font-light">
-      <span className="italic">Maison</span>
-      <span className="ml-2 font-medium">Chapuis</span>
+    <h1 className="text-2xl lg:text-3xl font-serif tracking-wide text-stone-800">
+      <span className="font-medium">Perle</span>
+      <span className="mx-2 font-light">de l’Atlas</span>
     </h1>
   </div>
 );
@@ -102,7 +102,7 @@ const MaisonStyleHeaderNew = () => {
   ];
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50">
+    <div className="sticky top-[env(safe-area-inset-top,0)] z-50">
       {/* Top Bar */}
       <div className="bg-stone-100 text-stone-700 text-sm py-2">
         <div className="text-center font-serif tracking-wide">
@@ -112,9 +112,7 @@ const MaisonStyleHeaderNew = () => {
 
       {/* Main Header */}
       <header 
-        className={`bg-white border-b border-stone-200 transition-transform duration-300 ${
-          isVisible ? 'translate-y-0' : '-translate-y-full'
-        }`}
+        className={`bg-white border-b border-stone-200`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
@@ -124,7 +122,7 @@ const MaisonStyleHeaderNew = () => {
             <div className="flex items-center space-x-12">
               {/* Logo - Always visible on left */}
               <Link to="/" className="flex items-center">
-                <MaisonChapuisLogo className="h-8" />
+                <PerleAtlasWordmark className="h-8" />
               </Link>
               
               {/* Desktop Navigation */}

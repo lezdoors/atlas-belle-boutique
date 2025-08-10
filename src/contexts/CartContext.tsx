@@ -149,12 +149,17 @@ function cartReducer(state: CartState, action: CartAction): CartState {
 }
 
 function generateSessionId(): string {
-  const stored = localStorage.getItem('cart_session_id');
-  if (stored) return stored;
-  
-  const newId = 'session_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
-  localStorage.setItem('cart_session_id', newId);
-  return newId;
+  try {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('cart_session_id');
+      if (stored) return stored;
+      const newId = 'session_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+      localStorage.setItem('cart_session_id', newId);
+      return newId;
+    }
+  } catch {}
+  // Fallback non-persistent id
+  return 'session_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
 }
 
 export function CartProvider({ children }: { children: ReactNode }) {
@@ -176,63 +181,73 @@ export function CartProvider({ children }: { children: ReactNode }) {
     loadCart();
   }, []);
 
-  // Sync to localStorage whenever cart changes
-  useEffect(() => {
-    localStorage.setItem('cart_items', JSON.stringify(state.items));
-  }, [state.items]);
+// Sync to localStorage whenever cart changes
+useEffect(() => {
+  try {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cart_items', JSON.stringify(state.items));
+    }
+  } catch {}
+}, [state.items]);
 
-  const loadCart = async () => {
+const loadCart = async () => {
+  try {
+    dispatch({ type: 'SET_LOADING', payload: true });
+
+    // First try to load from localStorage for immediate display
     try {
-      dispatch({ type: 'SET_LOADING', payload: true });
-
-      // First try to load from localStorage for immediate display
-      const localCart = localStorage.getItem('cart_items');
-      if (localCart) {
-        const items = JSON.parse(localCart);
-        if (items.length > 0) {
-          dispatch({ type: 'SET_ITEMS', payload: items });
+      if (typeof window !== 'undefined') {
+        const localCart = localStorage.getItem('cart_items');
+        if (localCart) {
+          const items = JSON.parse(localCart);
+          if (Array.isArray(items) && items.length > 0) {
+            dispatch({ type: 'SET_ITEMS', payload: items });
+          }
         }
       }
+    } catch {}
 
-      // Then sync with Supabase
-      const { data: cartItems, error } = await supabase
-        .from('cart_items')
-        .select(`
+    // Then sync with Supabase
+    const { data: cartItems, error } = await supabase
+      .from('cart_items')
+      .select(`
+        id,
+        product_id,
+        quantity,
+        session_id,
+        products (
           id,
-          product_id,
-          quantity,
-          session_id,
-          products (
-            id,
-            name_fr,
-            name_en,
-            price,
-            images,
-            category,
-            in_stock
-          )
-        `)
-        .eq('session_id', sessionId);
+          name_fr,
+          name_en,
+          price,
+          images,
+          category,
+          in_stock
+        )
+      `)
+      .eq('session_id', sessionId);
 
-      if (error) throw error;
+    if (error) throw error;
 
-      const formattedItems: CartItem[] = cartItems?.map(item => ({
-        id: item.id,
-        product_id: item.product_id,
-        product: item.products as any,
-        quantity: item.quantity,
-        session_id: item.session_id
-      })) || [];
+    const formattedItems: CartItem[] = cartItems?.map(item => ({
+      id: item.id,
+      product_id: item.product_id,
+      product: item.products as any,
+      quantity: item.quantity,
+      session_id: item.session_id
+    })) || [];
 
-      dispatch({ type: 'SET_ITEMS', payload: formattedItems });
+    dispatch({ type: 'SET_ITEMS', payload: formattedItems });
 
-    } catch (error) {
-      console.error('Error loading cart:', error);
-      toast.error('Erreur lors du chargement du panier');
-    } finally {
-      dispatch({ type: 'SET_LOADING', payload: false });
-    }
-  };
+  } catch (error) {
+    console.error('Error loading cart:', error);
+    // Silent fail on init; set empty state and retry once in background
+    dispatch({ type: 'SET_ITEMS', payload: [] });
+    setTimeout(() => { loadCart().catch(() => {}); }, 3000);
+  } finally {
+    dispatch({ type: 'SET_LOADING', payload: false });
+  }
+};
 
   const addToCart = async (product: Product, quantity = 1) => {
     try {
