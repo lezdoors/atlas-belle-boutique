@@ -20,10 +20,11 @@ const ProductHero: React.FC<ProductHeroProps> = ({ product }) => {
       id: product.id.toString(),
       name_fr: product.name,
       name_en: product.name,
-      price: numericPrice,
+      price_eur: numericPrice,
+      price_usd: numericPrice * 1.08,
+      stock_quantity: 10,
       images: [product.image],
       category: 'accessories' as const,
-      in_stock: true,
       created_at: new Date().toISOString()
     };
     addToCart(productForCart, quantity);

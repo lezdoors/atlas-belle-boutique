@@ -52,10 +52,11 @@ const ProductRecommendations = () => {
       id: product.id,
       name_fr: product.name_fr,
       name_en: product.name_en,
-      price: product.price,
+      price_eur: product.price,
+      price_usd: product.price * 1.08,
+      stock_quantity: 10,
       images: [product.image],
       category: 'accessories' as const,
-      in_stock: true,
       created_at: new Date().toISOString()
     };
 

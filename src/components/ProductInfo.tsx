@@ -68,10 +68,11 @@ const ProductInfo = ({ product, onOrderNow }: ProductInfoProps) => {
       id: product.id.toString(),
       name_fr: product.name,
       name_en: product.name,
-      price: product.priceMAD,
+      price_eur: product.priceMAD,
+      price_usd: product.priceMAD * 1.08,
+      stock_quantity: 10,
       images: [authenticImage],
       category: 'accessories' as const,
-      in_stock: true,
       created_at: new Date().toISOString()
     };
     addToCart(productForCart, quantity);

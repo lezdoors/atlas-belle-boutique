@@ -31,10 +31,11 @@ const EnhancedProductCard = ({ product, onQuickView }: EnhancedProductCardProps)
       id: product.id.toString(),
       name_fr: productName,
       name_en: productName,
-      price: product.price_eur,
+      price_eur: product.price_eur,
+      price_usd: product.price_eur * 1.08,
+      stock_quantity: 10,
       images: product.images || ['/placeholder.svg'],
       category: 'accessories' as const,
-      in_stock: true,
       created_at: new Date().toISOString()
     };
     

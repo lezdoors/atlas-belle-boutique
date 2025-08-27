@@ -66,8 +66,15 @@ const MobileProductCard = ({ product }: MobileProductCardProps) => {
     try {
       // Transform product for cart
       const cartProduct = {
-        ...product,
-        category: product.category as "tagines" | "tea-glasses" | "bowls" | "accessories"
+        id: product.id,
+        name_fr: product.name_fr,
+        name_en: product.name_en,
+        price_eur: product.price || 0,
+        price_usd: (product.price || 0) * 1.08,
+        stock_quantity: product.in_stock ? 10 : 0,
+        images: product.images,
+        category: product.category as string,
+        created_at: product.created_at
       };
       await addToCart(cartProduct, quantity);
       toast.success(
