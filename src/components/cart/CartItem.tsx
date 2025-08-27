@@ -54,7 +54,7 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }: CartItemProps) => {
         </p>
         <div className="flex items-center gap-2 mt-1">
           <span className="text-sm font-medium text-stone-900">
-            {formatPrice(item.product.price)}
+            {formatPrice(item.product.price_eur)}
           </span>
           {item.quantity > 1 && (
             <span className="text-xs text-stone-500">

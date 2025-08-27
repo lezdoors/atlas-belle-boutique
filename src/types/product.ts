@@ -3,10 +3,11 @@ export interface Product {
   name_fr: string;
   name_en: string;
   description?: string;
-  price: number;
+  price_eur: number;
+  price_usd: number;
   images: string[];
-  category: 'tagines' | 'tea-glasses' | 'bowls' | 'accessories';
-  in_stock: boolean;
+  category: string;
+  stock_quantity: number;
   created_at: string;
   featured?: boolean;
 }

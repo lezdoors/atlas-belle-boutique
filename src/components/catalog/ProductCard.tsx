@@ -71,7 +71,7 @@ const ProductCard = ({ product, onQuickView }: ProductCardProps) => {
         )}
 
         {/* Stock Status */}
-        {!product.in_stock && (
+        {product.stock_quantity <= 0 && (
           <Badge variant="destructive" className="absolute bottom-4 left-4">
             Épuisé
           </Badge>
@@ -97,12 +97,12 @@ const ProductCard = ({ product, onQuickView }: ProductCardProps) => {
 
         <div className="flex items-center justify-between">
           <div className="text-2xl font-light text-stone-900">
-            {formatPrice(product.price)}
+            {formatPrice(product.price_eur)}
           </div>
           
           <Button
             onClick={() => addToCart(product)}
-            disabled={!product.in_stock}
+            disabled={product.stock_quantity <= 0}
             className="bg-stone-900 text-white hover:bg-stone-800 transition-all duration-300 group-hover:scale-105"
             size="sm"
           >

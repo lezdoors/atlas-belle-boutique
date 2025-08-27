@@ -47,7 +47,7 @@ const ProductGrid = ({ products, isLoading = false, onQuickView }: ProductGridPr
       switch (filters.sortBy) {
         case 'price':
           const priceOrder = filters.sortOrder === 'asc' ? 1 : -1;
-          return (a.price - b.price) * priceOrder;
+          return (a.price_eur - b.price_eur) * priceOrder;
         case 'name':
           return a.name_fr.localeCompare(b.name_fr);
         case 'newest':

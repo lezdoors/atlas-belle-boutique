@@ -53,7 +53,7 @@ const STANDARD_SHIPPING = 12;
 const EXPRESS_SHIPPING = 25;
 
 function calculateCartTotals(items: CartItem[]) {
-  const subtotal = items.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+  const subtotal = items.reduce((sum, item) => sum + (item.product.price_eur * item.quantity), 0);
   const tax = subtotal * TAX_RATE;
   const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : STANDARD_SHIPPING;
   const total = subtotal + tax + shipping;
@@ -219,10 +219,11 @@ const loadCart = async () => {
           id,
           name_fr,
           name_en,
-          price,
+          price_eur,
+          price_usd,
           images,
           category,
-          in_stock
+          stock_quantity
         )
       `)
       .eq('session_id', sessionId);
@@ -251,7 +252,7 @@ const loadCart = async () => {
 
   const addToCart = async (product: Product, quantity = 1) => {
     try {
-      if (!product.in_stock) {
+      if (product.stock_quantity <= 0) {
         toast.error('Produit non disponible');
         return;
       }
