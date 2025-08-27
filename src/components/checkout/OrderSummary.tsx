@@ -39,7 +39,7 @@ const OrderSummary = () => {
             </div>
             <div className="text-right">
               <p className="font-semibold text-copper-600">
-                {convertAndFormat(item.product.price * item.quantity, currency)}
+                {convertAndFormat(item.product.price_eur * item.quantity, currency)}
               </p>
             </div>
           </div>

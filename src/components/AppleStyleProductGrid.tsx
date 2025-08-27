@@ -86,10 +86,11 @@ const AppleStyleProductGrid = () => {
         id: product.id.toString(),
         name_fr: product.name,
         name_en: product.name,
-        price: product.numericPrice,
+        price_eur: product.numericPrice,
+        price_usd: product.numericPrice * 1.08,
+        stock_quantity: product.inStock ? 10 : 0,
         images: [product.image],
-        category: product.category as "tagines" | "tea-glasses" | "bowls" | "accessories",
-        in_stock: product.inStock || false,
+        category: product.category as string,
         created_at: new Date().toISOString()
       }, quantity);
       

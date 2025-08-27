@@ -164,7 +164,7 @@ const CartDrawer = () => {
                           {item.product.name_en}
                         </p>
                         <p className="text-stone-800 font-medium text-sm mb-3">
-                          {convertAndFormat(item.product.price, currency)}
+                          {convertAndFormat(item.product.price_eur, currency)}
                         </p>
                         
                         {/* Quantity Controls */}

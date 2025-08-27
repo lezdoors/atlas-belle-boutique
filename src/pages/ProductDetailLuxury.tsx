@@ -61,10 +61,11 @@ const ProductDetailLuxury = () => {
       id: product.id,
       name_fr: product.name_fr,
       name_en: product.name_en,
-      price: product.price_eur,
+      price_eur: product.price_eur,
+      price_usd: product.price_usd,
+      stock_quantity: product.stock_quantity,
       images: images,
       category: product.category as any,
-      in_stock: (product.stock_quantity || 0) > 0,
       created_at: product.created_at || '',
       featured: product.featured || false
     }, quantity);

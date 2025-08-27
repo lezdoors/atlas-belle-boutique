@@ -20,10 +20,11 @@ const FragranceProductCard = ({ product }: FragranceProductCardProps) => {
       id: product.id.toString(),
       name_fr: product.name,
       name_en: product.name,
-      price: product.price,
+      price_eur: product.price,
+      price_usd: product.price * 1.08,
+      stock_quantity: 10,
       images: [product.image],
       category: 'accessories' as const,
-      in_stock: true,
       created_at: new Date().toISOString()
     };
     

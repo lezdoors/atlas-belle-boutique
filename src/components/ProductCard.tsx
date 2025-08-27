@@ -82,10 +82,11 @@ const ProductCard = ({ product, className = "" }: ProductCardProps) => {
       id: String(product.id),
       name_fr: product.name_fr || product.name || '',
       name_en: product.name_en || product.name || '',
-      price: productPrice,
+      price_eur: productPrice,
+      price_usd: productPrice * 1.08,
+      stock_quantity: (product.stock_quantity || 0) > 0 ? (product.stock_quantity || 10) : 0,
       images: images,
       category: (product.category as any) || 'accessories',
-      in_stock: product.in_stock !== false && (product.stock_quantity || 0) > 0,
       created_at: new Date().toISOString(),
       featured: false
     }, 1);
