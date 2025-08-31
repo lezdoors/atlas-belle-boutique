@@ -1,13 +1,13 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 
 const NosArtisans = () => {
   const { language } = useLanguage();
 
   return (
     <div className="min-h-screen bg-stone-50">
-      <Header />
+      <MaisonStyleHeaderNew />
       
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-stone-100 to-amber-50">
@@ -70,7 +70,7 @@ const NosArtisans = () => {
         </div>
       </section>
 
-      <Footer />
+      <ModernElegantFooter />
     </div>
   );
 };

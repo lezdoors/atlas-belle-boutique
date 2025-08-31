@@ -38,7 +38,7 @@ const MaisonChapuisHeader = () => {
 
   const navigation = [
     { label: 'Shop', href: '/shop' },
-    { label: 'Journal', href: '/journal' },
+    { label: 'Journal', href: '/blog' },
     { label: 'Our Story', href: '/about' }
   ];
 

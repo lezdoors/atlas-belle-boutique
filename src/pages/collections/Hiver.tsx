@@ -1,13 +1,13 @@
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import MaisonStyleHeaderNew from '@/components/MaisonStyleHeaderNew';
+import ModernElegantFooter from '@/components/ModernElegantFooter';
 import { Card, CardContent } from '@/components/ui/card';
 import { Snowflake } from 'lucide-react';
 
 const Hiver = () => {
   return (
     <div className="min-h-screen bg-pearl-50">
-      <Header />
+      <MaisonStyleHeaderNew />
       <main className="pt-32 pb-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -35,7 +35,7 @@ const Hiver = () => {
           </Card>
         </div>
       </main>
-      <Footer />
+      <ModernElegantFooter />
     </div>
   );
 };
