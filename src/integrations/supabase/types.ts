@@ -7,7 +7,7 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "12.2.3 (519615d)"
@@ -102,6 +102,7 @@ export type Database = {
           product_id: string
           quantity: number
           session_id: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -109,6 +110,7 @@ export type Database = {
           product_id: string
           quantity?: number
           session_id: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -116,6 +118,7 @@ export type Database = {
           product_id?: string
           quantity?: number
           session_id?: string
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -145,6 +148,48 @@ export type Database = {
           name?: string
           name_en?: string | null
           name_fr?: string | null
+        }
+        Relationships: []
+      }
+      ceramic_products: {
+        Row: {
+          category: string | null
+          created_at: string | null
+          description: string | null
+          dimensions: string | null
+          id: string
+          image_path: string | null
+          images: Json | null
+          is_sold_out: boolean | null
+          name: string
+          price: number
+          updated_at: string | null
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string | null
+          description?: string | null
+          dimensions?: string | null
+          id?: string
+          image_path?: string | null
+          images?: Json | null
+          is_sold_out?: boolean | null
+          name: string
+          price: number
+          updated_at?: string | null
+        }
+        Update: {
+          category?: string | null
+          created_at?: string | null
+          description?: string | null
+          dimensions?: string | null
+          id?: string
+          image_path?: string | null
+          images?: Json | null
+          is_sold_out?: boolean | null
+          name?: string
+          price?: number
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -274,6 +319,7 @@ export type Database = {
           shipping_address: Json
           status: string
           total: number
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -283,6 +329,7 @@ export type Database = {
           shipping_address: Json
           status?: string
           total: number
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -292,6 +339,40 @@ export type Database = {
           shipping_address?: Json
           status?: string
           total?: number
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      newsletter_rate_limits: {
+        Row: {
+          attempt_count: number | null
+          blocked_until: string | null
+          created_at: string | null
+          email: string
+          first_attempt: string | null
+          id: string
+          ip_address: unknown | null
+          last_attempt: string | null
+        }
+        Insert: {
+          attempt_count?: number | null
+          blocked_until?: string | null
+          created_at?: string | null
+          email: string
+          first_attempt?: string | null
+          id?: string
+          ip_address?: unknown | null
+          last_attempt?: string | null
+        }
+        Update: {
+          attempt_count?: number | null
+          blocked_until?: string | null
+          created_at?: string | null
+          email?: string
+          first_attempt?: string | null
+          id?: string
+          ip_address?: unknown | null
+          last_attempt?: string | null
         }
         Relationships: []
       }
@@ -381,6 +462,7 @@ export type Database = {
           quantity: number
           shipping_address: string | null
           stripe_session_id: string | null
+          tracking_token: string | null
           user_id: string
         }
         Insert: {
@@ -396,6 +478,7 @@ export type Database = {
           quantity?: number
           shipping_address?: string | null
           stripe_session_id?: string | null
+          tracking_token?: string | null
           user_id: string
         }
         Update: {
@@ -411,6 +494,7 @@ export type Database = {
           quantity?: number
           shipping_address?: string | null
           stripe_session_id?: string | null
+          tracking_token?: string | null
           user_id?: string
         }
         Relationships: []
@@ -819,6 +903,7 @@ export type Database = {
           id: string
           last_login_at: string | null
           role: Database["public"]["Enums"]["user_role"] | null
+          session_id: string | null
           signup_method: string | null
           updated_at: string
           user_id: string | null
@@ -831,6 +916,7 @@ export type Database = {
           id?: string
           last_login_at?: string | null
           role?: Database["public"]["Enums"]["user_role"] | null
+          session_id?: string | null
           signup_method?: string | null
           updated_at?: string
           user_id?: string | null
@@ -843,6 +929,7 @@ export type Database = {
           id?: string
           last_login_at?: string | null
           role?: Database["public"]["Enums"]["user_role"] | null
+          session_id?: string | null
           signup_method?: string | null
           updated_at?: string
           user_id?: string | null
@@ -925,6 +1012,27 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      audit_table_security: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          has_public_access: boolean
+          policy_count: number
+          security_status: string
+          table_name: string
+        }[]
+      }
+      create_initial_admin: {
+        Args: { admin_email: string; admin_name: string }
+        Returns: boolean
+      }
+      create_secure_admin: {
+        Args: {
+          admin_email: string
+          admin_name: string
+          creator_password?: string
+        }
+        Returns: boolean
+      }
       generate_order_number: {
         Args: Record<PropertyKey, never>
         Returns: string
@@ -933,9 +1041,66 @@ export type Database = {
         Args: { user_id: string }
         Returns: boolean
       }
+      is_admin_user: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
+      is_valid_email: {
+        Args: { email_address: string }
+        Returns: boolean
+      }
+      log_admin_action: {
+        Args: { action_type: string; details?: Json; target_resource: string }
+        Returns: undefined
+      }
+      log_security_event: {
+        Args: {
+          details?: Json
+          event_type: string
+          ip_address_param?: unknown
+          user_agent_param?: string
+          user_id_param?: string
+        }
+        Returns: undefined
+      }
       refresh_admin_analytics: {
         Args: Record<PropertyKey, never>
         Returns: undefined
+      }
+      request_claim: {
+        Args: { claim_key: string }
+        Returns: string
+      }
+      request_user_id: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
+      update_user_role: {
+        Args: {
+          new_role: Database["public"]["Enums"]["user_role"]
+          target_user_id: string
+        }
+        Returns: boolean
+      }
+      validate_admin_role_change: {
+        Args: {
+          new_role: Database["public"]["Enums"]["user_role"]
+          requesting_user_id?: string
+          target_user_id: string
+        }
+        Returns: boolean
+      }
+      validate_user_session: {
+        Args: { check_session_id: string }
+        Returns: boolean
+      }
+      verify_table_security: {
+        Args: { table_name: string }
+        Returns: boolean
+      }
+      verify_user_role: {
+        Args: { check_user_id: string; required_role: string }
+        Returns: boolean
       }
     }
     Enums: {
