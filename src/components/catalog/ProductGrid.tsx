@@ -14,13 +14,13 @@ interface ProductGridProps {
 
 const ProductGrid = ({ products, isLoading = false, onQuickView }: ProductGridProps) => {
   const [filters, setFilters] = useState<ProductFilters>({
-    category: '',
+    category: 'all',
     sortBy: 'newest',
     sortOrder: 'desc'
   });
 
   const categories = [
-    { value: '', label: 'Toutes les catégories' },
+    { value: 'all', label: 'Toutes les catégories' },
     { value: 'tagines', label: 'Tagines' },
     { value: 'tea-glasses', label: 'Verres à Thé' },
     { value: 'bowls', label: 'Bols' },
@@ -38,7 +38,7 @@ const ProductGrid = ({ products, isLoading = false, onQuickView }: ProductGridPr
     let filtered = [...products];
 
     // Filter by category
-    if (filters.category) {
+    if (filters.category && filters.category !== 'all') {
       filtered = filtered.filter(product => product.category === filters.category);
     }
 
@@ -189,7 +189,7 @@ const ProductGrid = ({ products, isLoading = false, onQuickView }: ProductGridPr
             Essayez de modifier vos filtres ou explorez d'autres catégories.
           </p>
           <Button
-            onClick={() => setFilters({ category: '', sortBy: 'newest', sortOrder: 'desc' })}
+            onClick={() => setFilters({ category: 'all', sortBy: 'newest', sortOrder: 'desc' })}
             variant="outline"
           >
             Réinitialiser les filtres
