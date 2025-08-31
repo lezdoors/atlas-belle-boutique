@@ -72,6 +72,7 @@ import VerreMarocain from "./pages/products/VerreMarocain";
 import TajineTraditionnel from "./pages/products/TajineTraditionnel";
 import Ceramiques from "./pages/categories/Ceramiques";
 import Verrerie from "./pages/categories/Verrerie";
+import Tagines from "./pages/categories/Tagines";
 import ArtisanRegions from "./pages/artisans/ArtisanRegions";
 import ArtisanCooperatives from "./pages/artisans/ArtisanCooperatives";
 import NewArrivals from "./pages/collections/NewArrivals";
@@ -141,7 +142,7 @@ const AppRoutes = () => {
         {/* Category Routes */}
         <Route path="/categories/ceramiques" element={<Ceramiques />} />
         <Route path="/categories/verrerie" element={<Verrerie />} />
-        <Route path="/categories/tagines" element={<Tableware />} />
+        <Route path="/categories/tagines" element={<Tagines />} />
         <Route path="/categories/assiettes" element={<Tableware />} />
         <Route path="/categories/bols" element={<Tableware />} />
         <Route path="/categories/verres-the" element={<Verrerie />} />

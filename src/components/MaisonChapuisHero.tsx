@@ -63,16 +63,18 @@ const MaisonChapuisHero = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button 
             asChild 
-            className="bg-white text-stone-900 hover:bg-stone-100 px-8 py-3 text-base font-light"
+            size="lg"
+            className="bg-white text-stone-900 hover:bg-stone-50 hover:shadow-luxury border-0 px-12 py-4 text-lg font-medium tracking-wide rounded-full transition-all duration-300 hover:scale-105"
           >
             <Link to="/shop">Shop Ceramics</Link>
           </Button>
           <Button 
             asChild 
             variant="outline" 
-            className="border-white text-white hover:bg-white hover:text-stone-900 px-8 py-3 text-base font-light"
+            size="lg"
+            className="border-2 border-white text-white hover:bg-white hover:text-stone-900 hover:shadow-luxury px-12 py-4 text-lg font-medium tracking-wide rounded-full transition-all duration-300 hover:scale-105 bg-white/10 backdrop-blur-sm"
           >
-            <Link to="/about">Our Story</Link>
+            <Link to="/story">Our Story</Link>
           </Button>
         </div>
       </div>
