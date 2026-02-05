@@ -83,37 +83,37 @@ const CookieConsentBanner = () => {
         }`}
         style={{ maxHeight: '20vh' }}
       >
-        <div className="bg-white/95 backdrop-blur-lg border-t border-stone-200 shadow-2xl">
-          <div className="px-4 sm:px-6 py-4">
+        <div className="bg-stone-900/97 backdrop-blur-md border-t border-stone-700/30 shadow-2xl">
+          <div className="px-4 sm:px-6 py-5">
             {!showDetails ? (
               // Main banner content
               <div className="flex flex-col space-y-4">
                 <div className="flex items-start space-x-3">
                   <div className="flex-shrink-0 mt-1">
-                    <Shield className="h-5 w-5 text-stone-600" />
+                    <Shield className="h-5 w-5 text-stone-300" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-medium text-stone-800 text-base mb-1">
+                    <h3 className="font-light text-white text-base mb-1.5 tracking-wide">
                       {currentContent.title}
                     </h3>
-                    <p className="text-sm text-stone-600 leading-relaxed">
+                    <p className="text-sm text-stone-300 leading-relaxed font-light">
                       {currentContent.description}
                     </p>
                   </div>
                 </div>
-                
+
                 {/* Mobile-optimized buttons */}
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button
                     onClick={handleAcceptAll}
-                    className="bg-stone-800 hover:bg-stone-900 text-white font-medium rounded-lg transition-all duration-300 text-sm h-11 flex-1"
+                    className="bg-white hover:bg-stone-50 text-stone-900 font-light rounded-sm transition-all duration-300 text-sm h-11 flex-1 tracking-wide"
                   >
                     {currentContent.acceptAll}
                   </Button>
                   <Button
                     onClick={handleManagePreferences}
                     variant="outline"
-                    className="border-stone-300 text-stone-700 hover:bg-stone-100 font-medium rounded-lg transition-all duration-300 text-sm h-11 flex-1"
+                    className="border-stone-600 text-stone-200 hover:bg-stone-800 hover:text-white font-light rounded-sm transition-all duration-300 text-sm h-11 flex-1 tracking-wide"
                   >
                     {currentContent.customize}
                   </Button>
@@ -123,41 +123,41 @@ const CookieConsentBanner = () => {
               // Preferences panel
               <div className="space-y-4 max-h-[15vh] overflow-y-auto">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-medium text-stone-800 text-base">
+                  <h3 className="font-light text-white text-base tracking-wide">
                     {language === 'fr' ? 'Préférences cookies' : 'Cookie Preferences'}
                   </h3>
                   <Button
                     onClick={() => setShowDetails(false)}
                     variant="ghost"
                     size="sm"
-                    className="text-stone-500 hover:text-stone-700"
+                    className="text-stone-400 hover:text-stone-200"
                   >
                     ✕
                   </Button>
                 </div>
-                
+
                 <div className="space-y-3">
                   <div className="flex items-center justify-between py-2">
                     <div>
-                      <p className="text-sm font-medium text-stone-800">{currentContent.essential}</p>
-                      <p className="text-xs text-stone-600">{currentContent.essentialDesc}</p>
+                      <p className="text-sm font-light text-stone-200">{currentContent.essential}</p>
+                      <p className="text-xs text-stone-400 font-light">{currentContent.essentialDesc}</p>
                     </div>
-                    <input type="checkbox" checked disabled className="h-4 w-4 rounded" />
+                    <input type="checkbox" checked disabled className="h-4 w-4 rounded border-stone-600" />
                   </div>
-                  
+
                   <div className="flex items-center justify-between py-2">
                     <div>
-                      <p className="text-sm font-medium text-stone-800">{currentContent.analytics}</p>
-                      <p className="text-xs text-stone-600">{currentContent.analyticsDesc}</p>
+                      <p className="text-sm font-light text-stone-200">{currentContent.analytics}</p>
+                      <p className="text-xs text-stone-400 font-light">{currentContent.analyticsDesc}</p>
                     </div>
-                    <input type="checkbox" className="h-4 w-4 rounded" />
+                    <input type="checkbox" className="h-4 w-4 rounded border-stone-600" />
                   </div>
                 </div>
-                
+
                 <div className="flex gap-3 pt-2">
                   <Button
                     onClick={handleSavePreferences}
-                    className="bg-stone-800 hover:bg-stone-900 text-white font-medium rounded-lg text-sm h-11 flex-1"
+                    className="bg-white hover:bg-stone-50 text-stone-900 font-light rounded-sm text-sm h-11 flex-1 tracking-wide"
                   >
                     {language === 'fr' ? 'Sauvegarder' : 'Save'}
                   </Button>

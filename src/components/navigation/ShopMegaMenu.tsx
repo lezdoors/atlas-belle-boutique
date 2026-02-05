@@ -23,23 +23,23 @@ const ShopMegaMenu = ({ isOpen, onClose }: ShopMegaMenuProps) => {
 
   return (
     <div
-      className="absolute left-0 right-0 top-full w-full bg-white shadow-lg border-t border-stone-100"
+      className="fixed left-0 right-0 top-[116px] w-full bg-white shadow-xl border-t border-stone-200 z-40"
       onMouseLeave={onClose}
     >
-      <div className="max-w-5xl mx-auto py-12 px-8">
-        <div className="grid grid-cols-2 gap-16">
+      <div className="max-w-6xl mx-auto py-16 px-12">
+        <div className="grid grid-cols-2 gap-24">
           {/* Left Column - Categories */}
           <div>
-            <h3 className="font-serif text-sm uppercase tracking-wider text-stone-400 mb-6">
+            <h3 className="font-serif text-xs uppercase tracking-widest text-stone-500 mb-8 font-light">
               Categories
             </h3>
-            <nav className="space-y-4">
+            <nav className="space-y-5">
               {categories.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
                   onClick={onClose}
-                  className="block text-stone-700 hover:text-stone-900 transition-colors text-base font-light"
+                  className="block text-stone-800 hover:text-stone-950 transition-colors text-lg font-light tracking-wide"
                 >
                   {item.name}
                 </Link>
@@ -49,16 +49,16 @@ const ShopMegaMenu = ({ isOpen, onClose }: ShopMegaMenuProps) => {
 
           {/* Right Column - Curations */}
           <div>
-            <h3 className="font-serif text-sm uppercase tracking-wider text-stone-400 mb-6">
+            <h3 className="font-serif text-xs uppercase tracking-widest text-stone-500 mb-8 font-light">
               Curations
             </h3>
-            <nav className="space-y-4">
+            <nav className="space-y-5">
               {curations.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
                   onClick={onClose}
-                  className="block text-stone-700 hover:text-stone-900 transition-colors text-base font-light"
+                  className="block text-stone-800 hover:text-stone-950 transition-colors text-lg font-light tracking-wide"
                 >
                   {item.name}
                 </Link>
